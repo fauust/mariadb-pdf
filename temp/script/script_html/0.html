@@ -1,122 +1,132 @@
 <section class="limited_width col-md-8 clearfix" id="content">
-<h1>SELECT</h1>
+<h1>LIMIT</h1>
 <div>
 <div class="node creole">
 <div class="answer formatted">
-<h2 class="anchored_heading" id="syntax">Syntax</h2>
-<pre class="highlight fixed"><p>SELECT
-    [ALL | DISTINCT | DISTINCTROW]
-    [HIGH_PRIORITY]
-    [STRAIGHT_JOIN]
-    [SQL_SMALL_RESULT] [SQL_BIG_RESULT] [SQL_BUFFER_RESULT]
-    [SQL_CACHE | SQL_NO_CACHE] [SQL_CALC_FOUND_ROWS]
-    select_expr [, select_expr ...]
-    [ FROM <a href="https://mariadb.com/kb/en/join-syntax/">table_references</a>
-      [WHERE where_condition]
-      [GROUP BY {col_name | expr | position} [ASC | DESC], ... [WITH ROLLUP]]
-      [HAVING where_condition]
-      [ORDER BY {col_name | expr | position} [ASC | DESC], ...]
-      [LIMIT {[offset,] row_count | row_count OFFSET offset  [ROWS EXAMINED rows_limit] } |
-        [OFFSET start { ROW | ROWS }]
-        [FETCH { FIRST | NEXT } [ count ] { ROW | ROWS } { ONLY | WITH TIES }] ]
-      procedure|[PROCEDURE procedure_name(argument_list)]
-      [INTO OUTFILE 'file_name' [CHARACTER SET charset_name] [export_options] |
-        INTO DUMPFILE 'file_name' | INTO var_name [, var_name] ]
-      [FOR UPDATE lock_option | LOCK IN SHARE MODE lock_option]</p>
-<p>export_options:
-    [{FIELDS | COLUMNS}
-        [TERMINATED BY 'string']
-        [[OPTIONALLY] ENCLOSED BY 'char']
-        [ESCAPED BY 'char']
-    ]
-    [LINES
-        [STARTING BY 'string']
-        [TERMINATED BY 'string']
-    ]</p>
-<p>lock_option:
-    [WAIT n | NOWAIT | SKIP LOCKED]</p></pre><div class="table_of_contents well well-small">
+<div class="table_of_contents well well-small">
 <h3>Contents</h3>
 <ol class="toc">
-<li class="mariadb_from_10_6"><a href="#syntax" title="Syntax">Syntax</a></li>
-<li class="mariadb_from_10_6"><a href="#description" title="Description">Description</a> <ol class="toc">
-<li class="mariadb_from_10_6"><a href="#select-expressions" title="Select Expressions">Select Expressions</a></li>
-<li class="mariadb_from_10_6"><a href="#distinct" title="DISTINCT">DISTINCT</a></li>
-<li class="mariadb_from_10_6"><a href="#into" title="INTO">INTO</a></li>
-<li class="mariadb_from_10_6"><a href="#limit" title="LIMIT">LIMIT</a></li>
-<li class="mariadb_from_10_6"><a href="#lock-in-share-modefor-update" title="LOCK IN SHARE MODE/FOR UPDATE">LOCK IN SHARE MODE/FOR UPDATE</a></li>
-<li class="mariadb_from_10_6"><a href="#offset-fetch" title="OFFSET ... FETCH">OFFSET ... FETCH</a></li>
-<li class="mariadb_from_10_6"><a href="#order-by" title="ORDER BY">ORDER BY</a></li>
-<li class="mariadb_from_10_6"><a href="#partition" title="PARTITION">PARTITION</a></li>
-<li class="mariadb_from_10_6"><a href="#procedure" title="PROCEDURE">PROCEDURE</a></li>
-<li class="mariadb_from_10_6"><a href="#skip-locked" title="SKIP LOCKED">SKIP LOCKED</a></li>
-<li class="mariadb_from_10_6"><a href="#sql_calc_found_rows" title="SQL_CALC_FOUND_ROWS">SQL_CALC_FOUND_ROWS</a></li>
-<li class="mariadb_from_10_6"><a href="#max_statement_time-clause" title="max_statement_time clause">max_statement_time clause</a></li>
-<li class="mariadb_from_10_6"><a href="#waitnowait" title="WAIT/NOWAIT">WAIT/NOWAIT</a> </li></ol>
+<li class=""><a href="#description" title="Description">Description</a> <ol class="toc">
+<li class=""><a href="#multi-table-updates" title="Multi-Table Updates">Multi-Table Updates</a></li>
+<li class=""><a href="#group_concat" title="GROUP_CONCAT">GROUP_CONCAT</a> </li></ol>
 </li>
-<li class="mariadb_from_10_6"><a href="#examples" title="Examples">Examples</a></li>
-<li class="mariadb_from_10_6"><a href="#see-also" title="See Also">See Also</a> </li></ol>
+<li class=""><a href="#examples" title="Examples">Examples</a></li>
+<li class=""><a href="#see-also" title="See Also">See Also</a> </li></ol>
 </div>
 <h2 class="anchored_heading" id="description">Description</h2>
-<p><code>SELECT</code> is used to retrieve rows selected from one or more
-tables, and can include <a href="https://mariadb.com/kb/en/union/">UNION</a> statements and <a href="https://mariadb.com/kb/en/subqueries/">subqueries</a>.</p>
+<p>Use the <code>LIMIT</code> clause to restrict the number of returned rows. When you use a single
+integer <em>n</em> with <code>LIMIT</code>, the first <em>n</em> rows will be returned. Use the <a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a>
+clause to control which rows come first. You can also select a number of rows after an offset
+using either of the following:</p>
+<pre class="fixed">LIMIT offset, row_count
+LIMIT row_count OFFSET offset
+</pre><p>When you provide an offset <em>m</em> with a limit <em>n</em>, the first <em>m</em> rows will be ignored, and the
+following <em>n</em> rows will be returned.</p>
+<p>Executing an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> with the <code>LIMIT</code> clause is not safe for replication. <code>LIMIT 0</code> is an exception to this rule (see <a href="https://jira.mariadb.org/browse/MDEV-6170">MDEV-6170</a>).</p>
+<p>There is a <a href="https://mariadb.com/kb/en/limit-rows-examined/">LIMIT ROWS EXAMINED</a> optimization which provides the
+means to terminate the execution of <a href="https://mariadb.com/kb/en/select/">SELECT</a> statements which examine too
+many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/en/limit-rows-examined/">LIMIT ROWS EXAMINED</a>.</p>
+<h3 class="anchored_heading" id="multi-table-updates">Multi-Table Updates</h3>
+<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>LIMIT</code> (or <a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a>) in a multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
+</div><h3 class="anchored_heading" id="group_concat">GROUP_CONCAT</h3>
+<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Starting from <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, it is possible to use <code>LIMIT</code> with <a href="https://mariadb.com/kb/en/group_concat/">GROUP_CONCAT()</a>.</p>
+</div><h2 class="anchored_heading" id="examples">Examples</h2>
+<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">members</span> <span class="p">(</span><span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">members</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'Jagdish'</span><span class="p">),(</span><span class="s1">'Kenny'</span><span class="p">),(</span><span class="s1">'Rokurou'</span><span class="p">),(</span><span class="s1">'Immaculada'</span><span class="p">);</span>
 
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">members</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span> <span class="n">name</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span> <span class="n">Jagdish</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="n">Kenny</span>      <span class="o">|</span>
+<span class="o">|</span> <span class="n">Rokurou</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="n">Immaculada</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+</pre><p>Select the first two names (no ordering specified):</p>
+<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">members</span> <span class="k">LIMIT</span> <span class="mi">2</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">---------+</span>
+<span class="o">|</span> <span class="n">name</span>    <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------+</span>
+<span class="o">|</span> <span class="n">Jagdish</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Kenny</span>   <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------+</span>
+</pre><p>All the names in alphabetical order:</p>
+<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">members</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">name</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span> <span class="n">name</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span> <span class="n">Immaculada</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Jagdish</span>    <span class="o">|</span>
+<span class="o">|</span> <span class="n">Kenny</span>      <span class="o">|</span>
+<span class="o">|</span> <span class="n">Rokurou</span>    <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+</pre><p>The first two names, ordered alphabetically:</p>
+<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">members</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">name</span> <span class="k">LIMIT</span> <span class="mi">2</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span> <span class="n">name</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span> <span class="n">Immaculada</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Jagdish</span>    <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+</pre><p>The third name, ordered alphabetically (the first name would be offset zero, so the third is offset two):</p>
+<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">members</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">name</span> <span class="k">LIMIT</span> <span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------+</span>
+<span class="o">|</span> <span class="n">name</span>  <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------+</span>
+<span class="o">|</span> <span class="n">Kenny</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------+</span>
+</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>, <code>LIMIT</code> can be used in a multi-table update:</p>
+<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">warehouse</span> <span class="p">(</span><span class="n">product_id</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">qty</span> <span class="nb">INT</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">warehouse</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
 
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">store</span> <span class="p">(</span><span class="n">product_id</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">qty</span> <span class="nb">INT</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">store</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>
 
+<span class="k">UPDATE</span> <span class="n">warehouse</span><span class="p">,</span><span class="n">store</span> <span class="k">SET</span> <span class="n">warehouse</span><span class="p">.</span><span class="n">qty</span> <span class="o">=</span> <span class="n">warehouse</span><span class="p">.</span><span class="n">qty</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">store</span><span class="p">.</span><span class="n">qty</span> <span class="o">=</span> <span class="n">store</span><span class="p">.</span><span class="n">qty</span><span class="o">+</span><span class="mi">2</span> 
+  <span class="k">WHERE</span> <span class="p">(</span><span class="n">warehouse</span><span class="p">.</span><span class="n">product_id</span> <span class="o">=</span> <span class="n">store</span><span class="p">.</span><span class="n">product_id</span> <span class="k">AND</span> <span class="n">store</span><span class="p">.</span><span class="n">product_id</span>  <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> 
+    <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">store</span><span class="p">.</span><span class="n">product_id</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="mi">2</span><span class="p">;</span>
 
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">warehouse</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+------+</span>
+<span class="o">|</span> <span class="n">product_id</span> <span class="o">|</span> <span class="n">qty</span>  <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+------+</span>
+<span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>  <span class="mi">100</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">2</span> <span class="o">|</span>  <span class="mi">100</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">3</span> <span class="o">|</span>   <span class="mi">98</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">4</span> <span class="o">|</span>   <span class="mi">98</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+------+</span>
 
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">store</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+------+</span>
+<span class="o">|</span> <span class="n">product_id</span> <span class="o">|</span> <span class="n">qty</span>  <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+------+</span>
+<span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>    <span class="mi">5</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">2</span> <span class="o">|</span>    <span class="mi">5</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">3</span> <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
+<span class="o">|</span>          <span class="mi">4</span> <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+------+</span>
+</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, <code>LIMIT</code> can be used with <a href="https://mariadb.com/kb/en/group_concat/">GROUP_CONCAT</a>, so, for example, given the following table:</p>
+<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">d</span> <span class="p">(</span><span class="n">dd</span> <span class="nb">DATE</span><span class="p">,</span> <span class="n">cc</span> <span class="nb">INT</span><span class="p">);</span>
 
-
-<p>SELECT can also be used to retrieve rows computed without reference to
-any table.</p>
-<h3 class="anchored_heading" id="select-expressions">Select Expressions</h3>
-<p>A <code>SELECT</code> statement must contain one or more select expressions, separated
-by commas. Each select expression can be one of the following:</p>
-
-<p>When specifying a column, you can either use just the column name or qualify the column
-name with  the name of the table using <code>tbl_name.col_name</code>. The qualified form is
-useful if you are joining multiple tables in the <code>FROM</code> clause. If you do not qualify the
-column names when selecting from multiple tables, MariaDB will try to find the column in
-each table. It is an error if that column name exists in multiple tables.</p>
-<p>You can quote column names using backticks. If you are qualifying column names
-with table names, quote each part separately as <code>`tbl_name`.`col_name`</code>.</p>
-<p>If you use any <a href="https://mariadb.com/kb/en/functions-and-modifiers-for-use-with-group-by/">grouping functions</a>
-in any of the select expressions, all rows in your results will be implicitly grouped, as if
-you had used <code>GROUP BY NULL</code>.</p>
-<h3 class="anchored_heading" id="distinct">DISTINCT</h3>
-<p>A query may produce some identical rows. By default, all rows are retrieved, even when their values are the same. To explicitly specify that you want to retrieve identical rows, use the <code>ALL</code> option. If you want duplicates to be removed from the resultset, use the <code>DISTINCT</code> option. <code>DISTINCTROW</code> is a synonym for <code>DISTINCT</code>. See also <a href="https://mariadb.com/kb/en/count-distinct/">COUNT DISTINCT</a> and <a href="https://mariadb.com/kb/en/sql_modeoracle-from-mariadb-103/#simple-syntax-compatibility">SELECT UNIQUE in Oracle mode</a>.</p>
-<h3 class="anchored_heading" id="into">INTO</h3>
-<p>The <code>INTO</code> clause is used to specify that the query results should be written to a file or variable.</p>
-
-<p>The reverse of <code>SELECT INTO OUTFILE</code> is <a href="https://mariadb.com/kb/en/load-data-into-tables-or-index/">LOAD DATA</a>.</p>
-<h3 class="anchored_heading" id="limit">LIMIT</h3>
-<p>Restricts the number of returned rows. See <a href="https://mariadb.com/kb/en/limit/">LIMIT</a> and <a href="https://mariadb.com/kb/en/limit-rows-examined/">LIMIT ROWS EXAMINED</a> for details.</p>
-<h3 class="anchored_heading" id="lock-in-share-modefor-update">LOCK IN SHARE MODE/FOR UPDATE</h3>
-<p>See <a href="https://mariadb.com/kb/en/lock-in-share-mode/">LOCK IN SHARE MODE</a> and <a href="https://mariadb.com/kb/en/for-update/">FOR UPDATE</a> for details on the respective locking clauses.</p>
-<h3 class="anchored_heading" id="offset-fetch">OFFSET ... FETCH</h3>
-<div class="mariadb_from_10_6 mariadb from_10_6 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/what-is-mariadb-106/">10.6</a></h5><p>See <a href="https://mariadb.com/kb/en/select-offset-fetch/">SELECT ... OFFSET ... FETCH</a>.</p>
-</div><h3 class="anchored_heading" id="order-by">ORDER BY</h3>
-<p>Order a resultset. See <a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a> for details.</p>
-<h3 class="anchored_heading" id="partition">PARTITION</h3>
-<p>Specifies to the optimizer which partitions are relevant for the query. Other partitions will not be read.  See <a href="https://mariadb.com/kb/en/partition-pruning-and-selection/">Partition Pruning and Selection</a> for details.</p>
-<h3 class="anchored_heading" id="procedure">PROCEDURE</h3>
-<p>Passes the whole result set to a C Procedure. See <a href="https://mariadb.com/kb/en/procedure/">PROCEDURE</a> and <a href="https://mariadb.com/kb/en/procedure-analyse/">PROCEDURE ANALYSE</a> (the only built-in procedure not requiring the server to be recompiled).</p>
-<h3 class="anchored_heading" id="skip-locked">SKIP LOCKED</h3>
-<div class="mariadb_from_10_6 mariadb from_10_6 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/what-is-mariadb-106/">10.6</a></h5><p>The SKIP LOCKED clause was introduced in <a href="https://mariadb.com/kb/en/mariadb-1060-release-notes/">MariaDB 10.6.0</a>.</p>
-<p>This causes those rows that couldn't be locked (<a href="https://mariadb.com/kb/en/lock-in-share-mode/">LOCK IN SHARE MODE</a> or <a href="https://mariadb.com/kb/en/for-update/">FOR UPDATE</a>) to be excluded from the result set. An explicit <code>NOWAIT</code> is implied here. This is only implemented on <a href="https://mariadb.com/kb/en/innodb/">InnoDB</a> tables and ignored otherwise.</p>
-</div><h3 class="anchored_heading" id="sql_calc_found_rows">SQL_CALC_FOUND_ROWS</h3>
-<p>When <code>SQL_CALC_FOUND_ROWS</code> is used, then MariaDB will calculate how many rows would
-have been in the result, if there would be no <a href="https://mariadb.com/kb/en/limit/">LIMIT</a> clause. The result can be found by calling the function <a href="https://mariadb.com/kb/en/found_rows/">FOUND_ROWS()</a> in your next sql statement.</p>
-<p><br/></p>
-<h3 class="anchored_heading" id="max_statement_time-clause">max_statement_time clause</h3>
-<p>By using <a href="https://mariadb.com/kb/en/server-system-variables/#max_statement_time">max_statement_time</a> in conjunction with <a href="https://mariadb.com/kb/en/set-statement/">SET STATEMENT</a>, it is possible to limit the execution time of individual queries. For example:</p>
-<pre class="fixed">SET STATEMENT max_statement_time=100 FOR 
-  SELECT field1 FROM table_name ORDER BY field1;
-</pre><h3 class="anchored_heading" id="waitnowait">WAIT/NOWAIT</h3>
-<p>Set the lock wait timeout. See <a href="https://mariadb.com/kb/en/wait-and-nowait/">WAIT and NOWAIT</a>.</p>
-<h2 class="anchored_heading" id="examples">Examples</h2>
-<pre class="fixed"><span class="k">SELECT</span> <span class="n">f1</span><span class="p">,</span><span class="n">f2</span> <span class="k">FROM</span> <span class="n">t1</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">f3</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">)</span> <span class="k">AND</span> <span class="p">(</span><span class="n">f4</span><span class="o">=</span><span class="s1">'y'</span><span class="p">);</span>
-</pre><p>See <a href="https://mariadb.com/kb/en/getting-data-from-mariadb/">Getting Data from MariaDB</a> (Beginner tutorial), or the various sub-articles, for more examples.</p>
-
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">d</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'2017-01-01'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">d</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'2017-01-02'</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">d</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'2017-01-04'</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</pre><p>the following query:</p>
+<pre class="fixed"><span class="k">SELECT</span> <span class="n">SUBSTRING_INDEX</span><span class="p">(</span><span class="n">GROUP_CONCAT</span><span class="p">(</span><span class="n">CONCAT_WS</span><span class="p">(</span><span class="ss">":"</span><span class="p">,</span><span class="n">dd</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cc</span> <span class="k">DESC</span><span class="p">),</span><span class="ss">","</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">d</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">SUBSTRING_INDEX</span><span class="p">(</span><span class="n">GROUP_CONCAT</span><span class="p">(</span><span class="n">CONCAT_WS</span><span class="p">(</span><span class="ss">":"</span><span class="p">,</span><span class="n">dd</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cc</span> <span class="k">DESC</span><span class="p">),</span><span class="ss">","</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="p">:</span><span class="mi">3</span>                                                               <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------------------------------------------+</span>
+</pre><p>can be more simply rewritten as:</p>
+<pre class="fixed"><span class="k">SELECT</span> <span class="n">GROUP_CONCAT</span><span class="p">(</span><span class="n">CONCAT_WS</span><span class="p">(</span><span class="ss">":"</span><span class="p">,</span><span class="n">dd</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cc</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="mi">1</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">d</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">GROUP_CONCAT</span><span class="p">(</span><span class="n">CONCAT_WS</span><span class="p">(</span><span class="ss">":"</span><span class="p">,</span><span class="n">dd</span><span class="p">,</span><span class="n">cc</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cc</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="p">:</span><span class="mi">3</span>                                                <span class="o">|</span>
+<span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
+</pre>
 
 </div>
 

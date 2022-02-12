@@ -1,7 +1,7 @@
 from requests import Session
 from requests_futures.sessions import FuturesSession
 from bs4 import BeautifulSoup
-import pdfkit
+#import pdfkit
 import time
 import os
 import re
@@ -21,7 +21,7 @@ class Converter():
         else:
             self.output = "script_nocss"
     
-    def get_html(self):
+    def get_html_from_url(self):
         #create sessions
         session = FuturesSession()
 
@@ -45,6 +45,19 @@ class Converter():
             all_text.append(session_text)
         
         self.html = all_text
+    def get_html_from_files(self):
+        all_text = []
+        for filename in os.listdir("full_html"):
+            path = os.path.join("full_html", filename)
+            with open(path, "r") as file:
+                all_text.append(file.read())
+        self.html = all_text
+    def store_full_files(self):
+        for index, text in enumerate(self.html):
+            filename = str(index) + ".html"
+            path = os.path.join("full_html", filename)
+            with open(path, "w") as file:
+                file.write(text)
 
     def strip(self):
         #little helper function for later
@@ -78,6 +91,17 @@ class Converter():
             self.link = link
             self.html[index] = str(content)
 
+    def fix_internal_links(self):
+
+        for f in self.files:
+            with open(f, "r") as file:
+                contents = file.read()
+                pattern = f'"#'
+
+                broken_links = re.findAll(pattern, contents)
+
+
+
     def get_boilerplate(self):
         with open("boilerplate.html", "r") as file:
             contents = file.read()
@@ -97,8 +121,17 @@ class Converter():
             self.files.append(path)
             with open(path, "w", encoding = "utf-8") as file:
                 file.write(h)
+        
 
-
+    def write_to_single_file(self):
+        text = ""
+        text += self.boiler
+        for f in self.files:
+            with open(f, "r") as file:
+                text += file.read()
+        text += self.plate
+        with open("full_html.html", "w") as file:
+            file.write(text)
     def write_to_pdf(self):
         path_to_exe = "C:\\Program Files\\wkhtmltopdf\\bin\wkhtmltopdf.exe"
         config = pdfkit.configuration(wkhtmltopdf=path_to_exe)
@@ -129,8 +162,12 @@ urls = ["https://mariadb.com/kb/en/select/", "https://mariadb.com/kb/en/limit/",
 
 converter = Converter(urls)
 converter.get_boilerplate()
-converter.get_html()
+#converter.get_html_from_url()
+converter.get_html_from_files()
+converter.store_full_files()
 converter.strip()
+converter.fix_internal_links()
 converter.absolute_links()
 converter.write_to_file()
-converter.write_to_pdf()
+#converter.write_to_pdf()
+converter.write_to_single_file()
