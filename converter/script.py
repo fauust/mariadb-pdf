@@ -9,7 +9,6 @@ import re
 import csv
 import os
 
-
 #config
 with open("config.json", "r") as file:
     config = json.loads(file.read())
@@ -81,7 +80,7 @@ def merge_html_files():
         
         with open(output_file, "a", encoding = "utf-8") as file:
             file.write(html)
-    
+
     with open(output_file, "a", encoding = "utf-8") as file:
         file.write(plate)
         
@@ -98,14 +97,13 @@ def write_to_pdf():
     pdfkit.from_string(html, pdf_file, configuration = pdf_config)
     print("finished")
 
-
 def _strip(html):
     def remove(content, *args, **kwargs): #helper method
         tag = content.find(*args, **kwargs)
         tag.decompose()
     
     #load into html parser
-    soup = BeautifulSoup(html, features = "lxml")
+    soup = BeautifulSoup(html, features = "html.parser")
     soup.prettify()
 
     #find main content
