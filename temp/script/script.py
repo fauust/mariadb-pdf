@@ -1,173 +1,162 @@
-from requests import Session
+#imports
+import requests
 from requests_futures.sessions import FuturesSession
 from bs4 import BeautifulSoup
-#import pdfkit
+
+import json
 import time
-import os
 import re
+import csv
+import os
 
 
+#config
+with open("config.json", "r") as file:
+    config = json.loads(file.read())
 
-class Converter():
-    base_url = "https://mariadb.com"
-    filename = "script.html"
-    def __init__(self, urls, css = True):
-        self.urls = urls
-        self.css = css
-        self.files = []
-        self.direct = "script_html"
-        if self.css:
-            self.output = "script_css"
-        else:
-            self.output = "script_nocss"
+if config["write_to_pdf"]:
+    import pdfkit
+
+stripped_html_dir = "stripped_html"
+full_html_dir = "full_html"
+#functions
+def get_urls():
+    """returns a list containing all the urls located in 'urls.csv' """
+    print("getting urls...")
+    with open("urls.csv") as file:
+        urls = file.read().split(',')
+    return urls
+
+
+def write_urls_to_html(urls):
+    print("sending requests")
+    session = FuturesSession()
+    sent_requests = []
+    for url in urls:
+        request  = session.get(url)
+        sent_requests.append(request)
+    print("waiting for requests")
+    while sent_requests != []:
+        time.sleep(0.1)
+        for index, request in enumerate(sent_requests):
+            if request in busy_requests and request._state != "RUNNING":
+                filename = f"temp({index}).html"
+                path = os.path.join(full_html_dir, filename)
+
+                content = request.result().text
+                with open(path, "w", encoding = "utf-8") as file:
+                    file.write(content)
+                busy_requests.remove(request)
+
+
+def modify_html_files():
+    files = os.listdir(full_html_dir)
+    print("stripping files")
+    for filename in files:
+        path = os.path.join(full_html_dir, filename)
+        with open(path, "r", encoding = "utf-8") as file:
+            html = file.read()
+        
+        html = _strip(html)
+        html = _absolute_links(html)
+
+
+        path = os.path.join(stripped_html_dir, filename)
+        with open(path, "w") as file:
+            file.write(html)
+
+def merge_html_files():
+    print("merging files")
+    files = os.listdir("stripped_html")
+
+    boiler, plate = _get_boilerplate()
+    output_file = config["output_name"] + ".html"
+    with open(output_file, "w") as file:
+        file.write(boiler)
+
+    for filename in files:
+        path = os.path.join(stripped_html_dir, filename)
+        with open(path, "r", encoding = "utf-8") as file:
+            html = file.read()
+        
+        with open(output_file, "a", encoding = "utf-8") as file:
+            file.write(html)
     
-    def get_html_from_url(self):
-        #create sessions
-        session = FuturesSession()
-
-        #get sessions
-        sessions = [session.get(url) for url in self.urls]
-
-        #wait for sessions to finish
-
-        #create a list of running sessions
-        running_sessions = list(sessions)
-
-
-        while running_sessions != []: # while there are still running sessions
-            for s in running_sessions: # iterate through them
-                if s._state != "RUNNING": # and check if they are running
-                    running_sessions.remove(s) # remove if they are completed
-        
-        all_text = []
-        for s in sessions:
-            session_text = s.result().text
-            all_text.append(session_text)
-        
-        self.html = all_text
-    def get_html_from_files(self):
-        all_text = []
-        for filename in os.listdir("full_html"):
-            path = os.path.join("full_html", filename)
-            with open(path, "r") as file:
-                all_text.append(file.read())
-        self.html = all_text
-    def store_full_files(self):
-        for index, text in enumerate(self.html):
-            filename = str(index) + ".html"
-            path = os.path.join("full_html", filename)
-            with open(path, "w") as file:
-                file.write(text)
-
-    def strip(self):
-        #little helper function for later
-        def remove(content, *args, **kwargs): 
-            tag = content.find(*args, **kwargs)
-            tag.decompose()
-        for index, code in enumerate(self.html):
-            #make and clean up html structure
-            soup = BeautifulSoup(code, features = "lxml")
-            soup.prettify()
-
-            #find the relevant information
-            content = soup.find("section", {"id": "content"})
-            
-            #remove unwanted information
-            remove(content, "div", {"id": "content_disclaimer"})
-            remove(content, "div", {"id": "comments"})
-            remove(content, "h2", text = "Comments")
-            remove(content, "div", {"id": "subscribe"})
-
-            remove(content, "div", {"class": "simple_section_nav"})
-            remove(content, "h2", {"id": "see-also"})
-
-
-            tags = content.findAll("ul")
-            for i in tags: i.decompose()
-
-            link = soup.find("link", {"rel": "stylesheet"})
-            for child in link.findChildren():
-                child.decompose()
-            self.link = link
-            self.html[index] = str(content)
-
-    def fix_internal_links(self):
-
-        for f in self.files:
-            with open(f, "r") as file:
-                contents = file.read()
-                pattern = f'"#'
-
-                broken_links = re.findAll(pattern, contents)
-
-
-
-    def get_boilerplate(self):
-        with open("boilerplate.html", "r") as file:
-            contents = file.read()
-            boilerplate = contents.split("\n")
-            self.boiler, self.plate = boilerplate[0], boilerplate[1]
-
-    def absolute_links(self):
-        for index, string in enumerate(self.html):
-            self.html[index] = re.sub('href="/', 'href="' + self.base_url + "/", string)
-
-
-
-    def write_to_file(self):
-        for index, h in enumerate(self.html):
-            filename = str(index) + ".html"
-            path = os.path.join(self.direct, filename)
-            self.files.append(path)
-            with open(path, "w", encoding = "utf-8") as file:
-                file.write(h)
+    with open(output_file, "a", encoding = "utf-8") as file:
+        file.write(plate)
         
 
-    def write_to_single_file(self):
-        text = ""
-        text += self.boiler
-        for f in self.files:
-            with open(f, "r") as file:
-                text += file.read()
-        text += self.plate
-        with open("full_html.html", "w") as file:
-            file.write(text)
-    def write_to_pdf(self):
-        path_to_exe = "C:\\Program Files\\wkhtmltopdf\\bin\wkhtmltopdf.exe"
-        config = pdfkit.configuration(wkhtmltopdf=path_to_exe)
-        print("making_pdf")
-        files = self.files
-        if False:
-            new_file = pdfkit.from_file(self.files, self.output + ".pdf", configuration = config)
-        else:
-            text = ""
-            text += self.boiler
-            for f in self.files:
-                file = open(f, "r")
-                text += file.read()
-                file.close()   
-            text += self.plate
-            with open("test.html", "w") as file:
-                file.write(text)
-            pdfkit.from_string(text, self.output + ".pdf", configuration = config)
-        #with open(self.files, "w") as file:
-        #    file.write(text)
-        print("finished")
+def write_to_pdf():
+    path_to_exe = "wkhtmltopdf.exe"
+    pdf_config = pdfkit.configuration(wkhtmltopdf=path_to_exe)
+    print("making_pdf")
+
+    html_file = config["output_name"] + ".html"
+    pdf_file = config["output_name"] + ".pdf"
+    with open(html_file, "r") as file:
+        html = file.read()
+    pdfkit.from_string(html, pdf_file, configuration = pdf_config)
+    print("finished")
 
 
-urls = ["https://mariadb.com/kb/en/select/", "https://mariadb.com/kb/en/limit/",
-        "https://mariadb.com/kb/en/order-by/", "https://mariadb.com/kb/en/union/"]
+def _strip(html):
+    def remove(content, *args, **kwargs): #helper method
+        tag = content.find(*args, **kwargs)
+        tag.decompose()
+    
+    #load into html parser
+    soup = BeautifulSoup(html, features = "lxml")
+    soup.prettify()
 
-#urls = ["https://mariadb.com/kb/en/select/"]
+    #find main content
+    content = soup.find("section", {"id": "content"})
+    #remove unwanted information
+    remove(content, "div", {"id": "content_disclaimer"})
+    remove(content, "div", {"id": "comments"})
+    remove(content, "h2", text = "Comments")
+    remove(content, "div", {"id": "subscribe"})
 
-converter = Converter(urls)
-converter.get_boilerplate()
-#converter.get_html_from_url()
-converter.get_html_from_files()
-converter.store_full_files()
-converter.strip()
-converter.fix_internal_links()
-converter.absolute_links()
-converter.write_to_file()
-#converter.write_to_pdf()
-converter.write_to_single_file()
+    remove(content, "div", {"class": "simple_section_nav"})
+
+    
+    #remove(content, "h2", {"id": "see-also"})
+
+    #tags = content.findAll("ul")
+    #for i in tags: i.decompose()
+
+    #link = soup.find("link", {"rel": "stylesheet"})
+    #for child in link.findChildren():
+    #    child.decompose()
+
+    return str(content)
+
+def _absolute_links(html):
+    html = re.sub('href="/', 'href="' + config["base_url"] + "/", html)
+    return html
+
+def _get_boilerplate():
+    with open("boilerplate.html", "r") as file:
+        boilerplate = file.readlines()
+    
+    boiler = "".join(boilerplate[:-2])
+    plate = "".join(boilerplate[-2:])
+
+    boiler = _add_css(boiler)
+    return boiler, plate
+
+def _add_css(string):
+    url = config["base_url"] + "/kb/static/css/main.9a0d7dcebefd.css"
+    line = f'<link rel="stylesheet" href="{url}" type="text/css">'
+
+    string = re.sub("css-link", line, string)
+    return string
+
+
+if __name__ == "__main__":
+    if config["from_urls"]:
+        urls = get_urls()
+        write_urls_to_html(urls)
+    modify_html_files()
+    merge_html_files()
+    if config["write_to_pdf"]:
+        write_to_pdf()
