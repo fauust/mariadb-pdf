@@ -3,5 +3,5 @@
     "output_name": "output",
     "from_urls": false,
     "write_to_html": true,
-    "write_to_pdf": true
+    "write_to_pdf": false
 }

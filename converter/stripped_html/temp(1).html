@@ -6,15 +6,15 @@
 <div class="table_of_contents well well-small">
 <h3>Contents</h3>
 <ol class="toc">
-<li class=""><a href="#description" title="Description">Description</a> <ol class="toc">
-<li class=""><a href="#multi-table-updates" title="Multi-Table Updates">Multi-Table Updates</a></li>
-<li class=""><a href="#group_concat" title="GROUP_CONCAT">GROUP_CONCAT</a> </li></ol>
+<li class=""><a href="#b_description" title="Description">Description</a> <ol class="toc">
+<li class=""><a href="#b_multi-table-updates" title="Multi-Table Updates">Multi-Table Updates</a></li>
+<li class=""><a href="#b_group_concat" title="GROUP_CONCAT">GROUP_CONCAT</a> </li></ol>
 </li>
-<li class=""><a href="#examples" title="Examples">Examples</a></li>
-<li class=""><a href="#see-also" title="See Also">See Also</a> </li></ol>
+<li class=""><a href="#b_examples" title="Examples">Examples</a></li>
+<li class=""><a href="#b_see-also" title="See Also">See Also</a> </li></ol>
 
 </div>
-<h2 class="anchored_heading" id="description">Description</h2>
+<h2 class="anchored_heading" id="b_description">Description</h2>
 <p>Use the <code>LIMIT</code> clause to restrict the number of returned rows. When you use a single
 integer <em>n</em> with <code>LIMIT</code>, the first <em>n</em> rows will be returned. Use the <a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a>
 clause to control which rows come first. You can also select a number of rows after an offset
@@ -23,15 +23,15 @@ using either of the following:</p>
 LIMIT row_count OFFSET offset
 </pre><p>When you provide an offset <em>m</em> with a limit <em>n</em>, the first <em>m</em> rows will be ignored, and the
 following <em>n</em> rows will be returned.</p>
-<p>Executing an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> with the <code>LIMIT</code> clause is not safe for replication. <code>LIMIT 0</code> is an exception to this rule (see <a href="https://jira.mariadb.org/browse/MDEV-6170">MDEV-6170</a>).</p>
+<p>Executing an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> with the <code>LIMIT</code> clause is not safe for replication. <code>LIMIT 0</code> is an exception to this rule (b_see <a href="https://jira.mariadb.org/browse/MDEV-6170">MDEV-6170</a>).</p>
 <p>There is a <a href="https://mariadb.com/kb/en/limit-rows-examined/">LIMIT ROWS EXAMINED</a> optimization which provides the
 means to terminate the execution of <a href="https://mariadb.com/kb/en/select/">SELECT</a> statements which examine too
 many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/en/limit-rows-examined/">LIMIT ROWS EXAMINED</a>.</p>
-<h3 class="anchored_heading" id="multi-table-updates">Multi-Table Updates</h3>
-<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>LIMIT</code> (or <a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a>) in a multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
-</div><h3 class="anchored_heading" id="group_concat">GROUP_CONCAT</h3>
-<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Starting from <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, it is possible to use <code>LIMIT</code> with <a href="https://mariadb.com/kb/en/group_concat/">GROUP_CONCAT()</a>.</p>
-</div><h2 class="anchored_heading" id="examples">Examples</h2>
+<h3 class="anchored_heading" id="b_multi-table-updates">Multi-Table Updates</h3>
+<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>LIMIT</code> (or <a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a>) in a b_multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
+</div><h3 class="anchored_heading" id="b_group_concat">GROUP_CONCAT</h3>
+<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Starting from <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, it is possible to use <code>LIMIT</code> with <a href="https://mariadb.com/kb/en/b_group_concat/">GROUP_CONCAT()</a>.</p>
+</div><h2 class="anchored_heading" id="b_examples">Examples</h2>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">members</span> <span class="p">(</span><span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">members</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'Jagdish'</span><span class="p">),(</span><span class="s1">'Kenny'</span><span class="p">),(</span><span class="s1">'Rokurou'</span><span class="p">),(</span><span class="s1">'Immaculada'</span><span class="p">);</span>
 
@@ -77,7 +77,7 @@ many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/
 <span class="o">+</span><span class="c1">-------+</span>
 <span class="o">|</span> <span class="n">Kenny</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------+</span>
-</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>, <code>LIMIT</code> can be used in a multi-table update:</p>
+</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>, <code>LIMIT</code> can be used in a b_multi-table update:</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">warehouse</span> <span class="p">(</span><span class="n">product_id</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">qty</span> <span class="nb">INT</span><span class="p">);</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">warehouse</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
 
@@ -107,7 +107,7 @@ many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/
 <span class="o">|</span>          <span class="mi">3</span> <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
 <span class="o">|</span>          <span class="mi">4</span> <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------+------+</span>
-</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, <code>LIMIT</code> can be used with <a href="https://mariadb.com/kb/en/group_concat/">GROUP_CONCAT</a>, so, for example, given the following table:</p>
+</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, <code>LIMIT</code> can be used with <a href="https://mariadb.com/kb/en/b_group_concat/">GROUP_CONCAT</a>, so, for example, given the following table:</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">d</span> <span class="p">(</span><span class="n">dd</span> <span class="nb">DATE</span><span class="p">,</span> <span class="n">cc</span> <span class="nb">INT</span><span class="p">);</span>
 
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">d</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'2017-01-01'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
@@ -127,7 +127,7 @@ many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/
 <span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
 <span class="o">|</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">04</span><span class="p">:</span><span class="mi">3</span>                                                <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
-</pre><h2 class="anchored_heading" id="see-also">See Also</h2>
+</pre><h2 class="anchored_heading" id="b_see-also">See Also</h2>
 <ul start="1"><li><a href="https://mariadb.com/kb/en/rownum/">ROWNUM() function</a>
 </li><li><a href="https://mariadb.com/kb/en/select/">SELECT</a>
 </li><li><a href="https://mariadb.com/kb/en/update/">UPDATE</a>

@@ -58,6 +58,7 @@ def modify_html_files():
         
         html = _strip(html)
         html = _absolute_links(html)
+        html = _convert_links(html, filename)
 
 
         path = os.path.join(stripped_html_dir, filename)
@@ -130,6 +131,23 @@ def _strip(html):
 
 def _absolute_links(html):
     html = re.sub('href="/', 'href="' + config["base_url"] + "/", html)
+    return html
+
+
+def _convert_links(html, filename):
+    num = int(re.search("\d", filename)[0])
+    replacement = chr(num + 97) + "_"
+    #print(replacement)
+    find_pattern = '#\w+'
+    hash_tags = re.findall(find_pattern, html)
+    tag_list = ""
+    for tag in hash_tags:
+        tag = tag[1:]
+        tag_list += f"{tag}|"
+    tag_list = tag_list[:-1]
+    pattern = f"({tag_list})"
+    html = re.sub(pattern, replacement + r"\1", html)
+
     return html
 
 def _get_boilerplate():

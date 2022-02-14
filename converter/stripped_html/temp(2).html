@@ -6,12 +6,12 @@
 <div class="table_of_contents well well-small">
 <h3>Contents</h3>
 <ol class="toc">
-<li class="mariadb_from_10_3_2"><a href="#description" title="Description">Description</a></li>
-<li class="mariadb_from_10_3_2"><a href="#examples" title="Examples">Examples</a></li>
-<li class="mariadb_from_10_3_2"><a href="#see-also" title="See Also">See Also</a> </li></ol>
+<li class="mariadb_from_10_3_2"><a href="#c_description" title="Description">Description</a></li>
+<li class="mariadb_from_10_3_2"><a href="#c_examples" title="Examples">Examples</a></li>
+<li class="mariadb_from_10_3_2"><a href="#c_see-also" title="See Also">See Also</a> </li></ol>
 
 </div>
-<h2 class="anchored_heading" id="description">Description</h2>
+<h2 class="anchored_heading" id="c_description">Description</h2>
 <p>Use the <code>ORDER BY</code> clause to order a resultset, such as that are returned from a <a href="https://mariadb.com/kb/en/select/">SELECT</a>
 statement. You can specify just a column or use any expression with functions. If you are
 using the <code>GROUP BY</code> clause, you can use grouping functions in <code>ORDER BY</code>.
@@ -31,7 +31,7 @@ characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/
 <p><code>ORDER BY</code> can also be used to order the activities of a <a href="https://mariadb.com/kb/en/delete/">DELETE</a> or <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement (usually with the <a href="https://mariadb.com/kb/en/limit/">LIMIT</a> clause). </p>
 <div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>ORDER BY</code> (or <a href="https://mariadb.com/kb/en/limit/">LIMIT</a>) in a multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
 </div><div class="mariadb_from_10_5 mariadb from_10_5 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/what-is-mariadb-105/">10.5</a></h5><p>From <a href="https://mariadb.com/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>, MariaDB allows packed sort keys and values of non-sorted fields in the sort buffer. This can make filesort temporary files much smaller when VARCHAR, CHAR or BLOBs are used, notably speeding up some ORDER BY sorts.</p>
-</div><h2 class="anchored_heading" id="examples">Examples</h2>
+</div><h2 class="anchored_heading" id="c_examples">Examples</h2>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">seq</span> <span class="p">(</span><span class="n">i</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">x</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">seq</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">'a'</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">'b'</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">'b'</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s1">'f'</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="s1">'e'</span><span class="p">);</span>
 
@@ -110,7 +110,7 @@ characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/
 <span class="o">|</span>          <span class="mi">3</span> <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
 <span class="o">|</span>          <span class="mi">4</span> <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------+------+</span>
-</pre><h2 class="anchored_heading" id="see-also">See Also</h2>
+</pre><h2 class="anchored_heading" id="c_see-also">See Also</h2>
 <ul start="1"><li><a href="https://mariadb.com/kb/en/why-is-order-by-in-a-from-subquery-ignored/">Why is ORDER BY in a FROM subquery ignored?</a>
 </li><li><a href="https://mariadb.com/kb/en/select/">SELECT</a>
 </li><li><a href="https://mariadb.com/kb/en/update/">UPDATE</a>
