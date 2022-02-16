@@ -10,7 +10,7 @@
 
     Run Script.py, change settings for creation in the config.json
 
-## Dependecies:
+## Dependencies:
 ### Python Version: 
     python 3.6 and above
 
