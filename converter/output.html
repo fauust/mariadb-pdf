@@ -10,8 +10,8 @@
         <link rel="stylesheet" href="https://mariadb.com/kb/static/css/main.9a0d7dcebefd.css" type="text/css">
     </head>
     <body class = "mpkb">
-<section class="a_limited_width col-md-8 clearfix" id="content">
-<h1>SELECT</h1>
+<section class="limited_width col-md-8 clearfix" id="content">
+<h1 id="a_">SELECT</h1>
 <div>
 <div class="node creole">
 <div class="answer formatted">
@@ -22,19 +22,19 @@
     [STRAIGHT_JOIN]
     [SQL_SMALL_RESULT] [SQL_BIG_RESULT] [SQL_BUFFER_RESULT]
     [SQL_CACHE | SQL_NO_CACHE] [SQL_CALC_FOUND_ROWS]
-    a_select_expr [, a_select_expr ...]
-    [ FROM <a href="https://mariadb.com/kb/en/join-a_syntax/">table_references</a>
+    select_expr [, select_expr ...]
+    [ FROM <a href="https://mariadb.com/kb/en/join-syntax/">table_references</a>
       [WHERE where_condition]
       [GROUP BY {col_name | expr | position} [ASC | DESC], ... [WITH ROLLUP]]
       [HAVING where_condition]
       [ORDER BY {col_name | expr | position} [ASC | DESC], ...]
-      [LIMIT {[a_offset,] row_count | row_count OFFSET a_offset  [ROWS EXAMINED rows_a_limit] } |
+      [LIMIT {[offset,] row_count | row_count OFFSET offset  [ROWS EXAMINED rows_limit] } |
         [OFFSET start { ROW | ROWS }]
         [FETCH { FIRST | NEXT } [ count ] { ROW | ROWS } { ONLY | WITH TIES }] ]
-      a_procedure|[PROCEDURE a_procedure_name(argument_list)]
+      procedure|[PROCEDURE procedure_name(argument_list)]
       [INTO OUTFILE 'file_name' [CHARACTER SET charset_name] [export_options] |
         INTO DUMPFILE 'file_name' | INTO var_name [, var_name] ]
-      [FOR UPDATE a_lock_option | LOCK IN SHARE MODE a_lock_option]</p>
+      [FOR UPDATE lock_option | LOCK IN SHARE MODE lock_option]</p>
 <p>export_options:
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
@@ -45,7 +45,7 @@
         [STARTING BY 'string']
         [TERMINATED BY 'string']
     ]</p>
-<p>a_lock_option:
+<p>lock_option:
     [WAIT n | NOWAIT | SKIP LOCKED]</p></pre><div class="table_of_contents well well-small">
 <h3>Contents</h3>
 <ol class="toc">
@@ -60,9 +60,9 @@
 <li class="mariadb_from_10_6"><a href="#a_order-by" title="ORDER BY">ORDER BY</a></li>
 <li class="mariadb_from_10_6"><a href="#a_partition" title="PARTITION">PARTITION</a></li>
 <li class="mariadb_from_10_6"><a href="#a_procedure" title="PROCEDURE">PROCEDURE</a></li>
-<li class="mariadb_from_10_6"><a href="#a_skip-a_locked" title="SKIP LOCKED">SKIP LOCKED</a></li>
+<li class="mariadb_from_10_6"><a href="#a_skip-locked" title="SKIP LOCKED">SKIP LOCKED</a></li>
 <li class="mariadb_from_10_6"><a href="#a_sql_calc_found_rows" title="SQL_CALC_FOUND_ROWS">SQL_CALC_FOUND_ROWS</a></li>
-<li class="mariadb_from_10_6"><a href="#a_max_statement_time-clause" title="a_max_statement_time clause">a_max_statement_time clause</a></li>
+<li class="mariadb_from_10_6"><a href="#a_max_statement_time-clause" title="max_statement_time clause">max_statement_time clause</a></li>
 <li class="mariadb_from_10_6"><a href="#a_waitnowait" title="WAIT/NOWAIT">WAIT/NOWAIT</a> </li></ol>
 </li>
 <li class="mariadb_from_10_6"><a href="#a_examples" title="Examples">Examples</a></li>
@@ -70,30 +70,30 @@
 
 </div>
 <h2 class="anchored_heading" id="a_description">Description</h2>
-<p><code>SELECT</code> is used to retrieve rows a_selected from one or more
-tables, and can include <a href="https://mariadb.com/kb/en/union/">UNION</a> statements and <a href="https://mariadb.com/kb/en/subqueries/">subqueries</a>.</p>
-<ul start="1"><li>Each <em>a_select_expr</em> expression indicates a column or data that you want to retrieve. You
-must have at least one a_select expression. See <a href="#a_select-expressions">Select Expressions</a> below.
+<p><code>SELECT</code> is used to retrieve rows selected from one or more
+tables, and can include <a href="#d_">UNION</a> statements and <a href="https://mariadb.com/kb/en/subqueries/">subqueries</a>.</p>
+<ul start="1"><li>Each <em>select_expr</em> expression indicates a column or data that you want to retrieve. You
+must have at least one select expression. See <a href="#a_select-expressions">Select Expressions</a> below.
 </li></ul>
 <ul start="1"><li>The <code>FROM</code> clause indicates the table or tables from which to retrieve rows.
 Use either a single table name or a <code>JOIN</code> expression. See <a href="https://mariadb.com/kb/en/join/">JOIN</a>
 for details. If no table is involved, <a href="https://mariadb.com/kb/en/dual/">FROM DUAL</a> can be specified.
 </li></ul>
-<ul start="1"><li>Each table can also be specified as <code>db_name</code>.<code>tabl_name</code>. Each column can also be specified as <code>tbl_name</code>.<code>col_name</code> or even <code>db_name</code>.<code>tbl_name</code>.<code>col_name</code>. This allows one to write queries which involve multiple databases. See <a href="https://mariadb.com/kb/en/identifier-qualifiers/">Identifier Qualifiers</a> for a_syntax details.
+<ul start="1"><li>Each table can also be specified as <code>db_name</code>.<code>tabl_name</code>. Each column can also be specified as <code>tbl_name</code>.<code>col_name</code> or even <code>db_name</code>.<code>tbl_name</code>.<code>col_name</code>. This allows one to write queries which involve multiple databases. See <a href="https://mariadb.com/kb/en/identifier-qualifiers/">Identifier Qualifiers</a> for syntax details.
 </li></ul>
 <ul start="1"><li>The <code class="fixed" style="white-space:pre-wrap">WHERE</code> clause, if given, indicates the condition or
-  conditions that rows must satisfy to be a_selected.
+  conditions that rows must satisfy to be selected.
   <code class="fixed" style="white-space:pre-wrap">where_condition</code> is an expression that evaluates to true for
-  each row to be a_selected. The statement a_selects all rows if there is no WHERE
+  each row to be selected. The statement selects all rows if there is no WHERE
   clause.
 <ul start="1"><li>In the <code class="fixed" style="white-space:pre-wrap">WHERE</code> clause, you can use any of the functions and
    operators that MariaDB supports, except for aggregate (summary) functions. See <a href="https://mariadb.com/kb/en/functions-and-operators/">Functions and Operators</a> and <a href="https://mariadb.com/kb/en/functions-and-modifiers-for-use-with-group-by/">Functions and Modifiers for use with GROUP BY</a> (aggregate).
 </li></ul>
 </li></ul>
-<ul start="1"><li>Use the <a href="https://mariadb.com/kb/en/a_order-by/">ORDER BY</a> clause to a_order the results.
+<ul start="1"><li>Use the <a href="#c_">ORDER BY</a> clause to order the results.
 </li></ul>
-<ul start="1"><li>Use the <a href="https://mariadb.com/kb/en/a_limit/">LIMIT</a> clause allows you to restrict the results to only
-a certain number of rows, optionally with an a_offset.
+<ul start="1"><li>Use the <a href="#b_">LIMIT</a> clause allows you to restrict the results to only
+a certain number of rows, optionally with an offset.
 </li></ul>
 <ul start="1"><li>Use the <a href="https://mariadb.com/kb/en/group-by/">GROUP BY</a> and <code>HAVING</code> clauses to group
 rows together when they have columns or computed values in common.
@@ -101,74 +101,74 @@ rows together when they have columns or computed values in common.
 <p>SELECT can also be used to retrieve rows computed without reference to
 any table.</p>
 <h3 class="anchored_heading" id="a_select-expressions">Select Expressions</h3>
-<p>A <code>SELECT</code> statement must contain one or more a_select expressions, separated
-by commas. Each a_select expression can be one of the following:</p>
+<p>A <code>SELECT</code> statement must contain one or more select expressions, separated
+by commas. Each select expression can be one of the following:</p>
 <ul start="1"><li>The name of a column.
 </li><li>Any expression using <a href="https://mariadb.com/kb/en/functions-and-operators/">functions and operators</a>.
-</li><li><code>*</code> to a_select all columns from all tables in the <code>FROM</code> clause.
-</li><li><code>tbl_name.*</code> to a_select all columns from just the table <em>tbl_name</em>.
+</li><li><code>*</code> to select all columns from all tables in the <code>FROM</code> clause.
+</li><li><code>tbl_name.*</code> to select all columns from just the table <em>tbl_name</em>.
 </li></ul>
 <p>When specifying a column, you can either use just the column name or qualify the column
 name with  the name of the table using <code>tbl_name.col_name</code>. The qualified form is
 useful if you are joining multiple tables in the <code>FROM</code> clause. If you do not qualify the
-column names when a_selecting from multiple tables, MariaDB will try to find the column in
+column names when selecting from multiple tables, MariaDB will try to find the column in
 each table. It is an error if that column name exists in multiple tables.</p>
 <p>You can quote column names using backticks. If you are qualifying column names
 with table names, quote each part separately as <code>`tbl_name`.`col_name`</code>.</p>
 <p>If you use any <a href="https://mariadb.com/kb/en/functions-and-modifiers-for-use-with-group-by/">grouping functions</a>
-in any of the a_select expressions, all rows in your results will be implicitly grouped, as if
+in any of the select expressions, all rows in your results will be implicitly grouped, as if
 you had used <code>GROUP BY NULL</code>.</p>
 <h3 class="anchored_heading" id="a_distinct">DISTINCT</h3>
-<p>A query may produce some identical rows. By default, all rows are retrieved, even when their values are the same. To explicitly specify that you want to retrieve identical rows, use the <code>ALL</code> option. If you want duplicates to be removed from the resultset, use the <code>DISTINCT</code> option. <code>DISTINCTROW</code> is a synonym for <code>DISTINCT</code>. See also <a href="https://mariadb.com/kb/en/count-a_distinct/">COUNT DISTINCT</a> and <a href="https://mariadb.com/kb/en/sql_modeoracle-from-mariadb-103/#a_simple-a_syntax-compatibility">SELECT UNIQUE in Oracle mode</a>.</p>
+<p>A query may produce some identical rows. By default, all rows are retrieved, even when their values are the same. To explicitly specify that you want to retrieve identical rows, use the <code>ALL</code> option. If you want duplicates to be removed from the resultset, use the <code>DISTINCT</code> option. <code>DISTINCTROW</code> is a synonym for <code>DISTINCT</code>. See also <a href="https://mariadb.com/kb/en/count-distinct/">COUNT DISTINCT</a> and <a href="https://mariadb.com/kb/en/sql_modeoracle-from-mariadb-103/#simple-syntax-compatibility">SELECT UNIQUE in Oracle mode</a>.</p>
 <h3 class="anchored_heading" id="a_into">INTO</h3>
 <p>The <code>INTO</code> clause is used to specify that the query results should be written to a file or variable.</p>
-<ul start="1"><li><a href="https://mariadb.com/kb/en/a_select-a_into-outfile/">SELECT INTO OUTFILE</a> - formatting and writing the result to an external file.
-</li><li><a href="https://mariadb.com/kb/en/a_select-a_into-dumpfile/">SELECT INTO DUMPFILE</a> - binary-safe writing of the unformatted results to an external file.
-</li><li><a href="https://mariadb.com/kb/en/a_select-a_into-variable/">SELECT INTO Variable</a> - a_selecting and setting variables.
+<ul start="1"><li><a href="https://mariadb.com/kb/en/select-into-outfile/">SELECT INTO OUTFILE</a> - formatting and writing the result to an external file.
+</li><li><a href="https://mariadb.com/kb/en/select-into-dumpfile/">SELECT INTO DUMPFILE</a> - binary-safe writing of the unformatted results to an external file.
+</li><li><a href="https://mariadb.com/kb/en/select-into-variable/">SELECT INTO Variable</a> - selecting and setting variables.
 </li></ul>
-<p>The reverse of <code>SELECT INTO OUTFILE</code> is <a href="https://mariadb.com/kb/en/load-data-a_into-tables-or-index/">LOAD DATA</a>.</p>
+<p>The reverse of <code>SELECT INTO OUTFILE</code> is <a href="https://mariadb.com/kb/en/load-data-into-tables-or-index/">LOAD DATA</a>.</p>
 <h3 class="anchored_heading" id="a_limit">LIMIT</h3>
-<p>Restricts the number of returned rows. See <a href="https://mariadb.com/kb/en/a_limit/">LIMIT</a> and <a href="https://mariadb.com/kb/en/a_limit-rows-examined/">LIMIT ROWS EXAMINED</a> for details.</p>
+<p>Restricts the number of returned rows. See <a href="#b_">LIMIT</a> and <a href="https://mariadb.com/kb/en/limit-rows-examined/">LIMIT ROWS EXAMINED</a> for details.</p>
 <h3 class="anchored_heading" id="a_lock-in-share-modefor-update">LOCK IN SHARE MODE/FOR UPDATE</h3>
-<p>See <a href="https://mariadb.com/kb/en/a_lock-in-share-mode/">LOCK IN SHARE MODE</a> and <a href="https://mariadb.com/kb/en/for-update/">FOR UPDATE</a> for details on the respective a_locking clauses.</p>
+<p>See <a href="https://mariadb.com/kb/en/lock-in-share-mode/">LOCK IN SHARE MODE</a> and <a href="https://mariadb.com/kb/en/for-update/">FOR UPDATE</a> for details on the respective locking clauses.</p>
 <h3 class="anchored_heading" id="a_offset-fetch">OFFSET ... FETCH</h3>
-<div class="mariadb_from_10_6 mariadb from_10_6 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/what-is-mariadb-106/">10.6</a></h5><p>See <a href="https://mariadb.com/kb/en/a_select-a_offset-fetch/">SELECT ... OFFSET ... FETCH</a>.</p>
+<div class="mariadb_from_10_6 mariadb from_10_6 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/what-is-mariadb-106/">10.6</a></h5><p>See <a href="https://mariadb.com/kb/en/select-offset-fetch/">SELECT ... OFFSET ... FETCH</a>.</p>
 </div><h3 class="anchored_heading" id="a_order-by">ORDER BY</h3>
-<p>Order a resultset. See <a href="https://mariadb.com/kb/en/a_order-by/">ORDER BY</a> for details.</p>
+<p>Order a resultset. See <a href="#c_">ORDER BY</a> for details.</p>
 <h3 class="anchored_heading" id="a_partition">PARTITION</h3>
-<p>Specifies to the optimizer which a_partitions are relevant for the query. Other a_partitions will not be read.  See <a href="https://mariadb.com/kb/en/a_partition-pruning-and-a_selection/">Partition Pruning and Selection</a> for details.</p>
+<p>Specifies to the optimizer which partitions are relevant for the query. Other partitions will not be read.  See <a href="https://mariadb.com/kb/en/partition-pruning-and-selection/">Partition Pruning and Selection</a> for details.</p>
 <h3 class="anchored_heading" id="a_procedure">PROCEDURE</h3>
-<p>Passes the whole result set to a C Procedure. See <a href="https://mariadb.com/kb/en/a_procedure/">PROCEDURE</a> and <a href="https://mariadb.com/kb/en/a_procedure-analyse/">PROCEDURE ANALYSE</a> (the only built-in a_procedure not requiring the server to be recompiled).</p>
-<h3 class="anchored_heading" id="a_skip-a_locked">SKIP LOCKED</h3>
+<p>Passes the whole result set to a C Procedure. See <a href="https://mariadb.com/kb/en/procedure/">PROCEDURE</a> and <a href="https://mariadb.com/kb/en/procedure-analyse/">PROCEDURE ANALYSE</a> (the only built-in procedure not requiring the server to be recompiled).</p>
+<h3 class="anchored_heading" id="a_skip-locked">SKIP LOCKED</h3>
 <div class="mariadb_from_10_6 mariadb from_10_6 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/what-is-mariadb-106/">10.6</a></h5><p>The SKIP LOCKED clause was introduced in <a href="https://mariadb.com/kb/en/mariadb-1060-release-notes/">MariaDB 10.6.0</a>.</p>
-<p>This causes those rows that couldn't be a_locked (<a href="https://mariadb.com/kb/en/a_lock-in-share-mode/">LOCK IN SHARE MODE</a> or <a href="https://mariadb.com/kb/en/for-update/">FOR UPDATE</a>) to be excluded from the result set. An explicit <code>NOWAIT</code> is implied here. This is only implemented on <a href="https://mariadb.com/kb/en/innodb/">InnoDB</a> tables and ignored otherwise.</p>
+<p>This causes those rows that couldn't be locked (<a href="https://mariadb.com/kb/en/lock-in-share-mode/">LOCK IN SHARE MODE</a> or <a href="https://mariadb.com/kb/en/for-update/">FOR UPDATE</a>) to be excluded from the result set. An explicit <code>NOWAIT</code> is implied here. This is only implemented on <a href="https://mariadb.com/kb/en/innodb/">InnoDB</a> tables and ignored otherwise.</p>
 </div><h3 class="anchored_heading" id="a_sql_calc_found_rows">SQL_CALC_FOUND_ROWS</h3>
 <p>When <code>SQL_CALC_FOUND_ROWS</code> is used, then MariaDB will calculate how many rows would
-have been in the result, if there would be no <a href="https://mariadb.com/kb/en/a_limit/">LIMIT</a> clause. The result can be found by calling the function <a href="https://mariadb.com/kb/en/found_rows/">FOUND_ROWS()</a> in your next sql statement.</p>
+have been in the result, if there would be no <a href="#b_">LIMIT</a> clause. The result can be found by calling the function <a href="https://mariadb.com/kb/en/found_rows/">FOUND_ROWS()</a> in your next sql statement.</p>
 <p><br/></p>
-<h3 class="anchored_heading" id="a_max_statement_time-clause">a_max_statement_time clause</h3>
-<p>By using <a href="https://mariadb.com/kb/en/server-system-variables/#a_max_statement_time">a_max_statement_time</a> in conjunction with <a href="https://mariadb.com/kb/en/set-statement/">SET STATEMENT</a>, it is possible to a_limit the execution time of individual queries. For example:</p>
-<pre class="fixed">SET STATEMENT a_max_statement_time=100 FOR 
+<h3 class="anchored_heading" id="a_max_statement_time-clause">max_statement_time clause</h3>
+<p>By using <a href="https://mariadb.com/kb/en/server-system-variables/#max_statement_time">max_statement_time</a> in conjunction with <a href="https://mariadb.com/kb/en/set-statement/">SET STATEMENT</a>, it is possible to limit the execution time of individual queries. For example:</p>
+<pre class="fixed">SET STATEMENT max_statement_time=100 FOR 
   SELECT field1 FROM table_name ORDER BY field1;
 </pre><h3 class="anchored_heading" id="a_waitnowait">WAIT/NOWAIT</h3>
-<p>Set the a_lock wait timeout. See <a href="https://mariadb.com/kb/en/wait-and-nowait/">WAIT and NOWAIT</a>.</p>
+<p>Set the lock wait timeout. See <a href="https://mariadb.com/kb/en/wait-and-nowait/">WAIT and NOWAIT</a>.</p>
 <h2 class="anchored_heading" id="a_examples">Examples</h2>
 <pre class="fixed"><span class="k">SELECT</span> <span class="n">f1</span><span class="p">,</span><span class="n">f2</span> <span class="k">FROM</span> <span class="n">t1</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">f3</span><span class="o">&lt;=</span><span class="mi">10</span><span class="p">)</span> <span class="k">AND</span> <span class="p">(</span><span class="n">f4</span><span class="o">=</span><span class="s1">'y'</span><span class="p">);</span>
-</pre><p>See <a href="https://mariadb.com/kb/en/getting-data-from-mariadb/">Getting Data from MariaDB</a> (Beginner tutorial), or the various sub-articles, for more a_examples.</p>
+</pre><p>See <a href="https://mariadb.com/kb/en/getting-data-from-mariadb/">Getting Data from MariaDB</a> (Beginner tutorial), or the various sub-articles, for more examples.</p>
 <h2 class="anchored_heading" id="a_see-also">See Also</h2>
 <ul start="1"><li><a href="https://mariadb.com/kb/en/getting-data-from-mariadb/">Getting Data from MariaDB</a> (Beginner tutorial)
 </li><li><a href="https://mariadb.com/kb/en/joins-subqueries/">Joins and Subqueries</a>
-</li><li><a href="https://mariadb.com/kb/en/a_limit/">LIMIT</a>
-</li><li><a href="https://mariadb.com/kb/en/a_order-by/">ORDER BY</a>
+</li><li><a href="#b_">LIMIT</a>
+</li><li><a href="#c_">ORDER BY</a>
 </li><li><a href="https://mariadb.com/kb/en/group-by/">GROUP BY</a>
 </li><li><a href="https://mariadb.com/kb/en/common-table-expressions/">Common Table Expressions</a>
-</li><li><a href="https://mariadb.com/kb/en/a_select-with-rollup/">SELECT WITH ROLLUP</a>
-</li><li><a href="https://mariadb.com/kb/en/a_select-a_into-outfile/">SELECT INTO OUTFILE</a>
-</li><li><a href="https://mariadb.com/kb/en/a_select-a_into-dumpfile/">SELECT INTO DUMPFILE</a>
+</li><li><a href="https://mariadb.com/kb/en/select-with-rollup/">SELECT WITH ROLLUP</a>
+</li><li><a href="https://mariadb.com/kb/en/select-into-outfile/">SELECT INTO OUTFILE</a>
+</li><li><a href="https://mariadb.com/kb/en/select-into-dumpfile/">SELECT INTO DUMPFILE</a>
 </li><li><a href="https://mariadb.com/kb/en/for-update/">FOR UPDATE</a>
-</li><li><a href="https://mariadb.com/kb/en/a_lock-in-share-mode/">LOCK IN SHARE MODE</a>
+</li><li><a href="https://mariadb.com/kb/en/lock-in-share-mode/">LOCK IN SHARE MODE</a>
 </li><li><a href="https://mariadb.com/kb/en/optimizer-hints/">Optimizer Hints</a>
-</li><li><a href="https://mariadb.com/kb/en/sql_modeoracle-from-mariadb-103/#a_simple-a_syntax-compatibility">Oracle mode from MariaDB 10.3</a></li></ul>
+</li><li><a href="https://mariadb.com/kb/en/sql_modeoracle-from-mariadb-103/#simple-syntax-compatibility">Oracle mode from MariaDB 10.3</a></li></ul>
 </div>
 
 
@@ -178,7 +178,7 @@ have been in the result, if there would be no <a href="https://mariadb.com/kb/en
 
 </div>
 </section><section class="limited_width col-md-8 clearfix" id="content">
-<h1>LIMIT</h1>
+<h1 id="b_">LIMIT</h1>
 <div>
 <div class="node creole">
 <div class="answer formatted">
@@ -195,21 +195,21 @@ have been in the result, if there would be no <a href="https://mariadb.com/kb/en
 </div>
 <h2 class="anchored_heading" id="b_description">Description</h2>
 <p>Use the <code>LIMIT</code> clause to restrict the number of returned rows. When you use a single
-integer <em>n</em> with <code>LIMIT</code>, the first <em>n</em> rows will be returned. Use the <a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a>
+integer <em>n</em> with <code>LIMIT</code>, the first <em>n</em> rows will be returned. Use the <a href="#c_">ORDER BY</a>
 clause to control which rows come first. You can also select a number of rows after an offset
 using either of the following:</p>
 <pre class="fixed">LIMIT offset, row_count
 LIMIT row_count OFFSET offset
 </pre><p>When you provide an offset <em>m</em> with a limit <em>n</em>, the first <em>m</em> rows will be ignored, and the
 following <em>n</em> rows will be returned.</p>
-<p>Executing an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> with the <code>LIMIT</code> clause is not safe for replication. <code>LIMIT 0</code> is an exception to this rule (b_see <a href="https://jira.mariadb.org/browse/MDEV-6170">MDEV-6170</a>).</p>
+<p>Executing an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> with the <code>LIMIT</code> clause is not safe for replication. <code>LIMIT 0</code> is an exception to this rule (see <a href="https://jira.mariadb.org/browse/MDEV-6170">MDEV-6170</a>).</p>
 <p>There is a <a href="https://mariadb.com/kb/en/limit-rows-examined/">LIMIT ROWS EXAMINED</a> optimization which provides the
-means to terminate the execution of <a href="https://mariadb.com/kb/en/select/">SELECT</a> statements which examine too
+means to terminate the execution of <a href="#a_">SELECT</a> statements which examine too
 many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/en/limit-rows-examined/">LIMIT ROWS EXAMINED</a>.</p>
 <h3 class="anchored_heading" id="b_multi-table-updates">Multi-Table Updates</h3>
-<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>LIMIT</code> (or <a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a>) in a b_multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
+<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>LIMIT</code> (or <a href="#c_">ORDER BY</a>) in a multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
 </div><h3 class="anchored_heading" id="b_group_concat">GROUP_CONCAT</h3>
-<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Starting from <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, it is possible to use <code>LIMIT</code> with <a href="https://mariadb.com/kb/en/b_group_concat/">GROUP_CONCAT()</a>.</p>
+<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Starting from <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, it is possible to use <code>LIMIT</code> with <a href="https://mariadb.com/kb/en/group_concat/">GROUP_CONCAT()</a>.</p>
 </div><h2 class="anchored_heading" id="b_examples">Examples</h2>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">members</span> <span class="p">(</span><span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">));</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">members</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'Jagdish'</span><span class="p">),(</span><span class="s1">'Kenny'</span><span class="p">),(</span><span class="s1">'Rokurou'</span><span class="p">),(</span><span class="s1">'Immaculada'</span><span class="p">);</span>
@@ -256,7 +256,7 @@ many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/
 <span class="o">+</span><span class="c1">-------+</span>
 <span class="o">|</span> <span class="n">Kenny</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------+</span>
-</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>, <code>LIMIT</code> can be used in a b_multi-table update:</p>
+</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>, <code>LIMIT</code> can be used in a multi-table update:</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">warehouse</span> <span class="p">(</span><span class="n">product_id</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">qty</span> <span class="nb">INT</span><span class="p">);</span>
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">warehouse</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
 
@@ -286,7 +286,7 @@ many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/
 <span class="o">|</span>          <span class="mi">3</span> <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
 <span class="o">|</span>          <span class="mi">4</span> <span class="o">|</span>    <span class="mi">7</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------+------+</span>
-</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, <code>LIMIT</code> can be used with <a href="https://mariadb.com/kb/en/b_group_concat/">GROUP_CONCAT</a>, so, for example, given the following table:</p>
+</pre><p>From <a href="https://mariadb.com/kb/en/mariadb-1033-release-notes/">MariaDB 10.3.3</a>, <code>LIMIT</code> can be used with <a href="https://mariadb.com/kb/en/group_concat/">GROUP_CONCAT</a>, so, for example, given the following table:</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">d</span> <span class="p">(</span><span class="n">dd</span> <span class="nb">DATE</span><span class="p">,</span> <span class="n">cc</span> <span class="nb">INT</span><span class="p">);</span>
 
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">d</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">'2017-01-01'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
@@ -308,11 +308,11 @@ many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/
 <span class="o">+</span><span class="c1">-------------------------------------------------------------+</span>
 </pre><h2 class="anchored_heading" id="b_see-also">See Also</h2>
 <ul start="1"><li><a href="https://mariadb.com/kb/en/rownum/">ROWNUM() function</a>
-</li><li><a href="https://mariadb.com/kb/en/select/">SELECT</a>
+</li><li><a href="#a_">SELECT</a>
 </li><li><a href="https://mariadb.com/kb/en/update/">UPDATE</a>
 </li><li><a href="https://mariadb.com/kb/en/delete/">DELETE</a>
 </li><li><a href="https://mariadb.com/kb/en/joins-subqueries/">Joins and Subqueries</a>
-</li><li><a href="https://mariadb.com/kb/en/order-by/">ORDER BY</a>
+</li><li><a href="#c_">ORDER BY</a>
 </li><li><a href="https://mariadb.com/kb/en/group-by/">GROUP BY</a>
 </li><li><a href="https://mariadb.com/kb/en/common-table-expressions/">Common Table Expressions</a>
 </li><li><a href="https://mariadb.com/kb/en/select-with-rollup/">SELECT WITH ROLLUP</a>
@@ -331,7 +331,7 @@ many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/
 
 </div>
 </section><section class="limited_width col-md-8 clearfix" id="content">
-<h1>ORDER BY</h1>
+<h1 id="c_">ORDER BY</h1>
 <div>
 <div class="node creole">
 <div class="answer formatted">
@@ -344,7 +344,7 @@ many rows, and thus use too many resources. See <a href="https://mariadb.com/kb/
 
 </div>
 <h2 class="anchored_heading" id="c_description">Description</h2>
-<p>Use the <code>ORDER BY</code> clause to order a resultset, such as that are returned from a <a href="https://mariadb.com/kb/en/select/">SELECT</a>
+<p>Use the <code>ORDER BY</code> clause to order a resultset, such as that are returned from a <a href="#a_">SELECT</a>
 statement. You can specify just a column or use any expression with functions. If you are
 using the <code>GROUP BY</code> clause, you can use grouping functions in <code>ORDER BY</code>.
 Ordering is done after grouping.</p>
@@ -360,8 +360,8 @@ the results will be ordered by the <em>n</em>th column in the select expression.
 function. <code>STRCMP</code> ignores trailing whitespace and may normalize
 characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/data-types-character-sets-and-collations/">collation</a> in use.</p>
 <p>Duplicated entries in the <code>ORDER BY</code> clause are removed.</p>
-<p><code>ORDER BY</code> can also be used to order the activities of a <a href="https://mariadb.com/kb/en/delete/">DELETE</a> or <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement (usually with the <a href="https://mariadb.com/kb/en/limit/">LIMIT</a> clause). </p>
-<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>ORDER BY</code> (or <a href="https://mariadb.com/kb/en/limit/">LIMIT</a>) in a multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
+<p><code>ORDER BY</code> can also be used to order the activities of a <a href="https://mariadb.com/kb/en/delete/">DELETE</a> or <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement (usually with the <a href="#b_">LIMIT</a> clause). </p>
+<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>ORDER BY</code> (or <a href="#b_">LIMIT</a>) in a multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
 </div><div class="mariadb_from_10_5 mariadb from_10_5 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/what-is-mariadb-105/">10.5</a></h5><p>From <a href="https://mariadb.com/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>, MariaDB allows packed sort keys and values of non-sorted fields in the sort buffer. This can make filesort temporary files much smaller when VARCHAR, CHAR or BLOBs are used, notably speeding up some ORDER BY sorts.</p>
 </div><h2 class="anchored_heading" id="c_examples">Examples</h2>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">seq</span> <span class="p">(</span><span class="n">i</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">x</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
@@ -399,7 +399,7 @@ characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/
 <span class="o">|</span>    <span class="mi">5</span> <span class="o">|</span> <span class="n">e</span>    <span class="o">|</span>
 <span class="o">|</span>    <span class="mi">4</span> <span class="o">|</span> <span class="n">f</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------+</span>
-</pre><p>ORDER BY in an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement, in conjunction with <a href="https://mariadb.com/kb/en/limit/">LIMIT</a>:</p>
+</pre><p>ORDER BY in an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement, in conjunction with <a href="#b_">LIMIT</a>:</p>
 <pre class="fixed"><span class="k">UPDATE</span> <span class="n">seq</span> <span class="k">SET</span> <span class="n">x</span><span class="o">=</span><span class="s1">'z'</span> <span class="k">WHERE</span> <span class="n">x</span><span class="o">=</span><span class="s1">'b'</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">i</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="mi">1</span><span class="p">;</span>
 
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">seq</span><span class="p">;</span>
@@ -444,12 +444,12 @@ characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/
 <span class="o">+</span><span class="c1">------------+------+</span>
 </pre><h2 class="anchored_heading" id="c_see-also">See Also</h2>
 <ul start="1"><li><a href="https://mariadb.com/kb/en/why-is-order-by-in-a-from-subquery-ignored/">Why is ORDER BY in a FROM subquery ignored?</a>
-</li><li><a href="https://mariadb.com/kb/en/select/">SELECT</a>
+</li><li><a href="#a_">SELECT</a>
 </li><li><a href="https://mariadb.com/kb/en/update/">UPDATE</a>
 </li><li><a href="https://mariadb.com/kb/en/delete/">DELETE</a>
 </li><li><a href="https://mariadb.com/kb/en/improvements-to-order-by/">Improvements to ORDER BY Optimization</a>
 </li><li><a href="https://mariadb.com/kb/en/joins-subqueries/">Joins and Subqueries</a>
-</li><li><a href="https://mariadb.com/kb/en/limit/">LIMIT</a>
+</li><li><a href="#b_">LIMIT</a>
 </li><li><a href="https://mariadb.com/kb/en/group-by/">GROUP BY</a>
 </li><li><a href="https://mariadb.com/kb/en/common-table-expressions/">Common Table Expressions</a>
 </li><li><a href="https://mariadb.com/kb/en/select-with-rollup/">SELECT WITH ROLLUP</a>
@@ -467,11 +467,11 @@ characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/
 
 </div>
 </section><section class="limited_width col-md-8 clearfix" id="content">
-<h1>UNION</h1>
+<h1 id="d_">UNION</h1>
 <div>
 <div class="node creole">
 <div class="answer formatted">
-<p><code>UNION</code> is used to combine the results from multiple <a href="https://mariadb.com/kb/en/d_select/">SELECT</a> statements into a single result set.</p>
+<p><code>UNION</code> is used to combine the results from multiple <a href="#a_">SELECT</a> statements into a single result set.</p>
 <h2 class="anchored_heading" id="d_syntax">Syntax</h2>
 <pre class="fixed">SELECT ...
 UNION [ALL | DISTINCT] SELECT ...
@@ -494,35 +494,35 @@ UNION [ALL | DISTINCT] SELECT ...
 
 </div>
 <h2 class="anchored_heading" id="d_description">Description</h2>
-<p><code>UNION</code> is used to combine the results from multiple <a href="https://mariadb.com/kb/en/d_select/">SELECT</a> statements into a single result set.</p>
-<p>The column names from the first <code class="fixed" style="white-space:pre-wrap">SELECT</code> statement are used as the column names for the results returned. Selected columns listed in corresponding positions of each SELECT statement should have the same data type. (For example, the first column d_selected by the first statement should have the same type as the first column d_selected by the other statements.)</p>
-<p>If they don't, the type and length of the columns in the result take into account the values returned by all of the SELECTs, so there is no need for explicit casting. Note that currently this is not the case for <a href="https://mariadb.com/kb/en/recursive-common-table-expressions-overview/">recursive CTEs</a> - d_see <a href="https://jira.mariadb.org/browse/MDEV-12325">MDEV-12325</a>.</p>
-<p>Table names can be specified as <code>db_name</code>.<code>tbl_name</code>. This permits writing <code>UNION</code>s which involve multiple databases. See <a href="https://mariadb.com/kb/en/identifier-qualifiers/">Identifier Qualifiers</a> for d_syntax details.</p>
+<p><code>UNION</code> is used to combine the results from multiple <a href="#a_">SELECT</a> statements into a single result set.</p>
+<p>The column names from the first <code class="fixed" style="white-space:pre-wrap">SELECT</code> statement are used as the column names for the results returned. Selected columns listed in corresponding positions of each SELECT statement should have the same data type. (For example, the first column selected by the first statement should have the same type as the first column selected by the other statements.)</p>
+<p>If they don't, the type and length of the columns in the result take into account the values returned by all of the SELECTs, so there is no need for explicit casting. Note that currently this is not the case for <a href="https://mariadb.com/kb/en/recursive-common-table-expressions-overview/">recursive CTEs</a> - see <a href="https://jira.mariadb.org/browse/MDEV-12325">MDEV-12325</a>.</p>
+<p>Table names can be specified as <code>db_name</code>.<code>tbl_name</code>. This permits writing <code>UNION</code>s which involve multiple databases. See <a href="https://mariadb.com/kb/en/identifier-qualifiers/">Identifier Qualifiers</a> for syntax details.</p>
 <p>UNION queries cannot be used with <a href="https://mariadb.com/kb/en/functions-and-modifiers-for-use-with-group-by/">aggregate functions</a>.</p>
-<p><code>EXCEPT</code> and <code>UNION</code> have the same operation precedence and <code>INTERSECT</code> has a d_higher precedence, unless <a href="https://mariadb.com/kb/en/sql_modeoracle/">running in Oracle mode</a>, in which case all three have the same precedence.</p>
+<p><code>EXCEPT</code> and <code>UNION</code> have the same operation precedence and <code>INTERSECT</code> has a higher precedence, unless <a href="https://mariadb.com/kb/en/sql_modeoracle/">running in Oracle mode</a>, in which case all three have the same precedence.</p>
 <h3 class="anchored_heading" id="d_alldistinct">ALL/DISTINCT</h3>
 <p>The <code>ALL</code> keyword causes duplicate rows to be preserved. The <code>DISTINCT</code> keyword (the default if the keyword is omitted) causes duplicate rows to be removed by the results.</p>
 <p>UNION ALL and UNION DISTINCT can both be present in a query. In this case, UNION DISTINCT will override any UNION ALLs to its left.</p>
-<div class="mariadb_from_10_1_1 mariadb from_10_1_1 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1011-release-notes/">10.1.1</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>, all <code>UNION ALL</code> statements required the server to create a temporary table. Since <a href="https://mariadb.com/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>, the server can in most cases execute <code>UNION ALL</code> without creating a temporary table, improving performance (d_see <a href="https://jira.mariadb.org/browse/MDEV-334">MDEV-334</a>).</p>
+<div class="mariadb_from_10_1_1 mariadb from_10_1_1 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1011-release-notes/">10.1.1</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>, all <code>UNION ALL</code> statements required the server to create a temporary table. Since <a href="https://mariadb.com/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>, the server can in most cases execute <code>UNION ALL</code> without creating a temporary table, improving performance (see <a href="https://jira.mariadb.org/browse/MDEV-334">MDEV-334</a>).</p>
 </div><h3 class="anchored_heading" id="d_order-by-and-limit">ORDER BY and LIMIT</h3>
-<p>Individual SELECTs can contain their own <a href="https://mariadb.com/kb/en/d_order-by/">ORDER BY</a> and <a href="https://mariadb.com/kb/en/limit/">LIMIT</a> clauses. In this case, the individual queries need to be wrapped between d_parentheses. However, this does not affect the d_order of the UNION, so they only are useful to limit the record read by one SELECT.</p>
-<p>The UNION can have global <a href="https://mariadb.com/kb/en/d_order-by/">ORDER BY</a> and <a href="https://mariadb.com/kb/en/limit/">LIMIT</a> clauses, which affect the whole resultset. If the columns retrieved by individual SELECT statements have an alias (AS), the ORDER BY must use that alias, not the real column names.</p>
+<p>Individual SELECTs can contain their own <a href="#c_">ORDER BY</a> and <a href="#b_">LIMIT</a> clauses. In this case, the individual queries need to be wrapped between parentheses. However, this does not affect the order of the UNION, so they only are useful to limit the record read by one SELECT.</p>
+<p>The UNION can have global <a href="#c_">ORDER BY</a> and <a href="#b_">LIMIT</a> clauses, which affect the whole resultset. If the columns retrieved by individual SELECT statements have an alias (AS), the ORDER BY must use that alias, not the real column names.</p>
 <h3 class="anchored_heading" id="d_high_priority">HIGH_PRIORITY</h3>
-<p>Specifying a query as <a href="https://mariadb.com/kb/en/d_select/#d_high-priority">HIGH_PRIORITY</a> will not work inside a UNION. If applied to the first SELECT, it will be ignored. Applying to a later SELECT results in a d_syntax error:</p>
+<p>Specifying a query as <a href="#a_#high-priority">HIGH_PRIORITY</a> will not work inside a UNION. If applied to the first SELECT, it will be ignored. Applying to a later SELECT results in a syntax error:</p>
 <pre class="fixed">ERROR 1234 (42000): Incorrect usage/placement of 'HIGH_PRIORITY'
 </pre><h3 class="anchored_heading" id="d_select-into">SELECT ... INTO ...</h3>
-<p>Individual SELECTs cannot be written <a href="https://mariadb.com/kb/en/d_select-into-dumpfile/">INTO DUMPFILE</a> or <a href="https://mariadb.com/kb/en/d_select-into-outfile/">INTO OUTFILE</a>. If the last SELECT statement specifies INTO DUMPFILE or INTO OUTFILE, the entire result of the UNION will be written. Placing the clause after any other SELECT will result in a d_syntax error.</p>
-<p>If the result is a single row, <a href="https://mariadb.com/kb/en/d_select-into-variable/">SELECT ... INTO @var_name</a> can also be used.
+<p>Individual SELECTs cannot be written <a href="https://mariadb.com/kb/en/select-into-dumpfile/">INTO DUMPFILE</a> or <a href="https://mariadb.com/kb/en/select-into-outfile/">INTO OUTFILE</a>. If the last SELECT statement specifies INTO DUMPFILE or INTO OUTFILE, the entire result of the UNION will be written. Placing the clause after any other SELECT will result in a syntax error.</p>
+<p>If the result is a single row, <a href="https://mariadb.com/kb/en/select-into-variable/">SELECT ... INTO @var_name</a> can also be used.
 <br/>
 <br/></p>
 <div class="mariadb_from_10_4_0 mariadb from_10_4_0 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1040-release-notes/">10.4.0</a></h5><h3 class="anchored_heading" id="d_parentheses">Parentheses</h3>
-<p>From <a href="https://mariadb.com/kb/en/mariadb-1040-release-notes/">MariaDB 10.4.0</a>, d_parentheses can be used to specify precedence. Before this, a d_syntax error would be returned.</p>
+<p>From <a href="https://mariadb.com/kb/en/mariadb-1040-release-notes/">MariaDB 10.4.0</a>, parentheses can be used to specify precedence. Before this, a syntax error would be returned.</p>
 </div><h2 class="anchored_heading" id="d_examples">Examples</h2>
 <p><code>UNION</code> between tables having different column names:</p>
 <pre class="fixed"><span class="p">(</span><span class="k">SELECT</span> <span class="n">e_name</span> <span class="k">AS</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">)</span>
 <span class="k">UNION</span>
 <span class="p">(</span><span class="k">SELECT</span> <span class="n">c_name</span> <span class="k">AS</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">);</span>
-</pre><p>Specifying the <code>UNION</code>'s global d_order and limiting total rows:</p>
+</pre><p>Specifying the <code>UNION</code>'s global order and limiting total rows:</p>
 <pre class="fixed"><span class="p">(</span><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">)</span>
 <span class="k">UNION</span>
 <span class="p">(</span><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">)</span>
@@ -539,7 +539,7 @@ UNION [ALL | DISTINCT] SELECT ...
 <span class="o">|</span> <span class="n">x</span>                    <span class="o">|</span>
 <span class="o">|</span> <span class="n">yyyy</span>                 <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------------------+</span>
-</pre><p>Returning the results in d_order of each individual SELECT by use of a sort column:</p>
+</pre><p>Returning the results in order of each individual SELECT by use of a sort column:</p>
 <pre class="fixed"><span class="p">(</span><span class="k">SELECT</span> <span class="mi">1</span> <span class="k">AS</span> <span class="n">sort_column</span><span class="p">,</span> <span class="n">e_name</span> <span class="k">AS</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span> <span class="k">FROM</span> <span class="n">employees</span><span class="p">)</span>
 <span class="k">UNION</span>
 <span class="p">(</span><span class="k">SELECT</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c_name</span> <span class="k">AS</span> <span class="n">name</span><span class="p">,</span> <span class="n">email</span> <span class="k">FROM</span> <span class="n">customers</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">sort_column</span><span class="p">;</span>
@@ -634,7 +634,7 @@ UNION [ALL | DISTINCT] SELECT ...
 <span class="o">|</span>    <span class="mi">6</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+</span>
 </pre><h2 class="anchored_heading" id="d_see-also">See Also</h2>
-<ul start="1"><li><a href="https://mariadb.com/kb/en/d_select/">SELECT</a>
+<ul start="1"><li><a href="#a_">SELECT</a>
 </li><li><a href="https://mariadb.com/kb/en/except/">EXCEPT</a>
 </li><li><a href="https://mariadb.com/kb/en/intersect/">INTERSECT</a>
 </li><li><a href="https://mariadb.com/kb/en/recursive-common-table-expressions-overview/">Recursive Common Table Expressions Overview</a>

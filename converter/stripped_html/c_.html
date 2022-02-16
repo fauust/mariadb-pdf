@@ -1,5 +1,5 @@
 <section class="limited_width col-md-8 clearfix" id="content">
-<h1>ORDER BY</h1>
+<h1 id="c_">ORDER BY</h1>
 <div>
 <div class="node creole">
 <div class="answer formatted">
@@ -12,7 +12,7 @@
 
 </div>
 <h2 class="anchored_heading" id="c_description">Description</h2>
-<p>Use the <code>ORDER BY</code> clause to order a resultset, such as that are returned from a <a href="https://mariadb.com/kb/en/select/">SELECT</a>
+<p>Use the <code>ORDER BY</code> clause to order a resultset, such as that are returned from a <a href="#a_">SELECT</a>
 statement. You can specify just a column or use any expression with functions. If you are
 using the <code>GROUP BY</code> clause, you can use grouping functions in <code>ORDER BY</code>.
 Ordering is done after grouping.</p>
@@ -28,8 +28,8 @@ the results will be ordered by the <em>n</em>th column in the select expression.
 function. <code>STRCMP</code> ignores trailing whitespace and may normalize
 characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/data-types-character-sets-and-collations/">collation</a> in use.</p>
 <p>Duplicated entries in the <code>ORDER BY</code> clause are removed.</p>
-<p><code>ORDER BY</code> can also be used to order the activities of a <a href="https://mariadb.com/kb/en/delete/">DELETE</a> or <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement (usually with the <a href="https://mariadb.com/kb/en/limit/">LIMIT</a> clause). </p>
-<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>ORDER BY</code> (or <a href="https://mariadb.com/kb/en/limit/">LIMIT</a>) in a multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
+<p><code>ORDER BY</code> can also be used to order the activities of a <a href="https://mariadb.com/kb/en/delete/">DELETE</a> or <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement (usually with the <a href="#b_">LIMIT</a> clause). </p>
+<div class="mariadb_from_10_3_2 mariadb from_10_3_2 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">10.3.2</a></h5><p>Until <a href="https://mariadb.com/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a>, it was not possible to use <code>ORDER BY</code> (or <a href="#b_">LIMIT</a>) in a multi-table <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement. This restriction was lifted in <a href="https://mariadb.com/kb/en/mariadb-1032-release-notes/">MariaDB 10.3.2</a>.</p>
 </div><div class="mariadb_from_10_5 mariadb from_10_5 product"><h5 class="product_title">MariaDB starting with <a href="https://mariadb.com/kb/en/what-is-mariadb-105/">10.5</a></h5><p>From <a href="https://mariadb.com/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>, MariaDB allows packed sort keys and values of non-sorted fields in the sort buffer. This can make filesort temporary files much smaller when VARCHAR, CHAR or BLOBs are used, notably speeding up some ORDER BY sorts.</p>
 </div><h2 class="anchored_heading" id="c_examples">Examples</h2>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">seq</span> <span class="p">(</span><span class="n">i</span> <span class="nb">INT</span><span class="p">,</span> <span class="n">x</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
@@ -67,7 +67,7 @@ characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/
 <span class="o">|</span>    <span class="mi">5</span> <span class="o">|</span> <span class="n">e</span>    <span class="o">|</span>
 <span class="o">|</span>    <span class="mi">4</span> <span class="o">|</span> <span class="n">f</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+------+</span>
-</pre><p>ORDER BY in an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement, in conjunction with <a href="https://mariadb.com/kb/en/limit/">LIMIT</a>:</p>
+</pre><p>ORDER BY in an <a href="https://mariadb.com/kb/en/update/">UPDATE</a> statement, in conjunction with <a href="#b_">LIMIT</a>:</p>
 <pre class="fixed"><span class="k">UPDATE</span> <span class="n">seq</span> <span class="k">SET</span> <span class="n">x</span><span class="o">=</span><span class="s1">'z'</span> <span class="k">WHERE</span> <span class="n">x</span><span class="o">=</span><span class="s1">'b'</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">i</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="mi">1</span><span class="p">;</span>
 
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">seq</span><span class="p">;</span>
@@ -112,12 +112,12 @@ characters and ignore case, depending on the <a href="https://mariadb.com/kb/en/
 <span class="o">+</span><span class="c1">------------+------+</span>
 </pre><h2 class="anchored_heading" id="c_see-also">See Also</h2>
 <ul start="1"><li><a href="https://mariadb.com/kb/en/why-is-order-by-in-a-from-subquery-ignored/">Why is ORDER BY in a FROM subquery ignored?</a>
-</li><li><a href="https://mariadb.com/kb/en/select/">SELECT</a>
+</li><li><a href="#a_">SELECT</a>
 </li><li><a href="https://mariadb.com/kb/en/update/">UPDATE</a>
 </li><li><a href="https://mariadb.com/kb/en/delete/">DELETE</a>
 </li><li><a href="https://mariadb.com/kb/en/improvements-to-order-by/">Improvements to ORDER BY Optimization</a>
 </li><li><a href="https://mariadb.com/kb/en/joins-subqueries/">Joins and Subqueries</a>
-</li><li><a href="https://mariadb.com/kb/en/limit/">LIMIT</a>
+</li><li><a href="#b_">LIMIT</a>
 </li><li><a href="https://mariadb.com/kb/en/group-by/">GROUP BY</a>
 </li><li><a href="https://mariadb.com/kb/en/common-table-expressions/">Common Table Expressions</a>
 </li><li><a href="https://mariadb.com/kb/en/select-with-rollup/">SELECT WITH ROLLUP</a>

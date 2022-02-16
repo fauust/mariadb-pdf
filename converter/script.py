@@ -28,25 +28,31 @@ def get_urls():
 
 
 def write_urls_to_html(urls):
+    url_filename = {}
     print("sending requests")
     session = FuturesSession()
     sent_requests = []
     for url in urls:
         request  = session.get(url)
         sent_requests.append(request)
+        time.sleep(10)
     print("waiting for requests")
-    while sent_requests != []:
+    test = [None] * len(sent_requests)
+    while sent_requests != test:
         time.sleep(0.1)
         for index, request in enumerate(sent_requests):
-            if request in busy_requests and request._state != "RUNNING":
-                filename = f"temp({index}).html"
+            if request != None and request._state != "RUNNING":
+                unique_id = _get_id(index)
+                filename = f"{unique_id}.html"
                 path = os.path.join(full_html_dir, filename)
 
                 content = request.result().text
                 with open(path, "w", encoding = "utf-8") as file:
                     file.write(content)
-                busy_requests.remove(request)
-
+                sent_requests[index] = None
+                url_filename[urls[index]] = unique_id
+    with open("url_filenames.json", "w") as file:
+        json.dump(url_filename, file)
 
 def modify_html_files():
     files = os.listdir(full_html_dir)
@@ -56,7 +62,7 @@ def modify_html_files():
         with open(path, "r", encoding = "utf-8") as file:
             html = file.read()
         
-        html = _strip(html)
+        html = _strip(html, filename)
         html = _absolute_links(html)
         html = _convert_links(html, filename)
 
@@ -98,7 +104,7 @@ def write_to_pdf():
     pdfkit.from_string(html, pdf_file, configuration = pdf_config)
     print("finished")
 
-def _strip(html):
+def _strip(html, filename):
     def remove(content, *args, **kwargs): #helper method
         tag = content.find(*args, **kwargs)
         tag.decompose()
@@ -108,8 +114,9 @@ def _strip(html):
     soup.prettify()
 
     #find main content
+    unique_id = filename[:-5]
     content = soup.find("section", {"id": "content"})
-    #remove unwanted information
+    content.h1.attrs["id"] = unique_id
     remove(content, "div", {"id": "content_disclaimer"})
     remove(content, "div", {"id": "comments"})
     remove(content, "h2", text = "Comments")
@@ -135,21 +142,50 @@ def _absolute_links(html):
 
 
 def _convert_links(html, filename):
-    num = int(re.search("\d", filename)[0])
-    replacement = chr(num + 97) + "_"
+    #make links unique
+    replacement = filename[:-5]
     #print(replacement)
     find_pattern = '#\w+'
     hash_tags = re.findall(find_pattern, html)
     tag_list = ""
-    for tag in hash_tags:
+    for index, tag in enumerate(hash_tags):
         tag = tag[1:]
         tag_list += f"{tag}|"
     tag_list = tag_list[:-1]
     pattern = f"({tag_list})"
     html = re.sub(pattern, replacement + r"\1", html)
 
+    #make external links internal
+    html = _convert_external(html)
+
     return html
 
+def _convert_links(html, filename):
+    unique_id = filename[:-5]
+
+    find_pattern = r"#[\w-]+"
+    hash_tags = re.findall(find_pattern, html)
+    for string in hash_tags:
+        string = string[1:]
+        find = f'"{string}"'
+        replacement = f'"{unique_id}{string}"'
+        html = html.replace(find, replacement)
+
+        find = f'"#{string}"'
+        replacement = f'"#{unique_id}{string}"'
+        html = html.replace(find, replacement)
+    
+    html = _convert_external(html)
+    return html
+
+
+def _convert_external(html):
+    with open("url_filenames.json") as file:
+        url_filenames = json.loads(file.read())
+    for url, reference in url_filenames.items():
+        html = html.replace(url, "#" + reference)
+    
+    return html
 def _get_boilerplate():
     with open("boilerplate.html", "r") as file:
         boilerplate = file.readlines()
@@ -167,7 +203,15 @@ def _add_css(string):
     string = re.sub("css-link", line, string)
     return string
 
+def _get_id(num):
+    string = ""
+    test_num = num + 97
+    while test_num > 122:
+        string += "z"
+        test_num -= 25
 
+    string = chr(test_num) + string
+    return string + "_"
 if __name__ == "__main__":
     if config["from_urls"]:
         urls = get_urls()
