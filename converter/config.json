@@ -1,7 +1,0 @@
-{
-    "base_url": "https://mariadb.com",
-    "output_name": "output",
-    "from_urls": false,
-    "write_to_html": true,
-    "write_to_pdf": false
-}
