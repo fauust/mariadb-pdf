@@ -17,7 +17,7 @@ with open("config.json", "r") as file:
 def main():
     if config["from_urls"]:
         request_html()
-    if not config["read_off_html"]:
+    if not config["read_off_output"]:
         html = merge_and_split()
     else:
         with open('output.html', encoding = "utf-8") as file:
@@ -91,7 +91,7 @@ def write_to_pdf(html):
     options = { 
       'margin-bottom': '0.75cm', 
       'footer-line': '',
-      'footer-right': 'pg([page]/[topage])',
+      'footer-right': '[page]/[topage]',
      }
 
     print("\nmaking_pdf")

@@ -2,7 +2,7 @@
     "base_url": "https://mariadb.com",
     "request_existing_files": false,
     "from_urls": true,
-    "read_off_html": false,
+    "read_off_output": true,
     "write_to_html": true,
     "write_to_pdf": true,
     "input_csv": "kb_urls.csv",
