@@ -17,10 +17,11 @@ with open("config.json", "r") as file:
 def main():
     if config["from_urls"]:
         request_html()
-    
-    #html = merge_and_split()
-    with open('output.html', encoding = "utf-8") as file:
-        html = file.read()
+    if not config["read_off_html"]:
+        html = merge_and_split()
+    else:
+        with open('output.html', encoding = "utf-8") as file:
+            html = file.read()
     if config["write_to_html"]:
         write_to_html(html)
     if config["write_to_pdf"]:
@@ -57,8 +58,7 @@ def request_html():
 
 def merge_and_split():
     urls = _get_urls()
-    filenames = [_get_name(url) for url in urls] 
-
+    filenames = [_get_name(url) for url in urls]
     html = ""
     print("stripping files")
     for index, name in enumerate(filenames):
@@ -89,15 +89,16 @@ def write_to_pdf(html):
     path_to_exe = "wkhtmltopdf.exe"
     pdf_config = pdfkit.configuration(wkhtmltopdf=path_to_exe)
     options = { 
-      'margin-bottom': '0.75in', 
-      'footer-right': '[page] of [topage]',
-     }  
+      'margin-bottom': '0.75cm', 
+      'footer-line': '',
+      'footer-right': 'pg([page]/[topage])',
+     }
 
     print("\nmaking_pdf")
 
     pdf_file = config["output_pdf"]
     try:
-        pdfkit.from_string(html, pdf_file, configuration = pdf_config)
+        pdfkit.from_string(html, pdf_file, configuration = pdf_config, options = options)
     except OSError:
         pass
     print("finished")
@@ -171,13 +172,13 @@ def _get_name(url):
 
 
 def _get_urls():
-    with config["input_csv"] as file:
-        contents = csv.DictReader(file)
+    with open(config["input_csv"]) as file:
+        contents = list(csv.DictReader(file))
 
     urls = []
     for row in contents:
-        if "/" in row["url"]:
-            urls.append(row["url"])
+        if "/" in row["URL"] and row["Include"] == "1":
+            urls.append(row["URL"])
     return urls
 
 def _get_boilerplate():
