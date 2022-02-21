@@ -1,10 +1,5 @@
 # MariaDB Pdf-Creator
 
-
-## WORK IN PROGRESS
-
- MariaDB Pdf-Creator looks through a list of mariaDB urls and extracts information into a pdf
-
 ## Usage
     uses urls.csv as a base for pdf creation
     Run Script.py, change settings for creation in the config.json

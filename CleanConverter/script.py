@@ -6,6 +6,7 @@ import json
 import time
 import re
 import os
+import csv
 
 #config
 with open("config.json", "r") as file:
@@ -95,7 +96,10 @@ def write_to_pdf(html):
     print("\nmaking_pdf")
 
     pdf_file = config["output_pdf"]
-    pdfkit.from_string(html, pdf_file, configuration = pdf_config)
+    try:
+        pdfkit.from_string(html, pdf_file, configuration = pdf_config)
+    except OSError:
+        pass
     print("finished")
 
 #sub sub functions
@@ -167,12 +171,13 @@ def _get_name(url):
 
 
 def _get_urls():
-    with open("urls.csv") as file:
-        urls = file.read().replace("\n", "").split(",")
-    do_while = True
-    for url in urls:
-        if "/" not in url:
-            urls.remove(url)
+    with config["input_csv"] as file:
+        contents = csv.DictReader(file)
+
+    urls = []
+    for row in contents:
+        if "/" in row["url"]:
+            urls.append(row["url"])
     return urls
 
 def _get_boilerplate():
