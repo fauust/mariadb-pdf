@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import json
 import time
 import re
-import csv
 import os
 
 #config
@@ -18,10 +17,13 @@ def main():
     if config["from_urls"]:
         request_html()
     
-    html = merge_and_split()
+    #html = merge_and_split()
+    with open('output.html', encoding = "utf-8") as file:
+        html = file.read()
     if config["write_to_html"]:
         write_to_html(html)
-
+    if config["write_to_pdf"]:
+        write_to_pdf(html)
 
 
 #sub functions
@@ -78,6 +80,23 @@ def write_to_html(html):
     with open(output, "w", encoding = "utf-8") as file:
         file.write(html)
     print(f"written to {output}")
+
+
+def write_to_pdf(html):
+    """WORK IN PROGRESS"""
+    import pdfkit
+    path_to_exe = "wkhtmltopdf.exe"
+    pdf_config = pdfkit.configuration(wkhtmltopdf=path_to_exe)
+    options = { 
+      'margin-bottom': '0.75in', 
+      'footer-right': '[page] of [topage]',
+     }  
+
+    print("\nmaking_pdf")
+
+    pdf_file = config["output_pdf"]
+    pdfkit.from_string(html, pdf_file, configuration = pdf_config)
+    print("finished")
 
 #sub sub functions
 def _strip(html, unique_id):

@@ -3,7 +3,7 @@
     "request_existing_files": false,
     "from_urls": false,
     "write_to_html": true,
-    "write_to_pdf": false,
+    "write_to_pdf": true,
     "output_html": "output.html",
     "output_pdf": "output.pdf",
     "min_sleep_time": 10
