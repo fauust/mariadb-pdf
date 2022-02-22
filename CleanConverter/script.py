@@ -15,9 +15,10 @@ with open("config.json", "r") as file:
 
 #functions
 def main():
-    if config["from_urls"]:
-        request_html()
+    #if config["from_urls"]:
+    #    request_html()
     if not config["read_off_output"]:
+        request_html()
         html = merge_and_split()
     else:
         with open('output.html', encoding = "utf-8") as file:
@@ -100,6 +101,7 @@ def write_to_pdf(html):
     options = { 
       'margin-bottom': '0.75cm', 
       'footer-line': '',
+      'page-size': "A4",
       'footer-right': '[page]/[topage]',
      }
 
@@ -189,6 +191,9 @@ def _get_name(url):
 def _get_urls(header = False):
     with open(config["input_csv"]) as file:
         contents = list(csv.DictReader(file))
+
+    if config["amount_of_files"] > 0:
+        contents = contents[:config["amount_of_files"]]
 
     urls = []
     if header:
