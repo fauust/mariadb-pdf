@@ -5,7 +5,7 @@
     "read_off_output": true,
     "write_to_html": true,
     "write_to_pdf": true,
-    "input_csv": "kb_urls.csv",
+    "input_csv": "urls.csv",
     "output_html": "output.html",
     "output_pdf": "output.pdf",
     "min_sleep_time": 10

@@ -57,22 +57,24 @@ def request_html():
         sleep_duration = config["min_sleep_time"] - time_took
 
 def merge_and_split():
-    urls = _get_urls()
-    filenames = [_get_name(url) for url in urls]
+    urls, headers = _get_urls(header = True)
+    #filenames = [_get_name(url) for url in urls]
     html = ""
     print("stripping files")
-    for index, name in enumerate(filenames):
+    for index, url in enumerate(urls):
+        name = _get_name(url)
+        header = headers[index]
         if index % 50 == 0 and index != 0:
             print(f"stripped {index} files")
         path = os.path.join("html", f"{name}.html")
         with open(path, "r", encoding = "utf-8") as file:
             content = file.read()
 
-            content = _strip(content, name)
+            content = _strip(content, name, header)
             content = _convert_links(content, name)
 
             html += content
-    print(f"stripped all {len(filenames)} files")
+    print(f"stripped all {len(urls)} files")
     boiler, plate = _get_boilerplate()
     return boiler + html + plate
 
@@ -85,6 +87,13 @@ def write_to_html(html):
 
 def write_to_pdf(html):
     """WORK IN PROGRESS"""
+
+    #check to see if wkhtmltopdf is in the directory
+    for filename in os.listdir():
+        if filename.find("wkhtmltopdf") != -1: break
+    else: raise OSError("wkhtmltopdf is not in the correct directory")
+
+
     import pdfkit
     path_to_exe = "wkhtmltopdf.exe"
     pdf_config = pdfkit.configuration(wkhtmltopdf=path_to_exe)
@@ -104,7 +113,7 @@ def write_to_pdf(html):
     print("finished")
 
 #sub sub functions
-def _strip(html, unique_id):
+def _strip(html, unique_id, header):
     def remove(content, *args, **kwargs): #helper method
         tag = content.find(*args, **kwargs)
         if tag != None:
@@ -116,7 +125,13 @@ def _strip(html, unique_id):
 
     #find main content
     content = soup.find("section", {"id": "content"})
+    #content.attrs["style"] = "margin-top:3cm;"
     content.h1.attrs["id"] = unique_id
+
+    #change h1 to have version
+    content.h1.string = header + " " + content.h1.text
+
+
     remove(content, "div", {"id": "content_disclaimer"})
     remove(content, "div", {"id": "comments"})
     remove(content, "h2", text = "Comments")
@@ -171,15 +186,23 @@ def _get_name(url):
     return output[1:]
 
 
-def _get_urls():
+def _get_urls(header = False):
     with open(config["input_csv"]) as file:
         contents = list(csv.DictReader(file))
 
     urls = []
+    if header:
+        headers = []
     for row in contents:
         if "/" in row["URL"] and row["Include"] == "1":
             urls.append(row["URL"])
-    return urls
+            if header: headers.append(row["Header"])
+    to_return = urls
+    
+    if header:
+        to_return = (to_return, headers)
+    
+    return to_return
 
 def _get_boilerplate():
     with open("boilerplate.html", "r") as file:
