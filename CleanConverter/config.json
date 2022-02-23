@@ -8,5 +8,5 @@
     "output_html": "output.html",
     "output_pdf": "output.pdf",
     "min_sleep_time": 10,
-    "amount_of_files": -1
+    "amount_of_files": 50
 }

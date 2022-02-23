@@ -74,7 +74,8 @@ def merge_and_split():
             content = _strip(content, name, header)
             content = _convert_links(content, name)
 
-            html += content
+            page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
+            html += content + page_break 
     print(f"stripped all {len(urls)} files")
     boiler, plate = _get_boilerplate()
     return boiler + html + plate
@@ -98,11 +99,12 @@ def write_to_pdf(html):
     import pdfkit
     path_to_exe = "wkhtmltopdf.exe"
     pdf_config = pdfkit.configuration(wkhtmltopdf=path_to_exe)
-    options = { 
-      'margin-bottom': '0.75cm', 
-      'footer-line': '',
-      'page-size': "A4",
-      'footer-right': '[page]/[topage]',
+    options = {
+        'margin-bottom': '1cm', 
+        'margin-top': '1cm',
+        'footer-line': '',
+        'page-size': 'Letter',
+        'footer-right': '[page]/[topage]',
      }
 
     print("\nmaking_pdf")
