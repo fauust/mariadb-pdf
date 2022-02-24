@@ -1,7 +1,8 @@
 # MariaDB Pdf-Creator
 
 ## Usage
-    uses urls.csv as a base for pdf creation
+    must add wkhtmltopdf to Converter directory
+    uses a csv containing urls and other info as a base for pdf creation
     Run Script.py, change settings for creation in the config.json
 
 ## Dependencies:

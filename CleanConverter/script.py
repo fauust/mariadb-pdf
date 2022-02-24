@@ -2,6 +2,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+import sys
 import json
 import time
 import re
@@ -15,77 +16,182 @@ with open("config.json", "r") as file:
 
 #functions
 def main():
-    #if config["from_urls"]:
-    #    request_html()
     if not config["read_off_output"]:
-        request_html()
-        html = merge_and_split()
+        html = make_html()
     else:
-        with open('output.html', encoding = "utf-8") as file:
+        path = os.path.join("output", config["output_html"])
+        with open(path, "r", encoding = "utf-8") as file:
             html = file.read()
     if config["write_to_html"]:
         write_to_html(html)
     if config["write_to_pdf"]:
         write_to_pdf(html)
-
-
-#sub functions
-def request_html():
-    urls = _get_urls()
-    sleep_duration = 0
-    existing_files = os.listdir("html")
-    for index, url in enumerate(urls):
-        name = _get_name(url)
-        filename = f"{name}.html"
-        if not config["request_existing_files"] and filename in existing_files:
+def make_html():
+    full_html = ""
+    rows = _get_rows()
+    last_requested = stripped = 0
+    for index, row in enumerate(rows):
+        if row["Include"] == "": continue
+        include = int(row["Include"])
+        
+        if include == 0:
             continue
-        if sleep_duration > 0:
-            print(f"sleeping for {sleep_duration}")
-            time.sleep(sleep_duration)
-        print()
+        elif include == 2:
+            add = row["Header"]
+            full_html += f'\n<h1 class="col-md-8">{add}</h1>\n'
+        elif include == 3:
+            url = row["URL"]
+            name = _get_name(url)
+            add = row["Header"]
+            full_html += f'\n<h1 class="col-md-1"><a href="#{name}">{add}</a></h1>\n'
+        elif include == 1:
+            if stripped > 0 and stripped % 50 == 0:
+                print(f"stripped {stripped}")
+            time_since = time.perf_counter() - last_requested
+            if config["min_sleep_time"] - time_since > 0:
+                time.sleep(config["min_sleep_time"] - time_since)
 
-        start_time = time.perf_counter()
-        print(f"sending_request for {name} ({index+1}/{len(urls)})")
-        request = requests.get(url)
-        print(f"request took {time.perf_counter() - start_time}")
-        path = os.path.join('html', filename)
-        print(f"writing to {path}")
-        with open(path, "w", encoding = "utf-8") as file:
-            file.write(request.text)
-        
-        
-        time_took = time.perf_counter() - start_time
-        sleep_duration = config["min_sleep_time"] - time_took
+            existing_files = os.listdir("html")
+            url = row["URL"]
+            name = _get_name(url)
+            filename = name + ".html"
+            if filename not in existing_files or config["request_existing_files"]:
+                print(f"requesting {name}")
+                _request_and_write(url, name)
+                last_requested = time.perf_counter()
 
-def merge_and_split():
-    urls, headers = _get_urls(header = True)
-    #filenames = [_get_name(url) for url in urls]
-    html = ""
-    print("stripping files")
-    for index, url in enumerate(urls):
-        name = _get_name(url)
-        header = headers[index]
-        if index % 50 == 0 and index != 0:
-            print(f"stripped {index} files")
-        path = os.path.join("html", f"{name}.html")
-        with open(path, "r", encoding = "utf-8") as file:
-            content = file.read()
+            html = _get_html_file(filename, existing_files)
 
-            content = _strip(content, name, header)
-            content = _convert_links(content, name)
 
-            page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
-            html += content + page_break 
-    print(f"stripped all {len(urls)} files")
+            html = _strip(html, name, row)
+            html = _convert_links(html, name)
+            full_html += html
+        #to keep sameline 
+        sys.stdout.write(f"\rrun through {index + 1} rows")
+        sys.stdout.flush()
+    sys.stdout.write("\n")#to clear for next line
     boiler, plate = _get_boilerplate()
-    return boiler + html + plate
+    return boiler + full_html + plate
 
-def write_to_html(html):
-    output = config["output_html"]
-    with open(output, "w", encoding = "utf-8") as file:
-        file.write(html)
-    print(f"written to {output}")
+def _strip(html, name, row):
+    def remove(content, *args, **kwargs): #helper method
+        tag = content.find(*args, **kwargs)
+        if tag != None:
+            tag.decompose()
+    
+    #load into html parser
+    soup = BeautifulSoup(html, features = "html.parser")
+    soup.prettify()
 
+    #find main content
+    content = soup.find("section", {"id": "content"})
+    #content.attrs["style"] = "margin-top:3cm;"
+    content.h1.attrs["id"] = name
+
+    #change h1 to have version
+    content.h1.string = row["Header"] + " " + content.h1.text
+
+
+    remove(content, "div", {"id": "content_disclaimer"})
+    remove(content, "div", {"id": "comments"})
+    remove(content, "h2", text = "Comments")
+    remove(content, "div", {"id": "subscribe"})
+    remove(content, "div", {"class": "simple_section_nav"})
+    
+    
+    text = str(content)
+    text = text.replace('class="product_title"', "")
+
+    return text
+
+
+def _get_html_file(filename, existing_files):
+    path = os.path.join("html", filename)
+    with open(path, "r", encoding="utf-8") as file:
+        contents = file.read()
+    
+    return contents
+def _request_and_write(url, filename):
+    print("requesting url")
+    text = requests.get(url).text
+    print("writing to filename")
+    path = os.path.join("html", filename)
+    with open(path, "w", encoding = "utf-8") as file:
+        file.write(text)
+
+def _convert_links(html, unique_id):
+    #make absolute
+    #html = re.sub('href="/kb/en', 'href="' + config["base_url"] + "/kb/en", html)
+    html = html.replace('href="/kb/en', 'href="' + config["base_url"] + "/kb/en")
+    #make id's unique
+    find_pattern = r'"#[\w-]+"' #changing this means changes string = string[1:]
+    hash_tags = re.findall(find_pattern, html)
+    for string in hash_tags:
+        string = string[2:][:-1]
+        find = f'"{string}"'
+        replacement = f'"{unique_id}{string}"'
+        html = html.replace(find, replacement)
+
+        find = f'"#{string}"'
+        replacement = f'"#{unique_id}{string}"'
+        html = html.replace(find, replacement)
+
+    html = _make_internal(html)
+    html = _make_single_internals(html)
+
+    return html
+
+def _make_internal(html):
+    urls = _get_rows()
+    for row in urls:
+        if row["URL"] != "":
+            url = row["URL"]
+            name = _get_name(url)
+            html = html.replace(url, "#" + name)
+    return html
+
+def _make_single_internals(html):
+    pattern = r'(href ?= ?")(#[\w-]+)#([\w-]+)'
+    html = re.sub(pattern, r"\1\2\3", html)
+    return html
+def _get_rows():
+    with open(config["input_csv"]) as file:
+        contents = list(csv.DictReader(file))
+
+    if config["number_of_rows"] > 0:
+        contents = contents[:config["number_of_rows"]]
+
+    return contents
+
+def _get_name(url):
+    lru = ""
+    for c in url:
+        lru = c + lru
+    name = re.match(r"/[\w-]+/", lru)[0]
+    output = ""
+    for c in name[1:]:
+        output = c + output
+    #print(output[1:])
+    return output[1:]
+
+
+
+def _get_boilerplate():
+    with open("boilerplate.html", "r") as file:
+        boilerplate = file.readlines()
+    
+    boiler = "".join(boilerplate[:-2])
+    plate = "".join(boilerplate[-2:])
+
+    boiler = _add_css(boiler)
+    return boiler, plate
+
+def _add_css(string):
+    url = config["base_url"] + "/kb/static/css/main.9a0d7dcebefd.css"
+    line = f'<link rel="stylesheet" href="{url}" type="text/css">'
+
+    string = re.sub("css-link", line, string)
+    return string
 
 def write_to_pdf(html):
     """WORK IN PROGRESS"""
@@ -110,122 +216,19 @@ def write_to_pdf(html):
     print("\nmaking_pdf")
 
     pdf_file = config["output_pdf"]
+
+    path = os.path.join("output", pdf_file)
     try:
-        pdfkit.from_string(html, pdf_file, configuration = pdf_config, options = options)
+        pdfkit.from_string(html, path, configuration = pdf_config, options = options)
     except OSError:
         pass
-    print("finished")
+    print(f"pdf written to {path}")
 
-#sub sub functions
-def _strip(html, unique_id, header):
-    def remove(content, *args, **kwargs): #helper method
-        tag = content.find(*args, **kwargs)
-        if tag != None:
-            tag.decompose()
-    
-    #load into html parser
-    soup = BeautifulSoup(html, features = "html.parser")
-    soup.prettify()
-
-    #find main content
-    content = soup.find("section", {"id": "content"})
-    #content.attrs["style"] = "margin-top:3cm;"
-    content.h1.attrs["id"] = unique_id
-
-    #change h1 to have version
-    content.h1.string = header + " " + content.h1.text
+def write_to_html(html):
+    path = os.path.join("output", config["output_html"])
+    print(f"html written to {path}")
+    with open(path, "w", encoding = "utf-8") as file:
+        file.write(html)
 
 
-    remove(content, "div", {"id": "content_disclaimer"})
-    remove(content, "div", {"id": "comments"})
-    remove(content, "h2", text = "Comments")
-    remove(content, "div", {"id": "subscribe"})
-    remove(content, "div", {"class": "simple_section_nav"})
-    return str(content)
-
-
-def _convert_links(html, unique_id):
-    #make absolute
-    html = re.sub('href="/kb/en', 'href="' + config["base_url"] + "/kb/en", html)
-
-    #make id's unique
-    find_pattern = r"#[\w-]+"
-    hash_tags = re.findall(find_pattern, html)
-    for string in hash_tags:
-        string = string[1:]
-        find = f'"{string}"'
-        replacement = f'"{unique_id}{string}"'
-        html = html.replace(find, replacement)
-
-        find = f'"#{string}"'
-        replacement = f'"#{unique_id}{string}"'
-        html = html.replace(find, replacement)
-    
-    html = _make_internal(html)
-    
-    html = _make_single_internals(html)
-
-    return html
-
-def _make_internal(html):
-    urls = _get_urls()
-    for url in urls:
-        reference = _get_name(url)
-        html = html.replace(url, "#" + reference)
-    
-    return html
-
-def _make_single_internals(html):
-    pattern = r'(href ?= ?")(#[\w-]+)#([\w-]+)'
-    html = re.sub(pattern, "\1\2", html)
-    return html
-def _get_name(url):
-    lru = ""
-    for c in url:
-        lru = c + lru
-    name = re.match(r"/[\w-]+/", lru)[0]
-    output = ""
-    for c in name[1:]:
-        output = c + output
-    return output[1:]
-
-
-def _get_urls(header = False):
-    with open(config["input_csv"]) as file:
-        contents = list(csv.DictReader(file))
-
-    if config["amount_of_files"] > 0:
-        contents = contents[:config["amount_of_files"]]
-
-    urls = []
-    if header:
-        headers = []
-    for row in contents:
-        if "/" in row["URL"] and row["Include"] == "1":
-            urls.append(row["URL"])
-            if header: headers.append(row["Header"])
-    to_return = urls
-    
-    if header:
-        to_return = (to_return, headers)
-    
-    return to_return
-
-def _get_boilerplate():
-    with open("boilerplate.html", "r") as file:
-        boilerplate = file.readlines()
-    
-    boiler = "".join(boilerplate[:-2])
-    plate = "".join(boilerplate[-2:])
-
-    boiler = _add_css(boiler)
-    return boiler, plate
-
-def _add_css(string):
-    url = config["base_url"] + "/kb/static/css/main.9a0d7dcebefd.css"
-    line = f'<link rel="stylesheet" href="{url}" type="text/css">'
-
-    string = re.sub("css-link", line, string)
-    return string
-#call main
 main()

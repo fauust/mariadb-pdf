@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-01-08 14:43">1 month, 1 week ago</span></dd>
+<span class="datetime" title="2022-02-22 22:07">16 hours, 26 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -590,19 +590,18 @@
 </pre><h2 class="anchored_heading" id="if-not-exists">IF NOT EXISTS</h2>
 <p>When the <code>IF NOT EXISTS</code> clause is used, MariaDB will return a warning instead of an error if the specified user already exists.</p>
 <p>For example:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="n">USER</span> <span class="n">foo2</span><span class="o">@</span><span class="n">test</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
-<span class="n">ERROR</span> <span class="mi">1396</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="n">Operation</span> <span class="k">CREATE</span> <span class="n">USER</span> <span class="n">failed</span> <span class="k">for</span> <span class="s1">&#39;foo2&#39;</span><span class="o">@</span><span class="s1">&#39;test&#39;</span>
+<pre class="fixed">CREATE USER foo2@test IDENTIFIED BY 'password';
+ERROR 1396 (HY000): Operation CREATE USER failed for 'foo2'@'test'
 
-<span class="k">CREATE</span> <span class="n">USER</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">foo2</span><span class="o">@</span><span class="n">test</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
-<span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="n">rows</span> <span class="n">affected</span><span class="p">,</span> <span class="mi">1</span> <span class="nf">warning</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+CREATE USER IF NOT EXISTS foo2@test IDENTIFIED BY 'password';
+Query OK, 0 rows affected, 1 warning (0.00 sec)
 
-<span class="k">SHOW</span> <span class="n">WARNINGS</span><span class="p">;</span>
-<span class="o">+-------+------+----------------------------------------------------+</span>
-<span class="o">|</span> <span class="n">Level</span> <span class="o">|</span> <span class="n">Code</span> <span class="o">|</span> <span class="n">Message</span>                                            <span class="o">|</span>
-<span class="o">+-------+------+----------------------------------------------------+</span>
-<span class="o">|</span> <span class="n">Note</span>  <span class="o">|</span> <span class="mi">1973</span> <span class="o">|</span> <span class="n">Can</span><span class="s1">&#39;t create user &#39;</span><span class="n">foo2</span><span class="s1">&#39;@&#39;</span><span class="n">test</span><span class="err">&#39;</span><span class="p">;</span> <span class="n">it</span> <span class="n">already</span> <span class="k">exists</span> <span class="o">|</span>
-<span class="o">+-------+------+----------------------------------------------------+</span>
-<span class="mi">1</span> <span class="n">row</span> <span class="k">in</span> <span class="kt">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span>
+SHOW WARNINGS;
++-------+------+----------------------------------------------------+
+| Level | Code | Message                                            |
++-------+------+----------------------------------------------------+
+| Note  | 1973 | Can't create user 'foo2'@'test'; it already exists |
++-------+------+----------------------------------------------------+
 </pre><h2 class="anchored_heading" id="authentication-options">Authentication Options</h2>
 <h3 class="anchored_heading" id="identified-by-password">IDENTIFIED BY 'password'</h3>
 <p>The optional <code>IDENTIFIED BY</code> clause can be used to provide an account with a password. The password should be specified in plain text. It will be hashed by the <a href="/kb/en/password/">PASSWORD</a> function prior to being stored in the <a href="/kb/en/mysqluser-table/">mysql.user</a>/<a href="/kb/en/mysqlglobal_priv-table/">mysql.global_priv_table</a> table.</p>
