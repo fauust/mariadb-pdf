@@ -1,5 +1,4 @@
 {
-    "base_url": "https://mariadb.com",
     "request_existing_files": false,
     "read_off_output": false,
     "write_to_html": true,
@@ -7,8 +6,9 @@
     "input_csv": "kb_urls.csv",
     "output_html": "output.html",
     "output_pdf": "output.pdf",
-    "min_sleep_time": 10,
-    "amount_of_files": -1,
     "number_of_rows": -1,
-    "page-break": false
+    "min_sleep_time": 10,
+    "catch-OSError": true,
+    "page-break": false,
+    "css-link": ""
 }

@@ -13,6 +13,7 @@ import csv
 with open("config.json", "r") as file:
     config = json.loads(file.read())
 
+base_url = "https://mariadb.com"
 
 #functions
 def main():
@@ -49,6 +50,7 @@ def make_html():
                 print(f"stripped {stripped}")
             time_since = time.perf_counter() - last_requested
             if config["min_sleep_time"] - time_since > 0:
+                print("\nsleeping for " + str(config["min_sleep_time"] - time_since))
                 time.sleep(config["min_sleep_time"] - time_since)
 
             existing_files = os.listdir("html")
@@ -56,8 +58,8 @@ def make_html():
             name = _get_name(url)
             filename = name + ".html"
             if filename not in existing_files or config["request_existing_files"]:
-                print(f"requesting {name}")
-                _request_and_write(url, name)
+                print(f"\nrequesting {name}")
+                _request_and_write(url, filename)
                 last_requested = time.perf_counter()
 
             html = _get_html_file(filename, existing_files)
@@ -110,19 +112,24 @@ def _get_html_file(filename, existing_files):
     with open(path, "r", encoding="utf-8") as file:
         contents = file.read()
     
+    if config["css-link"] == "":
+        match = re.search(r'[^"]+\.css', contents)
+        if match != None:
+            link = match[0]
+            print(f"\nset link to {link}")
+            config["css-link"] = link
+
     return contents
 def _request_and_write(url, filename):
-    print("requesting url")
     text = requests.get(url).text
-    print("writing to filename")
+    print(f"writing to {filename}")
     path = os.path.join("html", filename)
     with open(path, "w", encoding = "utf-8") as file:
         file.write(text)
 
 def _convert_links(html, unique_id):
     #make absolute
-    #html = re.sub('href="/kb/en', 'href="' + config["base_url"] + "/kb/en", html)
-    html = html.replace('href="/kb/en', 'href="' + config["base_url"] + "/kb/en")
+    html = html.replace('href="/kb/en', 'href="' + base_url + "/kb/en")
     #make id's unique
     find_pattern = r'"#[\w-]+"' #changing this means changes string = string[1:]
     hash_tags = re.findall(find_pattern, html)
@@ -187,7 +194,11 @@ def _get_boilerplate():
     return boiler, plate
 
 def _add_css(string):
-    url = config["base_url"] + "/kb/static/css/main.9a0d7dcebefd.css"
+    css_link = config["css-link"]
+    index = css_link.find("https")
+    if index == -1:
+        config["css-link"] = base_url + css_link
+    url = config["css-link"]
     line = f'<link rel="stylesheet" href="{url}" type="text/css">'
 
     string = re.sub("css-link", line, string)
@@ -210,7 +221,8 @@ def write_to_pdf(html):
         'margin-top': '1cm',
         'footer-line': '',
         'page-size': 'Letter',
-        'footer-right': '[page]/[topage]',
+        'encoding': "UTF-8",
+        'footer-right': '[page] /[topage]',
      }
 
     print("\nmaking_pdf")
@@ -218,10 +230,14 @@ def write_to_pdf(html):
     pdf_file = config["output_pdf"]
 
     path = os.path.join("output", pdf_file)
-    try:
+    if config["catch-OSError"]:
+        try:
+            pdfkit.from_string(html, path, configuration = pdf_config, options = options)
+        except OSError:
+            pass
+    else:
         pdfkit.from_string(html, path, configuration = pdf_config, options = options)
-    except OSError:
-        pass
+    
     print(f"pdf written to {path}")
 
 def write_to_html(html):
