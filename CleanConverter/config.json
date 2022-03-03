@@ -1,14 +1,25 @@
 {
     "request_existing_files": false,
-    "read_off_output": false,
-    "write_to_html": true,
+    "new_html": true,
     "write_to_pdf": true,
     "input_csv": "kb_urls.csv",
     "output_html": "output.html",
     "output_pdf": "output.pdf",
     "number_of_rows": -1,
+    "flatten_internal_contents": true,
     "min_sleep_time": 10,
     "catch-OSError": true,
     "page-break": false,
-    "css-link": ""
+    "css-link": "",
+    "path_to_exe": "wkhtmltopdf.exe",
+
+    "options": {
+        "page-size": "A4",
+        "margin-bottom": "1cm",
+        "zoom": 1.33,
+        "footer-right": "[page]/[topage]",
+        "encoding": "UTF-8",
+        "footer-line": ""
+
+    }
 }
