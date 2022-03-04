@@ -1,7 +1,7 @@
 {
     "request_existing_files": false,
     "new_html": true,
-    "write_to_pdf": false,
+    "write_to_pdf": true,
     "input_csv": "kb_urls.csv",
     "output_html": "output.html",
     "output_pdf": "output.pdf",
@@ -11,7 +11,7 @@
     "catch-OSError": true,
     "page-break": false,
     "css-link": "",
-    "path_to_exe": "wkhtmltopdf.exe",
+    "path_to_app": "wkhtmltopdf.exe",
 
     "options": {
         "page-size": "A4",

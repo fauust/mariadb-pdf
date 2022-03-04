@@ -234,7 +234,7 @@ def write_to_pdf(html):
     import pdfkit
     print("\nmaking_pdf")
 
-    pdf_config = pdfkit.configuration(wkhtmltopdf = config["path_to_exe"])
+    pdf_config = pdfkit.configuration(wkhtmltopdf = config["path_to_app"])
     pdf_file = config["output_pdf"]
     path = os.path.join("output", pdf_file)
 
