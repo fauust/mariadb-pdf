@@ -1,12 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 
+from datetime import date
 import sys
 import json
 import time
 import re
 import os
 import csv
+
 
 #config
 with open("config.json", "r") as file:
@@ -64,6 +66,9 @@ def make_html():
 
             html = _strip(html, name, row)
             html = _convert_links(html, name)
+            if config["page-break"]:
+                page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
+                html += page_break
             full_html += html
         #to keep sameline 
         sys.stdout.write(f"\rrun through {index + 1} rows")
@@ -72,10 +77,11 @@ def make_html():
     #final fixes
     print("\nfinal fixes")
     if config["flatten_internal_contents"]:
-        full_html = edit_contents(full_html)
+        full_html = _edit_contents(full_html)
     sys.stdout.write("\n")#to clear for next line   
     boiler, plate = _get_boilerplate()
-    return boiler + full_html + plate
+    starter_page = _get_starter_page()
+    return boiler + starter_page + full_html + plate
 
 def _strip(html, name, row):
     def remove(content, *args, **kwargs): #helper method
@@ -169,7 +175,16 @@ def _make_single_internals(html):
     return html
 
 
-def edit_contents(html):
+def _get_starter_page():
+    with open("starter_page.html", encoding = "utf-8") as file:
+        html = file.read()
+    
+
+    generated_time = str(date.today())
+    html = html.replace("[generated_time]", generated_time)
+
+    return html
+def _edit_contents(html):
     find = '<div class="table_of_contents'
     replace = '<div style="float: none;" class="table_of_contents'
                     

@@ -5,7 +5,7 @@
     "input_csv": "kb_urls.csv",
     "output_html": "output.html",
     "output_pdf": "output.pdf",
-    "number_of_rows": -1,
+    "number_of_rows": 30,
     "flatten_internal_contents": true,
     "min_sleep_time": 10,
     "catch-OSError": true,
@@ -16,7 +16,7 @@
     "options": {
         "page-size": "A4",
         "margin-bottom": "1cm",
-        "zoom": 1.33,
+        "zoom": 1,
         "footer-right": "[page]/[topage]",
         "encoding": "UTF-8",
         "footer-line": ""
