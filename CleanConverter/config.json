@@ -1,11 +1,11 @@
 {
     "request_existing_files": false,
     "new_html": true,
-    "write_to_pdf": true,
+    "write_to_pdf": false,
     "input_csv": "kb_urls.csv",
     "output_html": "output.html",
     "output_pdf": "output.pdf",
-    "number_of_rows": 30,
+    "number_of_rows": -1,
     "flatten_internal_contents": true,
     "min_sleep_time": 10,
     "catch-OSError": true,

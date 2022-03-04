@@ -31,7 +31,7 @@ def main():
 def make_html():
     full_html = ""
     rows = _get_rows()
-    last_requested = stripped = 0
+    last_requested = 0
     for index, row in enumerate(rows):
         if row["Include"] == "": continue
         include = int(row["Include"])
@@ -47,16 +47,16 @@ def make_html():
             add = row["Header"]
             full_html += f'\n<h1 class="col-md-8"><a href="#{name}">{add}</a></h1>\n'
         elif include == 1:
-            time_since = time.perf_counter() - last_requested
-            if config["min_sleep_time"] - time_since > 0:
-                print("\nsleeping for " + str(config["min_sleep_time"] - time_since))
-                time.sleep(config["min_sleep_time"] - time_since)
 
             existing_files = os.listdir("html")
             url = row["URL"]
             name = _get_name(url)
             filename = name + ".html"
             if filename not in existing_files or config["request_existing_files"]:
+                time_since = time.perf_counter() - last_requested
+                if config["min_sleep_time"] - time_since > 0:
+                    print("\nsleeping for " + str(config["min_sleep_time"] - time_since))
+                    time.sleep(config["min_sleep_time"] - time_since)
                 print(f"\nrequesting {name}")
                 last_requested = time.perf_counter()
                 _request_and_write(url, filename)
@@ -65,7 +65,7 @@ def make_html():
 
 
             html = _strip(html, name, row)
-            html = _convert_links(html, name)
+            html = _convert_links(html, name, rows)
             if config["page-break"]:
                 page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
                 html += page_break
@@ -137,7 +137,7 @@ def _request_and_write(url, filename):
     with open(path, "w", encoding = "utf-8") as file:
         file.write(text)
 
-def _convert_links(html, unique_id):
+def _convert_links(html, unique_id, urls):
     #make absolute
     html = html.replace('href="/kb/en', 'href="' + base_url + "/kb/en")
     html = html.replace('src="/kb/en', 'src="' + base_url + "/kb/en")
@@ -153,13 +153,12 @@ def _convert_links(html, unique_id):
         find = f'href="#{string}"'
         replacement = f'href="#{unique_id}{string}"'
         html = html.replace(find, replacement)
-    html = _make_internal(html)
+    html = _make_internal(html, urls)
     html = _make_single_internals(html)
 
     return html
 
-def _make_internal(html):
-    urls = _get_rows()
+def _make_internal(html, urls):
     for row in urls:
         if row["URL"] != "":
             url = row["URL"]
@@ -174,16 +173,14 @@ def _make_single_internals(html):
     html = re.sub(pattern, r"\1\2\3", html)
     return html
 
-
 def _get_starter_page():
     with open("starter_page.html", encoding = "utf-8") as file:
         html = file.read()
-    
 
     generated_time = str(date.today())
     html = html.replace("[generated_time]", generated_time)
-
     return html
+
 def _edit_contents(html):
     find = '<div class="table_of_contents'
     replace = '<div style="float: none;" class="table_of_contents'
