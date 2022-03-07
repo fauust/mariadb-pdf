@@ -53,7 +53,7 @@ def modify_csv(filepath):
         writer = csv.DictWriter(file, fieldnames)
         writer.writeheader()
         for index, row in enumerate(rows):
-            #row["Header"].strip(".")
+            #TEMORARY - will be removed upon updated csv without depth inside of headers
             row["Header"] = "".join([i for i in row["Header"] if not i.isdigit() and i != "."])
             row["Depth"] = pool[index]
             writer.writerow(row)

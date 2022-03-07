@@ -51,16 +51,20 @@ def make_html():
         
         if include == 0:
             continue
-        elif include == 2:
-            add = row["Header"]
-            if config["add_depth"]: add = row["Depth"] + " " + add
-            full_html += f'\n<h1 class="col-md-8" style="margin-top:0px">{add}</h1>\n'
-        elif include == 3:
+        elif include in [2, 3]:
             url = row["URL"]
-            name = _get_name(url)
+            if url != "":
+                name = _get_name(row["URL"])
+                added_id = f'id="{name}"'
             add = row["Header"]
             if config["add_depth"]: add = row["Depth"] + " " + add
-            full_html += f'\n<h1 class="col-md-8"><a href="#{name}">{add}</a></h1>\n'
+
+            if include == 2:
+                header_tag = f'\n<h1 class="col-md-8" style="margin-top:0px" {added_id}>{add}</h1>\n'
+            else: # include == 3:
+                header_tag = f'\n<h1 class="col-md-8"><a href="#{name}" {added_id}>{add}</a></h1>\n'
+            
+            full_html += header_tag
         elif include == 1:
 
             existing_files = os.listdir("html")
