@@ -10,6 +10,7 @@ def modify_csv(filepath):
     with open(filepath) as file:
         reader = csv.DictReader(file)
         rows = list(reader)
+        fieldnames = reader.fieldnames
     
     #main loop
     depths = {} #depth: count
@@ -29,7 +30,9 @@ def modify_csv(filepath):
         elif depth > last_depth:
             depths[depth] = 1
         else: #depth < last_depth:
-            del depths[last_depth]
+            for key in list(depths):
+                if key > depth:
+                    del depths[key]
             depths[depth] += 1
         
         last_depth = depth
@@ -39,21 +42,20 @@ def modify_csv(filepath):
         #adding next depth string
         add_to_pool(pool, depths)
 
-        # mapping capture and pool together and combining their elements into {capture_index}, {pool_index}
+    # mapping capture and pool together and combining their elements into {capture_index}, {pool_index}
     #   list_contents = map((lambda x, y: f"{x}, {y}"), capture, pool)
-        #making a single string containing each depth seperated with a newline
+    #making a single string containing each depth seperated with a newline
     #   content = "\n".join(list_contents)
 
     #   with open("test.txt", 'w') as file:
-    #       file.write(content)
+    #    file.write(content)
 
     output_filepath = path_join("tmp", f"m_{filepath}")
     with open(output_filepath, "w", newline="") as file:
-        fieldnames = reader.fieldnames
         writer = csv.DictWriter(file, fieldnames)
         writer.writeheader()
         for index, row in enumerate(rows):
-            #TEMORARY - will be removed upon updated csv without depth inside of headers
+            #row["Header"].strip(".")
             row["Header"] = "".join([i for i in row["Header"] if not i.isdigit() and i != "."])
             row["Depth"] = pool[index]
             writer.writerow(row)
@@ -65,6 +67,7 @@ def add_to_pool(pool, depths):
     """converts the depths into a single string and adds it to the pool"""
     string = ""
     highest = max(list(depths))
+
     for i in range(1, highest+1):
         string += str(depths[i])
         string += "."

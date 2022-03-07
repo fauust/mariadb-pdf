@@ -55,14 +55,14 @@ def make_html():
             url = row["URL"]
             if url != "":
                 name = _get_name(row["URL"])
-                added_id = f'id="{name}"'
+                added_id = f' id="{name}"'
             add = row["Header"]
             if config["add_depth"]: add = row["Depth"] + " " + add
 
             if include == 2:
-                header_tag = f'\n<h1 class="col-md-8" style="margin-top:0px" {added_id}>{add}</h1>\n'
+                header_tag = f'\n<h1 class="col-md-8" style="margin-top:0px"{added_id}>{add}</h1>\n'
             else: # include == 3:
-                header_tag = f'\n<h1 class="col-md-8"><a href="#{name}" {added_id}>{add}</a></h1>\n'
+                header_tag = f'\n<h1 class="col-md-8"><a href="#{name}"{added_id}>{add}</a></h1>\n'
             
             full_html += header_tag
         elif include == 1:
