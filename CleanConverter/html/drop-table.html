@@ -256,7 +256,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-05-27 12:38">8 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-02-25 23:00">6 days, 15 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -536,7 +536,7 @@ unless you use the <code>TEMPORARY</code> keyword.</p>
 </li><li><code class="highlight fixed" style="white-space:pre-wrap">DROP TABLE list_of_normal_tables</code>
 </li></ul>
 </li></ul>
-<p>Starting from <a href="/kb/en/mariadb-1008-release-notes/">MariaDB 10.0.8</a>, <code class="highlight fixed" style="white-space:pre-wrap">DROP TABLE</code> on the master is treated on the slave as <code class="highlight fixed" style="white-space:pre-wrap">DROP TABLE IF EXISTS</code>. You can change that by setting <a href="/kb/en/replication-and-binary-log-server-system-variables/#slave_ddl_exec_mode">slave-ddl-exec-mode</a> to <code class="highlight fixed" style="white-space:pre-wrap">STRICT</code>.</p>
+<p><code class="highlight fixed" style="white-space:pre-wrap">DROP TABLE</code> on the primary is treated on the replica as <code class="highlight fixed" style="white-space:pre-wrap">DROP TABLE IF EXISTS</code>. You can change that by setting <a href="/kb/en/replication-and-binary-log-server-system-variables/#slave_ddl_exec_mode">slave-ddl-exec-mode</a> to <code class="highlight fixed" style="white-space:pre-wrap">STRICT</code>.</p>
 <h2 class="anchored_heading" id="dropping-an-internal-sql-table">Dropping an Internal #sql-... Table</h2>
 <p>From <a href="/kb/en/what-is-mariadb-106/">MariaDB 10.6</a>, <a href="#atomic-drop-table">DROP TABLE is atomic</a> and the following does not apply. Until <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>, if the <a href="/kb/en/mysqld-options/">mariadbd/mysqld process</a> is killed during an <a href="/kb/en/alter-table/">ALTER TABLE</a> you may find a table named #sql-... in your data directory. In <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a>, InnoDB tables with this prefix will be deleted automatically during startup.
 From <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a>, these temporary tables will always be deleted automatically.</p>

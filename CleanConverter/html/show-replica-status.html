@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-30 18:41">11 years, 5 months ago</span></dd>
+<span class="datetime" title="2010-08-30 18:41">11 years, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-17 13:15">5 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-02-25 23:30">6 days, 14 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -526,7 +526,7 @@ using the channel_name directly after <code>SHOW SLAVE</code>.</p>
 <tr><td>Master_SSL_Cert</td><td>The <code>MASTER_SSL_CERT</code> option of the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> statement.</td><td></td></tr>
 <tr><td>Master_SSL_Cipher</td><td>The <code>MASTER_SSL_CIPHER</code> option of the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> statement.</td><td></td></tr>
 <tr><td>Master_SSL_Key</td><td>The <code>MASTER_SSL_KEY</code> option of the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> statement.</td><td></td></tr>
-<tr><td>Seconds_Behind_Master</td><td>Difference between the timestamp logged on the master for the event that the replica is currently processing, and the current timestamp on the replica. Zero if the replica is not currently processing an event. From <a href="/kb/en/mariadb-10023-release-notes/">MariaDB 10.0.23</a> and <a href="/kb/en/mariadb-1019-release-notes/">MariaDB 10.1.9</a>, with <a href="/kb/en/parallel-replication/">parallel replication</a>, <code>seconds_behind_master</code> is updated only after transactions commit.</td><td></td></tr>
+<tr><td>Seconds_Behind_Master</td><td>Difference between the timestamp logged on the master for the event that the replica is currently processing, and the current timestamp on the replica. Zero if the replica is not currently processing an event. With <a href="/kb/en/parallel-replication/">parallel replication</a>, <code>seconds_behind_master</code> is updated only after transactions commit.</td><td></td></tr>
 <tr><td>Master_SSL_Verify_Server_Cert</td><td>The <code>MASTER_SSL_VERIFY_SERVER_CERT</code> option of the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> statement.</td><td></td></tr>
 <tr><td>Last_IO_Errno</td><td><a href="/kb/en/mariadb-error-codes/">Error code</a> of the most recent error that caused the I/O thread to stop (also recorded in the replica's error log). <code>0</code> means no error. <a href="/kb/en/reset-slave/">RESET SLAVE</a> or <a href="/kb/en/reset-master/">RESET MASTER</a> will reset this value.</td><td></td></tr>
 <tr><td>Last_IO_Error</td><td><a href="/kb/en/mariadb-error-codes/">Error message</a> of the most recent error that caused the I/O thread to stop (also recorded in the replica's error log). An empty string means no error. <a href="/kb/en/reset-slave/">RESET SLAVE</a> or <a href="/kb/en/reset-master/">RESET MASTER</a> will reset this value.</td><td></td></tr>
@@ -534,10 +534,10 @@ using the channel_name directly after <code>SHOW SLAVE</code>.</p>
 <tr><td>Last_SQL_Error</td><td><a href="/kb/en/mariadb-error-codes/">Error message</a> of the most recent error that caused the SQL thread to stop (also recorded in the replica's error log). An empty string means no error. <a href="/kb/en/reset-slave/">RESET SLAVE</a> or <a href="/kb/en/reset-master/">RESET MASTER</a> will reset this value.</td><td></td></tr>
 <tr><td>Replicate_Ignore_Server_Ids</td><td>List of <a href="/kb/en/replication-and-binary-log-server-system-variables/#server_id">server_ids</a> that are currently being ignored for replication purposes, or an empty string for none, as specified in the <code>IGNORE_SERVER_IDS</code> option of the <code><a href="/kb/en/change-master-to/#ignore_server_ids">CHANGE MASTER TO</a></code> statement.</td><td></td></tr>
 <tr><td>Master_Server_Id</td><td>The master's <a href="/kb/en/replication-and-binary-log-server-system-variables/#server_id">server_id</a> value.</td><td></td></tr>
-<tr><td>Master_SSL_Crl</td><td>The <code>MASTER_SSL_CRL</code> option of the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> statement.</td><td><a href="/kb/en/what-is-mariadb-100/">MariaDB 10.0</a></td></tr>
-<tr><td>Master_SSL_Crlpath</td><td>The <code>MASTER_SSL_CRLPATH</code> option of the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> statement.</td><td><a href="/kb/en/what-is-mariadb-100/">MariaDB 10.0</a></td></tr>
-<tr><td>Using_Gtid</td><td>Whether or not <a href="/kb/en/global-transaction-id/">global transaction ID's</a> are being used for replication (can be <code>No</code>, <code>Slave_Pos</code>, or <code>Current_Pos</code>).</td><td><a href="/kb/en/mariadb-1002-release-notes/">MariaDB 10.0.2</a></td></tr>
-<tr><td>Gtid_IO_Pos</td><td>Current <a href="/kb/en/global-transaction-id/">global transaction ID</a> value.</td><td><a href="/kb/en/mariadb-1002-release-notes/">MariaDB 10.0.2</a></td></tr>
+<tr><td>Master_SSL_Crl</td><td>The <code>MASTER_SSL_CRL</code> option of the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> statement.</td><td></td></tr>
+<tr><td>Master_SSL_Crlpath</td><td>The <code>MASTER_SSL_CRLPATH</code> option of the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> statement.</td><td></td></tr>
+<tr><td>Using_Gtid</td><td>Whether or not <a href="/kb/en/global-transaction-id/">global transaction ID's</a> are being used for replication (can be <code>No</code>, <code>Slave_Pos</code>, or <code>Current_Pos</code>).</td><td></td></tr>
+<tr><td>Gtid_IO_Pos</td><td>Current <a href="/kb/en/global-transaction-id/">global transaction ID</a> value.</td><td></td></tr>
 <tr><td>Retried_transactions</td><td>Number of retried transactions for this connection. Returned with <code>SHOW ALL SLAVES STATUS</code> only.</td><td></td></tr>
 <tr><td>Max_relay_log_size</td><td>Max <a href="/kb/en/relay-log/">relay log</a> size for this connection. Returned with <code>SHOW ALL SLAVES STATUS</code> only.</td><td></td></tr>
 <tr><td>Executed_log_entries</td><td>How many log entries the replica has executed. Returned with <code>SHOW ALL SLAVES STATUS</code> only.</td><td></td></tr>

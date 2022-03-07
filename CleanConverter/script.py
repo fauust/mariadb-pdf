@@ -9,15 +9,28 @@ import re
 import os
 import csv
 
+import used.depth_to_numbers as depth
 
 #config
 with open("config.json", "r") as file:
     config = json.loads(file.read())
 
+#call modify_csv
+filepath = depth.modify_csv(config["input_csv"])
+
+#declare vars
 base_url = "https://mariadb.com"
+parser = "html5lib"
+
+boilerplate_filepath = os.path.join("used", "boilerplate.html")
+starter_page_filepath = os.path.join("used", "starter_page.html")
+
 
 #functions
+
+
 def main():
+
     #get html
     if config["new_html"]:
         html = make_html()
@@ -40,11 +53,13 @@ def make_html():
             continue
         elif include == 2:
             add = row["Header"]
+            if config["add_depth"]: add = row["Depth"] + " " + add
             full_html += f'\n<h1 class="col-md-8" style="margin-top:0px">{add}</h1>\n'
         elif include == 3:
             url = row["URL"]
             name = _get_name(url)
             add = row["Header"]
+            if config["add_depth"]: add = row["Depth"] + " " + add
             full_html += f'\n<h1 class="col-md-8"><a href="#{name}">{add}</a></h1>\n'
         elif include == 1:
 
@@ -90,7 +105,7 @@ def _strip(html, name, row):
             tag.decompose()
     
     #load into html parser
-    soup = BeautifulSoup(html, features = "html.parser")
+    soup = BeautifulSoup(html, features = parser)
     soup.prettify()
 
     #find main content
@@ -99,7 +114,10 @@ def _strip(html, name, row):
     content.h1.attrs["id"] = name
 
     #change h1 to have version
-    content.h1.string = row["Header"] + " " + content.h1.text
+    depth = ""
+    if config["add_depth"]:
+        depth = row["Depth"]
+    content.h1.string = depth + " " + content.h1.text
 
 
     remove(content, "div", {"id": "content_disclaimer"})
@@ -174,7 +192,7 @@ def _make_single_internals(html):
     return html
 
 def _get_starter_page():
-    with open("starter_page.html", encoding = "utf-8") as file:
+    with open(starter_page_filepath, encoding = "utf-8") as file:
         html = file.read()
 
     generated_time = str(date.today())
@@ -189,9 +207,8 @@ def _edit_contents(html):
     return html
 
 def _get_rows():
-    with open(config["input_csv"]) as file:
+    with open(filepath) as file:
         contents = list(csv.DictReader(file))
-
     if config["number_of_rows"] > 0:
         contents = contents[:config["number_of_rows"]]
     return contents
@@ -210,7 +227,7 @@ def _get_name(url):
 
 
 def _get_boilerplate():
-    with open("boilerplate.html", "r") as file:
+    with open(boilerplate_filepath, "r") as file:
         boilerplate = file.readlines()
     
     boiler = "".join(boilerplate[:-2])
@@ -229,6 +246,11 @@ def _add_css(string):
 
     string = re.sub("css-link", line, string)
     return string
+
+def _prettify_html(html):
+    pretty_soup = BeautifulSoup(html, parser)
+    pretty_soup.prettify()
+    return str(pretty_soup)
 
 def write_to_pdf(html):
     import pdfkit
@@ -250,6 +272,7 @@ def write_to_pdf(html):
     print(f"pdf written to {path}")
 
 def write_to_html(html):
+    html = _prettify_html(html)
     path = os.path.join("output", config["output_html"])
     print(f"html written to {path}")
     with open(path, "w", encoding = "utf-8") as file:

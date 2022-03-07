@@ -6,17 +6,19 @@
     "output_html": "output.html",
     "output_pdf": "output.pdf",
     "number_of_rows": -1,
+    "add_depth": true,
+    "prettify_html": true,
     "flatten_internal_contents": true,
     "min_sleep_time": 10,
     "catch-OSError": true,
     "page-break": false,
     "css-link": "",
     "path_to_app": "wkhtmltopdf.exe",
-
     "options": {
         "page-size": "A4",
         "margin-bottom": "1cm",
         "zoom": 1,
+        "DPI": 300,
         "footer-right": "[page]/[topage]",
         "encoding": "UTF-8",
         "footer-line": ""

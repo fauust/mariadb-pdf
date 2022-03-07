@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Returns the matching part of a string" />
+    <meta property="og:description" content="Returns the matching part of a string." />
 
-    <meta name="description" content="Returns the matching part of a string" />
+    <meta name="description" content="Returns the matching part of a string." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2014-04-23 10:09">7 years, 10 months ago</span></dd>
+<span class="datetime" title="2022-02-28 22:44">3 days, 16 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -307,25 +307,6 @@
 
     
     
-
-
-
-    
-    
-
-<div class="well well-small box"><div><h5>Product Versions</h5></div><div>
-
-        <ul id="product_chooser">
-            
-                <li class="mariadb_from_10_0_5">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_0_5"
-                            >MariaDB starting with 10.0.5</label>
-                </li>
-            
-        </ul>
-    
-</div>
-</div>
 
 
 
@@ -403,15 +384,14 @@
 
     
     <div class="answer formatted">
-        <div class="mariadb_from_10_0_5 mariadb from_10_0_5 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1005-release-notes/">10.0.5</a></h5><p>REGEXP_SUBSTR was introduced in <a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>.</p>
-</div><h2 class="anchored_heading" id="syntax">Syntax</h2>
+        <h2 class="anchored_heading" id="syntax">Syntax</h2>
 <pre class="fixed">REGEXP_SUBSTR(subject,pattern)
 </pre><h2 class="anchored_heading" id="description">Description</h2>
 <p>Returns the part of the string <code>subject</code> that matches the regular expression <code>pattern</code>, or an empty string if <code>pattern</code> was not found.</p>
 <p>The function follows the case sensitivity rules of the effective <a href="/kb/en/data-types-character-sets-and-collations/">collation</a>. Matching is performed case insensitively for case insensitive collations, and case sensitively for case sensitive collations and for binary data.</p>
 <p>The collation case sensitivity can be overwritten using the (?i) and (?-i) PCRE flags.</p>
-<p><a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>  switched to the <a href="/kb/en/pcre-regular-expressions/">PCRE regular expression</a> library for enhanced regular expression performance, and <code>REGEXP_SUBSTR</code> was introduced as part of this enhancement.</p>
-<p><a href="/kb/en/mariadb-10011-release-notes/">MariaDB 10.0.11</a> introduced the <a href="/kb/en/server-system-variables/#default_regex_flags">default_regex_flags</a> variable to address the remaining compatibilities between PCRE and the old regex library. </p>
+<p>MariaDB uses the <a href="/kb/en/pcre-regular-expressions/">PCRE regular expression</a> library for enhanced regular expression performance, and <code>REGEXP_SUBSTR</code> was introduced as part of this enhancement.</p>
+<p>The <a href="/kb/en/server-system-variables/#default_regex_flags">default_regex_flags</a> variable addresses the remaining compatibilities between PCRE and the old regex library. </p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
 <pre class="fixed">SELECT REGEXP_SUBSTR('ab12cd','[0-9]+');
 -&gt; 12

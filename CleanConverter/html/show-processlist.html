@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-23 17:35">11 years, 5 months ago</span></dd>
+<span class="datetime" title="2010-08-23 17:35">11 years, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-11-24 00:10">2 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-02-25 23:33">6 days, 14 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -437,7 +437,7 @@ statement are shown in the Info field.</p>
 <tr><td><strong><code>QUERY_ID</code></strong></td><td>Query ID.</td></tr>
 </table>
 </div><p>Note that the <code>PROGRESS</code> field from the information schema, and the <code>PROGRESS</code> field from <code>SHOW PROCESSLIST</code> display different results. <code>SHOW PROCESSLIST</code> shows the total progress, while the information schema shows the progress for the current stage only.</p>
-<p>Threads can be killed using their thread_id, or, since <a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>, their query_id, with the <a href="/kb/en/data-manipulation-kill-connection-query/">KILL</a> statement.</p>
+<p>Threads can be killed using their thread_id or their query_id, with the <a href="/kb/en/data-manipulation-kill-connection-query/">KILL</a> statement.</p>
 <p>Since queries on this table are locking, if the <a href="/kb/en/performance-schema/">performance_schema</a> is enabled, you may want to query the <a href="/kb/en/performance-schema-threads-table/">THREADS</a> table instead.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
 <pre class="fixed">SHOW PROCESSLIST;

@@ -32,6 +32,10 @@
 
 "number_of_rows": int #number of rows to look through from the csv, -1 to do all rows
 
+"add depth": bool # whether or not to add depth numbers before each header
+
+"prettify_html": bool #indicates whether or not to prettify to output html
+
 "flatten_internal_contents": bool #whether or not to push each page's internal contents to the left (false sometimes leads to text overlap)
 
 "min_sleep_time": int #minimum number of seconds to wait between each get request

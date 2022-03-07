@@ -248,7 +248,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-11-19 10:04">1 year, 3 months ago</span></dd>
+<span class="datetime" title="2022-02-27 18:32">4 days, 20 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -319,30 +319,6 @@
 </div>
 
     
-
-
-
-    
-    
-
-<div class="well well-small box"><div><h5>Product Versions</h5></div><div>
-
-        <ul id="product_chooser">
-            
-                <li class="mariadb_from_5_5_31">
-                    <label><input type="checkbox" data-product-class="mariadb_from_5_5_31"
-                            >MariaDB starting with 5.5.31</label>
-                </li>
-            
-                <li class="mariadb_from_5_5_31">
-                    <label><input type="checkbox" data-product-class="mariadb_from_5_5_31"
-                            >MariaDB starting with 5.5.31</label>
-                </li>
-            
-        </ul>
-    
-</div>
-</div>
 
 
 
@@ -426,13 +402,13 @@
 <h3>Contents</h3>
  <ol class="toc">
 
-    <li class="mariadb_from_5_5_31"><a href="#syntax" title="Syntax">Syntax</a></li>
+    <li class=""><a href="#syntax" title="Syntax">Syntax</a></li>
 
-    <li class="mariadb_from_5_5_31"><a href="#description" title="Description">Description</a></li>
+    <li class=""><a href="#description" title="Description">Description</a></li>
 
-    <li class="mariadb_from_5_5_31"><a href="#examples" title="Examples">Examples</a></li>
+    <li class=""><a href="#examples" title="Examples">Examples</a></li>
 
-    <li class="mariadb_from_5_5_31"><a href="#see-also" title="See Also">See Also</a> </ol>
+    <li class=""><a href="#see-also" title="See Also">See Also</a> </ol>
 </li>
 </div>
 <h2 class="anchored_heading" id="description">Description</h2>
@@ -455,9 +431,9 @@
 </li></ul>
 <p>The main difference between <code>CAST</code> and <a href="/kb/en/convert/">CONVERT()</a> is that <code><a href="/kb/en/convert/">CONVERT(expr,type)</a></code> is ODBC syntax while <code>CAST(expr as type)</code> and <code><a href="/kb/en/convert/">CONVERT(... USING ...)</a></code> are SQL92 syntax.</p>
 <p>In <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a> and later, you can use the <code>CAST()</code> function with the <code>INTERVAL</code> keyword.</p>
-<div class="mariadb_from_5_5_31 mariadb from_5_5_31 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-5531-release-notes/">5.5.31</a></h5><p>Until <a href="/kb/en/mariadb-5531-release-notes/">MariaDB 5.5.31</a>, <code>X'HHHH'</code>, the standard SQL syntax for binary string literals, erroneously worked in the same way as <code>0xHHHH</code>. In 5.5.31 it was intentionally changed to behave as a string in all contexts (and never as a number).</p>
-<p>This introduces an incompatibility with previous versions of MariaDB, and all versions of MySQL (see the example below). </p>
-</div><h2 class="anchored_heading" id="examples">Examples</h2>
+<p>Until <a href="/kb/en/mariadb-5531-release-notes/">MariaDB 5.5.31</a>, <code>X'HHHH'</code>, the standard SQL syntax for binary string literals, erroneously worked in the same way as <code>0xHHHH</code>. In 5.5.31 it was intentionally changed to behave as a string in all contexts (and never as a number).</p>
+<p>This introduced an incompatibility with previous versions of MariaDB, and all versions of MySQL (see the example below). </p>
+<h2 class="anchored_heading" id="examples">Examples</h2>
 <p>Simple casts:</p>
 <pre class="fixed"><span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="ss">&quot;abc&quot;</span> <span class="k">AS</span> <span class="nb">BINARY</span><span class="p">);</span>
 <span class="k">SELECT</span> <span class="k">CAST</span><span class="p">(</span><span class="ss">&quot;1&quot;</span> <span class="k">AS</span> <span class="n">UNSIGNED</span> <span class="nb">INTEGER</span><span class="p">);</span>
@@ -1016,6 +992,15 @@
             
                 
                     <li>
+                        <a href="/kb/en/quote_identifier/">
+                            
+                            QUOTE_IDENTIFIER
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
                         <a href="/kb/en/repeat-function/">
                             
                             REPEAT Function
@@ -1064,6 +1049,15 @@
                         <a href="/kb/en/rtrim/">
                             
                             RTRIM
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/sformat/">
+                            
+                            SFORMAT
                         </a>
                     </li>
                 
@@ -1178,6 +1172,15 @@
             
                 
                     <li>
+                        <a href="/kb/en/uncompress/">
+                            <span class="pull-right not_primary"></span>
+                            UNCOMPRESS
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
                         <a href="/kb/en/uncompressed_length/">
                             <span class="pull-right not_primary"></span>
                             UNCOMPRESSED_LENGTH
@@ -1226,24 +1229,6 @@
                         <a href="/kb/en/type-conversion/">
                             
                             Type Conversion
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/quote_identifier/">
-                            
-                            QUOTE_IDENTIFIER
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/sformat/">
-                            
-                            SFORMAT
                         </a>
                     </li>
                 

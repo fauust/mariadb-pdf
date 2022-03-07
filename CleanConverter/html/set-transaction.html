@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-23 14:23">11 years, 5 months ago</span></dd>
+<span class="datetime" title="2010-08-23 14:23">11 years, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-29 07:39">4 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-02-25 23:32">6 days, 14 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -551,8 +551,7 @@ SELECT to block if other transactions have modified the selected rows,
 you should disable autocommit.)</p>
 <p>Distributed <a href="/kb/en/xa-transactions/">XA transactions</a> should always use this isolation level.</p>
 <h3 class="anchored_heading" id="access-mode">Access Mode</h3>
-<p>These clauses appeared in <a href="/kb/en/what-is-mariadb-100/">MariaDB 10.0</a>.</p>
-<p>The access mode specifies whether the transaction is allowed to write data or not. By default, transactions are in <code>READ WRITE</code> mode (see the <code><a href="/kb/en/server-system-variables/#tx_read_only">tx_read_only</a></code> system variable). <code>READ ONLY</code> mode allows the storage engine to apply optimizations that cannot be used for transactions which write data. The only exception to this rule is that read only transactions can perform DDL statements on temporary tables.</p>
+<p>The access mode specifies whether the transaction is allowed to write data or not. By default, transactions are in <code>READ WRITE</code> mode (see the <a href="/kb/en/server-system-variables/#tx_read_only">tx_read_only</a> system variable). <code>READ ONLY</code> mode allows the storage engine to apply optimizations that cannot be used for transactions which write data. The only exception to this rule is that read only transactions can perform DDL statements on temporary tables.</p>
 <p>It is not permitted to specify both <code>READ WRITE</code> and <code>READ ONLY</code> in the same statement.</p>
 <p><code>READ WRITE</code> and <code>READ ONLY</code> can also be specified in the <code><a href="/kb/en/start-transaction/">START TRANSACTION</a></code> statement, in which case the specified mode is only valid for one transaction.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>

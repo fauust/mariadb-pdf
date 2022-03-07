@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-09-05 12:31">11 years, 5 months ago</span></dd>
+<span class="datetime" title="2010-09-05 12:31">11 years, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-06-11 00:09">1 year, 8 months ago</span></dd>
+<span class="datetime" title="2022-02-25 23:01">6 days, 14 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -349,16 +349,6 @@
                 <li class="mariadb_from_10_5_2">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_5_2"
                             >MariaDB starting with 10.5.2</label>
-                </li>
-            
-                <li class="mariadb_from_10_0_14">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_0_14"
-                            >MariaDB starting with 10.0.14</label>
-                </li>
-            
-                <li class="mariadb_from_10_0_14">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_0_14"
-                            >MariaDB starting with 10.0.14</label>
                 </li>
             
         </ul>
@@ -539,8 +529,8 @@ copying it somewhere with another name, the alternatives are:</p>
 <tr><td><code>-W</code>, <code>--pipe</code></td><td>On Windows, connect to the server via a named pipe. This option applies only if the server supports named-pipe connections.</td></tr>
 <tr><td><code>--plugin-dir</code></td><td>Directory for client-side plugins.</td></tr>
 <tr><td><code>-P num</code>, <code>--port=num</code></td><td>Port number to use for connection or 0 for default to, in order of preference, my.cnf, $MYSQL_TCP_PORT, /etc/services, built-in default (3306).</td></tr>
-<tr><td><code>--process-tables</code></td><td>Perform the requested operation (check, repair, analyze, optimize) on tables. Enabled by default. Use  <code>--skip-process-tables</code> to disable. Added in <a href="/kb/en/mariadb-10018-release-notes/">MariaDB 10.0.18</a> and <a href="/kb/en/mariadb-5543-release-notes/">MariaDB 5.5.43</a>.</td></tr>
-<tr><td><code>--process-views[=val]</code></td><td>Perform the requested operation (only <a href="/kb/en/check-view/">CHECK VIEW</a> or <a href="/kb/en/repair-view/">REPAIR VIEW</a>). Possible values are NO, YES (correct the checksum, if necessary, add the mariadb-version field), UPGRADE_FROM_MYSQL (same as YES and toggle the algorithm MERGE&lt;-&gt;TEMPTABLE. Added in <a href="/kb/en/mariadb-10018-release-notes/">MariaDB 10.0.18</a> and <a href="/kb/en/mariadb-5543-release-notes/">MariaDB 5.5.43</a>.</td></tr>
+<tr><td><code>--process-tables</code></td><td>Perform the requested operation (check, repair, analyze, optimize) on tables. Enabled by default. Use  <code>--skip-process-tables</code> to disable.</td></tr>
+<tr><td><code>--process-views[=val]</code></td><td>Perform the requested operation (only <a href="/kb/en/check-view/">CHECK VIEW</a> or <a href="/kb/en/repair-view/">REPAIR VIEW</a>). Possible values are NO, YES (correct the checksum, if necessary, add the mariadb-version field), UPGRADE_FROM_MYSQL (same as YES and toggle the algorithm MERGE&lt;-&gt;TEMPTABLE.</td></tr>
 <tr><td><code>--protocol=name</code></td><td>The connection protocol (tcp, socket, pipe, memory) to use for connecting to the server. Useful when other connection parameters would cause a protocol to be used other than the one you want.</td></tr>
 <tr><td><code>-q</code>, <code>--quick</code></td><td>If you are using this option with CHECK TABLE, it prevents the check from scanning the rows to check for wrong links. This is the fastest check. If you are using this option with REPAIR TABLE, it will try to repair only the index tree. This is the fastest repair method for a table.</td></tr>
 <tr><td><code>-r</code>, <code>--repair</code></td><td>Can fix almost anything except unique keys that aren't unique.</td></tr>
@@ -600,8 +590,8 @@ check.</p>
 <h3 class="anchored_heading" id="mysqlcheck-and-verbose">mysqlcheck and verbose</h3>
 <p>Using one <code>--verbose</code> option will give you more information about what mysqlcheck is doing.</p>
 <p>Using two <code>--verbose</code> options will also give you connection information.</p>
-<div class="mariadb_from_10_0_14 mariadb from_10_0_14 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-10014-release-notes/">10.0.14</a></h5><p>If you use three <code>--verbose</code> options you will also get, on stdout, all <a href="/kb/en/alter-table/">ALTER</a>, <a href="/kb/en/rename-table/">RENAME</a>, and <a href="/kb/en/check-table/">CHECK</a> commands that mysqlcheck executes.</p>
-</div>
+<p>If you use three <code>--verbose</code> options you will also get, on stdout, all <a href="/kb/en/alter-table/">ALTER</a>, <a href="/kb/en/rename-table/">RENAME</a>, and <a href="/kb/en/check-table/">CHECK</a> commands that mysqlcheck executes.</p>
+
     </div>
 
 
