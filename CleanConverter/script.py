@@ -45,10 +45,11 @@ def make_html():
     full_html = ""
     rows = _get_rows()
     last_requested = 0
+
+    list_of_ids = []
     for index, row in enumerate(rows):
         if row["Include"] == "": continue
         include = int(row["Include"])
-        
         if include == 0:
             continue
         elif include in [2, 3]:
@@ -56,20 +57,21 @@ def make_html():
             if url != "":
                 name = _get_name(row["URL"])
                 added_id = f' id="{name}"'
+                list_of_ids.append(name)
             add = row["Header"]
             if config["add_depth"]: add = row["Depth"] + " " + add
 
             if include == 2:
                 header_tag = f'\n<h1 class="col-md-8" style="margin-top:0px"{added_id}>{add}</h1>\n'
             else: # include == 3:
-                header_tag = f'\n<h1 class="col-md-8"><a href="#{name}"{added_id}>{add}</a></h1>\n'
-            
+                header_tag = f'\n<h1 class="col-md-8"><a href="#{name}">{add}</a></h1>\n'
             full_html += header_tag
         elif include == 1:
 
             existing_files = os.listdir("html")
             url = row["URL"]
             name = _get_name(url)
+            list_of_ids.append(name)
             filename = name + ".html"
             if filename not in existing_files or config["request_existing_files"]:
                 time_since = time.perf_counter() - last_requested
@@ -93,15 +95,25 @@ def make_html():
         sys.stdout.write(f"\rrun through {index + 1} rows")
         sys.stdout.flush()
 
+    #contents
+    print("making contents")
+    contents_page = create_main_contents(list_of_ids)
     #final fixes
     print("\nfinal fixes")
+
     if config["flatten_internal_contents"]:
         full_html = _edit_contents(full_html)
     sys.stdout.write("\n")#to clear for next line   
     boiler, plate = _get_boilerplate()
     starter_page = _get_starter_page()
-    return boiler + starter_page + full_html + plate
+    return boiler + starter_page + contents_page + full_html + plate
 
+def create_main_contents(ids):
+    html = ""
+    for name in ids:
+        html += f'\n<h3 class="col-md-8"><a href="#{name}">{name}</a></h1>\n'
+
+    return html
 def _strip(html, name, row):
     def remove(content, *args, **kwargs): #helper method
         tag = content.find(*args, **kwargs)
@@ -110,7 +122,7 @@ def _strip(html, name, row):
     
     #load into html parser
     soup = BeautifulSoup(html, features = parser)
-    soup.prettify()
+    soup = soup.prettify()
 
     #find main content
     content = soup.find("section", {"id": "content"})
@@ -252,8 +264,13 @@ def _add_css(string):
     return string
 
 def _prettify_html(html):
-    pretty_soup = BeautifulSoup(html, parser)
-    pretty_soup.prettify()
+    print("prettifying html")
+    pretty_soup = BeautifulSoup(html, features = parser)
+    pretty_soup = pretty_soup.prettify()
+
+    #output = str(pretty_soup)
+    #output = re.sub(r"\s", "", output)
+
     return str(pretty_soup)
 
 def write_to_pdf(html):
