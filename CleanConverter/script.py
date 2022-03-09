@@ -21,6 +21,7 @@ filepath = depth.modify_csv(config["input_csv"])
 #declare vars
 base_url = "https://mariadb.com"
 parser = "html5lib"
+new_page = '<div style = "page-break-after:always;"></div>\n'
 
 boilerplate_filepath = os.path.join("used", "boilerplate.html")
 starter_page_filepath = os.path.join("used", "starter_page.html")
@@ -30,7 +31,6 @@ starter_page_filepath = os.path.join("used", "starter_page.html")
 
 
 def main():
-
     #get html
     if config["new_html"]:
         html = make_html()
@@ -40,7 +40,10 @@ def main():
     
     #write to pdf
     if config["write_to_pdf"]:
+        start_time = time.perf_counter()
         write_to_pdf(html)
+        time_taken = time.perf_counter() - start_time
+        print(f"pdf generation took {time_taken}s")
 def make_html():
     full_html = ""
     rows = _get_rows()
@@ -54,12 +57,12 @@ def make_html():
             continue
         elif include in [2, 3]:
             url = row["URL"]
+            add = row["Header"]
+            if config["add_depth"]: add = row["Depth"] + " " + add
             if url != "":
                 name = _get_name(row["URL"])
                 added_id = f' id="{name}"'
-                list_of_ids.append(name)
-            add = row["Header"]
-            if config["add_depth"]: add = row["Depth"] + " " + add
+                list_of_ids.append((add, name, row["Depth"]))
 
             if include == 2:
                 header_tag = f'\n<h1 class="col-md-8" style="margin-top:0px"{added_id}>{add}</h1>\n'
@@ -71,7 +74,6 @@ def make_html():
             existing_files = os.listdir("html")
             url = row["URL"]
             name = _get_name(url)
-            list_of_ids.append(name)
             filename = name + ".html"
             if filename not in existing_files or config["request_existing_files"]:
                 time_since = time.perf_counter() - last_requested
@@ -85,7 +87,8 @@ def make_html():
             html = _get_html_file(filename)
 
 
-            html = _strip(html, name, row)
+            html, header = _strip(html, name, row)
+            list_of_ids.append((header, name, row["Depth"]))
             html = _convert_links(html, name, rows)
             if config["page-break"]:
                 page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
@@ -94,26 +97,56 @@ def make_html():
         #to keep sameline 
         sys.stdout.write(f"\rrun through {index + 1} rows")
         sys.stdout.flush()
+    print("\n")#clear for 2 new lines
 
     #contents
     print("making contents")
-    contents_page = create_main_contents(list_of_ids)
+    if config["add_contents"]:
+        full_html = create_main_contents(list_of_ids) + full_html
     #final fixes
-    print("\nfinal fixes")
+    print("final fixes")
 
     if config["flatten_internal_contents"]:
         full_html = _edit_contents(full_html)
-    sys.stdout.write("\n")#to clear for next line   
     boiler, plate = _get_boilerplate()
     starter_page = _get_starter_page()
-    return boiler + starter_page + contents_page + full_html + plate
+    return boiler + starter_page + full_html + plate
 
 def create_main_contents(ids):
-    html = ""
-    for name in ids:
-        html += f'\n<h3 class="col-md-8"><a href="#{name}">{name}</a></h1>\n'
+    #contents header
+    header_style = f'font-size: 40px; text-align: center; margin-bottom: 20px;'
+    text = "Table of Contents"
+    table_of_contents = f'\n<h1 class="col-md-8" style="{header_style}">{text}</h1>\n'
 
-    return html
+    #contents body
+    html = ""
+
+
+
+    #       -- li version incomplete
+    #prev_depth = 0
+
+
+    #for header, name, depth_str in ids:
+    #    depth = depth_str.count(".") + 1
+    #    if depth > prev_depth:
+    #        html += "<ol>"
+    #    elif depth < prev_depth:
+    #        html += "</ol>"*(prev_depth-depth)
+    #    prev_depth = depth
+    #    li_style = "margin-top: 2px; margin-bottom: 2px; list-style-type: none;"
+    #    a_style = "color: black; text-decoration: none; font-size: 20px;"
+    #    html += f'\n<li style="{li_style}"><a href="#{name}" style="{a_style}">{header}</a></li>\n'
+    #if depth > 0:
+    #    html += "</ol>"*depth
+
+    # h3 version complete
+    for header, name, depth_str in ids:
+        h_style = "margin-top: 2px; margin-bottom: 2px;"
+        a_style = "color: black; text-decoration: none; font-size: 20px;"
+        html += f'\n<li style="{h_style}"><a href="#{name}" style="{a_style}">{header}</a></li>\n'
+    #br = "<br/>"
+    return table_of_contents + html + new_page
 def _strip(html, name, row):
     def remove(content, *args, **kwargs): #helper method
         tag = content.find(*args, **kwargs)
@@ -122,13 +155,12 @@ def _strip(html, name, row):
     
     #load into html parser
     soup = BeautifulSoup(html, features = parser)
-    soup = soup.prettify()
+    soup.prettify()
 
     #find main content
     content = soup.find("section", {"id": "content"})
     #content.attrs["style"] = "margin-top:3cm;"
     content.h1.attrs["id"] = name
-
     #change h1 to have version
     depth = ""
     if config["add_depth"]:
@@ -146,7 +178,7 @@ def _strip(html, name, row):
     text = str(content)
     text = text.replace('class="product_title"', "")
 
-    return text
+    return text, content.h1.text
 
 
 def _get_html_file(filename):
@@ -180,13 +212,14 @@ def _convert_links(html, unique_id, urls):
     hash_tags = re.findall(find_pattern, html)
     for string in hash_tags:
         string = string[2:][:-1]
-        find = f'id="{string}"'
-        replacement = f'id="{unique_id}{string}"'
-        html = html.replace(find, replacement)
+        if string != unique_id: #to prevent doubling h1 ids if that id is linked to
+            find = f'id="{string}"'
+            replacement = f'id="{unique_id}{string}"'
+            html = html.replace(find, replacement)
 
-        find = f'href="#{string}"'
-        replacement = f'href="#{unique_id}{string}"'
-        html = html.replace(find, replacement)
+            find = f'href="#{string}"'
+            replacement = f'href="#{unique_id}{string}"'
+            html = html.replace(find, replacement)
     html = _make_internal(html, urls)
     html = _make_single_internals(html)
 
@@ -197,8 +230,6 @@ def _make_internal(html, urls):
         if row["URL"] != "":
             url = row["URL"]
             name = _get_name(url)
-            #image_replacement = url.strip("https")
-            #tml = html.replace(url + r"\+", image_replacement + r"\+")
             html = html.replace('href="'+ url, 'href="#' + name)
     return html
 
@@ -213,7 +244,7 @@ def _get_starter_page():
 
     generated_time = str(date.today())
     html = html.replace("[generated_time]", generated_time)
-    return html
+    return html + new_page
 
 def _edit_contents(html):
     find = '<div class="table_of_contents'

@@ -32,7 +32,11 @@
 
 "number_of_rows": int #number of rows to look through from the csv, -1 to do all rows
 
-"add depth": bool # whether or not to add depth numbers before each header
+"add_chapter_contents_page": bool # whether or not to add the smaller chapter contents page  -- TODO --
+
+"add_contents_page": bool # whether or not to add a main contents page
+
+"add_depth": bool # whether or not to add depth numbers before each header
 
 "prettify_html": bool #indicates whether or not to prettify to output html
 
