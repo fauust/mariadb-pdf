@@ -45,6 +45,7 @@ def main():
         time_taken = time.perf_counter() - start_time
         print(f"pdf generation took {time_taken}s")
 def make_html():
+    start_time = time.perf_counter()
     full_html = ""
     rows = _get_rows()
     last_requested = 0
@@ -110,6 +111,9 @@ def make_html():
         full_html = _edit_contents(full_html)
     boiler, plate = _get_boilerplate()
     starter_page = _get_starter_page()
+    
+    time_taken = time.perf_counter() - start_time
+    print(f"html generation took {time_taken} s")
     return boiler + starter_page + full_html + plate
 
 def create_main_contents(ids):
@@ -141,12 +145,25 @@ def create_main_contents(ids):
     #    html += "</ol>"*depth
 
     # h3 version complete
+    chapter_contents = ""
     for header, name, depth_str in ids:
+        if depth_str == "":
+            print("depth missing for", name)
+            depth = 0
+        else:
+            depth = depth_str.count(".") + 1
+          
         h_style = "margin-top: 2px; margin-bottom: 2px;"
         a_style = "color: black; text-decoration: none; font-size: 20px;"
-        html += f'\n<li style="{h_style}"><a href="#{name}" style="{a_style}">{header}</a></li>\n'
+        line = f'\n<li style="{h_style}"><a href="#{name}" style="{a_style}">{header}</a></li>\n'
+        html += line
+        if depth in [1, 2]:
+            ca_style = "color: black; text-decoration: none; font-size: 40px;"
+            if depth == 2:
+                ca_style += "margin-left: 80px;" 
+            chapter_contents += f'\n<li style="{h_style}"><a href="#{name}" style="{ca_style}">{header}</a></li>\n'
     #br = "<br/>"
-    return table_of_contents + html + new_page
+    return chapter_contents + new_page + table_of_contents + html + new_page
 def _strip(html, name, row):
     def remove(content, *args, **kwargs): #helper method
         tag = content.find(*args, **kwargs)
@@ -231,6 +248,10 @@ def _make_internal(html, urls):
             url = row["URL"]
             name = _get_name(url)
             html = html.replace('href="'+ url, 'href="#' + name)
+            
+    #	regex_pattern = ""
+    #	for row in urls:
+    # 	    reg_pattern += url + "|"
     return html
 
 def _make_single_internals(html):
