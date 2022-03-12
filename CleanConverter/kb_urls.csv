@@ -51,7 +51,7 @@ https://mariadb.com/kb/en/update/,27,1,1.1.2.1.21,5,
 https://mariadb.com/kb/en/backup-table-removed/,,0,,,
 https://mariadb.com/kb/en/restore-table-removed/,,0,,,
 https://mariadb.com/kb/en/ignore/,27,1,1.1.2.1.22,5,
-https://mariadb.com/kb/en/system-versioned-tables/,TBC,3,,,Use below rather
+https://mariadb.com/kb/en/system-versioned-tables/,TBC,3,System-Versioned Tables,5,Use below rather
 https://mariadb.com/kb/en/analyze-and-explain-statements/,,2,1.1.2.2 ANALYZE and EXPLAIN Statements,4,
 https://mariadb.com/kb/en/analyze-format-json/,28,1,1.1.2.2.1,5,
 https://mariadb.com/kb/en/analyze-formatjson-examples/,28,1,1.1.2.2.2,5,
@@ -108,7 +108,7 @@ https://mariadb.com/kb/en/show-binary-logs/,26,1,1.1.2.8.4,5,
 https://mariadb.com/kb/en/show-binlog-events/,26,1,1.1.2.8.5,5,
 https://mariadb.com/kb/en/show-character-set/,26,1,1.1.2.8.6,5,
 https://mariadb.com/kb/en/show-client-statistics/,26,1,1.1.2.8.7,5,
-https://mariadb.com/kb/en/show-columns/,26,3,1.1.2.8.8,5,Already above
+https://mariadb.com/kb/en/show-columns/,26,3,1.1.2.8.8 SHOW COLUMNS,5,Already above
 https://mariadb.com/kb/en/show-contributors/,26,1,1.1.2.8.9,5,
 https://mariadb.com/kb/en/show-create-database/,26,1,1.1.2.8.10,5,
 https://mariadb.com/kb/en/show-create-event/,26,1,1.1.2.8.11,5,
@@ -117,9 +117,9 @@ https://mariadb.com/kb/en/show-create-package/,26,1,1.1.2.8.13,5,
 https://mariadb.com/kb/en/show-create-package-body/,26,1,1.1.2.8.14,5,
 https://mariadb.com/kb/en/show-create-procedure/,26,1,1.1.2.8.15,5,
 https://mariadb.com/kb/en/show-create-sequence/,26,1,1.1.2.8.16,5,
-https://mariadb.com/kb/en/show-create-table/,26,3,1.1.2.8.17,5,Already above
+https://mariadb.com/kb/en/show-create-table/,26,3,1.1.2.8.17 SHOW CREATE TABLE,5,Already above
 https://mariadb.com/kb/en/show-create-trigger/,26,1,1.1.2.8.18,5,
-https://mariadb.com/kb/en/show-create-user/,,3,1.1.2.8.19,5,Already above
+https://mariadb.com/kb/en/show-create-user/,,3,1.1.2.8.19 SHOW CREATE USER,5,Already above
 https://mariadb.com/kb/en/show-create-view/,26,1,1.1.2.8.20,5,
 https://mariadb.com/kb/en/show-databases/,26,1,1.1.2.8.21,5,
 https://mariadb.com/kb/en/show-engine/,26,1,1.1.2.8.22,5,
@@ -128,26 +128,26 @@ https://mariadb.com/kb/en/show-engines/,26,1,1.1.2.8.24,5,
 https://mariadb.com/kb/en/show-errors/,26,1,1.1.2.8.25,5,
 https://mariadb.com/kb/en/show-events/,26,1,1.1.2.8.26,5,
 https://mariadb.com/kb/en/show-function-status/,26,1,1.1.2.8.27,5,
-https://mariadb.com/kb/en/show-grants/,,3,1.1.2.8.28,5,Already above
-https://mariadb.com/kb/en/show-index/,,3,1.1.2.8.29,5,Already above
+https://mariadb.com/kb/en/show-grants/,,3,1.1.2.8.28 SHOW GRANTS,5,Already above
+https://mariadb.com/kb/en/show-index/,,3,1.1.2.8.29 SHOW INDEX,5,Already above
 https://mariadb.com/kb/en/show-index-statistics/,TBC,1,1.1.2.8.30,5,
 https://mariadb.com/kb/en/show-innodb-status-removed/,,0,1.1.2.8.31,5,
 https://mariadb.com/kb/en/show-locales/,26,1,1.1.2.8.32,5,
-https://mariadb.com/kb/en/show-binlog-status/,26,3,1.1.2.8.33,5,Already above
+https://mariadb.com/kb/en/show-binlog-status/,26,3,1.1.2.8.33 SHOW BINLOG STATUS,5,Already above
 https://mariadb.com/kb/en/show-open-tables/,26,1,1.1.2.8.34,5,
 https://mariadb.com/kb/en/show-package-body-status/,26,1,1.1.2.8.35,5,
 https://mariadb.com/kb/en/show-package-status/,26,1,1.1.2.8.36,5,
-https://mariadb.com/kb/en/show-plugins/,26,3,1.1.2.8.37,5,Already above
-https://mariadb.com/kb/en/show-plugins-soname/,26,3,1.1.2.8.38,5,Already above
+https://mariadb.com/kb/en/show-plugins/,26,3,1.1.2.8.37 SHOW PLUGINS,5,Already above
+https://mariadb.com/kb/en/show-plugins-soname/,26,3,1.1.2.8.38 SHOW PLUGINS SONAME,5,Already above
 https://mariadb.com/kb/en/show-privileges/,26,1,1.1.2.8.39,5,
 https://mariadb.com/kb/en/show-procedure-code/,26,1,1.1.2.8.40,5,
 https://mariadb.com/kb/en/show-procedure-status/,26,1,1.1.2.8.41,5,
 https://mariadb.com/kb/en/show-processlist/,26,1,1.1.2.8.42,5,
 https://mariadb.com/kb/en/show-profiles/,26,1,1.1.2.8.43,5,
 https://mariadb.com/kb/en/show-query_response_time/,26,1,1.1.2.8.44,5,
-https://mariadb.com/kb/en/show-relaylog-events/,26,3,1.1.2.8.45,5,Already above
-https://mariadb.com/kb/en/show-replica-hosts/,26,3,1.1.2.8.46,5,Already above
-https://mariadb.com/kb/en/show-replica-status/,26,3,1.1.2.8.47,5,Already above
+https://mariadb.com/kb/en/show-relaylog-events/,26,3,1.1.2.8.45 SHOW RELAYLOG EVENTS,5,Already above
+https://mariadb.com/kb/en/show-replica-hosts/,26,3,1.1.2.8.46 SHOW REPLICA HOSTS,5,Already above
+https://mariadb.com/kb/en/show-replica-status/,26,3,1.1.2.8.47 SHOW REPLICA STATUS,5,Already above
 https://mariadb.com/kb/en/show-status/,26,1,1.1.2.8.48,5,
 https://mariadb.com/kb/en/show-table-status/,26,1,1.1.2.8.49,5,
 https://mariadb.com/kb/en/show-tables/,26,1,1.1.2.8.50,5,
@@ -279,7 +279,7 @@ https://mariadb.com/kb/en/information-schema-user_variables-table/,TBC,1,1.1.2.9
 https://mariadb.com/kb/en/information-schema-views-table/,TBC,1,1.1.2.9.1.1.59,7,
 https://mariadb.com/kb/en/information-schema-wsrep_membership-table/,TBC,1,1.1.2.9.1.1.60,7,
 https://mariadb.com/kb/en/information-schema-wsrep_status-table/,TBC,1,1.1.2.9.1.1.61,7,
-https://mariadb.com/kb/en/extended-show/,,3,1.1.2.9.1.2,6,Already above
+https://mariadb.com/kb/en/extended-show/,,3,1.1.2.9.1.2 Extended SHOW,6,Already above
 https://mariadb.com/kb/en/time_ms-column-in-information_schemaprocesslist/,TBC,1,1.1.2.9.1.3,6,
 https://mariadb.com/kb/en/performance-schema/,,2,1.1.2.9.2 Performance Schema,5,
 https://mariadb.com/kb/en/performance-schema-tables/,,2,1.1.2.9.2.1 Performance Schema Tables,6,
@@ -407,7 +407,7 @@ https://mariadb.com/kb/en/mysqlspider_table_sts-table/,TBC,1,1.1.2.9.3.32.6,7,
 https://mariadb.com/kb/en/mysqlspider_xa-table/,TBC,1,1.1.2.9.3.32.7,7,
 https://mariadb.com/kb/en/mysqlspider_xa_failed_log-table/,TBC,1,1.1.2.9.3.32.8,7,
 https://mariadb.com/kb/en/mysqlspider_xa_member-table/,TBC,1,1.1.2.9.3.32.9,7,
-https://mariadb.com/kb/en/sys-schema/,,2,1.1.2.9.4,5,
+https://mariadb.com/kb/en/sys-schema/,,2,1.1.2.9.4 Sys Schema,5,
 https://mariadb.com/kb/en/sys-schema-sys_config-table/,TBC,1,1.1.2.9.4.1,6,
 https://mariadb.com/kb/en/mariadb_schema/,TBC,1,1.1.2.9.5,5,
 https://mariadb.com/kb/en/writing-logs-into-tables/,TBC,1,1.1.2.9.6,5,
@@ -433,29 +433,29 @@ https://mariadb.com/kb/en/create-logfile-group/,TBC,1,1.1.3.1.7,5,
 https://mariadb.com/kb/en/create-package/,39,1,1.1.3.1.8,5,
 https://mariadb.com/kb/en/create-package-body/,39,1,1.1.3.1.9,5,
 https://mariadb.com/kb/en/create-procedure/,39,1,1.1.3.1.10,5,
-https://mariadb.com/kb/en/create-role/,,3,1.1.3.1.11,5,Already above
+https://mariadb.com/kb/en/create-role/,,3,1.1.3.1.11 CREATE ROLE,5,Already above
 https://mariadb.com/kb/en/create-sequence/,39,1,1.1.3.1.12,5,
 https://mariadb.com/kb/en/create-server/,39,1,1.1.3.1.13,5,
-https://mariadb.com/kb/en/create-table/,,3,1.1.3.1.14,5,Already above
+https://mariadb.com/kb/en/create-table/,,3,1.1.3.1.14 CREATE TABLE,5,Already above
 https://mariadb.com/kb/en/create-tablespace/,39,1,1.1.3.1.15,5,
 https://mariadb.com/kb/en/create-trigger/,39,1,1.1.3.1.16,5,
-https://mariadb.com/kb/en/create-user/,,3,1.1.3.1.17,5,Already above
+https://mariadb.com/kb/en/create-user/,,3,1.1.3.1.17 CREATE USER,5,Already above
 https://mariadb.com/kb/en/create-view/,39,1,1.1.3.1.18,5,
 https://mariadb.com/kb/en/silent-column-changes/,TBC,1,1.1.3.1.19,5,
 https://mariadb.com/kb/en/generated-columns/,TBC,1,1.1.3.1.20,5,
 https://mariadb.com/kb/en/invisible-columns/,TBC,1,1.1.3.1.21,5,
 https://mariadb.com/kb/en/alter/,,2,1.1.3.2 ALTER,4,
-https://mariadb.com/kb/en/alter-table/,,3,1.1.3.2.1,5,Already above
-https://mariadb.com/kb/en/alter-database/,,3,1.1.3.2.2,5,Already above
-https://mariadb.com/kb/en/alter-event/,,3,1.1.3.2.3,5,Already above
-https://mariadb.com/kb/en/alter-function/,,3,1.1.3.2.4,5,Already above
-https://mariadb.com/kb/en/alter-logfile-group/,,3,1.1.3.2.5,5,Already above
-https://mariadb.com/kb/en/alter-procedure/,,3,1.1.3.2.6,5,Already above
-https://mariadb.com/kb/en/alter-sequence/,,3,1.1.3.2.7,5,Already above
-https://mariadb.com/kb/en/alter-server/,,3,1.1.3.2.8,5,Already above
-https://mariadb.com/kb/en/alter-tablespace/,,3,1.1.3.2.9,5,Already above
-https://mariadb.com/kb/en/alter-user/,,3,1.1.3.2.10,5,Already above
-https://mariadb.com/kb/en/alter-view/,,3,1.1.3.2.11,5,Already above
+https://mariadb.com/kb/en/alter-table/,,3,1.1.3.2.1 ALTER TABLE,5,Already above
+https://mariadb.com/kb/en/alter-database/,,3,1.1.3.2.2 ALTER DATABASE,5,Already above
+https://mariadb.com/kb/en/alter-event/,,3,1.1.3.2.3 ALTER EVENT,5,Already above
+https://mariadb.com/kb/en/alter-function/,,3,1.1.3.2.4 ALTER FUNCTION,5,Already above
+https://mariadb.com/kb/en/alter-logfile-group/,,3,1.1.3.2.5 ALTER LOGFILE GROUP,5,Already above
+https://mariadb.com/kb/en/alter-procedure/,,3,1.1.3.2.6 ALTER PROCEDURE,5,Already above
+https://mariadb.com/kb/en/alter-sequence/,,3,1.1.3.2.7 ALTER SEQUENCE,5,Already above
+https://mariadb.com/kb/en/alter-server/,,3,1.1.3.2.8 ALTER SERVER,5,Already above
+https://mariadb.com/kb/en/alter-tablespace/,,3,1.1.3.2.9 ALTER TABLESPACE,5,Already above
+https://mariadb.com/kb/en/alter-user/,,3,1.1.3.2.10 ALTER USER,5,Already above
+https://mariadb.com/kb/en/alter-view/,,3,1.1.3.2.11 ALTER VIEW,5,Already above
 https://mariadb.com/kb/en/drop/,,2,1.1.3.3 DROP,4,
 https://mariadb.com/kb/en/drop-database/,39,1,1.1.3.3.1,5,
 https://mariadb.com/kb/en/drop-event/,39,1,1.1.3.3.2,5,
@@ -466,19 +466,19 @@ https://mariadb.com/kb/en/drop-logfile-group/,TBC,1,1.1.3.3.6,5,
 https://mariadb.com/kb/en/drop-package/,39,1,1.1.3.3.7,5,
 https://mariadb.com/kb/en/drop-package-body/,39,1,1.1.3.3.8,5,
 https://mariadb.com/kb/en/drop-procedure/,39,1,1.1.3.3.9,5,
-https://mariadb.com/kb/en/drop-role/,,3,1.1.3.3.10,5,Already above
+https://mariadb.com/kb/en/drop-role/,,3,1.1.3.3.10 DROP ROLE,5,Already above
 https://mariadb.com/kb/en/drop-sequence/,39,1,1.1.3.3.11,5,
 https://mariadb.com/kb/en/drop-server/,39,1,1.1.3.3.12,5,
-https://mariadb.com/kb/en/drop-table/,,3,1.1.3.3.13,5,Already above
+https://mariadb.com/kb/en/drop-table/,,3,1.1.3.3.13 DROP TABLE,5,Already above
 https://mariadb.com/kb/en/drop-tablespace/,39,1,1.1.3.3.14,5,
 https://mariadb.com/kb/en/drop-trigger/,39,1,1.1.3.3.15,5,
-https://mariadb.com/kb/en/drop-user/,,3,1.1.3.3.16,5,Already above
+https://mariadb.com/kb/en/drop-user/,,3,1.1.3.3.16 DROP USER,5,Already above
 https://mariadb.com/kb/en/drop-view/,39,1,1.1.3.3.17,5,
 https://mariadb.com/kb/en/atomic-ddl/,TBC,2,1.1.3.4,4,
 https://mariadb.com/kb/en/constraint/,39,1,1.1.3.5,4,
 https://mariadb.com/kb/en/merge/,39,1,1.1.3.6,4,
-https://mariadb.com/kb/en/rename-table/,,3,1.1.3.7,4,Already above
-https://mariadb.com/kb/en/truncate-table/,,3,1.1.3.8,4,Already above
+https://mariadb.com/kb/en/rename-table/,,3,1.1.3.7 RENAME TABLE,4,Already above
+https://mariadb.com/kb/en/truncate-table/,,3,1.1.3.8 TRUNCATE TABLE,4,Already above
 https://mariadb.com/kb/en/sql-statements/,,2,1.1.4 Data Manipulation,3,
 https://mariadb.com/kb/en/selecting-data/,,2,1.1.4.1 Selecting Data,4,
 https://mariadb.com/kb/en/select/,27,1,1.1.4.1.1,5,
@@ -538,28 +538,28 @@ https://mariadb.com/kb/en/insert-delayed/,27,1,1.1.4.2.2,5,
 https://mariadb.com/kb/en/insert-select/,27,1,1.1.4.2.3,5,
 https://mariadb.com/kb/en/load-data-into-tables-or-index/,,2,1.1.4.2.4 LOAD Data into Tables or Index,5,
 https://mariadb.com/kb/en/load-data-infile/,27,1,1.1.4.2.4.1,6,
-https://mariadb.com/kb/en/load-index/,,3,1.1.4.2.4.2,6,Already above
+https://mariadb.com/kb/en/load-index/,,3,1.1.4.2.4.2 LOAD INDEX,6,Already above
 https://mariadb.com/kb/en/load-xml/,27,1,1.1.4.2.4.3,6,
 https://mariadb.com/kb/en/load_file/,37,1,1.1.4.2.4.4,6,
 https://mariadb.com/kb/en/concurrent-inserts/,27,1,1.1.4.2.5,5,
 https://mariadb.com/kb/en/high_priority-and-low_priority/,27,1,1.1.4.2.6,5,
-https://mariadb.com/kb/en/ignore/,,3,1.1.4.2.7,5,Already above
+https://mariadb.com/kb/en/ignore/,,3,1.1.4.2.7 IGNORE,5,Already above
 https://mariadb.com/kb/en/insert-default-duplicate-values/,27,1,1.1.4.2.8,5,
 https://mariadb.com/kb/en/insert-ignore/,27,1,1.1.4.2.9,5,
 https://mariadb.com/kb/en/insert-on-duplicate-key-update/,27,1,1.1.4.2.10,5,
 https://mariadb.com/kb/en/insertreturning/,TBC,1,1.1.4.2.11,5,
 https://mariadb.com/kb/en/changing-deleting-data/,,2,1.1.4.3 Changing and Deleting Data,4,
-https://mariadb.com/kb/en/delete/,,3,1.1.4.3.1,5,
-https://mariadb.com/kb/en/high_priority-and-low_priority/,,3,1.1.4.3.2,5,
-https://mariadb.com/kb/en/ignore/,,3,1.1.4.3.3,5,
-https://mariadb.com/kb/en/replace/,,3,1.1.4.3.4,5,
-https://mariadb.com/kb/en/replacereturning/,TBC,1,1.1.4.3.5,5,
-https://mariadb.com/kb/en/truncate-table/,,3,1.1.4.3.6,5,
-https://mariadb.com/kb/en/update/,,3,1.1.4.3.7,5,
+https://mariadb.com/kb/en/delete/,,3,1.1.4.3.1 DELETE,5,
+https://mariadb.com/kb/en/high_priority-and-low_priority/,,3,1.1.4.3.2 HIGH_PRIORITY and LOW_PRIORITY,5,
+https://mariadb.com/kb/en/ignore/,,3,1.1.4.3.3 IGNORE,5,
+https://mariadb.com/kb/en/replace/,,3,1.1.4.3.4 REPLACE,5,
+https://mariadb.com/kb/en/replacereturning/,TBC,1,1.1.4.3.5 REPLACE RETURNING,5,
+https://mariadb.com/kb/en/truncate-table/,,3,1.1.4.3.6 TRUNCATE TABLE,5,
+https://mariadb.com/kb/en/update/,,3,1.1.4.3.7 UPDATE,5,
 https://mariadb.com/kb/en/prepared-statements/,,2,1.1.5 Prepared Statements,3,
 https://mariadb.com/kb/en/prepare-statement/,8,1,1.1.5.1,4,
 https://mariadb.com/kb/en/out-parameters-in-prepare/,TBC,1,1.1.5.2,4,
-https://mariadb.com/kb/en/execute-statement/,,3,1.1.5.3,4,
+https://mariadb.com/kb/en/execute-statement/,,3,1.1.5.3 EXECUTE STATEMENT,4,
 https://mariadb.com/kb/en/deallocate-drop-prepare/,8,1,1.1.5.4,4,
 https://mariadb.com/kb/en/execute-immediate/,8,1,1.1.5.5,4,
 https://mariadb.com/kb/en/programmatic-compound-statements/,,2,1.1.6 Programmatic and Compound Statements,3,
@@ -580,7 +580,7 @@ https://mariadb.com/kb/en/repeat-loop/,23,1,1.1.6.14,4,
 https://mariadb.com/kb/en/resignal/,23,1,1.1.6.15,4,
 https://mariadb.com/kb/en/return/,23,1,1.1.6.16,4,
 https://mariadb.com/kb/en/selectinto/,23,1,1.1.6.17,4,
-https://mariadb.com/kb/en/set-variable/,,3,1.1.6.18,4,
+https://mariadb.com/kb/en/set-variable/,,3,1.1.6.18 SET Variable,4,
 https://mariadb.com/kb/en/signal/,23,1,1.1.6.19,4,
 https://mariadb.com/kb/en/while/,23,1,1.1.6.20,4,
 https://mariadb.com/kb/en/stored-routine-statements/,,2,1.1.7 Stored Routine Statements,3,
@@ -646,7 +646,7 @@ https://mariadb.com/kb/en/insert-function/,37,1,1.1.12.2.23,5,
 https://mariadb.com/kb/en/length/,37,1,1.1.12.2.24,5,
 https://mariadb.com/kb/en/lengthb/,37,1,1.1.12.2.25,5,
 https://mariadb.com/kb/en/like/,37,1,1.1.12.2.26,5,
-https://mariadb.com/kb/en/load_file/,,3,1.1.12.2.27,5,
+https://mariadb.com/kb/en/load_file/,,3,1.1.12.2.27 LOAD_FILE,5,
 https://mariadb.com/kb/en/locate/,37,1,1.1.12.2.28,5,
 https://mariadb.com/kb/en/lower/,37,1,1.1.12.2.29,5,
 https://mariadb.com/kb/en/lpad/,37,1,1.1.12.2.30,5,
@@ -656,7 +656,7 @@ https://mariadb.com/kb/en/match-against/,37,1,1.1.12.2.33,5,
 https://mariadb.com/kb/en/full-text-index-stopwords/,TBC,1,1.1.12.2.34,5,
 https://mariadb.com/kb/en/mid/,37,1,1.1.12.2.35,5,
 https://mariadb.com/kb/en/not-like/,37,1,1.1.12.2.36,5,
-https://mariadb.com/kb/en/not-regexp/,,3,1.1.12.2.37,5,
+https://mariadb.com/kb/en/not-regexp/,,3,1.1.12.2.37 NOT REGEXP,5,
 https://mariadb.com/kb/en/octet_length/,37,1,1.1.12.2.38,5,
 https://mariadb.com/kb/en/ord/,37,1,1.1.12.2.39,5,
 https://mariadb.com/kb/en/position/,37,1,1.1.12.2.40,5,
@@ -898,7 +898,7 @@ https://mariadb.com/kb/en/sys_guid/,TBC,1,1.1.12.8.3.18,6,
 https://mariadb.com/kb/en/uuid/,14,1,1.1.12.8.3.19,6,
 https://mariadb.com/kb/en/uuid_short/,14,1,1.1.12.8.3.20,6,
 https://mariadb.com/kb/en/values-value/,14,1,1.1.12.8.3.21,6,
-,,2,1.1.12.9 Special Functions,4,
+https://mariadb.com/kb/en/special-functions/,,2,1.1.12.9 Special Functions,4,
 https://mariadb.com/kb/en/dynamic-columns-functions/,,3,1.1.12.9.1 Dynamic Columns Functions,5,
 https://mariadb.com/kb/en/galera-functions/,,2,1.1.12.9.2 Galera Functions,5,
 https://mariadb.com/kb/en/wsrep_last_seen_gtid/,TBC,1,1.1.12.9.2.1,6,
@@ -1066,7 +1066,7 @@ https://mariadb.com/kb/en/json-functions/,,2,1.1.12.9.4 JSON Functions,5,
 https://mariadb.com/kb/en/differences-between-json_query-and-json_value/,TBC,1,1.1.12.9.4.1,6,
 https://mariadb.com/kb/en/jsonpath-expressions/,TBC,1,1.1.12.9.4.2,6,
 https://mariadb.com/kb/en/json_array/,41,1,1.1.12.9.4.3,6,
-https://mariadb.com/kb/en/json_arrayagg/,,3,1.1.12.9.4.4,6,
+https://mariadb.com/kb/en/json_arrayagg/,,3,1.1.12.9.4.4 JSON_ARRAYAGG,6,
 https://mariadb.com/kb/en/json_array_append/,41,1,1.1.12.9.4.5,6,
 https://mariadb.com/kb/en/json_array_insert/,41,1,1.1.12.9.4.6,6,
 https://mariadb.com/kb/en/json_compact/,41,1,1.1.12.9.4.7,6,
@@ -1086,7 +1086,7 @@ https://mariadb.com/kb/en/json_merge_patch/,TBC,1,1.1.12.9.4.20,6,
 https://mariadb.com/kb/en/json_merge_preserve/,TBC,1,1.1.12.9.4.21,6,
 https://mariadb.com/kb/en/json_normalize/,TBC,1,1.1.12.9.4.22,6,
 https://mariadb.com/kb/en/json_object/,41,1,1.1.12.9.4.23 JSON_OBJECTAGG,6,
-https://mariadb.com/kb/en/json_objectagg/,3,,1.1.12.9.4.24 JSON_OBJECTAGG,6,
+https://mariadb.com/kb/en/json_objectagg/,,3,1.1.12.9.4.24 JSON_OBJECTAGG,6,
 https://mariadb.com/kb/en/json_overlaps/,TBC,1,1.1.12.9.4.25,6,
 https://mariadb.com/kb/en/json_query/,41,1,1.1.12.9.4.26,6,
 https://mariadb.com/kb/en/json_quote/,41,1,1.1.12.9.4.27,6,
@@ -1151,14 +1151,14 @@ https://mariadb.com/kb/en/get-build-and-test-latest-mariadb-the-lazy-way/,TBC,1,
 https://mariadb.com/kb/en/getting-the-mariadb-source-code/,TBC,1,5.1.2.8.2,5,
 https://mariadb.com/kb/en/Build_Environment_Setup_for_Linux/,TBC,1,5.1.2.8.3,5,
 https://mariadb.com/kb/en/generic-build-instructions/,TBC,1,5.1.2.8.4,5,
-https://mariadb.com/kb/en/compiling-mariadb-with-extra-modulesoptions/,,2,5.1.2.8.5,5,
+https://mariadb.com/kb/en/compiling-mariadb-with-extra-modulesoptions/,,2,5.1.2.8.5 Compiling MariaDB with  Extra Modules/Options,5,
 https://mariadb.com/kb/en/compiling-mariadb-with-tcmalloc/,TBC,1,5.1.2.8.5.1,6,
 https://mariadb.com/kb/en/compiling-mariadb-with-vanilla-xtradb/,TBC,1,5.1.2.8.5.2,6,
 https://mariadb.com/kb/en/specifying-which-plugins-to-build/,TBC,1,5.1.2.8.5.3,6,
 https://mariadb.com/kb/en/Creating_the_MariaDB_Source_Tarball/,TBC,1,5.1.2.8.6,5,
 https://mariadb.com/kb/en/creating-the-mariadb-binary-tarball/,TBC,1,5.1.2.8.7,5,
 https://mariadb.com/kb/en/Build_Environment_Setup_for_Mac/,TBC,1,5.1.2.8.8,5,
-https://mariadb.com/kb/en/building-mariadb-from-a-source-rpm/,,3,5.1.2.8.9,5,
+https://mariadb.com/kb/en/building-mariadb-from-a-source-rpm/,,3,5.1.2.8.9 Building MariaDB From a Source RPM,5,
 https://mariadb.com/kb/en/source-building-mariadb-on-centos/,TBC,1,5.1.2.8.10,5,
 https://mariadb.com/kb/en/building-mariadb-on-fedora/,TBC,1,5.1.2.8.11,5,
 https://mariadb.com/kb/en/building-mariadb-on-debian/,TBC,1,5.1.2.8.12,5,
@@ -1246,7 +1246,7 @@ https://mariadb.com/kb/en/screencast-for-upgrading-mysql-to-mariadb/,TBC,1,5.1.3
 https://mariadb.com/kb/en/upgrading-from-mysql-57-to-mariadb-102/,,0,,,
 https://mariadb.com/kb/en/upgrading-to-mariadb-from-mysql-50-or-older/,,0,,,
 https://mariadb.com/kb/en/downgrading-between-major-versions-of-mariadb/,TBC,1,5.1.4,3,
-https://mariadb.com/kb/en/compiling-mariadb-from-source/,,3,5.1.5,3,
+https://mariadb.com/kb/en/compiling-mariadb-from-source/,,3,5.1.5 Compiling MariaDB From Source,3,
 https://mariadb.com/kb/en/starting-and-stopping-mariadb/,,2,5.1.6,3,
 https://mariadb.com/kb/en/starting-and-stopping-mariadb-automatically/,TBC,1,,4,
 https://mariadb.com/kb/en/configuring-mariadb-with-option-files/,TBC,1,,4,
@@ -1273,15 +1273,15 @@ https://mariadb.com/kb/en/fusion-io-introduction/,TBC,1,5.1.7.1.1,5,
 https://mariadb.com/kb/en/atomic-write-support/,TBC,1,5.1.7.1.2,5,
 https://mariadb.com/kb/en/mariadb-10015-fusion-io-release-notes/,,0,,,
 https://mariadb.com/kb/en/mariadb-10015-fusion-io-changelog/,,0,,,
-https://mariadb.com/kb/en/innodb-page-flushing/,,3,5.1.7.1.3,5,
+https://mariadb.com/kb/en/innodb-page-flushing/,,3,5.1.7.1.3 InnoDB Page Flushing,5,
 https://mariadb.com/kb/en/atomic-write-support/,,,5.1.7.2,4,
 https://mariadb.com/kb/en/configuring-linux-for-mariadb/,TBC,1,5.1.7.3,4,
 https://mariadb.com/kb/en/configuring-mariadb-for-optimal-performance/,TBC,1,5.1.7.4,4,
 https://mariadb.com/kb/en/configuring-swappiness/,TBC,1,5.1.7.5,4,
 https://mariadb.com/kb/en/troubleshooting-installation-issues/,,1,5.1.8,3,Category
 https://mariadb.com/kb/en/troubleshooting-connection-issues/,TBC,1,5.1.8.1,4,
-https://mariadb.com/kb/en/installation-issues-on-windows/,TBC,1,5.1.8.2,,
-https://mariadb.com/kb/en/troubleshooting-mariadb-installs-on-red-hatcentos/,TBC,1,5.1.8.3,,
+https://mariadb.com/kb/en/installation-issues-on-windows/,TBC,1,5.1.8.2,4,
+https://mariadb.com/kb/en/troubleshooting-mariadb-installs-on-red-hatcentos/,TBC,1,5.1.8.3,4,
 https://mariadb.com/kb/en/installation-issues-on-debian-and-ubuntu/,,1,5.1.8.4,4,Category
 https://mariadb.com/kb/en/differences-in-mariadb-in-debian-and-ubuntu/,TBC,1,,5,
 https://mariadb.com/kb/en/moving-from-mysql-to-mariadb-in-debian-9/,TBC,1,,5,
@@ -1293,6 +1293,24 @@ https://mariadb.com/kb/en/what-to-do-if-mariadb-doesnt-start/,TBC,1,5.1.8.5,4,
 https://mariadb.com/kb/en/installing-on-an-old-linux-version/,TBC,1,5.1.8.6,4,
 https://mariadb.com/kb/en/error-symbol-mysql_get_server_name-version-libmysqlclient_16-not-defined/,TBC,1,5.1.8.7,4,
 https://mariadb.com/kb/en/installation-issues-with-php5/,,0,,,
+https://mariadb.com/kb/en/installing-system-tables-mysql_install_db/,,3,5.1.9 Installing System Tables (mysql_install_db),3,
+https://mariadb.com/kb/en/mysql_install_dbexe/,TBC,1,5.1.10,3,
+https://mariadb.com/kb/en/configuring-mariadb-with-option-files/,,3,5.1.11 Configuring MariaDB with Option Files,3,
+https://mariadb.com/kb/en/mariadb-environment-variables/,TBC,1,,3,
+https://mariadb.com/kb/en/puppet-and-mariadb/,,0,,,
+https://mariadb.com/kb/en/mariadb-on-amazon-rds/,,1,,3,
+https://mariadb.com/kb/en/obsolete-installation-information/,,0,,,
+https://mariadb.com/kb/en/mariadb-debian-live-images/,,0,,,
+https://mariadb.com/kb/en/migrating-to-mariadb/,,2,5.1.14 Migrating to MariaDB,3,
+https://mariadb.com/kb/en/moving-from-mysql/,,2,Migrating to MariaDB from MySQL,4,
+https://mariadb.com/kb/en/mariadb-vs-mysql-features/,,1,,5,
+https://mariadb.com/kb/en/mariadb-vs-mysql-compatibility/,,1,,5,
+https://mariadb.com/kb/en/upgrading-from-mysql-to-mariadb/,,3,Upgrading from MySQL to MariaDB,5,
+https://mariadb.com/kb/en/function-differences-between-mariadb-and-mysql/,,2,,5,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
 https://mariadb.com/kb/en/replication-cluster-multi-master/,,2,6 High Availability & Performance Tuning,1,
 https://mariadb.com/kb/en/columns-storage-engines-and-plugins/,,2,"7 Columns, Storage Engines, and Plugins",1,
 https://mariadb.com/kb/en/data-types/,,2,7.1 Data Types,2,
@@ -1684,4 +1702,4 @@ https://mariadb.com/kb/en/user-statistics/,TBC,1,7.5.9.7,4,
 https://mariadb.com/kb/en/user-variables-plugin/,TBC,1,7.5.9.8,4,
 https://mariadb.com/kb/en/disks-plugin/,TBC,1,7.5.9.9,4,
 https://mariadb.com/kb/en/compression-plugins/,TBC,1,7.5.9.10,4,
-https://mariadb.com/kb/en/mariadb-community-bug-reporting/,TBC,1,,,
+https://mariadb.com/kb/en/mariadb-community-bug-reporting/,TBC,1,,1,Whole section is parentless on the KB menu

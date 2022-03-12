@@ -10,7 +10,7 @@ import os
 import csv
 
 import used.depth_to_numbers as depth
-
+from used.generate_contents import create_main_contents, new_page
 #config
 with open("config.json", "r") as file:
     config = json.loads(file.read())
@@ -21,7 +21,6 @@ filepath = depth.modify_csv(config["input_csv"])
 #declare vars
 base_url = "https://mariadb.com"
 parser = "html5lib"
-new_page = '<div style = "page-break-after:always;"></div>\n'
 
 boilerplate_filepath = os.path.join("used", "boilerplate.html")
 starter_page_filepath = os.path.join("used", "starter_page.html")
@@ -32,8 +31,13 @@ starter_page_filepath = os.path.join("used", "starter_page.html")
 
 def main():
     #get html
+    #long lambda for formatting time
+    format_time = lambda s: f"{int(s // 3600)}h, {int((s % 3600) // 60)}m" if s >= 3600 else f"{int(s // 60)}m, {int(s % 60)}s" if s >= 60 else f"{round(s, 3)}s"
     if config["new_html"]:
+        start_time = time.perf_counter()
         html = make_html()
+        time_taken = time.perf_counter() - start_time
+        print(f"html generation took {format_time(time_taken)}")
         write_to_html(html)
     else:
         html = read_html()
@@ -43,12 +47,12 @@ def main():
         start_time = time.perf_counter()
         write_to_pdf(html)
         time_taken = time.perf_counter() - start_time
-        print(f"pdf generation took {time_taken}s")
+        print(f"pdf generation took {format_time(time_taken)}")
 def make_html():
-    start_time = time.perf_counter()
     full_html = ""
     rows = _get_rows()
     last_requested = 0
+    existing_files = os.listdir("html")
 
     list_of_ids = []
     for index, row in enumerate(rows):
@@ -64,15 +68,14 @@ def make_html():
                 name = _get_name(row["URL"])
                 added_id = f' id="{name}"'
                 list_of_ids.append((add, name, row["Depth"]))
-
-            if include == 2:
-                header_tag = f'\n<h1 class="col-md-8" style="margin-top:0px"{added_id}>{add}</h1>\n'
-            else: # include == 3:
-                header_tag = f'\n<h1 class="col-md-8"><a href="#{name}">{add}</a></h1>\n'
-            full_html += header_tag
+            
+            if config["add_body"]:
+                if include == 2:
+                    header_tag = f'\n<h1 class="col-md-8" style="margin-top:0px"{added_id}>{add}</h1>\n'
+                else: # include == 3:
+                    header_tag = f'\n<h1 class="col-md-8"><a href="#{name}">{add}</a></h1>\n'
+                full_html += header_tag
         elif include == 1:
-
-            existing_files = os.listdir("html")
             url = row["URL"]
             name = _get_name(url)
             filename = name + ".html"
@@ -86,17 +89,16 @@ def make_html():
                 _request_and_write(url, filename)
             #read full html
             html = _get_html_file(filename)
-
-
             html, header = _strip(html, name, row)
             list_of_ids.append((header, name, row["Depth"]))
-            html = _convert_links(html, name, rows)
-            if config["page-break"]:
-                page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
-                html += page_break
-            full_html += html
+            if config["add_body"]:
+                html = _convert_links(html, name, rows)
+                if config["page-break"]:
+                    page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
+                    html += page_break
+                full_html += html
         #to keep sameline 
-        sys.stdout.write(f"\rrun through {index + 1} rows")
+        sys.stdout.write(f"\rrun through {index + 1}/{len(rows)} rows")
         sys.stdout.flush()
     print("\n")#clear for 2 new lines
 
@@ -104,66 +106,20 @@ def make_html():
     print("making contents")
     if config["add_contents"]:
         full_html = create_main_contents(list_of_ids) + full_html
+
+    
     #final fixes
     print("final fixes")
-
     if config["flatten_internal_contents"]:
         full_html = _edit_contents(full_html)
+
     boiler, plate = _get_boilerplate()
     starter_page = _get_starter_page()
-    
-    time_taken = time.perf_counter() - start_time
-    print(f"html generation took {time_taken} s")
-    return boiler + starter_page + full_html + plate
+    page = boiler + starter_page + full_html + plate
+    if config["prettify_html"]:
+        page = _prettify_html(page)
 
-def create_main_contents(ids):
-    #contents header
-    header_style = f'font-size: 40px; text-align: center; margin-bottom: 20px;'
-    text = "Table of Contents"
-    table_of_contents = f'\n<h1 class="col-md-8" style="{header_style}">{text}</h1>\n'
-
-    #contents body
-    html = ""
-
-
-
-    #       -- li version incomplete
-    #prev_depth = 0
-
-
-    #for header, name, depth_str in ids:
-    #    depth = depth_str.count(".") + 1
-    #    if depth > prev_depth:
-    #        html += "<ol>"
-    #    elif depth < prev_depth:
-    #        html += "</ol>"*(prev_depth-depth)
-    #    prev_depth = depth
-    #    li_style = "margin-top: 2px; margin-bottom: 2px; list-style-type: none;"
-    #    a_style = "color: black; text-decoration: none; font-size: 20px;"
-    #    html += f'\n<li style="{li_style}"><a href="#{name}" style="{a_style}">{header}</a></li>\n'
-    #if depth > 0:
-    #    html += "</ol>"*depth
-
-    # h3 version complete
-    chapter_contents = ""
-    for header, name, depth_str in ids:
-        if depth_str == "":
-            print("depth missing for", name)
-            depth = 0
-        else:
-            depth = depth_str.count(".") + 1
-          
-        h_style = "margin-top: 2px; margin-bottom: 2px;"
-        a_style = "color: black; text-decoration: none; font-size: 20px;"
-        line = f'\n<li style="{h_style}"><a href="#{name}" style="{a_style}">{header}</a></li>\n'
-        html += line
-        if depth in [1, 2]:
-            ca_style = "color: black; text-decoration: none; font-size: 40px;"
-            if depth == 2:
-                ca_style += "margin-left: 80px;" 
-            chapter_contents += f'\n<li style="{h_style}"><a href="#{name}" style="{ca_style}">{header}</a></li>\n'
-    #br = "<br/>"
-    return chapter_contents + new_page + table_of_contents + html + new_page
+    return page
 def _strip(html, name, row):
     def remove(content, *args, **kwargs): #helper method
         tag = content.find(*args, **kwargs)
@@ -171,6 +127,8 @@ def _strip(html, name, row):
             tag.decompose()
     
     #load into html parser
+
+
     soup = BeautifulSoup(html, features = parser)
     soup.prettify()
 
@@ -184,17 +142,18 @@ def _strip(html, name, row):
         depth = row["Depth"]
     content.h1.string = depth + " " + content.h1.text
 
+    text = ""
+    if config["add_body"]:
 
-    remove(content, "div", {"id": "content_disclaimer"})
-    remove(content, "div", {"id": "comments"})
-    remove(content, "h2", text = "Comments")
-    remove(content, "div", {"id": "subscribe"})
-    remove(content, "div", {"class": "simple_section_nav"})
+        remove(content, "div", {"id": "content_disclaimer"})
+        remove(content, "div", {"id": "comments"})
+        remove(content, "h2", text = "Comments")
+        remove(content, "div", {"id": "subscribe"})
+        remove(content, "div", {"class": "simple_section_nav"})
+        
     
-    
-    text = str(content)
-    text = text.replace('class="product_title"', "")
-
+        text = str(content)
+        text = text.replace('class="product_title"', "")
     return text, content.h1.text
 
 
@@ -209,7 +168,6 @@ def _get_html_file(filename):
         match = re.search(r'[^"]+\.css', contents)
         if match != None:
             link = match[0]
-            print(f"\nset link to {link}")
             config["css-link"] = link
 
     return contents
@@ -345,7 +303,6 @@ def write_to_pdf(html):
     print(f"pdf written to {path}")
 
 def write_to_html(html):
-    html = _prettify_html(html)
     path = os.path.join("output", config["output_html"])
     print(f"html written to {path}")
     with open(path, "w", encoding = "utf-8") as file:
