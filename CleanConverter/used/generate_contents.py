@@ -29,10 +29,10 @@ class content_counter():
             self.content += "</ol>"*(self.prev_depth-depth)
         self.prev_depth = depth
         #scaling = 1 + (self.font_scaling * (max_depth - depth)) -- linear
-        new_font_size = self.body_font
-        for i in range(depth):
-            new_font_size = new_font_size * self.font_scaling
-        scaling = 1 * (1 + self.font_scaling / 1) ** (max_depth - depth)
+        #new_font_size = self.body_font
+        #for i in range(depth):
+        #    new_font_size = new_font_size * self.font_scaling
+        scaling = 1 * (1 + self.font_scaling / 1) ** (depth - 1)
         new_font_size = self.body_font * scaling
         a_style = self.a_style.replace("{rep}", str(new_font_size))
         self.content += f'<li style="{self.li_style}"><a href="#{name}" style="{a_style}">{header}</a></li>\n'

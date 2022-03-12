@@ -1,17 +1,17 @@
 {
     "Body": {
         "chapter_font_size": 36,
-        "table_font_size": 18,
+        "table_font_size": 24,
         "chapter_indent": 2.5,
-        "table_indent": 1.5,
-        "chapter_scaling": 0.79,
-        "table_scaling": 0.93
+        "table_indent": 0.5,
+        "chapter_scaling": -0.2,
+        "table_scaling": -0.04
     },
     "Header": {
         "font_size": 60,
         "table": "Table of Contents",
         "chapters": "Chapter Contents",
-        "margin-bottom": 120
+        "margin-bottom": 60
     }
 
 

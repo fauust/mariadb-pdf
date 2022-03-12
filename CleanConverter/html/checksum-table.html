@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-11 20:55">11 years, 6 months ago</span></dd>
+<span class="datetime" title="2010-08-11 20:55">11 years, 7 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-01-25 21:22">3 years, 1 month ago</span></dd>
+<span class="datetime" title="2022-03-10 06:14">1 day, 18 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -438,7 +438,7 @@ versions should calculate checksums the same way as MariaDB). You can get the
 <code class="fixed" style="white-space:pre-wrap">--old</code> option. Note however that that the MyISAM and Aria
 storage engines in MariaDB are using the new checksum internally, so if you are
 using <code class="fixed" style="white-space:pre-wrap">--old</code>, the <code class="fixed" style="white-space:pre-wrap">CHECKSUM</code> command will be
-slower as it needs to calculate the checksum row by row.</p>
+slower as it needs to calculate the checksum row by row. Starting from MariaDB Server 10.9, <code class="fixed" style="white-space:pre-wrap">--old</code> is deprecated and will be removed in a future release. Set <code class="fixed" style="white-space:pre-wrap">--old-mode</code> or <code class="fixed" style="white-space:pre-wrap">OLD_MODE</code> to <code class="fixed" style="white-space:pre-wrap">COMPAT_5_1_CHECKSUM</code> to get 'old style' checksum.</p>
 
     </div>
 

@@ -10,14 +10,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/kb/static/images/favicons/favicon-16x16.5801f8f0f34e.png">
     <link rel="shortcut icon" href="/kb/static/images/favicons/favicon.d122d305dee4.ico" type="image/x-icon" />
 
-    <title>QUOTE_IDENTIFIER - MariaDB Knowledge Base</title>
+    <title>quote_identifier - MariaDB Knowledge Base</title>
 
     <link href="/kb/static/css/main.9a0d7dcebefd.css" rel="stylesheet" type="text/css" />
 
     
 
     <!-- FB Open Graph tags -->
-    <meta property="og:title" content="QUOTE_IDENTIFIER" />
+    <meta property="og:title" content="quote_identifier" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://mariadb.com/kb/en/quote_identifier/" />
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
@@ -170,15 +170,31 @@
     
 
     
-    » <a class="crumb" href="/kb/en/built-in-functions/">Built-in Functions</a>
+    » <a class="crumb" href="/kb/en/sql-statements-structure/">SQL Statements &amp; Structure</a>
     
 
     
-    » <a class="crumb" href="/kb/en/string-functions/">String Functions</a>
+    » <a class="crumb" href="/kb/en/sql-statements/">SQL Statements</a>
+    
+
+    
+    » <a class="crumb" href="/kb/en/administrative-sql-statements/">Administrative SQL Statements</a>
+    
+
+    
+    » <a class="crumb" href="/kb/en/system-tables/">System Tables</a>
+    
+
+    
+    » <a class="crumb" href="/kb/en/sys-schema/">Sys Schema</a>
+    
+
+    
+    » <a class="crumb" href="/kb/en/sys-schema-stored-functions/">Sys Schema Stored Functions</a>
     
 
 
-    » <a class="node_link crumb" href="/kb/en/quote_identifier/">QUOTE_IDENTIFIER</a>
+    » <a class="node_link crumb" href="/kb/en/quote_identifier/">quote_identifier</a>
 
 
                 </div>
@@ -243,12 +259,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2022-02-09 00:38">3 weeks, 2 days ago</span></dd>
+<span class="datetime" title="2022-02-09 00:38">1 month ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-09 00:38">3 weeks, 2 days ago</span></dd>
+<span class="datetime" title="2022-03-11 14:02">12 hours, 30 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -357,7 +373,7 @@
             
             <section id="content" class="limited_width col-md-8 clearfix">
                 
-                    <h1>QUOTE_IDENTIFIER</h1>
+                    <h1>quote_identifier</h1>
                 
 
                 
@@ -381,24 +397,25 @@
     
     <div class="answer formatted">
         <h2 class="anchored_heading" id="syntax">Syntax</h2>
-<pre class="fixed">SYS.QUOTE_IDENTIFIER(str)
+<pre class="fixed">sys.quote_identifier(str)
 </pre><h2 class="anchored_heading" id="description">Description</h2>
-<p>Quotes a string to produce a result that can be used as an identifier in an
+<p><code>quote_identifier</code> is a <a href="/kb/en/stored-functions/">stored function</a> available with the <a href="/kb/en/sys-schema/">Sys Schema</a>.</p>
+<p>It quotes a string to produce a result that can be used as an identifier in an
 SQL statement. The string is returned enclosed by backticks ("<code>`</code>") and
 with each instance of backtick ("<code>`</code>") doubled. If the argument
 is <code>NULL</code>, the return value is the word "<code>NULL</code>" without enclosing
 backticks.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
-<pre class="fixed"><span class="k">SELECT</span> <span class="n">SYS</span><span class="p">.</span><span class="n">QUOTE_IDENTIFIER</span><span class="p">(</span><span class="ss">&quot;Identifier with spaces&quot;</span><span class="p">);</span>
+<pre class="fixed"><span class="k">SELECT</span> <span class="n">sys</span><span class="p">.</span><span class="n">quote_identifier</span><span class="p">(</span><span class="ss">&quot;Identifier with spaces&quot;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">------------------------------------------------+</span>
-<span class="o">|</span> <span class="n">SYS</span><span class="p">.</span><span class="n">QUOTE_IDENTIFIER</span><span class="p">(</span><span class="ss">&quot;Identifier with spaces&quot;</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">sys</span><span class="p">.</span><span class="n">quote_identifier</span><span class="p">(</span><span class="ss">&quot;Identifier with spaces&quot;</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------------------------+</span>
 <span class="o">|</span> <span class="o">`</span><span class="n">Identifier</span> <span class="k">with</span> <span class="n">spaces</span><span class="o">`</span>                       <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------------------------------------+</span>
 
-<span class="k">SELECT</span> <span class="n">SYS</span><span class="p">.</span><span class="n">QUOTE_IDENTIFIER</span><span class="p">(</span><span class="ss">&quot;Identifier` containing `backticks&quot;</span><span class="p">);</span>
+<span class="k">SELECT</span> <span class="n">sys</span><span class="p">.</span><span class="n">quote_identifier</span><span class="p">(</span><span class="ss">&quot;Identifier` containing `backticks&quot;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">-----------------------------------------------------------+</span>
-<span class="o">|</span> <span class="n">SYS</span><span class="p">.</span><span class="n">QUOTE_IDENTIFIER</span><span class="p">(</span><span class="ss">&quot;Identifier` containing `backticks&quot;</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">sys</span><span class="p">.</span><span class="n">quote_identifier</span><span class="p">(</span><span class="ss">&quot;Identifier` containing `backticks&quot;</span><span class="p">)</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------------------------+</span>
 <span class="o">|</span> <span class="o">`</span><span class="n">Identifier</span><span class="o">``</span> <span class="n">containing</span> <span class="o">``</span><span class="n">backticks</span><span class="o">`</span>                     <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------------------------+</span>
@@ -419,20 +436,15 @@ backticks.</p>
         <div class="simple_section_nav">
             <ul class="nav nav-pills">
                 
-                    <li><a href="/kb/en/quote/">
-                        ← QUOTE
+                
+                    <li><a href="/kb/en/sys-schema-stored-functions/">
+                        ↑ Sys Schema Stored Functions ↑
                     </a>
                     </li>
                 
                 
-                    <li><a href="/kb/en/string-functions/">
-                        ↑ String Functions ↑
-                    </a>
-                    </li>
-                
-                
-                    <li class="pull-right"><a href="/kb/en/repeat-function/">
-                        REPEAT Function →
+                    <li class="pull-right"><a href="/kb/en/version_major/">
+                        version_major →
                     </a>
                     </li>
                 
@@ -471,654 +483,42 @@ backticks.</p>
         
         <ul class="section_navigation well well-small hidden-xs hidden-sm">
             
-                <li class="parent"><a href="/kb/en/string-functions/">
-                    ↑ String Functions ↑
+                <li class="parent"><a href="/kb/en/sys-schema-stored-functions/">
+                    ↑ Sys Schema Stored Functions ↑
                 </a>
                 </li>
             
             
                 
-                    <li>
-                        <a href="/kb/en/regular-expressions-functions/">
-                            
-                            Regular Expressions Functions
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/dynamic-columns-functions/">
-                            <span class="pull-right not_primary"></span>
-                            Dynamic Columns Functions
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/ascii/">
-                            
-                            ASCII
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/bin/">
-                            
-                            BIN
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/binary-operator/">
-                            
-                            BINARY Operator
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/bit_length/">
-                            
-                            BIT_LENGTH
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/cast/">
-                            
-                            CAST
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/char-function/">
-                            
-                            CHAR Function
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/character_length/">
-                            
-                            CHARACTER_LENGTH
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/char_length/">
-                            
-                            CHAR_LENGTH
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/chr/">
-                            
-                            CHR
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/concat/">
-                            
-                            CONCAT
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/concat_ws/">
-                            
-                            CONCAT_WS
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/convert/">
-                            
-                            CONVERT
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/elt/">
-                            
-                            ELT
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/export_set/">
-                            
-                            EXPORT_SET
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/extractvalue/">
-                            
-                            EXTRACTVALUE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/field/">
-                            
-                            FIELD
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/find_in_set/">
-                            
-                            FIND_IN_SET
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/format/">
-                            
-                            FORMAT
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/from_base64/">
-                            
-                            FROM_BASE64
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/hex/">
-                            
-                            HEX
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/insert-function/">
-                            
-                            INSERT Function
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/instr/">
-                            
-                            INSTR
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/lcase/">
-                            
-                            LCASE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/left/">
-                            
-                            LEFT
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/length/">
-                            
-                            LENGTH
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/lengthb/">
-                            
-                            LENGTHB
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/like/">
-                            
-                            LIKE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/load_file/">
-                            
-                            LOAD_FILE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/locate/">
-                            
-                            LOCATE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/lower/">
-                            
-                            LOWER
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/lpad/">
-                            
-                            LPAD
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/ltrim/">
-                            
-                            LTRIM
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/make_set/">
-                            
-                            MAKE_SET
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/match-against/">
-                            
-                            MATCH AGAINST
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/full-text-index-stopwords/">
-                            <span class="pull-right not_primary"></span>
-                            Full-Text Index Stopwords
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/mid/">
-                            
-                            MID
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/natural_sort_key/">
-                            
-                            NATURAL_SORT_KEY
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/not-like/">
-                            
-                            NOT LIKE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/not-regexp/">
-                            
-                            NOT REGEXP
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/octet_length/">
-                            
-                            OCTET_LENGTH
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/ord/">
-                            
-                            ORD
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/position/">
-                            
-                            POSITION
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/quote/">
-                            
-                            QUOTE
-                        </a>
-                    </li>
-                
-            
-                
                     <li class="active">
-                        <span>QUOTE_IDENTIFIER</span>
+                        <span>quote_identifier</span>
                         
                     </li>
                 
             
                 
                     <li>
-                        <a href="/kb/en/repeat-function/">
+                        <a href="/kb/en/version_major/">
                             
-                            REPEAT Function
+                            version_major
                         </a>
                     </li>
                 
             
                 
                     <li>
-                        <a href="/kb/en/replace-function/">
+                        <a href="/kb/en/version_minor/">
                             
-                            REPLACE Function
+                            version_minor
                         </a>
                     </li>
                 
             
                 
                     <li>
-                        <a href="/kb/en/reverse/">
+                        <a href="/kb/en/version_patch/">
                             
-                            REVERSE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/right/">
-                            
-                            RIGHT
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/rpad/">
-                            
-                            RPAD
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/rtrim/">
-                            
-                            RTRIM
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/sformat/">
-                            
-                            SFORMAT
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/soundex/">
-                            
-                            SOUNDEX
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/sounds-like/">
-                            
-                            SOUNDS LIKE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/space/">
-                            
-                            SPACE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/strcmp/">
-                            
-                            STRCMP
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/substr/">
-                            
-                            SUBSTR
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/substring/">
-                            
-                            SUBSTRING
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/substring_index/">
-                            
-                            SUBSTRING_INDEX
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/to_base64/">
-                            
-                            TO_BASE64
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/to_char/">
-                            
-                            TO_CHAR
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/trim/">
-                            
-                            TRIM
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/trim_oracle/">
-                            
-                            TRIM_ORACLE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/ucase/">
-                            
-                            UCASE
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/uncompress/">
-                            <span class="pull-right not_primary"></span>
-                            UNCOMPRESS
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/uncompressed_length/">
-                            <span class="pull-right not_primary"></span>
-                            UNCOMPRESSED_LENGTH
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/unhex/">
-                            
-                            UNHEX
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/updatexml/">
-                            
-                            UPDATEXML
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/upper/">
-                            
-                            UPPER
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/weight_string/">
-                            
-                            WEIGHT_STRING
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/type-conversion/">
-                            
-                            Type Conversion
+                            version_patch
                         </a>
                     </li>
                 

@@ -256,7 +256,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-17 12:09">5 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-03-08 10:31">3 days, 14 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -511,7 +511,7 @@ privilege. See <a href="/kb/en/grant/">GRANT</a>.</p>
 <tr><td><code>STATUS</code></td><td>Resets all <a href="/kb/en/server-status-variables/">server status variables</a> that can be reset to 0. Not all global status variables support this, so not all global values are reset. See <a href="#flush-status">FLUSH STATUS</a> for more information.</td></tr>
 <tr><td><code>TABLE</code></td><td>Close tables given as options or all open tables if no table list was used. From <a href="/kb/en/mariadb-1041-release-notes/">MariaDB 10.4.1</a>, using without any table list will only close tables not in use, and tables not locked by the FLUSH TABLES connection. If there are no locked tables, FLUSH TABLES will be instant and will not cause any waits, as it no longer waits for tables in use. When a table list is provided, from <a href="/kb/en/mariadb-1041-release-notes/">MariaDB 10.4.1</a>, the server will wait for the end of any transactions that are using the tables. Previously, FLUSH TABLES only waited for the statements to complete.</td></tr>
 <tr><td><code>TABLES</code></td><td>Same as <code>FLUSH TABLE</code>.</td></tr>
-<tr><td><code><a href="/kb/en/flush-tables-for-export/">TABLES ... FOR EXPORT</a></code></td><td>For InnoDB tables, flushes table changes to disk to permit binary table copies while the server is running. Introduced in <a href="/kb/en/mariadb-1008-release-notes/">MariaDB 10.0.8</a>. See <a href="/kb/en/flush-tables-for-export/">FLUSH TABLES ... FOR EXPORT</a> for more.</td></tr>
+<tr><td><code><a href="/kb/en/flush-tables-for-export/">TABLES ... FOR EXPORT</a></code></td><td>For InnoDB tables, flushes table changes to disk to permit binary table copies while the server is running. See <a href="/kb/en/flush-tables-for-export/">FLUSH TABLES ... FOR EXPORT</a> for more.</td></tr>
 <tr><td><code>TABLES WITH READ LOCK</code></td><td>Closes all open tables. New tables are only allowed to be opened with read locks until an <a href="/kb/en/transactions-lock/">UNLOCK TABLES</a> is given.</td></tr>
 <tr><td><code>TABLES WITH READ LOCK AND DISABLE CHECKPOINT</code></td><td>As <code>TABLES WITH READ LOCK</code> but also disable all checkpoint writes by transactional table engines. This is useful when doing a disk snapshot of all tables.</td></tr>
 <tr><td><code>TABLE_STATISTICS</code></td><td>Reset table statistics (see <a href="/kb/en/show-table-statistics/">SHOW TABLE_STATISTICS</a>).</td></tr>

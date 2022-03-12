@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="A Sequence engine allows ascending or descending sequences of numbers." />
+    <meta property="og:description" content="Allows ascending or descending sequences of numbers." />
 
-    <meta name="description" content="A Sequence engine allows ascending or descending sequences of numbers." />
+    <meta name="description" content="Allows ascending or descending sequences of numbers." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-04-11 11:49">8 years, 10 months ago</span></dd>
+<span class="datetime" title="2013-04-11 11:49">8 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-09-10 00:27">1 year, 5 months ago</span></dd>
+<span class="datetime" title="2022-03-08 10:42">4 days, 2 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -397,10 +397,7 @@
 </div><p>A <strong>Sequence</strong> engine allows the creation of ascending or descending sequences of numbers (positive integers) with a given starting value, ending value and increment.</p>
 <p>It creates completely virtual, ephemeral tables automatically when you need them. There is no way to create a Sequence table explicitly. Nor are they ever written to disk or create <code>.frm</code> files. They are read-only, <a href="/kb/en/transactions/">transactional</a>, and <a href="/kb/en/xa-transactions/">support XA</a>.</p>
 <h2 class="anchored_heading" id="installing">Installing</h2>
-<p>Until <a href="/kb/en/what-is-mariadb-100/">MariaDB 10.0</a>, the <strong>Sequence</strong> engine is usually distributed as a dynamic plugin, not part of the server binary. To be able to use it, you need to install it first:</p>
-<pre class="fixed"><span class="n">INSTALL</span> <span class="n">SONAME</span> <span class="ss">&quot;ha_sequence&quot;</span><span class="p">;</span>
-</pre><p>From <a href="/kb/en/what-is-mariadb-101/">MariaDB 10.1</a>, the Sequence engine is installed by default.</p>
-<p>If it has been correctly installed, <a href="/kb/en/show-engines/">SHOW ENGINES</a> will list the Sequence storage engine as supported:</p>
+<p>The Sequence engine is installed by default, and <a href="/kb/en/show-engines/">SHOW ENGINES</a> will list the Sequence storage engine as supported:</p>
 <pre class="fixed">SHOW ENGINES\G
 ...
 *************************** 5. row ***************************

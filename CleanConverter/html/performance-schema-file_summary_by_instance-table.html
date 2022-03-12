@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="File events summarized by instance" />
+    <meta property="og:description" content="File events summarized by instance." />
 
-    <meta name="description" content="File events summarized by instance" />
+    <meta name="description" content="File events summarized by instance." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -264,7 +264,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-12-10 03:39">4 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-03-08 10:25">3 days, 15 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -396,7 +396,7 @@
 
     
     <div class="answer formatted">
-        <p>The <a href="/kb/en/performance-schema/">Performance Schema</a> <code>file_summary_by_instance</code> table contains file events summarized by instance. As of <a href="/kb/en/what-is-mariadb-100/">MariaDB 10.0</a>, it contains the following columns:</p>
+        <p>The <a href="/kb/en/performance-schema/">Performance Schema</a> <code>file_summary_by_instance</code> table contains file events summarized by instance. It contains the following columns:</p>
 <div class="cstm-style darkheader-nospace-borders"><table><tr><th>Column</th><th>Description</th></tr>
 <tr><td><code>FILE_NAME</code></td><td>File name.</td></tr>
 <tr><td><code>EVENT_NAME</code></td><td>Event name.</td></tr>
@@ -424,8 +424,7 @@
 <tr><td><code>AVG_TIMER_MISC</code></td><td>Average wait time of all miscellaneous operations that are timed.</td></tr>
 <tr><td><code>MAX_TIMER_MISC</code></td><td>Maximum wait time of all miscellaneous operations that are timed.</td></tr>
 </table>
-</div><p>Before MariaDB 10, the table contained only the <code>FILE_NAME</code>, <code>EVENT_NAME</code>, <code>COUNT_READ</code>, <code>COUNT_WRITE</code>, <code>SUM_NUMBER_OF_BYTES_READ</code> and <code>SUM_NUMBER_OF_BYTES_WRITE</code> columns.</p>
-<p>I/O operations can be avoided by caching, in which case they will not be recorded in this table.</p>
+</div><p>I/O operations can be avoided by caching, in which case they will not be recorded in this table.</p>
 <p>You can <a href="/kb/en/truncate-table/">TRUNCATE</a> the table, which will reset all counters to zero.</p>
 <h2 class="anchored_heading" id="example">Example</h2>
 <pre class="fixed">SELECT * FROM file_summary_by_instance\G

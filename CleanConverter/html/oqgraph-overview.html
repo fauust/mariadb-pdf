@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-04-04 10:44">3 years, 11 months ago</span></dd>
+<span class="datetime" title="2022-03-08 10:59">4 days, 1 hour ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -415,9 +415,9 @@
 <p>OQGRAPH is unlike other storage engines, consisting of an entirely different architecture to a regular storage engine such as Aria, MyISAM or InnoDB.</p>
 <p>It is intended to be used for retrieving hierarchical information, such as those used for graphs, routes or social relationships, in plain SQL.</p>
 <h2 class="anchored_heading" id="installing">Installing</h2>
-<p>See <a href="/kb/en/installing-oqgraph/">Installing OQGRAPH</a>. Note that the <a href="/kb/en/query-cache/">query cache</a> needs to be disabled when using OQGRAPH with <a href="/kb/en/mariadb-5535-release-notes/">MariaDB 5.5.35</a> and before, or 10.0.8 and before (see <a href="https://jira.mariadb.org/browse/MDEV-5744">MDEV-5744</a>). With newer versions, the query cache can be enabled and OQGRAPH will not use it.</p>
+<p>See <a href="/kb/en/installing-oqgraph/">Installing OQGRAPH</a>. Note that if the <a href="/kb/en/query-cache/">query cache</a> is enabled, OQGRAPH will not use it.</p>
 <h2 class="anchored_heading" id="creating-a-table">Creating a Table</h2>
-<div class="cstm-style graybox"><p>The following documentation is based upon <a href="/kb/en/mariadb-1007-release-notes/">MariaDB 10.0.7</a> and OQGRAPH v3. Details have changed since older versions.</p>
+<div class="cstm-style graybox"><p>The following documentation is based upon <a href="/kb/en/mariadb-1007-release-notes/">MariaDB 10.0.7</a> and OQGRAPH v3.</p>
 </div><h2 class="anchored_heading" id="example-with-origin-and-destination-nodes-only">Example with origin and destination nodes only</h2>
 <p>To create an OQGRAPH v3 table, a backing table must first be created. This backing table will store the actual data, and will be used for all INSERTs, UPDATEs and so on. It must be a regular table, not a view. Here's a simple example to start with:</p>
 <pre class="fixed">CREATE TABLE oq_backing (
@@ -442,7 +442,7 @@
 ) 
 ENGINE=OQGRAPH 
 data_table='oq_backing' origid='origid' destid='destid';
-</pre><p>An older format has the latch field as a SMALLINT rather than a VARCHAR. In <a href="/kb/en/mariadb-1007-release-notes/">MariaDB 10.0.7</a> with OQGRAPH v3, the format is still valid, but gives an error by default:</p>
+</pre><p>An older format (prior to <a href="/kb/en/mariadb-1007-release-notes/">MariaDB 10.0.7</a>) has the latch field as a SMALLINT rather than a VARCHAR. The format is still valid, but gives an error by default:</p>
 <pre class="fixed">CREATE TABLE oq_old (
   latch SMALLINT UNSIGNED NULL,
   origid BIGINT UNSIGNED NULL,

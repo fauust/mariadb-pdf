@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-28 13:50">4 days, 2 hours ago</span></dd>
+<span class="datetime" title="2022-03-09 10:22">3 days ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -423,9 +423,10 @@
 </li><li><code>[*]</code> selects all elements in the array.
 </li></ul>
 <p>If the current item is an object (instead of an array), nothing will be selected.</p>
-<p>Starting from MariaDB server 10.9, JSON path also supports negative index in array and 'last' keyword for accessing array elements. Negative index starts from -1.</p>
+<p>Starting from MariaDB server 10.9, JSON path also supports negative index in array, 'last' keyword and range notation ('to' keyword) for accessing array elements. Negative index starts from -1.</p>
 <ul start="1"><li><code>[-N]</code> selects n th element from end.
 </li><li><code>[last-N]</code> selects n th element from the last element.
+</li><li><code>[M to N]</code> selects range of elements starting from index M to N.
 </li></ul>
 <p>Example:</p>
 <pre class="fixed">
@@ -455,6 +456,23 @@
 <span class="o">|</span> <span class="k">SELECT</span> <span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="o">@</span><span class="n">json</span><span class="p">,</span> <span class="s1">&#39;$.A[last-7][1]&#39;</span><span class="p">);</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------------+</span>
 <span class="o">|</span> <span class="mi">5</span>                                             <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------+</span>
+
+
+<span class="k">SET</span> <span class="o">@</span><span class="n">json</span><span class="o">=</span> <span class="s1">&#39;[</span>
+<span class="s1">             [1, {&quot;key1&quot;: &quot;value1&quot;}, 3],</span>
+<span class="s1">             [false, 5, 6],</span>
+<span class="s1">             [7, 8, [9, {&quot;key2&quot;: 2}, 11]],</span>
+<span class="s1">             [15, 1.34, [14], [&quot;string1&quot;, [16, {&quot;key1&quot;:[1,2,3,[4,5,6]]}, 18]]],</span>
+<span class="s1">             [19, 20],</span>
+<span class="s1">             21, 22</span>
+<span class="s1">            ]&#39;</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="o">@</span><span class="n">json</span><span class="p">,</span> <span class="s1">&#39;$[0 to 3][2]&#39;</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------+</span>
+<span class="o">|</span> <span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="o">@</span><span class="n">json</span><span class="p">,</span> <span class="s1">&#39;$[0 to 3][2]&#39;</span><span class="p">)</span>           <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------------------+</span>
+<span class="o">|</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="err">{</span><span class="ss">&quot;key2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="err">}</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">14</span><span class="p">]]</span>            <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------------+</span>
 
 </pre><p>This will produce output for first index of eighth from last element of a two dimensional array.</p>

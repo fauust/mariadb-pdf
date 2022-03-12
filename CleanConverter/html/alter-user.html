@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-01-08 14:47">1 month, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-03-04 21:59">1 week ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -554,22 +554,24 @@
 <div class="mariadb_from_10_4 mariadb from_10_4 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-104/">10.4</a></h5><p>From <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a>, it is possible to use more than one authentication plugin for each user account. For example, this can be useful to slowly migrate users to the more secure ed25519 authentication plugin over time, while allowing the old mysql_native_password authentication plugin as an alternative for the transitional period. See <a href="/kb/en/authentication-from-mariadb-104/">Authentication from MariaDB 10.4</a> for more.</p>
 <p>When running <code>ALTER USER</code>, not specifying an authentication option in the IDENTIFIED VIA clause will remove that authentication method. (However this was not the case before <a href="/kb/en/mariadb-10413-release-notes/">MariaDB 10.4.13</a>, see <a href="https://jira.mariadb.org/browse/MDEV-21928">MDEV-21928</a>)</p>
 <p>For example, a user is created with the ability to authenticate via both a password and unix_socket:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;bob&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> 
-  <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">mysql_native_password</span> <span class="k">USING</span> <span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;pwd&#39;</span><span class="p">)</span> 
-  <span class="k">OR</span> <span class="n">unix_socket</span><span class="p">;</span>
+<pre class="fixed">CREATE USER 'bob'@'localhost' 
+  IDENTIFIED VIA mysql_native_password USING PASSWORD('pwd') 
+  OR unix_socket;
 
-<span class="k">SHOW</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;bob&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-<span class="k">CREATE</span> <span class="k">USER</span> <span class="k">for</span> <span class="n">bob</span><span class="o">@</span><span class="n">localhost</span><span class="p">:</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="o">`</span><span class="n">bob</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> 
-  <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">mysql_native_password</span> <span class="k">USING</span> <span class="s1">&#39;*975B2CD4FF9AE554FE8AD33168FBFC326D2021DD&#39;</span> 
-  <span class="k">OR</span> <span class="n">unix_socket</span>
+SHOW CREATE USER 'bob'@'localhost'\G
+*************************** 1. row ***************************
+CREATE USER for bob@localhost: CREATE USER `bob`@`localhost` 
+  IDENTIFIED VIA mysql_native_password 
+  USING '*975B2CD4FF9AE554FE8AD33168FBFC326D2021DD' 
+  OR unix_socket
 </pre><p>If the user's password is updated, but unix_socket authentication is not specified in the <code>IDENTIFIED VIA</code> clause, unix_socket authentication will no longer be permitted.</p>
-<pre class="fixed"><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">&#39;bob&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">mysql_native_password</span> <span class="k">USING</span> <span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;pwd2&#39;</span><span class="p">);</span>
+<pre class="fixed">ALTER USER 'bob'@'localhost' IDENTIFIED VIA mysql_native_password 
+  USING PASSWORD('pwd2');
 
-<span class="k">SHOW</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;bob&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-<span class="k">CREATE</span> <span class="k">USER</span> <span class="k">for</span> <span class="n">bob</span><span class="o">@</span><span class="n">localhost</span><span class="p">:</span> <span class="k">CREATE</span> <span class="k">USER</span> <span class="o">`</span><span class="n">bob</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> 
-  <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">PASSWORD</span> <span class="s1">&#39;*38366FDA01695B6A5A9DD4E428D9FB8F7EB75512&#39;</span>
+SHOW CREATE USER 'bob'@'localhost'\G
+*************************** 1. row ***************************
+CREATE USER for bob@localhost: CREATE USER `bob`@`localhost` 
+  IDENTIFIED BY PASSWORD '*38366FDA01695B6A5A9DD4E428D9FB8F7EB75512'
 </pre></div><h3 class="anchored_heading" id="identified-by-password">IDENTIFIED BY 'password'</h3>
 <p>The optional <code>IDENTIFIED BY</code> clause can be used to provide an account with a password. The password should be specified in plain text. It will be hashed by the <a href="/kb/en/password/">PASSWORD</a> function prior to being stored to the <a href="/kb/en/mysqluser-table/">mysql.user</a> table.</p>
 <p>For example, if our password is <code>mariadb</code>, then we can set the account's password with:</p>
@@ -589,7 +591,8 @@ password is set.</p>
 <span class="o">|</span> <span class="o">*</span><span class="mi">54958</span><span class="n">E764CE10E50764C2EECBB71D01F08549980</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------------------------+</span>
 </pre><p>And then we can set an account's password with the hash:</p>
-<pre class="fixed"><span class="k">ALTER</span> <span class="k">USER</span> <span class="n">foo2</span><span class="o">@</span><span class="n">test</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">PASSWORD</span> <span class="s1">&#39;*54958E764CE10E50764C2EECBB71D01F08549980&#39;</span><span class="p">;</span>
+<pre class="fixed"><span class="k">ALTER</span> <span class="k">USER</span> <span class="n">foo2</span><span class="o">@</span><span class="n">test</span> 
+  <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">PASSWORD</span> <span class="s1">&#39;*54958E764CE10E50764C2EECBB71D01F08549980&#39;</span><span class="p">;</span>
 </pre><p>If you do not specify a password with the <code>IDENTIFIED BY</code> clause, the user
 will be able to connect without a password. A blank password is not a wildcard
 to match any password. The user must connect without providing a password if no

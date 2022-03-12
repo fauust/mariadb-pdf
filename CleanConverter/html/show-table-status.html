@@ -256,7 +256,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-11-18 12:29">1 year, 3 months ago</span></dd>
+<span class="datetime" title="2022-03-07 13:23">4 days, 11 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -413,6 +413,8 @@
 
     <li class=""><a href="#description" title="Description">Description</a></li>
 
+    <li class=""><a href="#views" title="Views">Views</a></li>
+
     <li class=""><a href="#example" title="Example">Example</a> </ol>
 </li>
 </div>
@@ -446,7 +448,9 @@ match. The <code class="highlight fixed" style="white-space:pre-wrap">WHERE</cod
 </table>
 </div><p>Similar information can be found in the <code><a href="/kb/en/information-schema-tables-table/">information_schema.TABLES</a></code> table as well as by using <code><a href="/kb/en/mysqlshow/">mysqlshow</a></code>:</p>
 <pre class="fixed">mysqlshow --status db_name
-</pre><h2 class="anchored_heading" id="example">Example</h2>
+</pre><h2 class="anchored_heading" id="views">Views</h2>
+<p>For views, all columns in <code>SHOW TABLE STATUS</code> are <code>NULL</code> except 'Name' and 'Comment'</p>
+<h2 class="anchored_heading" id="example">Example</h2>
 <pre class="fixed">show table status\G
 *************************** 1. row ***************************
            Name: bus_routes
