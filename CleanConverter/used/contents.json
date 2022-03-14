@@ -1,11 +1,12 @@
 {
     "Body": {
         "chapter_font_size": 36,
-        "table_font_size": 24,
+        "table_font_size": 14,
         "chapter_indent": 2.5,
         "table_indent": 0.5,
-        "chapter_scaling": -0.2,
-        "table_scaling": -0.04
+        "chapter_scaling": -0.1,
+        "table_scaling": 0,
+        "Increase_table_chapters": 0.5
     },
     "Header": {
         "font_size": 60,

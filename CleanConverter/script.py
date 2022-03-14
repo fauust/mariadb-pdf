@@ -9,8 +9,15 @@ import re
 import os
 import csv
 
+
 import used.depth_to_numbers as depth
+from used.check_errors import check_errors
 from used.generate_contents import create_main_contents, new_page
+from used.funcs import _get_name
+import logging
+logging.getLogger(__name__).setLevel(logging.WARNING)
+#check_errors
+check_errors()
 #config
 with open("config.json", "r") as file:
     config = json.loads(file.read())
@@ -34,10 +41,7 @@ def main():
     #long lambda for formatting time
     format_time = lambda s: f"{int(s // 3600)}h, {int((s % 3600) // 60)}m" if s >= 3600 else f"{int(s // 60)}m, {int(s % 60)}s" if s >= 60 else f"{round(s, 3)}s"
     if config["new_html"]:
-        start_time = time.perf_counter()
         html = make_html()
-        time_taken = time.perf_counter() - start_time
-        print(f"html generation took {format_time(time_taken)}")
         write_to_html(html)
     else:
         html = read_html()
@@ -49,6 +53,8 @@ def main():
         time_taken = time.perf_counter() - start_time
         print(f"pdf generation took {format_time(time_taken)}")
 def make_html():
+    total_time = time.perf_counter()
+    total_request_time = 0
     full_html = ""
     rows = _get_rows()
     last_requested = 0
@@ -84,6 +90,7 @@ def make_html():
                 if config["min_sleep_time"] - time_since > 0:
                     print("\nsleeping for " + str(config["min_sleep_time"] - time_since))
                     time.sleep(config["min_sleep_time"] - time_since)
+                    total_request_time += 10
                 print(f"\nrequesting {name}")
                 last_requested = time.perf_counter()
                 _request_and_write(url, filename)
@@ -118,7 +125,13 @@ def make_html():
     page = boiler + starter_page + full_html + plate
     if config["prettify_html"]:
         page = _prettify_html(page)
-
+    
+    total_time_taken = time.perf_counter() - total_time
+    format_time = lambda s: f"{int(s // 3600)}h, {int((s % 3600) // 60)}m" if s >= 3600 else f"{int(s // 60)}m, {int(s % 60)}s" if s >= 60 else f"{round(s, 3)}s"
+    generation_time = total_time_taken - total_request_time
+    print(f"html generation took {format_time(generation_time)}")
+    if total_request_time > 0:
+        print(f"html get requests took {format_time(total_time_taken - generation_time)}")
     return page
 def _strip(html, name, row):
     def remove(content, *args, **kwargs): #helper method
@@ -238,17 +251,6 @@ def _get_rows():
     if config["number_of_rows"] > 0:
         contents = contents[:config["number_of_rows"]]
     return contents
-
-def _get_name(url):
-    lru = ""
-    for c in url:
-        lru = c + lru
-    name = re.match(r"/[\w-]+/", lru)[0]
-    output = ""
-    for c in name[1:]:
-        output = c + output
-    #print(output[1:])
-    return output[1:]
 
 
 

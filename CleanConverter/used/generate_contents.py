@@ -10,9 +10,9 @@ HEADER = config["Header"]
 class content_counter():
     prev_depth = 0
     header_style = f'font-size: {HEADER["font_size"]}px; text-align: center; margin-bottom: {HEADER["margin-bottom"]}px; float: none; clear: right;'
-    li_style = "margin-top: 2px; margin-bottom: 2px; list-style-type: none; clear: right;"
+    li_style = "margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"
     content = ""
-
+    scaling_levels = {}
     def __init__(self, header_txt, body_font, margin_left, font_scaling):
         self.body_font = body_font
         self.margin_left = margin_left
@@ -28,14 +28,15 @@ class content_counter():
         elif depth < self.prev_depth:
             self.content += "</ol>"*(self.prev_depth-depth)
         self.prev_depth = depth
-        #scaling = 1 + (self.font_scaling * (max_depth - depth)) -- linear
-        #new_font_size = self.body_font
-        #for i in range(depth):
-        #    new_font_size = new_font_size * self.font_scaling
-        scaling = 1 * (1 + self.font_scaling / 1) ** (depth - 1)
-        new_font_size = self.body_font * scaling
-        a_style = self.a_style.replace("{rep}", str(new_font_size))
-        self.content += f'<li style="{self.li_style}"><a href="#{name}" style="{a_style}">{header}</a></li>\n'
+        if depth not in self.scaling_levels:
+            self.scaling_levels[depth] = 1 * (1 + self.font_scaling / 1) ** (depth - 1)
+        scaling = self.scaling_levels[depth]
+        new_font_size = self.body_font# * scaling
+        a_style = self.a_style.replace("{rep}", str(round(new_font_size, 1)))
+        text = f"{header}"
+        if depth == 1:
+            text = "Chapter " + text
+        self.content += f'<li style="{self.li_style}"><a href="#{name}" style="{a_style}">{text}</a></li>\n'
     
     def get_contents(self, depth):
         "finishes html and return contents"
@@ -43,20 +44,22 @@ class content_counter():
     
 def create_main_contents(ids):
     #creating counter objects
-    print(1-BODY["table_indent"])
-    print(1-BODY["chapter_indent"])
+    #       -- debug for indents --
+    #   print(2.5-BODY["table_indent"])
+    #   print(2.5-BODY["chapter_indent"])
+
     main = content_counter(
         header_txt = HEADER["table"], body_font = BODY["table_font_size"], margin_left=BODY["table_indent"]-2.5, font_scaling = BODY["table_scaling"])
     chapters = content_counter(
         header_txt = HEADER["chapters"], body_font = BODY["chapter_font_size"], margin_left=BODY["chapter_indent"]-2.5, font_scaling = BODY["chapter_scaling"])
-    #lambda function to get depth int from depth_str
+    #lambda function to get depth int from Fstr
     get_depth = lambda depth_str: depth_str.count(".") + 1 if depth_str != "" else 0
     #main loop going through each id and giving the information to the counter
     max_depth = find_max_depth(ids, get_depth)
     for header, name, depth_str in ids:
         depth = get_depth(depth_str)
         #warn if depth is missing
-        if depth == 0: print(f"depth missing for: {name}")
+        #if depth == 0: print(f"depth missing for: {name}")
 
         #adding to main counter
         #adding to chapter counter if depth is in a certain range
@@ -64,6 +67,7 @@ def create_main_contents(ids):
         range_of_depths = [1, 2]
         if depth in range_of_depths: chapters.add_content(header, name, depth, max(range_of_depths))
     
+    #print(content_counter.scaling_levels)
     return chapters.get_contents(depth) + new_page + main.get_contents(depth) + new_page
 
 def find_max_depth(ids, depth_func):

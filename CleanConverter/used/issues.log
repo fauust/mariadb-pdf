@@ -1,0 +1,15 @@
+DEBUG:root:(487) Missing Header for: atomic-ddl
+DEBUG:root:(903) Missing Header for: release_all_locks
+DEBUG:root:(1158) Missing Header for: compiling-mariadb-from-source
+DEBUG:root:(1259) Missing Header for: starting-and-stopping-mariadb
+DEBUG:root:(1528) Missing Header for: relay-log
+DEBUG:root:(1538) Missing Header for: using-mariadb-replication-with-mariadb-galera-cluster
+DEBUG:root:(1639) Depth missing for: upgrading-galera-cluster
+DEBUG:root:(1640) Depth missing for: using-mariadb-replication-with-mariadb-galera-cluster
+DEBUG:root:(1641) Depth missing for: securing-communications-in-galera-cluster
+DEBUG:root:(1763) Depth missing for: full-list-of-mariadb-options-system-and-status-variables
+DEBUG:root:(1765) Missing Header for: server-system-variables
+DEBUG:root:(1892) Missing Header for: innodb-row-formats
+DEBUG:root:(2004) Missing Header for: mroonga-user-defined-functions
+DEBUG:root:(2173) Missing Header for: mariadb-replication-cluster-plugins
+DEBUG:root:(2177) Missing Header for: other-plugins

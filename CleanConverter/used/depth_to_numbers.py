@@ -1,6 +1,5 @@
 import csv
 from os.path import join as path_join
-
 #this script needs a better name please
 
 
@@ -41,14 +40,6 @@ def modify_csv(filepath):
 
         #adding next depth string
         add_to_pool(pool, depths)
-
-    # mapping capture and pool together and combining their elements into {capture_index}, {pool_index}
-    #   list_contents = map((lambda x, y: f"{x}, {y}"), capture, pool)
-    #making a single string containing each depth seperated with a newline
-    #   content = "\n".join(list_contents)
-
-    #   with open("test.txt", 'w') as file:
-    #    file.write(content)
 
     output_filepath = path_join("tmp", f"m_{filepath}")
     with open(output_filepath, "w", newline="") as file:
