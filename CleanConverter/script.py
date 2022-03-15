@@ -235,7 +235,8 @@ def _make_internal(html, urls):
             html = html.replace('href="'+ url, 'href="#' + name)
             #html = html.replace('href="#' + name + "+questions", 'href="'+ url + "+questions")
             completed.append(url)
-    html = html.replace('+', '/+')
+    html = html.replace('+quest', '/+quest')
+    html = html.replace('+attach', '+/attach')
     return html
 
 def _make_single_internals(html):
