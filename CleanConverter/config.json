@@ -9,7 +9,7 @@
     "add_body": true,
     "add_contents": true,
     "add_depth": true,
-    "prettify_html": true,
+    "prettify_html": false,
     "flatten_internal_contents": true,
     "min_sleep_time": 10,
     "catch-OSError": true,
@@ -22,6 +22,7 @@
         "margin-bottom": "1cm",
         "zoom": 1,
         "DPI": 300,
+        "footer-font-size": 10,
         "footer-right": "[page]/[topage]",
         "encoding": "UTF-8",
         "footer-line": ""

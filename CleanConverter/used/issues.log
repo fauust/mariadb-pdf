@@ -1,15 +1,63 @@
-DEBUG:root:(487) Missing Header for: atomic-ddl
-DEBUG:root:(903) Missing Header for: release_all_locks
-DEBUG:root:(1158) Missing Header for: compiling-mariadb-from-source
-DEBUG:root:(1259) Missing Header for: starting-and-stopping-mariadb
-DEBUG:root:(1528) Missing Header for: relay-log
-DEBUG:root:(1538) Missing Header for: using-mariadb-replication-with-mariadb-galera-cluster
-DEBUG:root:(1639) Depth missing for: upgrading-galera-cluster
-DEBUG:root:(1640) Depth missing for: using-mariadb-replication-with-mariadb-galera-cluster
-DEBUG:root:(1641) Depth missing for: securing-communications-in-galera-cluster
-DEBUG:root:(1763) Depth missing for: full-list-of-mariadb-options-system-and-status-variables
-DEBUG:root:(1765) Missing Header for: server-system-variables
-DEBUG:root:(1892) Missing Header for: innodb-row-formats
-DEBUG:root:(2004) Missing Header for: mroonga-user-defined-functions
-DEBUG:root:(2173) Missing Header for: mariadb-replication-cluster-plugins
-DEBUG:root:(2177) Missing Header for: other-plugins
+DEBUG:root:(4,1401) Missing Include 1 for: account-management-sql-commands
+DEBUG:root:(11,97) Duplicate Include 1 for: set-password
+DEBUG:root:(19,599) Missing Include 1 for: table-statements
+DEBUG:root:(54) Missing Include 1 for: system-versioned-tables
+DEBUG:root:(67,1435) Duplicate Include 1 for: mariabackup-and-backup-stage-commands
+DEBUG:root:(73,1491) Missing Include 1 for: replication-commands
+DEBUG:root:(78,95) Duplicate Include 1 for: set-global-sql_slave_skip_counter
+DEBUG:root:(84,2261) Missing Include 1 for: plugin-sql-statements
+DEBUG:root:(164,2030) Missing Include 1 for: information-schema-innodb-tables
+DEBUG:root:(248,2139) Duplicate Include 1 for: information-schema-mroonga_stats-table
+DEBUG:root:(284,1465) Missing Include 1 for: performance-schema
+DEBUG:root:(400,2211) Missing Include 1 for: spider-mysql-database-tables
+DEBUG:root:(489,2124) Duplicate Include 1 for: merge
+DEBUG:root:(501,502) Include 2 with Include 1: subqueries
+DEBUG:root:(509,1671) Include 2 with Include 1: subquery-optimizations
+DEBUG:root:(510,1672) Duplicate Include 1 for: subquery-optimizations-map
+DEBUG:root:(511,1673) Duplicate Include 1 for: semi-join-subquery-optimizations
+DEBUG:root:(512,1674) Duplicate Include 1 for: table-pullout-optimization
+DEBUG:root:(513,1675) Duplicate Include 1 for: non-semi-join-subquery-optimizations
+DEBUG:root:(515,1677) Duplicate Include 1 for: condition-pushdown-into-in-subqueries
+DEBUG:root:(516,1678) Duplicate Include 1 for: conversion-of-big-in-predicates-into-subqueries
+DEBUG:root:(517,1679) Duplicate Include 1 for: exists-to-in-optimization
+DEBUG:root:(518,1680) Duplicate Include 1 for: optimizing-group-by
+DEBUG:root:(554,2153) Duplicate Include 1 for: concurrent-inserts
+DEBUG:root:(575,1851) Missing Include 1 for: programmatic-compound-statements
+DEBUG:root:(665,1655) Duplicate Include 1 for: match-against
+DEBUG:root:(666,1654) Duplicate Include 1 for: full-text-index-stopwords
+DEBUG:root:(849,1842) Missing Include 1 for: encryption-hashing-and-compression-functions
+DEBUG:root:(859,860) Duplicate Include 1 for: password
+DEBUG:root:(911) Missing Include 1 for: dynamic-columns-functions
+DEBUG:root:(1042,1043) Duplicate Include 1 for: st_polyfromwkb
+DEBUG:root:(1111,2206) Missing Include 1 for: spider-functions
+DEBUG:root:(1147,1293) Duplicate Include 1 for: troubleshooting-mariadb-installs-on-red-hatcentos
+DEBUG:root:(1156,1179) Duplicate Include 1 for: installing-mariadb-on-macos-using-homebrew
+DEBUG:root:(1158,1258) Missing Include 1 for: compiling-mariadb-from-source
+DEBUG:root:(1166,2263) Duplicate Include 1 for: specifying-which-plugins-to-build
+DEBUG:root:(1181,1297) Duplicate Include 1 for: Creating_a_Debian_Repository
+DEBUG:root:(1190,1341) Duplicate Include 1 for: installing-mariadb-alongside-mysql
+DEBUG:root:(1213,1217) Duplicate Include 1 for: running-mariadb-columnstore-docker-containers-on-linux-windows-and-macos
+DEBUG:root:(1228,1455) Duplicate Include 1 for: rotating-logs-on-unix-and-linux
+DEBUG:root:(1244,1639) Missing Include 1 for: upgrading-galera-cluster
+DEBUG:root:(1253,1296,1342) Duplicate Include 1 for: moving-from-mysql-to-mariadb-in-debian-9
+DEBUG:root:(1264,1301) Duplicate Include 1 for: what-to-do-if-mariadb-doesnt-start
+DEBUG:root:(1287,1646) Duplicate Include 1 for: configuring-linux-for-mariadb
+DEBUG:root:(1289,1647) Duplicate Include 1 for: configuring-swappiness
+DEBUG:root:(1381,2291) Missing Include 1 for: key-management-and-encryption-plugins
+DEBUG:root:(1430,1493) Duplicate Include 1 for: setting-up-a-replica-with-mariabackup
+DEBUG:root:(1437,1564) Duplicate Include 1 for: manual-sst-of-galera-cluster-node-with-mariabackup
+DEBUG:root:(1451,1703,1704) Duplicate Include 1 for: slow-query-log-extended-statistics
+DEBUG:root:(1460,1520) Missing Include 1 for: transaction-coordinator-log
+DEBUG:root:(1469,1470) Include 2 with Include 1: partitioning-types
+DEBUG:root:(1475,1718) Duplicate Include 1 for: partition-pruning-and-selection
+DEBUG:root:(1512,1532) Duplicate Include 1 for: binlog-event-checksums
+DEBUG:root:(1538,1640) Missing Include 1 for: using-mariadb-replication-with-mariadb-galera-cluster
+DEBUG:root:(1663,1701) Duplicate Include 1 for: index-statistics
+DEBUG:root:(1686,1838) Duplicate Include 1 for: improvements-to-order-by
+DEBUG:root:(1705,2310) Duplicate Include 1 for: user-statistics
+DEBUG:root:(1788,2195) Duplicate Include 1 for: sphinx-status-variables
+DEBUG:root:(1836,2038) Duplicate Include 1 for: binary-log-group-commit-and-innodb-flushing-performance
+DEBUG:root:(1874) Missing Include 1 for: show-function-code
+DEBUG:root:(1880) Missing Include 1 for: stored-routine-limitations
+DEBUG:root:(2053,2186) Duplicate Include 1 for: aria_s3_copy
+DEBUG:root:(2302) Missing Include 1 for: storage-engines

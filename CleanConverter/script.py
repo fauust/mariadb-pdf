@@ -15,7 +15,7 @@ from used.check_errors import check_errors
 from used.generate_contents import create_main_contents, new_page
 from used.funcs import _get_name
 import logging
-logging.getLogger(__name__).setLevel(logging.WARNING)
+logging.getLogger("requests").setLevel(logging.WARNING)
 #check_errors
 check_errors()
 #config
@@ -278,10 +278,7 @@ def _add_css(string):
 def _prettify_html(html):
     print("prettifying html")
     pretty_soup = BeautifulSoup(html, features = parser)
-    pretty_soup = pretty_soup.prettify()
-
-    #output = str(pretty_soup)
-    #output = re.sub(r"\s", "", output)
+    #pretty_soup = pretty_soup.prettify()
 
     return str(pretty_soup)
 

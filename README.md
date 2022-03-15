@@ -38,7 +38,7 @@
 
 "add_depth": bool # whether or not to add depth numbers before each header
 
-"prettify_html": bool #indicates whether or not to prettify to output html
+"prettify_html": bool #indicates whether or not to prettify to output html -- BREAKS SOME FORMATTING, KEEP FALSE
 
 "flatten_internal_contents": bool #whether or not to push each page's internal contents to the left (false sometimes leads to text overlap)
 

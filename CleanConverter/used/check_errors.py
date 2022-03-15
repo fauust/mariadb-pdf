@@ -9,11 +9,44 @@ else:
     from used.funcs import _get_name
 logging.basicConfig(filename=os.path.join("used", "issues.log"), encoding='utf-8', level=logging.DEBUG, filemode="w")
 
+class IncludeChecker():
+    def __init__(self):
+        self.includes = {}
+        self.line_nums = []
+    def assert_include(self):
+        did_log = False
+        for name, array in self.includes.items():
+            includes = [a for a, b in array]
+            line_nums = [str(b) for a, b in array]
+            str_line = ",".join(line_nums)
+            if includes.count("1") > 1:
+                logging.debug(f'({str_line}) Duplicate Include 1 for: {name}')
+                did_log = True
+            if includes.count("1") == 0 and includes.count("3") > 0:
+                logging.debug(f'({str_line}) Missing Include 1 for: {name}')
+                did_log = True
+            if includes.count("1") > 0 and includes.count("2") > 0:
+                logging.debug(f'({str_line}) Include 2 with Include 1: {name}')
+                did_log = True
+        return did_log
+    def add_to_includes(self, row, num):
+        if row["URL"] != "":
+            name = _get_name(row["URL"])
+        else:
+            name = "placeholder"
+        if name not in self.includes:
+            self.includes[name] = []
+        #self.line_nums.append(num)
+        self.includes[name].append(
+            (row["Include"], num)
+            )
+
 with open("config.json") as file:
     config = json.loads(file.read())
 
 def check_errors():
     did_log = False
+    include_checker = IncludeChecker()
     with open(config["input_csv"]) as file:
         reader = csv.DictReader(file)
         rows = list(reader)
@@ -24,6 +57,9 @@ def check_errors():
             continue
         did_log = depth_missing(row, line_num) or did_log #keeps did_log True
         did_log = missing_headers(row, line_num) or did_log #keeps did_log True
+        include_checker.add_to_includes(row, line_num)
+    
+    did_log = include_checker.assert_include()
     if did_log:
         print(f"issues logged to issues.log")
 
@@ -36,9 +72,6 @@ def depth_missing(row, num):
         logging.debug(f"({num}) Depth missing for: {name}")
         return True
     return False
-
-def headers_have_depth(row, num):
-    pass
 
 def missing_headers(row, num):
     if int(row["Include"]) not in [2, 3]:
