@@ -290,7 +290,6 @@ def _add_css(string):
 
 def _prettify_html(html):
     print("prettifying html")
-    html = re.sub("\n +", "")
 
     return html
 
