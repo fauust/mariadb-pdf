@@ -198,7 +198,11 @@ def _convert_links(html, unique_id, urls):
     #make id's unique
     find_pattern = r'"#[\w-]+"' #changing this means changes string = string[1:]
     hash_tags = re.findall(find_pattern, html)
+    strings = []
     for string in hash_tags:
+        if string in strings:
+            continue
+        strings.append(string)
         string = string[2:][:-1]
         if string != unique_id: #to prevent doubling h1 ids if that id is linked to
             find = f'id="{string}"'
@@ -214,15 +218,16 @@ def _convert_links(html, unique_id, urls):
     return html
 
 def _make_internal(html, urls):
-    for row in urls:
-        if row["URL"] != "":
-            url = row["URL"]
+    completed = []
+    html = html.replace('/+questions', '+questions')
+    for row in urls: 
+        url = row["URL"]
+        if url != "" and row["Include"] not in [0, 2] and url not in completed:
             name = _get_name(url)
             html = html.replace('href="'+ url, 'href="#' + name)
-            
-    #	regex_pattern = ""
-    #	for row in urls:
-    # 	    reg_pattern += url + "|"
+            #html = html.replace('href="#' + name + "+questions", 'href="'+ url + "+questions")
+            completed.append(url)
+    html = html.replace('+questions', '/+questions')
     return html
 
 def _make_single_internals(html):

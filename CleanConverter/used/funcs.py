@@ -8,5 +8,4 @@ def _get_name(url):
     output = ""
     for c in name[1:]:
         output = c + output
-    #print(output[1:])
     return output[1:]

@@ -7,7 +7,7 @@ if __name__ == "__main__":
     from funcs import _get_name
 else:
     from used.funcs import _get_name
-logging.basicConfig(filename=os.path.join("used", "issues.log"), encoding='utf-8', level=logging.DEBUG, filemode="w")
+logging.basicConfig(filename=os.path.join("used", "issues.log"), level=logging.DEBUG, filemode="w")
 
 class IncludeChecker():
     def __init__(self):
@@ -57,9 +57,11 @@ def check_errors():
             continue
         did_log = depth_missing(row, line_num) or did_log #keeps did_log True
         did_log = missing_headers(row, line_num) or did_log #keeps did_log True
+        did_log = missing_url(row, line_num) or did_log #keeps did_log True
+
         include_checker.add_to_includes(row, line_num)
-    
-    did_log = include_checker.assert_include()
+
+    did_log = include_checker.assert_include()#keeps did_log True
     if did_log:
         print(f"issues logged to issues.log")
 
@@ -85,5 +87,13 @@ def missing_headers(row, num):
         logging.debug(f"({num}) Missing Header for: {name}")
         return True
     return False
+
+def missing_url(row, num):
+    if row["URL"] == "":
+        logging.debug(f"({num}) Missing Url")
+        return True
+    return False
+        
+
 if __name__ == "__main__":
     check_errors()
