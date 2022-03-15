@@ -3,29 +3,31 @@
     "new_html": true,
     "write_to_pdf": true,
     "input_csv": "kb_urls.csv",
-    "output_html": "output.html",
+    "output_html": "outputa.html",
     "output_pdf": "MariaDBServerKnowledgeBase.pdf",
     "number_of_rows": -1,
+    "quality": 1,
     "add_body": true,
     "add_contents": true,
     "add_depth": true,
+    "alert_on_pdf": true,
+    "alert_on_html": false,
     "prettify_html": false,
     "flatten_internal_contents": true,
     "min_sleep_time": 10,
-    "catch-OSError": true,
+    "catch-OSError": false,
     "page-break": false,
     "css-link": "",
     "path_to_app": "wkhtmltopdf.exe",
     "options": {
-        "disable-javascript": true,
+        "DPI": 100,
         "page-size": "A4",
+        "footer-font-size": 10,
         "margin-bottom": "1cm",
         "zoom": 1,
-        "DPI": 300,
-        "footer-font-size": 10,
         "footer-right": "[page]/[topage]",
         "encoding": "UTF-8",
-        "footer-line": ""
-
+        "footer-line": "",
+        "disable-javascript": true
     }
 }

@@ -22,6 +22,9 @@ check_errors()
 with open("config.json", "r") as file:
     config = json.loads(file.read())
 
+if config["alert_on_pdf"] or config["alert_on_html"]:
+    import used.notifications as notify
+
 #call modify_csv
 filepath = depth.modify_csv(config["input_csv"])
 
@@ -52,6 +55,8 @@ def main():
         write_to_pdf(html)
         time_taken = time.perf_counter() - start_time
         print(f"pdf generation took {format_time(time_taken)}")
+        if config["alert_on_pdf"]:
+            notify.notify_pdf(time_taken)
 def make_html():
     total_time = time.perf_counter()
     total_request_time = 0
@@ -130,6 +135,8 @@ def make_html():
     format_time = lambda s: f"{int(s // 3600)}h, {int((s % 3600) // 60)}m" if s >= 3600 else f"{int(s // 60)}m, {int(s % 60)}s" if s >= 60 else f"{round(s, 3)}s"
     generation_time = total_time_taken - total_request_time
     print(f"html generation took {format_time(generation_time)}")
+    if config["alert_on_html"]:
+        notify.notify_html(total_request_time, generation_time)
     if total_request_time > 0:
         print(f"html get requests took {format_time(total_time_taken - generation_time)}")
     return page
@@ -219,15 +226,16 @@ def _convert_links(html, unique_id, urls):
 
 def _make_internal(html, urls):
     completed = []
-    html = html.replace('/+questions', '+questions')
+    html = html.replace('/+quest', '+quest')
+    html = html.replace('/+attach', '+attach')
     for row in urls: 
         url = row["URL"]
-        if url != "" and row["Include"] not in [0, 2] and url not in completed:
+        if url != "" and row["Include"] not in ["0", "2"] and url not in completed:
             name = _get_name(url)
             html = html.replace('href="'+ url, 'href="#' + name)
             #html = html.replace('href="#' + name + "+questions", 'href="'+ url + "+questions")
             completed.append(url)
-    html = html.replace('+questions', '/+questions')
+    html = html.replace('+', '/+')
     return html
 
 def _make_single_internals(html):
@@ -246,7 +254,6 @@ def _get_starter_page():
 def _edit_contents(html):
     find = '<div class="table_of_contents'
     replace = '<div style="float: none;" class="table_of_contents'
-                    
     html = html.replace(find, replace)
     return html
 
@@ -282,10 +289,9 @@ def _add_css(string):
 
 def _prettify_html(html):
     print("prettifying html")
-    pretty_soup = BeautifulSoup(html, features = parser)
-    #pretty_soup = pretty_soup.prettify()
+    html = re.sub("\n +", "")
 
-    return str(pretty_soup)
+    return html
 
 def write_to_pdf(html):
     import pdfkit
@@ -294,6 +300,10 @@ def write_to_pdf(html):
     pdf_config = pdfkit.configuration(wkhtmltopdf = config["path_to_app"])
     pdf_file = config["output_pdf"]
     path = os.path.join("output", pdf_file)
+    
+    #affect quality
+    config["options"]["DPI"] = int(config["options"]["DPI"] * config["quality"])
+
 
     #for easy call
     pdfcall = lambda html, path, wk_config, pdf_options: pdfkit.from_string(html, path, configuration = wk_config, options = pdf_options)
