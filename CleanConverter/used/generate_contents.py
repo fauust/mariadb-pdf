@@ -36,6 +36,7 @@ class content_counter():
         text = f"{header}"
         if depth == 1:
             text = "Chapter " + text
+            a_style += " font-weight: bold;"
         self.content += f'<li style="{self.li_style}"><a href="#{name}" style="{a_style}">{text}</a></li>\n'
     
     def get_contents(self, depth):
@@ -58,9 +59,6 @@ def create_main_contents(ids):
     max_depth = find_max_depth(ids, get_depth)
     for header, name, depth_str in ids:
         depth = get_depth(depth_str)
-        #warn if depth is missing
-        #if depth == 0: print(f"depth missing for: {name}")
-
         #adding to main counter
         #adding to chapter counter if depth is in a certain range
         main.add_content(header, name, depth, max_depth)

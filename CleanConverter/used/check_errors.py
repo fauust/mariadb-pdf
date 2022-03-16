@@ -13,6 +13,7 @@ class IncludeChecker():
     def __init__(self):
         self.includes = {}
         self.line_nums = []
+    
     def assert_include(self):
         did_log = False
         for name, array in self.includes.items():
@@ -22,32 +23,27 @@ class IncludeChecker():
             if includes.count("1") > 1:
                 logging.debug(f'({str_line}) Duplicate Include 1 for: {name}')
                 did_log = True
-            if includes.count("1") == 0 and includes.count("3") > 0:
+            elif includes.count("1") == 0 and includes.count("3") > 0:
                 logging.debug(f'({str_line}) Missing Include 1 for: {name}')
                 did_log = True
             if includes.count("1") > 0 and includes.count("2") > 0:
                 logging.debug(f'({str_line}) Include 2 with Include 1: {name}')
                 did_log = True
         return did_log
+
     def add_to_includes(self, row, num):
+        name = "No-URL"
         if row["URL"] != "":
             name = _get_name(row["URL"])
-        else:
-            name = "placeholder"
+        
         if name not in self.includes:
             self.includes[name] = []
-        #self.line_nums.append(num)
-        self.includes[name].append(
-            (row["Include"], num)
-            )
+        self.includes[name].append((row["Include"], num))
 
-with open("config.json") as file:
-    config = json.loads(file.read())
-
-def check_errors():
+def check_errors(input_csv):
     did_log = False
     include_checker = IncludeChecker()
-    with open(config["input_csv"]) as file:
+    with open(input_csv) as file:
         reader = csv.DictReader(file)
         rows = list(reader)
     
