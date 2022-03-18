@@ -10,7 +10,7 @@ HEADER = config["Header"]
 class content_counter():
     prev_depth = 0
     header_style = f'font-size: {HEADER["font_size"]}px; text-align: center; margin-bottom: {HEADER["margin-bottom"]}px; float: none; clear: right;'
-    li_style = "margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"
+    li_style = "margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"
     content = ""
     scaling_levels = {}
     def __init__(self, header_txt, body_font, margin_left, font_scaling):
@@ -34,11 +34,13 @@ class content_counter():
         new_font_size = self.body_font# * scaling
         a_style = self.a_style.replace("{rep}", str(round(new_font_size, 1)))
         text = f"{header}"
+
         if depth == 1:
             text = "Chapter " + text
-        boldness = int(700 * (no_children/max_children))
-        a_style += f" font-weight: {boldness};"
-        self.content += f'<li style="{self.li_style}"><a href="#{name}" style="{a_style}">{text + " " + str(boldness)}</a></li>\n'
+            a_style += f" font-weight: bold"
+        #boldness = int(700 * (no_children/max_children))
+        #a_style += f" font-weight: {boldness};"
+        self.content += f'<li style="{self.li_style}"><a href="#{name}" style="{a_style}">{text}</a></li>\n'
     
     def get_contents(self, depth):
         "finishes html and return contents"
@@ -72,7 +74,7 @@ def depth_of_children(sindex, arr):
         if depth < prev_depth:
             break
         elif depth > prev_depth:
-            count += 1#depth - prev_depth
+            count += 1
             prev_depth = depth
 
     return count

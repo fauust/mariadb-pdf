@@ -7,11 +7,9 @@ def notify_html(r_time, g_time):
         timeout = 3
     )
 
-
 def notify_pdf(time):
     plyer.notification.notify(
         title = "PDF Complete",
         message = f"Time Taken: {time}",
         timeout = 3
     )
-

@@ -7,7 +7,7 @@ if __name__ == "__main__":
     from funcs import _get_name
 else:
     from used.funcs import _get_name
-logging.basicConfig(filename=os.path.join("used", "issues.log"), level=logging.DEBUG, filemode="w")
+logging.basicConfig(filename=os.path.join("output", "issues.log"), level=logging.DEBUG, filemode="w")
 
 class IncludeChecker():
     def __init__(self):
@@ -89,7 +89,7 @@ def missing_url(row, num):
         logging.debug(f"({num}) Missing Url")
         return True
     return False
-        
+    
 
 if __name__ == "__main__":
     check_errors()

@@ -23,10 +23,10 @@
 </style>
 <h1 class="front_page_header">MariaDB Server Documentation</h1>
 <br>
-<p class="front_page_small"><a href="https://mariadb.com/kb/en/documentation/">MariaDB Knowledge Base</a></p>
-<p class="front_page_small">For any errors please see <a href="https://mariadb.com/kb/en/mariadb-community-bug-reporting/">Bug Reporting</a></p>
+<p class="front_page_small"><a style="color: #150281;" href="https://mariadb.com/kb/en/documentation/">MariaDB Knowledge Base</a></p>
+<p class="front_page_small">For any errors please see <a style="color: #150281;" href="https://mariadb.com/kb/en/mariadb-community-bug-reporting/">Bug Reporting</a></p>
 
-<p class="front_page_small">Document generated on: 2022-03-16</p>
+<p class="front_page_small">Document generated on: 2022-03-18</p>
 
 <br/><br/><br/>
 
@@ -34,66 +34,66 @@
 "#mariadb-community-bug-reporting"--><div style = "page-break-after:always;"></div>
 
 <h1 class="col-md-8" style="font-size: 60px; text-align: center; margin-bottom: 60px; float: none; clear: right;">Chapter Contents</h1>
-<ol style="margin-left: 0.0em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#sql-statements-structure" style="color: #333333; text-decoration: none; font-size: 24px; font-weight: 700;">Chapter 1 SQL Statements and Structure 700</a></li>
-<ol style="margin-left: 0.0em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#sql-statements" style="color: #333333; text-decoration: none; font-size: 24px; font-weight: 525;">1.1 SQL Statements 525</a></li>
+<ol style="margin-left: 0.0em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#sql-statements-structure" style="color: #333333; text-decoration: none; font-size: 24px; font-weight: bold">Chapter 1 SQL Statements and Structure</a></li>
+<ol style="margin-left: 0.0em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#sql-statements" style="color: #333333; text-decoration: none; font-size: 24px;">1.1 SQL Statements</a></li>
 </ol></ol></ol></ol></ol><div style = "page-break-after:always;"></div>
 
 <h1 class="col-md-8" style="font-size: 60px; text-align: center; margin-bottom: 60px; float: none; clear: right;">Table of Contents</h1>
-<ol style="margin-left: -2.2em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#sql-statements-structure" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 700;">Chapter 1 SQL Statements and Structure 700</a></li>
-<ol style="margin-left: -2.2em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#sql-statements" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 525;">1.1 SQL Statements 525</a></li>
-<ol style="margin-left: -2.2em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#account-management-sql-commands" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 350;">1.1.1 
+<ol style="margin-left: -2.2em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#sql-statements-structure" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: bold">Chapter 1 SQL Statements and Structure</a></li>
+<ol style="margin-left: -2.2em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#sql-statements" style="color: #333333; text-decoration: none; font-size: 14px;">1.1 SQL Statements</a></li>
+<ol style="margin-left: -2.2em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#account-management-sql-commands" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1 
         Account Management SQL Commands
     
- 350</a></li>
-<ol style="margin-left: -2.2em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#create-user" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.1 CREATE USER 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-user" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.2 ALTER USER 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#drop-user" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.3 DROP USER 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#grant" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.4 GRANT 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#rename-user" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.5 RENAME USER 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#revoke" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.6 REVOKE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#set-password" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.7 SET PASSWORD 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#create-role" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.8 CREATE ROLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#drop-role" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.9 DROP ROLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#set-role" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.10 SET ROLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#set-default-role" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.11 SET DEFAULT ROLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#show-grants" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.12 SHOW GRANTS 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#show-create-user" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.1.13 SHOW CREATE USER 175</a></li>
-</ol><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#administrative-sql-statements" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 700;">1.1.2 Administrative SQL Statements 700</a></li>
-<ol style="margin-left: -2.2em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#table-statements" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 525;">1.1.2.1 
+</a></li>
+<ol style="margin-left: -2.2em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#create-user" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.1 CREATE USER</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-user" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.2 ALTER USER</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#drop-user" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.3 DROP USER</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#grant" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.4 GRANT</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#rename-user" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.5 RENAME USER</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#revoke" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.6 REVOKE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#set-password" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.7 SET PASSWORD</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#create-role" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.8 CREATE ROLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#drop-role" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.9 DROP ROLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#set-role" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.10 SET ROLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#set-default-role" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.11 SET DEFAULT ROLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#show-grants" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.12 SHOW GRANTS</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#show-create-user" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.1.13 SHOW CREATE USER</a></li>
+</ol><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#administrative-sql-statements" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2 Administrative SQL Statements</a></li>
+<ol style="margin-left: -2.2em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#table-statements" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1 
         Table Statements
     
- 525</a></li>
-<ol style="margin-left: -2.2em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 350;">1.1.2.1.1 ALTER 350</a></li>
-<ol style="margin-left: -2.2em;"><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.1 ALTER TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-database" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.2 ALTER DATABASE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-event" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.3 ALTER EVENT 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-function" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.4 ALTER FUNCTION 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-logfile-group" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.5 ALTER LOGFILE GROUP 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-procedure" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.6 ALTER PROCEDURE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-sequence" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.7 ALTER SEQUENCE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-server" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.8 ALTER SERVER 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-tablespace" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.9 ALTER TABLESPACE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-user" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.1.10 ALTER USER 175</a></li>
-</ol><li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#alter-view" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.2 ALTER VIEW 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#analyze-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.3 ANALYZE TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#check-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.4 CHECK TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#check-view" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.5 CHECK VIEW 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#checksum-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.6 CHECKSUM TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#create-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.7 CREATE TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#delete" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.8 DELETE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#drop-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.9 DROP TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#installing-system-tables-mysql_install_db" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.10 Installing System Tables (mysql_install_db) 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#mysqlcheck" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.11 mysqlcheck 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#optimize-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.12 OPTIMIZE TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#rename-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.13 RENAME TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#repair-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.14 REPAIR TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#repair-view" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.15 REPAIR VIEW 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#replace" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.16 REPLACE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#show-columns" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.17 SHOW COLUMNS 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#show-create-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.18 SHOW CREATE TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#show-index" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.19 SHOW INDEX 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#truncate-table" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.20 TRUNCATE TABLE 175</a></li>
-<li style="margin-top: 1px; margin-bottom: 1px; list-style-type: none; clear: right;"><a href="#update" style="color: #333333; text-decoration: none; font-size: 14px; font-weight: 175;">1.1.2.1.21 UPDATE 175</a></li>
+</a></li>
+<ol style="margin-left: -2.2em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1 ALTER</a></li>
+<ol style="margin-left: -2.2em;"><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.1 ALTER TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-database" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.2 ALTER DATABASE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-event" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.3 ALTER EVENT</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-function" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.4 ALTER FUNCTION</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-logfile-group" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.5 ALTER LOGFILE GROUP</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-procedure" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.6 ALTER PROCEDURE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-sequence" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.7 ALTER SEQUENCE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-server" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.8 ALTER SERVER</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-tablespace" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.9 ALTER TABLESPACE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-user" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.1.10 ALTER USER</a></li>
+</ol><li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#alter-view" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.2 ALTER VIEW</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#analyze-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.3 ANALYZE TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#check-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.4 CHECK TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#check-view" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.5 CHECK VIEW</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#checksum-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.6 CHECKSUM TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#create-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.7 CREATE TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#delete" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.8 DELETE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#drop-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.9 DROP TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#installing-system-tables-mysql_install_db" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.10 Installing System Tables (mysql_install_db)</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#mysqlcheck" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.11 mysqlcheck</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#optimize-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.12 OPTIMIZE TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#rename-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.13 RENAME TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#repair-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.14 REPAIR TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#repair-view" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.15 REPAIR VIEW</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#replace" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.16 REPLACE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#show-columns" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.17 SHOW COLUMNS</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#show-create-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.18 SHOW CREATE TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#show-index" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.19 SHOW INDEX</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#truncate-table" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.20 TRUNCATE TABLE</a></li>
+<li style="margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"><a href="#update" style="color: #333333; text-decoration: none; font-size: 14px;">1.1.2.1.21 UPDATE</a></li>
 </ol></ol></ol></ol></ol><div style = "page-break-after:always;"></div>
 
 <h1 class="col-md-8" style="margin-top:0px;font-weight: bold;" id="sql-statements-structure">Chapter 1 SQL Statements and Structure</h1>

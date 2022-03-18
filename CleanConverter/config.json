@@ -17,25 +17,11 @@
     "alert_on_html": false,
     "colour_external_links": true,
     "external_link_colour": "#150281",
-    "prettify_html": false,
     "flatten_internal_contents": true,
     "min_sleep_time": 10,
     "catch-OSError": false,
     "page-break": true,
     "css-link": "",
-    "path_to_app": "wkhtmltopdf.exe",
-    "options": {
-        "DPI": 120,
-        "page-size": "A4",
-        "footer-font-size": 9,
-        "margin-top": "0.6cm",
-        "margin-bottom": "0.6cm",
-        "margin-right": "0.6cm",
-        "margin-left": "0.6cm",
-        "zoom": 1,
-        "footer-right": "[page]/[topage]",
-        "encoding": "UTF-8",
-        "footer-line": "",
-        "disable-javascript": false
-    }
+    "parser": "html5lib",
+    "path_to_app": "used\\wkhtmltopdf.exe"
 }
