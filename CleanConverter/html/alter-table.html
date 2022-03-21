@@ -256,7 +256,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-01-22 10:07">1 month, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-03-14 09:44">4 days, 3 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -787,12 +787,10 @@ table.</p>
 </pre><p>This statement has the following semantics:</p>
 <p>This statement is equivalent to the following:</p>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">...</span> <span class="k">LOCK</span><span class="o">=</span><span class="k">NONE</span><span class="p">;</span>
-</pre><p>See the <a href="#lock">LOCK</a> alter specification for more information.
-&lt;&lt;/product&gt;&gt;</p>
+</pre><p>See the <a href="#lock">LOCK</a> alter specification for more information.</p>
 <p>This statement is equivalent to the following:</p>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="p">...</span> <span class="n">ALGORITHM</span><span class="o">=</span><span class="n">INPLACE</span><span class="p">;</span>
-</pre><p>See the <a href="#algorithm">ALGORITHM</a> alter specification for more information.
-&lt;&lt;/product&gt;&gt;</p>
+</pre><p>See the <a href="#algorithm">ALGORITHM</a> alter specification for more information.</p>
 <h2 class="anchored_heading" id="waitnowait">WAIT/NOWAIT</h2>
 <div class="mariadb_from_10_3_0 mariadb from_10_3_0 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1030-release-notes/">10.3.0</a></h5><p>Set the lock wait timeout. See <a href="/kb/en/wait-and-nowait/">WAIT and NOWAIT</a>.</p>
 </div><h2 class="anchored_heading" id="if-exists">IF EXISTS</h2>
@@ -811,8 +809,7 @@ MODIFY COLUMN    [IF EXISTS]
 DROP INDEX       [IF EXISTS]</p></pre><p>When <code>IF EXISTS</code> and <code>IF NOT EXISTS</code> are used in clauses, queries will not
 report errors when the condition is triggered for that clause. A warning with
 the same message text will be issued and the ALTER will move on to the next
-clause in the statement (or end if finished).
-&lt;&lt;/product&gt;&gt;</p>
+clause in the statement (or end if finished).</p>
 <div class="mariadb_from_10_5_2 mariadb from_10_5_2 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1052-release-notes/">10.5.2</a></h5><p>If this is directive is used after <code>ALTER ... TABLE</code>, one will not get an error if the table doesn't exist.</p>
 </div><h2 class="anchored_heading" id="column-definitions">Column Definitions</h2>
 <p>See <a href="/kb/en/create-table/#column-definitions">CREATE TABLE: Column Definitions</a> for information about column definitions.</p>

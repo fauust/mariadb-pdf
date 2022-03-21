@@ -26,7 +26,11 @@ def make_html(temp, csv):
     urls = [row["URL"] for row in rows if row["Include"] != "0"]
     last_requested = 0
     existing_files = os.listdir("html")
-
+    information = {
+        "rows": 0,
+        "request": "",
+        "sleeping_for": 0
+    }
     list_of_ids = []
     for index, row in enumerate(rows):
         if row["Include"] == "": continue

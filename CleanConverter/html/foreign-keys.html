@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-11-15 13:55">3 months, 4 weeks ago</span></dd>
+<span class="datetime" title="2022-03-18 12:02">5 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -442,9 +442,9 @@ reference_option:
     RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
 </pre><p>The <code>symbol</code> clause, if specified, is used in error messages and must be unique in the database.</p>
 <p>The columns in the child table must be an index, or the leftmost part of an index. Index prefixes are not supported (thus, <a href="/kb/en/text/">TEXT</a> and <a href="/kb/en/blob/">BLOB</a> columns cannot be used as foreign keys). If MariaDB automatically creates an index for the foreign key (because it does not exist and is not explicitly created), its name will be <code>index_name</code>.</p>
-<p>The referenced columns must be a PRIMARY KEY or a UNIQUE index.</p>
-<p>Both the foreign key columns and the referenced columns can be <a href="/kb/en/virtual-columns/">PERSISTENT</a> columns. However, the ON UPDATE CASCADE, ON UPDATE SET NULL, ON DELETE SET NULL clauses are not allowed in this case.</p>
+<p>The referenced columns in the parent table must be a an index or a prefix of an index.</p>
 <p>The foreign key columns and the referenced columns must be of the same type, or similar types. For integer types, the size and sign must also be the same.</p>
+<p>Both the foreign key columns and the referenced columns can be <a href="/kb/en/virtual-columns/">PERSISTENT</a> columns. However, the ON UPDATE CASCADE, ON UPDATE SET NULL, ON DELETE SET NULL clauses are not allowed in this case.</p>
 <p>The parent and the child table must use the same storage engine, and must not be <code>TEMPORARY</code> or partitioned tables. They can be the same table.</p>
 <h2 class="anchored_heading" id="constraints">Constraints</h2>
 <p>If a foreign keys exists, each row in the child table must match a row in the parent table. Multiple child rows can match the same parent row. A child row <em>matches</em> a parent row if all its foreign key values are identical to a parent row's values in the parent table. However, if at least one of the foreign key values is <code>NULL</code>, the row has no parents, but it is still allowed.</p>

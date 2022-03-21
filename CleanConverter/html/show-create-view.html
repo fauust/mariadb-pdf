@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Show the CREATE VIEW statement that created a view" />
+    <meta property="og:description" content="Show the CREATE VIEW statement that created a view." />
 
-    <meta name="description" content="Show the CREATE VIEW statement that created a view" />
+    <meta name="description" content="Show the CREATE VIEW statement that created a view." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -256,7 +256,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-09-24 02:42">4 years, 5 months ago</span></dd>
+<span class="datetime" title="2022-03-16 08:00">2 days, 5 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -421,9 +421,9 @@
         <h2 class="anchored_heading" id="syntax">Syntax</h2>
 <pre class="fixed">SHOW CREATE VIEW view_name
 </pre><h2 class="anchored_heading" id="description">Description</h2>
-<p>This statement shows a <code class="highlight fixed" style="white-space:pre-wrap"><a href="/kb/en/create-view/">CREATE VIEW</a></code> statement that creates the given <a href="/kb/en/views/">view</a>, as well as the character set used by the connection when the view was created. This statement
+<p>This statement shows a <a href="/kb/en/create-view/">CREATE VIEW</a> statement that creates the given <a href="/kb/en/views/">view</a>, as well as the character set used by the connection when the view was created. This statement
 also works with views.</p>
-<p><code class="highlight fixed" style="white-space:pre-wrap">SHOW CREATE VIEW</code> quotes table, column and stored function names according to the value of the <code><a href="/kb/en/server-system-variables/#sql_quote_show_create">sql_quote_show_create</a></code> server system variable.</p>
+<p><code class="highlight fixed" style="white-space:pre-wrap">SHOW CREATE VIEW</code> quotes table, column and stored function names according to the value of the <a href="/kb/en/server-system-variables/#sql_quote_show_create">sql_quote_show_create</a> server system variable.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
 <pre class="fixed">SHOW CREATE VIEW example\G
 *************************** 1. row ***************************
@@ -441,7 +441,12 @@ collation_connection: cp850_general_ci
 RITY DEFINER VIEW example AS (select t.id AS id,t.s AS s from t)
 character_set_client: cp850
 collation_connection: cp850_general_ci
-</pre>
+</pre><h2 class="anchored_heading" id="grants">Grants</h2>
+<p>To be able to see a view, you need to have the <a href="/kb/en/grant/#table-privileges">SHOW VIEW</a> and the <a href="/kb/en/grant/#table-privileges">SELECT</a> privilege on the view:</p>
+<pre class="fixed">GRANT SHOW VIEW,SELECT ON test_database.test_view TO 'test'@'localhost';
+</pre><h2 class="anchored_heading" id="see-also">See Also</h2>
+<ul start="1"><li><a href="/kb/en/grant/">Grant privileges to tables, views etc</a></li></ul>
+
     </div>
 
 
