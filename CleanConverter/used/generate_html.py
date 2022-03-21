@@ -181,8 +181,8 @@ def _request_and_write(url, filename):
 
 def _convert_links(html, unique_id, urls):
     #make absolute
-    html = html.replace('href="/kb/en', 'href="' + base_url + "/kb/en")
-    html = html.replace('src="/kb/en', 'src="' + base_url + "/kb/en")
+    html = html.replace('href="/', 'href="' + base_url + "/")
+    html = html.replace('src="/', 'src="' + base_url + "/")
 
     html = _make_unique(html, unique_id)
     html = _make_internal(html, urls)
