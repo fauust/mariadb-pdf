@@ -25,13 +25,18 @@ def make_html(temp, csv):
     rows = _get_rows(csv)
     urls = [row["URL"] for row in rows if row["Include"] != "0"]
     last_requested = 0
-    existing_files = os.listdir("html")
     information = {
         "rows": 0,
         "request": "",
         "sleeping_for": 0
     }
     list_of_ids = []
+    existing_files = os.listdir("html")
+    #approx_request_time, request_num = _get_request_time(list(existing_files))
+    #if approx_request_time != 0:
+    #    print(f"requests will take {approx_request_time} with {request_num} requests")
+    #else:
+    #    print(f"no required html get requests")
     for index, row in enumerate(rows):
         if row["Include"] == "": continue
         include = int(row["Include"])
@@ -60,6 +65,7 @@ def make_html(temp, csv):
             name = _get_name(url)
             filename = name + ".html"
             if filename not in existing_files or config["request_existing_files"]:
+                existing_files.append(filename) # to prevent duplication
                 time_since = time.perf_counter() - last_requested
                 if config["min_sleep_time"] - time_since > 0:
                     print("\nsleeping for " + str(config["min_sleep_time"] - time_since))
@@ -99,13 +105,15 @@ def make_html(temp, csv):
     
     return page, total_request_time
 
+def _get_request_time():
+    existing_files = os.g
 
 def _get_rows(filepath):
     with open(filepath) as file:
         contents = list(csv.DictReader(file))
     if config["number_of_rows"] > 0:
         contents = contents[:config["number_of_rows"]]
-    return contents
+    return [row for row in contents if row["URL"] != ""]
 
 def _strip(html, name, row):
     def remove(content, *args, **kwargs): #helper method

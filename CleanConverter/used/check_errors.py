@@ -61,6 +61,8 @@ def check_errors(input_csv):
     if did_log:
         print(f"issues logged to issues.log")
 
+
+
 def depth_missing(row, num):
     if row["Depth"].strip() == "":
         if row["URL"] != "":

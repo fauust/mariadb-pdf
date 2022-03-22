@@ -5,7 +5,7 @@
     "input_csv": "kb_urls.csv",
     "output_html": "output.html",
     "output_pdf": "MariaDBServerKnowledgeBase.pdf",
-    "number_of_rows": 50,
+    "number_of_rows": -1,
     "page-break-length": 350,
     "quality": 1,
     "add_body": true,

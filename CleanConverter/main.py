@@ -48,5 +48,4 @@ def main():
             notify_pdf(time_taken)
 
 
-
 main()
