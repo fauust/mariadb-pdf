@@ -3,9 +3,7 @@
         "chapter_font_size": 24,
         "table_font_size": 16,
         "chapter_indent": 2.5,
-        "table_indent": 0.3,
-        "chapter_scaling": 0,
-        "table_scaling": 0,
+        "table_indent": 0.5,
         "Increase_table_chapters": 0.5,
         "font_colour": "222222"
     },

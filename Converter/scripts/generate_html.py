@@ -129,12 +129,13 @@ def strip_html(html, name, row, config, mark_headers):
     #find main content
     content = soup.find("section", {"id": "content"})
     content.h1.attrs["id"] = name #identify this page
-    if config["add_depth"]:
-        string = row["Depth"] + " " + content.h1.text
-        header = string
-        if mark_headers:
-            string = "H3Dr" + string[:-4]
-        content.h1.string = string
+    
+    string = row["Depth"] + " " + content.h1.text
+    header = string
+    if mark_headers:
+        string = "H3Dr" + string[:-4]
+    content.h1.string = string
+
     text = ""
     if config["add_body"]:
         remove(content, "div", {"id": "content_disclaimer"})

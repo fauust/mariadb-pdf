@@ -11,16 +11,17 @@
 ### modules:
     bs4
     pdfkit (if "write_to_pdf" is true)
-    plyer (if either alert_on_html or alert_on_pdf)
+    plyer (if "notify" is true)
     pdfminer.six (if "toc_pagenumbers" is true)
 ### Applications:
     if "write_to_pdf" is true:
     You need to have wkhtmltopdf in the "path_to_app" set in the config
 
 
-## Config Options
+## Config
+### Main Config
 ```yaml
-"request_html_files": bool #indicates whether or not to re-request all html files
+"request_existing_files": bool #indicates whether or not to re-request all html files
 
 "new_html": bool #indicates whether to re-use the previous output html file for pdf generation or to create a new one
 
@@ -32,25 +33,23 @@
 
 "output_pdf": string #name of output html file
 
-"page-break-length": int #the number of characters in each webpages syntax block is greater than this int, it will start the webpage on a new page in the pdf
-
-"quality" float #affects DPI (1 keeps DPI equal)
-
 "number_of_rows": int #number of rows to look through from the csv, -1 to do all rows
 
-"add_chapter_contents_page": bool # whether or not to add the smaller chapter contents page  -- TODO --
+"toc_pagenumbers" bool # whether or not to add pagenumbers to the TOC
 
-"add_contents_page": bool # whether or not to add a main contents page
+"read_pdf": bool #TEMPORARY - indicates whether or not to read the pdf for header info and rewrite the txt
 
-"add_depth": bool # whether or not to add depth numbers before each header
+"add_contents": bool # whether or not to add a main contents page
 
 "logging": bool # whether or not to store csv issues in the issues.log file in output
 
+"page-break-length": int #the number of characters in each webpages syntax block is greater than this int, it will start the webpage on a new page in the pdf
+
+"page-break": bool #whether or not to use page-break-length
+
 "remove_background_media": bool # removes the file icons in some pages
 
-"alert_on_pdf": bool # alerts with a notification upon completing pdf
-
-"alert_on_html": bool # alerts with a notification upon completing pdf
+"notify": bool # sends a little popup upon completion
 
 "external_link_colour": string # modifies the external link colour
 
@@ -60,10 +59,39 @@
 
 "catch-OSError": bool #indicates whether or not to catch the error raised by pdf (currently always raises an error)
 
-"page-break": bool #indicates whether or not to end the page before each new pdf file (probably sucks with the new headers - haven't tested)
-
-"css-link": string #if you want to specify css link (leave blank for it to find and fill in automatically)
-
 "parser": string # library to use for Bs4
 
 "path_to_exe": string #the path to the wkhtmltopdf application
+```
+### Contents Config
+```yaml
+"Body" {
+    "chapter_font_size": int,
+    "table_font_size": int,
+    "chapter_indent": float,
+    "table_indent": float,
+    "Increase_table_chapters": float,
+    "font_colour": string
+}
+"Header" {
+    "font_size": int,
+    "table": string,
+    "chapters": string,
+    "margin-bottom": int
+}
+```
+### Wkhtmltopdf.json
+```yaml
+"DPI": int # affects quality of text rendering and filesize
+"page-size": string 
+"footer-font-size": int
+"margin-top": string # margin-top for each page of the pdf
+"margin-bottom": string # margin-bottom for each page of the pdf
+"margin-right": string # margin-right for each page of the pdf
+"margin-left": string # margin-left for each page of the pdf
+"zoom": int
+"footer-right": string #places text at footer-right of each page (can use [page] to indicate current page and [topage] to indicate total pages)
+"encoding": string
+"footer-line": "" #leave empty for a line above the margin-bottom
+"disable-javascript": bool
+"enable-local-file-access": bool # for using Cover.jpg

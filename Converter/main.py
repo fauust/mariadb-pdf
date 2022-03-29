@@ -29,7 +29,7 @@ def main():
     #print time
     formatted_time = format_time(startstring = "Total Time Taken: ", time = get_time() - start_time)
     print(formatted_time)
-    notify(formatted_time)
+    if config["notify"]: notify(formatted_time)
 
 if __name__ == "__main__":
     main()
