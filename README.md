@@ -4,6 +4,7 @@
     uses a csv containing urls and other info as a base for pdf creation
     Run Script.py, change settings for creation in the config.json
     (Requires Converter/temp to be created)
+    (Requires Converter/static_HTML/cover_page.html to be edited to your path to Cover.jpg (Temporary solution)))
 ## Dependencies:
 ### Python Version: 
     python 3.6 and above
