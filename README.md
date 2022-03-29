@@ -11,10 +11,12 @@
 ### modules:
     bs4
     pdfkit (if "write_to_pdf" is true)
-
+    plyer (if either alert_on_html or alert_on_pdf)
+    pdfminer.six (if "toc_pagenumbers" is true)
 ### Applications:
     if "write_to_pdf" is true:
-    You need to have wkhtmltopdf in your local directory
+    You need to have wkhtmltopdf in the "path_to_app" set in the config
+
 
 ## Config Options
 ```yaml
@@ -30,6 +32,10 @@
 
 "output_pdf": string #name of output html file
 
+"page-break-length": int #the number of characters in each webpages syntax block is greater than this int, it will start the webpage on a new page in the pdf
+
+"quality" float #affects DPI (1 keeps DPI equal)
+
 "number_of_rows": int #number of rows to look through from the csv, -1 to do all rows
 
 "add_chapter_contents_page": bool # whether or not to add the smaller chapter contents page  -- TODO --
@@ -38,7 +44,15 @@
 
 "add_depth": bool # whether or not to add depth numbers before each header
 
-"prettify_html": bool #indicates whether or not to prettify to output html -- BREAKS SOME FORMATTING, KEEP FALSE
+"logging": bool # whether or not to store csv issues in the issues.log file in output
+
+"remove_background_media": bool # removes the file icons in some pages
+
+"alert_on_pdf": bool # alerts with a notification upon completing pdf
+
+"alert_on_html": bool # alerts with a notification upon completing pdf
+
+"external_link_colour": string # modifies the external link colour
 
 "flatten_internal_contents": bool #whether or not to push each page's internal contents to the left (false sometimes leads to text overlap)
 
@@ -50,7 +64,6 @@
 
 "css-link": string #if you want to specify css link (leave blank for it to find and fill in automatically)
 
-"path_to_exe": string #the path to the wkhtmltopdf application
+"parser": string # library to use for Bs4
 
-"options": object #the flags to give to wkhtmltopdf
-```
+"path_to_exe": string #the path to the wkhtmltopdf application
