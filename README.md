@@ -3,7 +3,7 @@
 ## Usage
     uses a csv containing urls and other info as a base for pdf creation
     Run Script.py, change settings for creation in the config.json
-
+    (Requires Converter/temp to be created)
 ## Dependencies:
 ### Python Version: 
     python 3.6 and above
