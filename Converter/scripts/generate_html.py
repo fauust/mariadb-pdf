@@ -57,10 +57,10 @@ def get_full_html(config, mark_headers):
             #insert to html
             insert_id    = f'id="{name}"'
             insert_class = 'class="col-md-8"'
-            insert_style = 'style="margin-top: 0;"'
+            insert_style = '"'
 
             if row["Include"] == "2":
-                header_tag = f'\n<h1 {insert_class} {insert_style} {insert_id}>{insert_text}</h1>\n'
+                header_tag = f'\n<h1 {insert_class} {insert_id} {insert_style}>{insert_text}</h1>\n'
             else:
                 header_tag = f'\n<h1 {insert_class} {insert_style}>{insert_text}</h1>\n'
             
@@ -109,7 +109,11 @@ def modify_full_html(html, contents_data, urls, config, header_data):
 
     #merge into final html
     full_html = boiler + cover_page + second_page + html + plate
-    full_html = colour_external_links(full_html, config)
+    if config["colour_external_links"]:
+        full_html = colour_external_links(full_html, config)
+    if config["mark_external_links"]:
+        full_html = mark_external_links(full_html, config)
+
 
     return full_html
 
@@ -149,22 +153,27 @@ def strip_html(html, name, row, config, mark_headers):
     
         text = str(content)
         text = text.replace('class="product_title"', "")
-    text = text.replace('<h2 class="anchored_heading"', '<h2 class="anchored_heading" style="margin-top: 50px;"')
+        
+        #text = text.replace('<h2 class="anchored_heading"', '<h2 class="anchored_heading" style="margin-top: 0;"')
 
-    if config["page-break"]: 
-        length = config["page-break-length"]
-        page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
-        text = re.sub(r"<h3>Contents</h3>", "<h3>Contents</h3>" + page_break, text)
+        #puts a gap above each header
+        text = text.replace('<h1 ', f'<h1 style="margin-top: {config["space_above_webpage"]};" ')
 
-        if length == -1:
-            text += page_break
-        else: #add a page break if length of text in syntax is longer that set in config
-            syntax = content.find("h2", text = "Syntax")
-            if syntax != None:
-                block = content.find("pre", {"class": "fixed"})
-                if block != None:
-                    if len(block.text.strip()) >= config["page-break-length"]:
-                        text = page_break + text
+
+        if config["page-break"]: 
+            length = config["page-break-length"]
+            page_break = '\n<div style = "display:block; clear:both; page-break-after:always;"></div>\n'
+            text = re.sub(r"<h3>Contents</h3>", "<h3>Contents</h3>" + page_break, text)
+
+            if length == -1:
+                text += page_break
+            else: #add a page break if length of text in syntax is longer that set in config
+                syntax = content.find("h2", text = "Syntax")
+                if syntax != None:
+                    block = content.find("pre", {"class": "fixed"})
+                    if block != None:
+                        if len(block.text.strip()) >= config["page-break-length"]:
+                            text = page_break + text
             
     return text, header
 
@@ -217,6 +226,12 @@ def make_internal(html, urls):
 def colour_external_links(html, config):
     colour = config["external_link_colour"]
     output = html.replace('href="http', f'style="color: {colour};" href="http')
+    return output
+
+def mark_external_links(html, config):
+    return html
+    colour = config["external_link_colour"]
+    output = html.replace('href="http', f'class: link_mark;" href="http')
     return output
 
 def flatten_subcontents(html):

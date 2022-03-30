@@ -1,4 +1,3 @@
-import json
 import os
 import csv
 import logging
@@ -50,6 +49,7 @@ def debug_csv(input_csv):
     with open(filepath) as file:
         reader = csv.DictReader(file)
         rows = list(reader)
+    
     for index, row in enumerate(rows):
         line_num = index + 2
         if row["Include"].strip() == "0" or row["Include"].strip() == "":

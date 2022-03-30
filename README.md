@@ -44,6 +44,8 @@
 
 "logging": bool # whether or not to store csv issues in the issues.log file in output
 
+"space_above_webpage": string # amount of space above each new webpage
+
 "page-break-length": int #the number of characters in each webpages syntax block is greater than this int, it will start the webpage on a new page in the pdf
 
 "page-break": bool #whether or not to use page-break-length
@@ -71,7 +73,6 @@
     "table_font_size": int,
     "chapter_indent": float,
     "table_indent": float,
-    "Increase_table_chapters": float,
     "font_colour": string
 }
 "Header" {

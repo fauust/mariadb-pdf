@@ -4,8 +4,7 @@
         "table_font_size": 16,
         "chapter_indent": 2.5,
         "table_indent": 0.5,
-        "Increase_table_chapters": 0.5,
-        "font_colour": "222222"
+        "font_colour": "#222222"
     },
     "Header": {
         "font_size": 60,

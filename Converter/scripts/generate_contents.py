@@ -13,13 +13,13 @@ class content_counter():
     header_style = f'font-size: {HEADER["font_size"]}px; text-align: center; margin-bottom: {HEADER["margin-bottom"]}px; float: none; clear: right;'
     li_style = "margin-top: 0px; margin-bottom: 0px; list-style-type: none; clear: right;"
     content = ""
-    def __init__(self, header_txt, body_font, margin_left):
+    def __init__(self, header_txt, body_font, margin_left, font_colour="#333333"):
         self.prev_depth = 0
         self.body_font = body_font
         self.margin_left = margin_left
 
         self.header = f'\n<h1 class="col-md-8" style="{self.header_style}">{header_txt}</h1>\n'
-        self.a_style ="color: #333333; text-decoration: none; font-size: {rep}px;"
+        self.a_style =f"color: {font_colour}; text-decoration: none;" "font-size: {rep}px;"
     
     def add_content(self, header, name, depth, header_data):
         """nests li elements based on depth and adds that element to content"""
@@ -55,9 +55,15 @@ class content_counter():
     
 def create_main_contents(ids, header_data = None):
     main = content_counter(
-        header_txt = HEADER["table"], body_font = BODY["table_font_size"], margin_left=BODY["table_indent"]-2.5)
+        header_txt = HEADER["table"],
+        body_font = BODY["table_font_size"],
+        margin_left=BODY["table_indent"]-2.5,
+        font_colour = BODY["font_colour"])
     chapters = content_counter(
-        header_txt = HEADER["chapters"], body_font = BODY["chapter_font_size"], margin_left=BODY["chapter_indent"]-2.5)
+        header_txt = HEADER["chapters"],
+        body_font = BODY["chapter_font_size"],
+        margin_left=BODY["chapter_indent"]-2.5,
+        font_colour = BODY["font_colour"])
     
     #lambda function to get depth int from Fstr
     get_depth = lambda depth_str: depth_str.count(".") + 1 if depth_str != "" else 0
