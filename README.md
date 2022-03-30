@@ -1,26 +1,34 @@
 # MariaDB Pdf-Creator
 
 ## Usage
-    uses a csv containing urls and other info as a base for pdf creation
-    Run Script.py, change settings for creation in the config.json
-    (Requires Converter/temp to be created)
-    (Requires Converter/static_HTML/cover_page.html to be edited to your path to Cover.jpg (Temporary solution)))
+
+- uses a csv containing urls and other info as a base for pdf creation
+- Run Script.py, change settings for creation in the config.json
+- (Requires Converter/temp to be created)
+- (Requires Converter/static_HTML/cover_page.html to be edited to your path to Cover.jpg (Temporary solution)))
+
 ## Dependencies:
+
 ### Python Version: 
+
     python 3.6 and above
 
 ### modules:
+
     bs4
     pdfkit (if "write_to_pdf" is true)
     plyer (if "notify" is true)
     pdfminer.six (if "toc_pagenumbers" is true)
 ### Applications:
+
     if "write_to_pdf" is true:
     You need to have wkhtmltopdf in the "path_to_app" set in the config
 
 
 ## Config
+
 ### Main Config
+
 ```yaml
 "request_existing_files": bool #indicates whether or not to re-request all html files
 
@@ -71,6 +79,7 @@
 "path_to_exe": string #the path to the wkhtmltopdf application
 ```
 ### Contents Config
+
 ```yaml
 "Body" {
     "chapter_font_size": int,
@@ -87,6 +96,7 @@
 }
 ```
 ### Wkhtmltopdf.json
+
 ```yaml
 "DPI": int # affects quality of text rendering and filesize
 "page-size": string 
