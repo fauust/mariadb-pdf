@@ -36,7 +36,7 @@
 
 "number_of_rows": int #number of rows to look through from the csv, -1 to do all rows
 
-"toc_pagenumbers" bool # whether or not to add pagenumbers to the TOC
+"toc_pagenumbers": bool # whether or not to add pagenumbers to the TOC
 
 "read_pdf": bool #TEMPORARY - indicates whether or not to read the pdf for header info and rewrite the txt
 
@@ -53,6 +53,10 @@
 "remove_background_media": bool # removes the file icons in some pages
 
 "notify": bool # sends a little popup upon completion
+
+"mark_external_links": bool # puts a little icon next to each external link
+
+"colour_external_links": bool # whether or not to alter the colour of external links
 
 "external_link_colour": string # modifies the external link colour
 
