@@ -11,18 +11,18 @@
 
 ### Python Version: 
 
-    python 3.6 and above
+- python 3.6 and above
 
 ### modules:
 
-    bs4
-    pdfkit (if "write_to_pdf" is true)
-    plyer (if "notify" is true)
-    pdfminer.six (if "toc_pagenumbers" is true)
+- bs4
+- pdfkit (if "write_to_pdf" is true)
+- plyer (if "notify" is true)
+- pdfminer.six (if "toc_pagenumbers" is true)
 ### Applications:
 
-    if "write_to_pdf" is true:
-    You need to have wkhtmltopdf in the "path_to_app" set in the config
+- if "write_to_pdf" is true:
+- You need to have wkhtmltopdf in the "path_to_app" set in the config
 
 
 ## Config
