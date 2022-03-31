@@ -1,11 +1,10 @@
-# MariaDB Pdf-Creator
+# MariaDB Server Knowledge Base
 
 ## Usage
 
 - uses a csv containing urls and other info as a base for pdf creation
 - Run Script.py, change settings for creation in the config.json
 - (Requires Converter/temp to be created)
-- (Requires Converter/static_HTML/cover_page.html to be edited to your path to Cover.jpg (Temporary solution)))
 
 ## Dependencies:
 
@@ -19,6 +18,7 @@
 - pdfkit (if "write_to_pdf" is true)
 - plyer (if "notify" is true)
 - pdfminer.six (if "toc_pagenumbers" is true)
+
 ### Applications:
 
 - if "write_to_pdf" is true:
@@ -62,7 +62,7 @@
 
 "notify": bool # sends a little popup upon completion
 
-"mark_external_links": bool # puts a little icon next to each external link
+"mark_external_links": bool # puts a little icon next to each external link (Currently stuck to "true")
 
 "colour_external_links": bool # whether or not to alter the colour of external links
 
@@ -78,6 +78,7 @@
 
 "path_to_exe": string #the path to the wkhtmltopdf application
 ```
+
 ### Contents Config
 
 ```yaml
@@ -95,6 +96,7 @@
     "margin-bottom": int
 }
 ```
+
 ### Wkhtmltopdf.json
 
 ```yaml

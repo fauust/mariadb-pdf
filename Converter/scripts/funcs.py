@@ -42,6 +42,7 @@ def set_logging():
     logging.getLogger("requests").setLevel(logging.ERROR)
     logging.getLogger('pdfminer').setLevel(logging.ERROR)
 
+
 #def func
 get_time = time.perf_counter
 new_page = '<div style = "page-break-after:always;"></div>\n'

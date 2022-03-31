@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 from scripts.funcs import read_csv, strip_name, new_page, format_time
 from scripts.generate_contents import create_main_contents
-
+from scripts.edit_cover_page import edit_cover_page
 
 
 def generate_html(filename, config, mark_headers = False, header_data = None):
@@ -111,9 +111,6 @@ def modify_full_html(html, contents_data, urls, config, header_data):
     full_html = boiler + cover_page + second_page + html + plate
     if config["colour_external_links"]:
         full_html = colour_external_links(full_html, config)
-    if config["mark_external_links"]:
-        full_html = mark_external_links(full_html, config)
-
 
     return full_html
 
@@ -228,11 +225,6 @@ def colour_external_links(html, config):
     output = html.replace('href="http', f'style="color: {colour};" href="http')
     return output
 
-def mark_external_links(html, config):
-    return html
-    colour = config["external_link_colour"]
-    output = html.replace('href="http', f'class: link_mark;" href="http')
-    return output
 
 def flatten_subcontents(html):
     find = '<div class="table_of_contents'
@@ -271,10 +263,16 @@ def get_boilerplate():
 
     return boiler, plate
 
+def get_cover_image():
+    image_path = os.path.join(os.getcwd(), "temp", "Cover.jpg")
+    string = f'<img style="margin-top: 250;" src="{image_path}">'
+    return string
+
 def get_title_pages():
-    with open(os.path.join("static_HTML", "cover_page.html"), encoding = "utf-8") as file:
-        cover_page = file.read() + new_page
-    
+    edit_cover_page()
+    #with open(os.path.join("static_HTML", "cover_page.html"), encoding = "utf-8") as file:
+    #    cover_page = file.read() + new_page
+    cover_page = get_cover_image() + new_page
     with open(os.path.join("static_HTML", "second_page.html"), encoding="utf-8") as file:
         second_page = file.read() + new_page
     
