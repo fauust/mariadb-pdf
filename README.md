@@ -44,11 +44,15 @@
 
 "number_of_rows": int #number of rows to look through from the csv, -1 to do all rows
 
-"toc_pagenumbers": bool # whether or not to add pagenumbers to the TOC
+"add_contents": bool # whether or not to add a main contents page
+
+"add_body" # adds the body of the pdf (everything excluding the contents)
+
+"edit_cover_image": bool # edit the cover for this month's date
 
 "read_pdf": bool #TEMPORARY - indicates whether or not to read the pdf for header info and rewrite the txt
 
-"add_contents": bool # whether or not to add a main contents page
+"toc_pagenumbers": bool # whether or not to add pagenumbers to the TOC
 
 "logging": bool # whether or not to store csv issues in the issues.log file in output
 

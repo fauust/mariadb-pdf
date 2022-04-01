@@ -42,6 +42,9 @@ def set_logging():
     logging.getLogger("requests").setLevel(logging.ERROR)
     logging.getLogger('pdfminer').setLevel(logging.ERROR)
 
+def create_temp():
+    if "temp" not in os.listdir():
+        os.mkdir("temp")
 
 #def func
 get_time = time.perf_counter

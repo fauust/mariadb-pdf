@@ -4,7 +4,7 @@ from scripts.debug_csv import debug_csv
 from scripts.ReadPDF.getpdfdata import get_pdf_data
 from scripts.notifications import notify
 
-from scripts.funcs import get_main_config, get_time, format_time, set_logging
+from scripts.funcs import get_main_config, get_time, format_time, set_logging, create_temp
 
 
 def main():
@@ -15,6 +15,7 @@ def main():
     #debug
     print()
     set_logging()
+    create_temp()
     debug_csv(config["input_csv"])
 
     #get header data

@@ -29,7 +29,7 @@ def get_pdf_data(pdfname, config):
     #time info
     time_taken = time.perf_counter() - start_time
     formatted_time = format_time(time_taken)
-    print(f"pdf reading took {formatted_time}")
+    print(f"pdf reading took {formatted_time}\n")
     return headers
 
 if __name__ == "__main__":

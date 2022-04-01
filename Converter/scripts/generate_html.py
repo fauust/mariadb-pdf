@@ -88,7 +88,7 @@ def get_full_html(config, mark_headers):
             full_html += html
         sys.stdout.write(f"\rrun through {index + 1}/{len(rows)} rows")
         sys.stdout.flush()
-    print("\n") #to clear for 2 lines
+    print() #to clear for 2 lines
     
     return full_html, contents_data, urls, total_request_time
 
@@ -104,7 +104,7 @@ def modify_full_html(html, contents_data, urls, config, header_data):
 
     #add extra information
     boiler, plate = get_boilerplate()
-    cover_page, second_page = get_title_pages()
+    cover_page, second_page = get_title_pages(config)
     second_page = make_internal(second_page, urls)
 
     #merge into final html
@@ -268,8 +268,8 @@ def get_cover_image():
     string = f'<img style="margin-top: 250;" src="{image_path}">'
     return string
 
-def get_title_pages():
-    edit_cover_page()
+def get_title_pages(config):
+    edit_cover_page(config)
     #with open(os.path.join("static_HTML", "cover_page.html"), encoding = "utf-8") as file:
     #    cover_page = file.read() + new_page
     cover_page = get_cover_image() + new_page
