@@ -5,6 +5,8 @@ import time
 import logging
 import csv
 
+from datetime import date
+
 def strip_name(url):
     lru = ""
     for c in url:
@@ -45,6 +47,12 @@ def set_logging():
 def create_temp():
     if "temp" not in os.listdir():
         os.mkdir("temp")
+
+def get_date(tformat = "%Y-%m"):
+    today = date.today()
+    string = today.strftime(tformat)
+
+    return string
 
 #def func
 get_time = time.perf_counter

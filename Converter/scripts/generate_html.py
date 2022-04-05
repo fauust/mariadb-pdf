@@ -7,9 +7,8 @@ import re
 from datetime import date
 from bs4 import BeautifulSoup
 
-from scripts.funcs import read_csv, strip_name, new_page, format_time
+from scripts.funcs import read_csv, strip_name, new_page, format_time, get_date
 from scripts.generate_contents import create_main_contents
-from scripts.edit_cover_page import edit_cover_page
 
 
 def generate_html(filename, config, mark_headers = False, header_data = None):
@@ -264,14 +263,12 @@ def get_boilerplate():
     return boiler, plate
 
 def get_cover_image():
-    image_path = os.path.join(os.getcwd(), "temp", "Cover.jpg")
+    date = get_date()
+    image_path = os.path.join(os.getcwd(), "cover_images", f"{date}.png")
     string = f'<img style="margin-top: 250;" src="{image_path}">'
     return string
 
 def get_title_pages(config):
-    edit_cover_page(config)
-    #with open(os.path.join("static_HTML", "cover_page.html"), encoding = "utf-8") as file:
-    #    cover_page = file.read() + new_page
     cover_page = get_cover_image() + new_page
     with open(os.path.join("static_HTML", "second_page.html"), encoding="utf-8") as file:
         second_page = file.read() + new_page

@@ -1,7 +1,10 @@
 import os
-import csv
+import csv 
 import logging
 import re
+import json
+import sys
+
 if __name__ == "__main__":
     from funcs import strip_name
     from depth_to_numbers import modify_csv
@@ -9,7 +12,7 @@ else:
     from scripts.funcs import strip_name
     from scripts.depth_to_numbers import modify_csv
 
-logging.basicConfig(filename=os.path.join("..", "csv_debug.log"), level=logging.DEBUG, filemode="w")
+logging.basicConfig(filename=os.path.join("csv_debug.log"), level=logging.DEBUG, filemode="w")
 
 class IncludeChecker():
     def __init__(self):
@@ -31,6 +34,7 @@ class IncludeChecker():
             if includes.count("1") > 0 and includes.count("2") > 0:
                 logging.debug(f'({str_line}) Include 2 with Include 1: {name}')
                 did_log = True
+
         return did_log
 
     def add_to_includes(self, row, num):
@@ -49,7 +53,6 @@ def debug_csv(input_csv):
     with open(filepath) as file:
         reader = csv.DictReader(file)
         rows = list(reader)
-    
     for index, row in enumerate(rows):
         line_num = index + 2
         if row["Include"].strip() == "0" or row["Include"].strip() == "":
@@ -58,14 +61,51 @@ def debug_csv(input_csv):
         did_log = missing_headers(row, line_num) or did_log #keeps did_log True
         did_log = missing_url(row, line_num) or did_log #keeps did_log True
 
+        did_log = correct_license(row, line_num) or did_log
+
         include_checker.add_to_includes(row, line_num)
 
-    did_log = include_checker.assert_include()#keeps did_log True
+    did_log = include_checker.assert_include() or did_log#keeps did_log True
     if did_log:
         print(f"issues logged to issues.log")
 
 
+def correct_license(row, linenum):
+    if row["Include"] in ["0", "2", "3"] or row["URL"].strip() == "":
+        return False
 
+    correct_licenses = ["GPLv2 fill_help_tables.sql", "CC BY-SA / Gnu FDL", "GPLv2", ""]
+    #correct_licenses = [""]
+    #sys.stdout.write(f"\rrun through {linenum + 1} rows")
+    #sys.stdout.flush()
+
+    name = strip_name(row["URL"])
+    filename = f'{name}.html'
+    filepath = os.path.join("scraped_html", filename)
+
+    with open(filepath, "r", encoding="utf-8") as file:
+        content = file.read()
+
+    license  = find_license(content)
+
+    if license not in correct_licenses:
+        logging.debug(f'({linenum}) Incorrect License ("{license}") for {name}')
+        return True
+    return False
+
+def find_license(html):
+    index = html.find("License")
+
+    after_license = html[index:] # find position of license
+
+    a_tag_start = after_license.find("<a")
+    a_tag_end = after_license.find("</a>")
+    a_tag = after_license[a_tag_start:a_tag_end]
+
+    end_of_styling = a_tag.find(">")
+    a = a_tag[end_of_styling+1:]
+
+    return a
 def depth_missing(row, num):
     if row["Depth"].strip() == "":
         if row["URL"] != "":
@@ -94,7 +134,6 @@ def missing_url(row, num):
         logging.debug(f"({num}) Missing Url")
         return True
     return False
-    
 
 if __name__ == "__main__":
     debug_csv("kb_urls.csv")
