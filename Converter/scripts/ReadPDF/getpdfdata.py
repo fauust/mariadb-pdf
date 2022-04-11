@@ -18,7 +18,7 @@ def get_pdf_data(pdfname, config):
         text = clean_string(text)
         with open(ospath("temp", "raw.txt"), "w", encoding="utf-8") as file: file.write(text)
     else:
-        with open(ospath("etmp", "raw.txt"), "r", encoding="utf-8") as file:
+        with open(ospath("temp", "raw.txt"), "r", encoding="utf-8") as file:
             text = file.read()
 
     pages = seperate_pages(text)
