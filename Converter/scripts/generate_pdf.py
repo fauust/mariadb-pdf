@@ -6,7 +6,9 @@ import time
 from scripts.funcs import format_time
 
 def generate_pdf(content, filename, config, mark_pages=False):
-    print("\nmaking_pdf")
+    if not config["new_pdf"]:
+        return
+    print("making_pdf")
     start_time = time.perf_counter()
 
     with open(os.path.join("config", "wkhtmltopdf.json")) as file:

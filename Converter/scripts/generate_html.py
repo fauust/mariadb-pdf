@@ -12,6 +12,12 @@ from scripts.generate_contents import create_main_contents
 
 
 def generate_html(filename, config, mark_headers = False, header_data = None):
+    if not config["new_html"]:
+        fpath = os.path.join("output", config["output_html"])
+        with open(fpath, encoding="utf-8") as file:
+            html = file.read()
+        return html
+
     #time info
     print("generating html")
     start_time = time.perf_counter()
@@ -31,7 +37,7 @@ def generate_html(filename, config, mark_headers = False, header_data = None):
 
     if total_request_time > 2:
         print("html get requests took {request_time}")
-    print(f"html generation took {generation_time}")
+    print(f"html generation took {generation_time}\n")
     return html
 
 def get_full_html(config, mark_headers):

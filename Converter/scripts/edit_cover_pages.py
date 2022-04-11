@@ -1,7 +1,6 @@
 import os
 from PIL import Image
 
-
 def edit_covers():
     files = os.listdir("cover_images")
     if "transform_to_png.py" in files:
@@ -15,8 +14,8 @@ def edit_covers():
 
 
 def convert(filename):
-      file =  Image.open(filename)
-      file.resize((1144, 1600))
+      file = Image.open(filename)
+      file = file.resize((1144, 1600))
 
       namefile = filename[:-3]+"png"
       file.save(namefile)

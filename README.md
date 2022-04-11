@@ -14,8 +14,10 @@
 
 ### modules:
 
+- requests
 - bs4
-- pdfkit (if "write_to_pdf" is true)
+- pdfkit
+- Pillow
 - plyer (if "notify" is true)
 - pdfminer.six (if "toc_pagenumbers" is true)
 

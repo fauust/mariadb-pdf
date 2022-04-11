@@ -13,7 +13,7 @@ def get_pdf_data(pdfname, config):
     pdfpath = os.path.join("output", pdfname)
     print("getting pdf data for", pdfpath)
     #write txt
-    if config["toc_pagenumbers"] and config["read_pdf"]:
+    if config["toc_pagenumbers"]:
         text = get_text(pdfpath)
         text = clean_string(text)
         with open(ospath("temp", "raw.txt"), "w", encoding="utf-8") as file: file.write(text)

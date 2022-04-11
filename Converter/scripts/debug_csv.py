@@ -2,8 +2,6 @@ import os
 import csv 
 import logging
 import re
-import json
-import sys
 
 if __name__ == "__main__":
     from funcs import strip_name
@@ -46,8 +44,9 @@ class IncludeChecker():
             self.includes[name] = []
         self.includes[name].append((row["Include"], num))
 
-def debug_csv(input_csv):
-    filepath = modify_csv(input_csv)
+def debug_csv(filepath, config):
+    if not config["debug_csv"]:
+        return
     did_log = False
     include_checker = IncludeChecker()
     with open(filepath) as file:
