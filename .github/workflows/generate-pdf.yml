@@ -1,0 +1,47 @@
+---
+name: MariaDB PDF
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  generatePDF-linux:
+    name: Generate PDF (linux)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install requirements
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt
+          # could be installed directly from GitHub if needed with something
+          # like:
+          # curl "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-rc/wkhtmltox_0.12.6-0.20200605.30.rc.faa06fa.bionic_amd64.deb" >Converter/wkhtmltopdf
+          sudo apt-get update && sudo apt-get -y install wkhtmltopdf
+      - name: Generate PDF
+        run: |
+          cd Converter
+          # make sure we use the correct PATH for wkhtmltopdf
+          sed -i s'#wkhtmltopdf.exe#/usr/bin/wkhtmltopdf#' config/main.json
+          # this should not be necessary (handled by program)
+          mkdir temp
+          python3 main.py
+
+  # generatePDF-windows:
+  #   name: Generate PDF (windows)
+  #   runs-on: windows-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Install requirements
+  #       run: |
+  #         python3 -m pip install --upgrade pip
+  #         python3 -m pip install -r requirements.txt
+  #         curl.exe "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-rc/wkhtmltox-0.12.6-0.20200605.30.rc.faa06fa.msvc2015-win64.exe" >Converter/wkhtmltopdf.exe
+  #     - name: Generate PDF
+  #       run: |
+  #         cd Converter
+  #         mkdir temp
+  #         python3 main.py
