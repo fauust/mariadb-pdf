@@ -7,6 +7,7 @@ from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from pdfminer.pdfparser import PDFParser
 
+  
 def get_text(pdfpath):
     output_string = StringIO()
     with open(pdfpath, 'rb') as in_file:

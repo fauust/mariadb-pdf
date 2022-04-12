@@ -14,6 +14,7 @@
 
 ### modules:
 
+- html5lib
 - requests
 - bs4
 - pdfkit

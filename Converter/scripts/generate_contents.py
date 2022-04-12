@@ -70,10 +70,10 @@ def create_main_contents(ids, header_data = None):
     #main loop going through each id and giving the information to the counter
     arr = [(header, name, get_depth(depth_str)) for header, name, depth_str in ids]
     for index, (header, name, depth) in enumerate(arr):
+        i_header = None
         if header_data != None:
             if index < len(header_data):
                 i_header = header_data[index]
-        else: i_header = None
 
         main.add_content(header, name, depth, header_data = i_header)
         range_of_depths = [1, 2]
