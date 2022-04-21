@@ -1,9 +1,9 @@
 {
     "Body": {
-        "chapter_font_size": 24,
-        "table_font_size": 16,
+        "chapter_font_size": 18,
+        "table_font_size": 12,
         "chapter_indent": 2.5,
-        "table_indent": 0.5,
+        "table_indent": 0.2,
         "font_colour": "#222222"
     },
     "Header": {

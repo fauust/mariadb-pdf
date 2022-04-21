@@ -33,7 +33,9 @@
 ### Main Config
 
 ```yaml
-"request_existing_files": bool #indicates whether or not to re-request all html files
+"redownload_all_files": #indicates whether or not to re-requested all existing files
+
+"redownload_files": bool #indicates whether or not to re-request the html files in re-download.txt
 
 "new_html": bool #indicates whether to re-use the previous output html file for pdf generation or to create a new one
 

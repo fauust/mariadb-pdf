@@ -38,7 +38,7 @@ class content_counter():
         pgnum_style = a_style + " float: right; background: #fff"
         if header_data != None:
             the_header, page_num = header_data
-        else: page_num = " "
+        else: page_num = "x"
 
         self.content += f"""
             <li style="{self.li_style}">
@@ -69,11 +69,14 @@ def create_main_contents(ids, header_data = None):
     get_depth = lambda depth_str: depth_str.count(".") + 1 if depth_str != "" else 0
     #main loop going through each id and giving the information to the counter
     arr = [(header, name, get_depth(depth_str)) for header, name, depth_str in ids]
+    if header_data != None:
+        print(f"length of header_data {header_data}")
     for index, (header, name, depth) in enumerate(arr):
         i_header = None
         if header_data != None:
             if index < len(header_data):
                 i_header = header_data[index]
+
 
         main.add_content(header, name, depth, header_data = i_header)
         range_of_depths = [1, 2]

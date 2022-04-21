@@ -1,0 +1,2 @@
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): mariadb.com:443
+DEBUG:urllib3.connectionpool:https://mariadb.com:443 "GET /kb/en/check-table/ HTTP/1.1" 200 None

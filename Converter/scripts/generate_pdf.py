@@ -18,6 +18,9 @@ def generate_pdf(content, filename, config, mark_pages=False):
     pdf_config = pdfkit.configuration(wkhtmltopdf = config["path_to_app"])
     path = os.path.join("output", filename)
     #for easy call
+
+    cover = os.path.join("static_HTML", "cover.html")
+
     pdfcall = lambda content, path, wk_config, pdf_options: pdfkit.from_string(content, path, configuration = wk_config, options = pdf_options)
     args = content, path, pdf_config, pdf_options
     if config["catch-OSError"]:

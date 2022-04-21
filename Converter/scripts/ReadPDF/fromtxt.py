@@ -24,11 +24,14 @@ def seperate_pages(contents):
 
 def assign_headers(pages):
     all_headers = []
+    header_count = 0
     for content, pagenum in pages:
         #print(len(content), pagenum)
+        header_count += content.count("H3Dr")
         headers = re.findall(r"H3Dr([\d.\w ]+)", content)
         headers = [(header, pagenum) for header in headers]
         all_headers += headers
+    print(f"found {header_count} headers")
     
     #print(all_headers)
     return all_headers

@@ -6,7 +6,7 @@ from scripts.notifications import notify
 
 from scripts.edit_cover_pages import edit_covers
 from scripts.depth_to_numbers import modify_csv
-from scripts.funcs import get_main_config, get_time, format_time, set_logging, create_temp
+from scripts.funcs import get_main_config, get_time, format_time, set_logging, create_temp, delete_redownloads
 
 
 def main():
@@ -18,13 +18,13 @@ def main():
     print()
     set_logging()
     create_temp()
-    edit_covers()
+    delete_redownloads()
 
     if config["toc_pagenumbers"] and config["add_body"]:
         #get header data
         html = generate_html(filename = "headers.html", config = config, mark_headers=True)
         generate_pdf(content = html, filename = "headers.pdf", config = config, mark_pages=True)
-        header_data = get_pdf_data( "headers.pdf", config)
+        header_data = get_pdf_data("headers.pdf", config)
 
         #write final html and pdf
         html = generate_html(filename = config["output_html"], config = config, header_data = header_data)
@@ -36,7 +36,6 @@ def main():
 
     #csv debug
     debug_csv(filepath, config)
-
     #print time
     formatted_time = format_time(startstring = "Total Time Taken: ", time = get_time() - start_time)    
     print(f"Total Time Taken: {formatted_time}")

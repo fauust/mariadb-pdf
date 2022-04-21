@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-04-02 19:04">11 years, 12 months ago</span></dd>
+<span class="datetime" title="2010-04-02 19:04">12 years ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-14 09:44">2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-20 10:02">7 hours, 27 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -777,7 +777,7 @@ table.</p>
 <p>If another connection is using the table, a <a href="/kb/en/metadata-locking/">metadata lock</a> is active, and this statement will wait until the lock is released. This is also true for non-transactional tables.</p>
 <p>When adding a <code>UNIQUE</code> index on a column (or a set of columns) which have duplicated values, an error will be produced and the statement will be stopped. To suppress the error and force the creation of <code>UNIQUE</code> indexes, discarding duplicates, the <a href="/kb/en/ignore/">IGNORE</a> option can be specified. This can be useful if a column (or a set of columns) should be UNIQUE but it contains duplicate values; however, this technique provides no control on which rows are preserved and which are deleted. Also, note that <code>IGNORE</code> is accepted but ignored in <code>ALTER TABLE ... EXCHANGE PARTITION</code> statements.</p>
 <p>This statement can also be used to rename a table. For details see <a href="/kb/en/rename-table/">RENAME TABLE</a>.</p>
-<p>When an index is created, the storage engine may use a configurable buffer in the process. Incrementing the buffer speeds up the index creation. <a href="/kb/en/aria/">Aria</a> and <a href="/kb/en/myisam/">MyISAM</a> allocate a buffer whose size is defined by <a href="/kb/en/aria-server-system-variables/#aria_sort_buffer_size">aria_sort_buffer_size</a> or <a href="/kb/en/myisam-server-system-variables/#myisam_sort_buffer_size">myisam_sort_buffer_size</a>, also used for <a href="/kb/en/repair-table/">REPAIR TABLE</a>. <a href="/kb/en/innodb/">InnoDB</a> allocates three buffers whose size is defined by <a href="/kb/en/innodb-system-variables/#innodb_sort_buffer_size">innodb_sort_buffer_size</a>.</p>
+<p>When an index is created, the storage engine may use a configurable buffer in the process. Incrementing the buffer speeds up the index creation. <a href="/kb/en/aria/">Aria</a> and <a href="/kb/en/myisam/">MyISAM</a> allocate a buffer whose size is defined by <a href="/kb/en/aria-system-variables/#aria_sort_buffer_size">aria_sort_buffer_size</a> or <a href="/kb/en/myisam-system-variables/#myisam_sort_buffer_size">myisam_sort_buffer_size</a>, also used for <a href="/kb/en/repair-table/">REPAIR TABLE</a>. <a href="/kb/en/innodb/">InnoDB</a> allocates three buffers whose size is defined by <a href="/kb/en/innodb-system-variables/#innodb_sort_buffer_size">innodb_sort_buffer_size</a>.</p>
 <h2 class="anchored_heading" id="privileges">Privileges</h2>
 <p>Executing the <code>ALTER TABLE</code> statement generally requires at least the <a href="/kb/en/grant/#table-privileges">ALTER</a> privilege for the table or the database..</p>
 <p>If you are renaming a table, then it also requires the <a href="/kb/en/grant/#table-privileges">DROP</a>, <a href="/kb/en/grant/#table-privileges">CREATE</a> and <a href="/kb/en/grant/#table-privileges">INSERT</a> privileges for the table or the database as well.</p>
@@ -823,7 +823,7 @@ clause in the statement (or end if finished).</p>
 <h2 class="anchored_heading" id="character-sets-and-collations">Character Sets and Collations</h2>
 <pre class="highlight fixed"><p>CONVERT TO CHARACTER SET charset_name [COLLATE collation_name]
 [DEFAULT] CHARACTER SET [=] charset_name
-[DEFAULT] COLLATE [=] collation_name</p></pre><p>See <a href="/kb/en/setting-character-sets-and-collations/">Setting Character Sets and Collations</a> for details on setting the <a href="/kb/en/data-types-character-sets-and-collations/">character sets and collations</a>.</p>
+[DEFAULT] COLLATE [=] collation_name</p></pre><p>See <a href="/kb/en/setting-character-sets-and-collations/">Setting Character Sets and Collations</a> for details on setting the <a href="/kb/en/character-sets/">character sets and collations</a>.</p>
 <h2 class="anchored_heading" id="alter-specifications">Alter Specifications</h2>
 <h3 class="anchored_heading" id="table-options">Table Options</h3>
 <p>See <a href="/kb/en/create-table/#table-options">CREATE TABLE: Table Options</a> for information about table options.</p>
@@ -1052,7 +1052,7 @@ DROP CONSTRAINT constraint_name;
 <p>When <code>ALGORITHM=INPLACE</code> is set, the underlying storage engine uses optimizations to perform the operation while avoiding the table copy and rebuild. However, <code>INPLACE</code> is a bit of a misnomer, since some operations may still require the table to be rebuilt for some storage engines. Regardless, several operations can be performed without a full copy of the table for some storage engines.</p>
 <p>A more accurate name would have been <code>ALGORITHM=ENGINE</code>, where <code>ENGINE</code> refers to an "engine-specific" algorithm.</p>
 <p>If an <a href="/kb/en/alter-table/">ALTER TABLE</a> operation supports <code>ALGORITHM=INPLACE</code>, then it can be performed using optimizations by the underlying storage engine, but it may rebuilt.</p>
-<p>See <a href="/kb/en/innodb-online-ddl-operations-with-algorithminplace/">InnoDB Online DDL Operations with ALGORITHM=INPLACE</a> for more.</p>
+<p>See <a href="/kb/en/innodb-online-ddl-operations-with-the-inplace-alter-algorithm/">InnoDB Online DDL Operations with ALGORITHM=INPLACE</a> for more.</p>
 <h4 class="anchored_heading" id="algorithmnocopy">ALGORITHM=NOCOPY</h4>
 <p><code>ALGORITHM=NOCOPY</code> was introduced in <a href="/kb/en/mariadb-1037-release-notes/">MariaDB 10.3.7</a>.</p>
 <p><code>ALGORITHM=INPLACE</code> can sometimes be surprisingly slow in instances where it has to rebuild the clustered index, because when the clustered index has to be rebuilt, the whole table has to be rebuilt. <code>ALGORITHM=NOCOPY</code> was introduced as a way to avoid this. </p>

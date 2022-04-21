@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-04-08 22:03">11 years, 11 months ago</span></dd>
+<span class="datetime" title="2010-04-08 22:03">12 years ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-11 09:24">2 weeks, 4 days ago</span></dd>
+<span class="datetime" title="2022-04-06 21:48">6 days ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -4698,7 +4698,7 @@ This system variable's value cannot be changed after the datadir has been initia
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="max_password_errors"><code>max_password_errors</code></h4>
-<ul start="1"><li><strong>Description:</strong> The maximum permitted number of failed connection attempts due to an invalid password before a user is blocked from further connections. <a href="/kb/en/flush/">FLUSH_PRIVILEGES</a> will permit the user to connect again. This limit is ignored for users with the <a href="/kb/en/grant/#super">SUPER</a> privilege or, from <a href="/kb/en/mariadb-1052-release-notes/">MariaDB 10.5.2</a>, the <a href="/kb/en/grant/#connection-admin">CONNECTION ADMIN</a> privilege.
+<ul start="1"><li><strong>Description:</strong> The maximum permitted number of failed connection attempts due to an invalid password before a user is blocked from further connections. <a href="/kb/en/flush/">FLUSH_PRIVILEGES</a> will permit the user to connect again. This limit is ignored for users with the <a href="/kb/en/grant/#super">SUPER</a> privilege or, from <a href="/kb/en/mariadb-1052-release-notes/">MariaDB 10.5.2</a>, the <a href="/kb/en/grant/#connection-admin">CONNECTION ADMIN</a> privilege. The maximum also doesn't apply to users with a hostname of localhost, 127.0.0.1 or ::1.
 </li><li><strong>Commandline:</strong> <code class="fixed" style="white-space:pre-wrap">--max-password-errors=#</code>
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Dynamic:</strong> Yes
@@ -4978,7 +4978,7 @@ Maximum simultaneous connections permitted for each user account.  When set to <
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="old_mode"><code>old_mode</code></h4>
-<ul start="1"><li><strong>Description:</strong> Used for getting MariaDB to emulate behavior from an old version of MySQL or MariaDB. See <a href="/kb/en/old_mode/">OLD Mode</a>. Will be used to replace the <a href="#old">old</a> variable over time. 
+<ul start="1"><li><strong>Description:</strong> Used for getting MariaDB to emulate behavior from an old version of MySQL or MariaDB. See <a href="/kb/en/old_mode/">OLD Mode</a>. Fully replaces the <a href="#old">old</a> variable from <a href="/kb/en/what-is-mariadb-109/">MariaDB 10.9</a>. 
 </li><li><strong>Commandline:</strong> <code class="fixed" style="white-space:pre-wrap">--old-mode</code>
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Dynamic:</strong> Yes

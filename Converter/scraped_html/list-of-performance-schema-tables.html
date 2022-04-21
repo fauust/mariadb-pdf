@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="List and short description of all performance_schema tables" />
+    <meta property="og:description" content="List and short description of all performance_schema tables." />
 
-    <meta name="description" content="List and short description of all performance_schema tables" />
+    <meta name="description" content="List and short description of all performance_schema tables." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -263,12 +263,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-09-12 19:09">8 years, 6 months ago</span></dd>
+<span class="datetime" title="2013-09-12 19:09">8 years, 7 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-11-08 15:09">4 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-13 16:17">3 days, 5 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -418,7 +418,7 @@
 <tr><td><code><a href="/kb/en/performance-schema-events_statements_summary_by_account_by_event_name-table/">events_statements_summary_by_account_by_event_name</a></code></td><td>Summarized statement events per account and event name.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-events_statements_summary_by_digest-table/">events_statements_summary_by_digest</a></code></td><td>Summarized statement events by scheme and digest.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-events_statements_summary_by_host_by_event_name-table/">events_statements_summary_by_host_by_event_name</a></code></td><td>Summarized statement events by host and event name.</td></tr>
-<tr><td><code><a href="/kb/en/performance-schema-events_statements_summary_by_program-table/">events_statements_summary_by_program</a></code></td><td></td></tr>
+<tr><td><code><a href="/kb/en/performance-schema-events_statements_summary_by_program-table/">events_statements_summary_by_program</a></code></td><td>Events for a particular stored program.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-events_statements_summary_by_thread_by_event_name-table/">events_statements_summary_by_thread_by_event_name</a></code></td><td>Summarized statement events by thread and event name.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-events_statements_summary_by_user_by_event_name-table/">events_statements_summary_by_user_by_event_name</a></code></td><td>Summarized statement events by user and event name.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-events_statements_summary_global_by_event_name-table/">events_statements_summary_global_by_event_name</a></code></td><td>Summarized statement events by event name.</td></tr>
@@ -472,11 +472,16 @@
 <tr><td><code><a href="/kb/en/performance-schema-socket_instances-table/">socket_instances</a></code></td><td>Active connections.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-socket_summary_by_event_name-table/">socket_summary_by_event_name</a></code></td><td>Timer and byte count statistics by socket instrument.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-socket_summary_by_instance-table/">socket_summary_by_instance</a></code></td><td>Timer and byte count statistics by socket instance.</td></tr>
+<tr><td><code><a href="/kb/en/performance-schema-status_by_account-table/">status_by_account</a></code></td><td>Status variable info by host/user account.</td></tr>
+<tr><td><code><a href="/kb/en/performance-schema-status_by_host-table/">status_by_host</a></code></td><td>Status variable info by host.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-status_by_thread-table/">status_by_thread</a></code></td><td>Status variable info about active foreground threads.</td></tr>
+<tr><td><code><a href="/kb/en/performance-schema-status_by_user-table/">status_by_user</a></code></td><td>Status variable info by user.</td></tr>
+<tr><td><code><a href="/kb/en/performance-schema-table_handles-table/">table_handles</a></code></td><td>Table lock information.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-table_io_waits_summary_by_index_usage-table/">table_io_waits_summary_by_index_usage</a></code></td><td>Aggregate table I/O wait events by index.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-table_io_waits_summary_by_table-table/">table_io_waits_summary_by_table</a></code></td><td>Aggregate table I/O wait events by table.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-table_lock_waits_summary_by_table-table/">table_lock_waits_summary_by_table</a></code></td><td>Aggregate table lock wait events by table.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-threads-table/">threads</a></code></td><td>Server thread information.</td></tr>
+<tr><td><code><a href="/kb/en/performance-schema-user_variables_by_thread-table/">user_variables_by_thread</a></code></td><td><a href="/kb/en/user-defined-variables/">User-defined variables</a> by thread.</td></tr>
 <tr><td><code><a href="/kb/en/performance-schema-users-table/">users</a></code></td><td>Connection statistics by user.</td></tr>
 </table>
 </div>
@@ -1188,9 +1193,45 @@
             
                 
                     <li>
+                        <a href="/kb/en/performance-schema-status_by_account-table/">
+                            
+                            Performance Schema status_by_account Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/performance-schema-status_by_host-table/">
+                            
+                            Performance Schema status_by_host Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
                         <a href="/kb/en/performance-schema-status_by_thread-table/">
                             
                             Performance Schema status_by_thread Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/performance-schema-status_by_user-table/">
+                            
+                            Performance Schema status_by_user Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/performance-schema-table_handles-table/">
+                            
+                            Performance Schema table_handles Table
                         </a>
                     </li>
                 
@@ -1236,6 +1277,15 @@
                         <a href="/kb/en/performance-schema-users-table/">
                             
                             Performance Schema users Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/performance-schema-user_variables_by_thread-table/">
+                            
+                            Performance Schema user_variables_by_thread Table
                         </a>
                     </li>
                 

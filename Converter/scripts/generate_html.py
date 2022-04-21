@@ -10,6 +10,9 @@ from bs4 import BeautifulSoup
 from scripts.funcs import read_csv, strip_name, new_page, format_time, get_date
 from scripts.generate_contents import create_main_contents
 
+from scripts.waiter import Waiter
+
+WAITER = Waiter(10)
 
 def generate_html(filename, config, mark_headers = False, header_data = None):
     if not config["new_html"]:
@@ -22,8 +25,8 @@ def generate_html(filename, config, mark_headers = False, header_data = None):
     print("generating html")
     start_time = time.perf_counter()
     #get_full_html
-    html, contents_data, urls, total_request_time = get_full_html(config, mark_headers)
-    html = modify_full_html(html, contents_data, urls, config, header_data)
+    html, contents_data, urls, slugs, total_request_time = get_full_html(config, mark_headers)
+    html = modify_full_html(html, contents_data, urls, slugs, config, header_data)
 
     path = os.path.join("output", filename)
     with open(path, "w", encoding="utf-8") as file:
@@ -36,7 +39,7 @@ def generate_html(filename, config, mark_headers = False, header_data = None):
     request_time = format_time(total_request_time)
 
     if total_request_time > 2:
-        print("html get requests took {request_time}")
+        print(f"html get requests took {request_time}")
     print(f"html generation took {generation_time}\n")
     return html
 
@@ -44,8 +47,8 @@ def get_full_html(config, mark_headers):
     #variables
     rows = read_csv(config)
     urls = [row["URL"] for row in rows if row["Include"] != "0"]
+    slugs = "" # TODO
     total_request_time = 0
-    last_requested = time.perf_counter()
     contents_data = []
     existing_files = os.listdir("scraped_html")
     
@@ -58,16 +61,18 @@ def get_full_html(config, mark_headers):
             name = strip_name(row["URL"])
             contents_data.append( (insert_text, name, row["Depth"]) )
             if mark_headers:
-                insert_text = "H3Dr" + insert_text[-4:]
+                insert_text = insert_text[5:]
+                insert_text = "H3Dr" + insert_text.strip()
             #insert to html
             insert_id    = f'id="{name}"'
             insert_class = 'class="col-md-8"'
-            insert_style = '"'
+            insert_style = ''
 
             if row["Include"] == "2":
                 header_tag = f'\n<h1 {insert_class} {insert_id} {insert_style}>{insert_text}</h1>\n'
             else:
-                header_tag = f'\n<h1 {insert_class} {insert_style}>{insert_text}</h1>\n'
+                header_tag = f'<h1 {insert_class} {insert_style}>{insert_text}</h1>\n'
+                header_tag = f'\n<a href="#{name}">{header_tag}</a>'
             
             full_html += header_tag
         
@@ -76,18 +81,17 @@ def get_full_html(config, mark_headers):
             filename = name + ".html"
 
             #request
-            if filename not in existing_files or config["request_existing_files"]:
-                if not config["request_existing_files"]: existing_files.append(filename) #do not do duplicate requests (might be unnecessary)
+            if filename not in existing_files:
+                existing_files.append(filename) #do not do duplicate requests (might be unnecessary)
                 sretime = time.perf_counter()
-                do_request(row["URL"], name, last_requested, config["min_sleep_time"])
+                do_request(row["URL"], name, config["min_sleep_time"])
                 total_request_time += time.perf_counter() - sretime
-                last_requested = time.perf_counter()
             #read and modify single html file
             html = read_html_file(filename)
             html, header = strip_html(html, name, row, config, mark_headers)
             contents_data.append( (header, name, row["Depth"]) )
 
-            html = convert_links(html, name, urls)
+            html = convert_links(html, name, urls, slugs)
 
             #add full html
             full_html += html
@@ -95,9 +99,9 @@ def get_full_html(config, mark_headers):
         sys.stdout.flush()
     print() #to clear for 2 lines
     
-    return full_html, contents_data, urls, total_request_time
+    return full_html, contents_data, urls, slugs, total_request_time
 
-def modify_full_html(html, contents_data, urls, config, header_data):
+def modify_full_html(html, contents_data, urls, slugs, config, header_data):
 
     #contents
     if config["add_contents"]:
@@ -110,7 +114,7 @@ def modify_full_html(html, contents_data, urls, config, header_data):
     #add extra information
     boiler, plate = get_boilerplate()
     cover_page, second_page = get_title_pages(config)
-    second_page = make_internal(second_page, urls)
+    second_page = make_internal(second_page, urls, slugs)
 
     #merge into final html
     full_html = boiler + cover_page + second_page + html + plate
@@ -139,7 +143,7 @@ def strip_html(html, name, row, config, mark_headers):
     string = row["Depth"] + " " + content.h1.text
     header = string
     if mark_headers:
-        string = "H3Dr" + string[:-4]
+        string = "H3Dr" + string.strip()[5:]
     content.h1.string = string
 
     text = ""
@@ -179,14 +183,14 @@ def strip_html(html, name, row, config, mark_headers):
             
     return text, header
 
-def convert_links(html, name, urls):
+def convert_links(html, name, urls, slugs):
     #make absolute
     base_url = "https://mariadb.com"
     html = html.replace('href="/', 'href="' + base_url + "/")
     html = html.replace('src="/', 'src="' + base_url + "/")
     #call other link conversions
     html = make_unique(html, name)
-    html = make_internal(html, urls)
+    html = make_internal(html, urls, slugs)
     return html
 
 def make_unique(html, name):
@@ -208,11 +212,11 @@ def make_unique(html, name):
             html = html.replace(find, replacement)
     return html
 
-def make_internal(html, urls):
+def make_internal(html, urls, slugs):
     """Makes all absolute links internal if they are contained within the csv"""
     html = html.replace('/+quest', '+quest')
     html = html.replace('/+attach', '+attach')
-    for url in urls:
+    for index, url in enumerate(urls):
         if url != "":
             name = strip_name(url)
             html = html.replace('href="'+ url, 'href="#' + name)
@@ -224,6 +228,8 @@ def make_internal(html, urls):
     pattern = r'(href ?= ?")(#[\w-]+)#([\w-]+)'
     html = re.sub(pattern, r"\1\2\3", html)
     return html
+
+
 
 def colour_external_links(html, config):
     colour = config["external_link_colour"]
@@ -237,13 +243,10 @@ def flatten_subcontents(html):
     html = html.replace(find, replace)
     return html
 
-def do_request(url, name, last_requested, min_sleep_time):
+def do_request(url, name, min_sleep_time):
+    print()
     filename = name + ".html"
-    time_since = time.perf_counter() - last_requested
-    if time_since > min_sleep_time:
-        sleep_time = min_sleep_time - time_since
-        print(f'sleeping for {sleep_time}')
-        time.sleep(sleep_time)
+    WAITER.wait(True)
 
     print(f"\nrequesting {name}")
     text = requests.get(url).text
@@ -271,11 +274,16 @@ def get_boilerplate():
 def get_cover_image():
     date = get_date()
     image_path = os.path.join(os.getcwd(), "cover_images", f"{date}.png")
-    string = f'<img style="margin-top: 250;" src="{image_path}">'
+    string = f'<img src="{image_path}">' + new_page
+
+    with open(os.path.join("static_HTML", "cover.html"), "w", encoding="utf-8") as file:
+        file.write(string)
+
+    #string = "<div>hi</div>"+new_page
     return string
 
 def get_title_pages(config):
-    cover_page = get_cover_image() + new_page
+    cover_page = get_cover_image()
     with open(os.path.join("static_HTML", "second_page.html"), encoding="utf-8") as file:
         second_page = file.read() + new_page
     

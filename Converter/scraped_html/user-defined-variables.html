@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-12-06 10:47">4 years, 3 months ago</span></dd>
+<span class="datetime" title="2022-04-13 16:18">3 days, 5 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -419,14 +419,14 @@ User-defined variables are variables which can be created by the user and exist 
 </li><li><a href="/kb/en/select-into/">SELECT ... INTO</a>.
 </li></ul>
 <p>Since user-defined variables type cannot be declared, the only way to force their type is using <a href="/kb/en/cast/">CAST()</a> or <a href="/kb/en/convert/">CONVERT()</a>:</p>
-<p>SET @str = CAST(123 AS CHAR(5));</p>
-<p>If a variable has not been used yet, its value is NULL:</p>
-<pre class="fixed">SELECT @x IS NULL;
-+------------+
-| @x IS NULL |
-+------------+
-|          1 |
-+------------+
+<pre class="fixed"><span class="k">SET</span> <span class="o">@</span><span class="n">str</span> <span class="o">=</span> <span class="k">CAST</span><span class="p">(</span><span class="mi">123</span> <span class="k">AS</span> <span class="nb">CHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</pre><p>If a variable has not been used yet, its value is NULL:</p>
+<pre class="fixed"><span class="k">SELECT</span> <span class="o">@</span><span class="n">x</span> <span class="k">IS</span> <span class="k">NULL</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span> <span class="o">@</span><span class="n">x</span> <span class="k">IS</span> <span class="k">NULL</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
+<span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+</span>
 </pre><p>It is unsafe to read a user-defined variable and set its value in the same statement (unless the command is SET), because the order of these actions is undefined.</p>
 <p>User-defined variables can be used in most MariaDB's statements and clauses which accept an SQL expression. However there are some exceptions, like the <a href="/kb/en/select/#limit">LIMIT</a> clause.</p>
 <p>They must be used to <a href="/kb/en/prepare-statement/">PREPARE</a> a prepared statement:</p>
@@ -439,6 +439,7 @@ DEALLOCATE PREPARE stmt;
 SELECT a, b, c, (@var:=@var+1) AS counter FROM my_table;
 </pre><h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/declare-variable/">DECLARE VARIABLE</a>
+</li><li><a href="/kb/en/performance-schema-user_variables_by_thread-table/">Performance Schema user_variables_by_thread Table</a>
 </li><li><a href="/kb/en/information-schema-user_variables-table/">Information Schema USER_VARIABLES Table</a></li></ul>
 
     </div>

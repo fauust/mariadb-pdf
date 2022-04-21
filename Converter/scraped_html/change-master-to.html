@@ -260,7 +260,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-20 14:37">6 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-03-30 09:35">1 week, 6 days ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -463,7 +463,8 @@
         <div class="cstm-style bluebox text"><p>The terms <em>master</em> and <em>slave</em> have historically been used in replication, but the terms terms <em>primary</em> and <em>replica</em> are now preferred. The old terms are used still used in parts of the documentation, and in MariaDB commands, although <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a> has begun the process of renaming. The documentation process is ongoing. See <a href="https://jira.mariadb.org/browse/MDEV-18777">MDEV-18777</a> to follow progress on this effort.</p>
 </div>
 <h2 class="anchored_heading" id="syntax">Syntax</h2>
-<pre class="fixed">CHANGE MASTER ['connection_name'] TO master_def [, master_def] ... [FOR CHANNEL 'channel_name']
+<pre class="fixed">CHANGE MASTER ['connection_name'] TO master_def  [, master_def] ... 
+  [FOR CHANNEL 'channel_name']
 
 master_def:
     MASTER_BIND = 'interface_name'

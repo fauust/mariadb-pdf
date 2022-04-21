@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-11-24 12:23">4 months ago</span></dd>
+<span class="datetime" title="2022-04-06 07:36">6 days, 14 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -451,8 +451,9 @@
 <ul start="1"><li>New <a href="/kb/en/reserved-words/">reserved word</a>: OFFSET. This can no longer be used as an <a href="/kb/en/identifier-names/">identifier</a> without being quoted.
 </li></ul>
 <h4 class="anchored_heading" id="innodb-compressed-row-format">InnoDB COMPRESSED Row Format</h4>
-<p>From <a href="/kb/en/mariadb-1060-release-notes/">MariaDB 10.6.0</a>, tables that are of the <a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a> row format are read-only by default. This is the first step towards removing write support and deprecating the feature.</p>
-<p>Set the  <a href="/kb/en/innodb-system-variables/#innodb_read_only_compressed">innodb_read_only_compressed</a> variable to <code>OFF</code> to make the tables writable.</p>
+<p>From <a href="/kb/en/mariadb-1060-release-notes/">MariaDB 10.6.0</a> until <a href="/kb/en/mariadb-1065-release-notes/">MariaDB 10.6.5</a>, tables that are of the <code>COMPRESSED</code> row format are read-only by default. This was intended to be the first step towards removing write support and deprecating the feature.</p>
+<p>This plan has been scrapped, and from <a href="/kb/en/mariadb-1066-release-notes/">MariaDB 10.6.6</a>, <code>COMPRESSED</code> tables are no longer read-only by default.</p>
+<p>From <a href="/kb/en/mariadb-1060-release-notes/">MariaDB 10.6.0</a> to <a href="/kb/en/mariadb-1065-release-notes/">MariaDB 10.6.5</a>, set the  <a href="/kb/en/innodb-system-variables/#innodb_read_only_compressed">innodb_read_only_compressed</a> variable to <code>OFF</code> to make the tables writable.</p>
 <h4 class="anchored_heading" id="character-sets">Character Sets</h4>
 <p>From <a href="/kb/en/what-is-mariadb-106/">MariaDB 10.6</a>, the <code>utf8</code> <a href="/kb/en/character-sets/">character set</a> (and related collations) is by default an alias for <code>utf8mb3</code> rather than the other way around. It can be set to imply <code>utf8mb4</code> by changing the value of the <a href="/kb/en/server-system-variables/#old_mode">old_mode</a> system variable.</p>
 <h4 class="anchored_heading" id="options-that-have-changed-default-values">Options That Have Changed Default Values</h4>

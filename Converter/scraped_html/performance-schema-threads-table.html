@@ -268,7 +268,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-28 21:58">4 weeks ago</span></dd>
+<span class="datetime" title="2022-04-07 10:43">5 days, 7 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -418,7 +418,7 @@
 <tr><td><code>ROLE</code></td><td>Unused.</td></tr>
 <tr><td><code>INSTRUMENTED</code></td><td><code>YES</code> or <code>NO</code> for Whether the thread is instrumented or not. For foreground threads, the initial value is determined by whether there's a user/host match in the <a href="/kb/en/performance-schema-setup_actors-table/">setup_actors</a> table. Subthreads are again matched, while for background threads, this will be set to <code>YES</code> by default. To monitor events that the thread executes, <code>INSTRUMENTED</code> must be <code>YES</code> and the thread_instrumentation consumer in the <a href="/kb/en/performance-schema-setup_consumers-table/">setup_consumers</a> table must also be <code>YES</code>.</td></tr>
 <tr><td><code>HISTORY</code></td><td><code>YES</code> or <code>NO</code> for Whether to log historical events for the thread. For foreground threads, the initial value is determined by whether there's a user/host match in the <a href="/kb/en/performance-schema-setup_actors-table/">setup_actors</a> table. Subthreads are again matched, while for background threads, this will be set to <code>YES</code> by default. To monitor events that the thread executes, <code>INSTRUMENTED</code> must be <code>YES</code> and the thread_instrumentation consumer in the <a href="/kb/en/performance-schema-setup_consumers-table/">setup_consumers</a> table must also be <code>YES</code>. Added in <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>.</td></tr>
-<tr><td><code>CONNECTION_TYPE</code></td><td>The protocol used to establish the connection, or NULL for background threads. Added in <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>.</td></tr>
+<tr><td><code>CONNECTION_TYPE</code></td><td>The protocol used to establish the connection. One of <code>TCP/IP</code>, <code>SSL/TLS</code>, <code>Socket</code>, <code>Named Pipe</code>, <code>Shared Memory</code>, or <code>NULL</code> for background threads. Added in <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>.</td></tr>
 <tr><td><code>THREAD_OS_ID</code></td><td>The thread or task identifier as defined by the underlying operating system, if there is one. Added in <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a></td></tr>
 </table>
 </div><h2 class="anchored_heading" id="example">Example</h2>
@@ -1171,9 +1171,45 @@ PROCESSLIST_COMMAND: Query
             
                 
                     <li>
+                        <a href="/kb/en/performance-schema-status_by_account-table/">
+                            
+                            Performance Schema status_by_account Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/performance-schema-status_by_host-table/">
+                            
+                            Performance Schema status_by_host Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
                         <a href="/kb/en/performance-schema-status_by_thread-table/">
                             
                             Performance Schema status_by_thread Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/performance-schema-status_by_user-table/">
+                            
+                            Performance Schema status_by_user Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/performance-schema-table_handles-table/">
+                            
+                            Performance Schema table_handles Table
                         </a>
                     </li>
                 

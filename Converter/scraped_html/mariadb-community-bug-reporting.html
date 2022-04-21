@@ -235,12 +235,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-07-16 21:06">11 years, 8 months ago</span></dd>
+<span class="datetime" title="2010-07-16 21:06">11 years, 9 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-07 23:42">6 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-16 21:23">1 day, 15 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -454,7 +454,8 @@
     <li class=""><a href="#getting-help-with-your-servers" title="Getting Help with your Servers">Getting Help with your Servers</a> </ol>
 </li>
 </div>
-<p>MariaDB's bug and feature tracker is found at <a href="https://jira.mariadb.org">https://jira.mariadb.org</a>. </p>
+<div class="cstm-style bluebox"><p>For reporting documentation bugs specifically, see <a href="/kb/en/reporting-documentation-bugs/">Reporting Documentation Bugs</a>.</p>
+</div><p>MariaDB's bug and feature tracker is found at <a href="https://jira.mariadb.org">https://jira.mariadb.org</a>. </p>
 <p>This page contains general guidelines for the community for reporting bugs in MariaDB products. If you want to discuss a problem or a new feature with other MariaDB developers, you can find the email lists and forums <a href="/kb/en/where-are-other-users-and-developers-of-mariadb/">here</a>.</p>
 <h2 class="anchored_heading" id="known-bugs">Known Bugs</h2>
 <p>First, check that the bug isn't already filed in the
@@ -505,6 +506,7 @@ Apart from what's mentioned below, you don't have to fill or change any fields w
 </li><li>CONJS - MariaDB Connector/node.js
 </li><li>CONPY - MariaDB Connector/Python
 </li><li>MCOL - ColumnStore
+</li><li>MDBF - MariaDB Foundation Development (anything related to the <a href="https://mariadb.org">mariadb.org domain</a>) 
 </li><li>MDEV - MariaDB server, client programs, or MariaDB Galera Cluster
 </li><li>MXS - MaxScale
 </li><li>ODBC -  MariaDB Connector/ODBC
@@ -532,7 +534,7 @@ Apart from what's mentioned below, you don't have to fill or change any fields w
 <p>If in the process of reproducing, you executed some SQL, don't describe it in words such as "I created a table with text columns and date columns and populated it with some rows" -- instead, whenever possible, put the exact SQL queries that you ran. The same goes for problems that you encountered: instead of saying "it did not work, the query failed, I got an error", always paste the exact output that you received. </p>
 <p><em>Use {noformat}...{noformat} and {code}...{code} blocks for code and console output in the description.</em></p>
 <h4 class="anchored_heading" id="attachments">Attachments</h4>
-<p>I you have SQL code, a database dump, a log etc. of a reasonable size, attach them to the report (archive them first if necessary). If they are too big, you can upload them to ftp.askmonty.org/private. It is always a good idea to attach your cnf file(s), unless it is absolutely clear from the nature of the report that configuration is irrelevant. </p>
+<p>If you have SQL code, a database dump, a log etc. of a reasonable size, attach them to the report (archive them first if necessary). If they are too big, you can upload them to ftp.askmonty.org/private. It is always a good idea to attach your cnf file(s), unless it is absolutely clear from the nature of the report that configuration is irrelevant. </p>
 <h4 class="anchored_heading" id="links">Links</h4>
 <p>If you found or filed a bug report either in MariaDB or MySQL or Percona bug base which you think is related to yours, you can put them in the <code>Links</code> section; same for any external links to 3rd-party resources which you find important to mention. Alternatively, you can just mention them in the description or comments. </p>
 <h4 class="anchored_heading" id="tags">Tags</h4>
@@ -572,8 +574,8 @@ If the bug affects XtraDB or TokuDB and reproducible with Percona server, it sho
                     </li>
                 
                 
-                    <li class="pull-right"><a href="/kb/en/mariadb-community-bug-processing/">
-                        MariaDB Community Bug Processing →
+                    <li class="pull-right"><a href="/kb/en/reporting-documentation-bugs/">
+                        Reporting Documentation Bugs →
                     </a>
                     </li>
                 
@@ -627,6 +629,15 @@ If the bug affects XtraDB or TokuDB and reproducible with Percona server, it sho
             
                 
                     <li>
+                        <a href="/kb/en/reporting-documentation-bugs/">
+                            
+                            Reporting Documentation Bugs
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
                         <a href="/kb/en/mariadb-community-bug-processing/">
                             
                             MariaDB Community Bug Processing
@@ -657,15 +668,6 @@ If the bug affects XtraDB or TokuDB and reproducible with Percona server, it sho
                         <a href="/kb/en/extracting-entries-from-the-binary-log/">
                             
                             Extracting Entries from the Binary Log
-                        </a>
-                    </li>
-                
-            
-                
-                    <li>
-                        <a href="/kb/en/only_full_group_by-wrong-behaviour/">
-                            
-                            ONLY_FULL_GROUP_BY wrong behaviour
                         </a>
                     </li>
                 

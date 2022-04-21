@@ -264,7 +264,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-09 10:22">2 weeks, 6 days ago</span></dd>
+<span class="datetime" title="2022-04-04 21:03">1 week ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -486,9 +486,16 @@
 <span class="o">+</span><span class="c1">-----------------------------------------------+</span>
 <span class="o">|</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="err">{</span><span class="ss">&quot;key2&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="err">}</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">14</span><span class="p">]]</span>            <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------------------------------------+</span>
-
 </pre><p>This will produce output for first index of eighth from last element of a two dimensional array.</p>
-<h3 class="anchored_heading" id="wildcard">Wildcard</h3>
+<p>Note: In range notation, when M &gt; N ( when M,N are greater than or equal to 0) or (size of array - M or size of array - N when M, N are less than 0), then it is treated as an impossible range and NULL is returned.</p>
+<pre class="fixed"><span class="k">SET</span> <span class="o">@</span><span class="n">json</span><span class="o">=</span> <span class="s1">&#39;[1, 2, 3, 4, 5]&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="o">@</span><span class="n">json</span><span class="p">,</span> <span class="s1">&#39;$[4 to 2]&#39;</span><span class="p">);</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="o">|</span> <span class="n">JSON_EXTRACT</span><span class="p">(</span><span class="o">@</span><span class="n">json</span><span class="p">,</span> <span class="s1">&#39;$[4 to 2]&#39;</span><span class="p">)</span>  <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+<span class="o">|</span> <span class="k">NULL</span>                              <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----------------------------------+</span>
+</pre><h3 class="anchored_heading" id="wildcard">Wildcard</h3>
 <p>The wildcard step, <code>**</code>, recursively selects all child elements of the current element. Both array elements and object members are selected.</p>
 <p>The wildcard step must not be the last step in the JSONPath expression. It must be followed by an array or object member selector step.</p>
 <p>For example:</p>
