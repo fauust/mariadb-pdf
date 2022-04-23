@@ -256,7 +256,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-04-06 22:12">5 days, 18 hours ago</span></dd>
+<span class="datetime" title="2022-04-23 21:32">1 hour, 46 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -654,7 +654,8 @@ GRANT rolename TO grantee [, grantee ...]
 GRANT USAGE ON *.* TO 'user123'@'%' IDENTIFIED BY '';
 ERROR 1133 (28000): Can't find any matching row in the user table
 
-GRANT USAGE ON *.* TO 'user123'@'%' IDENTIFIED VIA PAM using 'mariadb' require ssl ;
+GRANT USAGE ON *.* TO 'user123'@'%' 
+  IDENTIFIED VIA PAM using 'mariadb' require ssl ;
 Query OK, 0 rows affected (0.00 sec)
  
 select host, user from mysql.user where user='user123' ;
@@ -853,7 +854,7 @@ including those created later.</p>
 <h4 class="anchored_heading" id="shutdown">SHUTDOWN</h4>
 <p>Shut down the server using <a href="/kb/en/shutdown/">SHUTDOWN</a> or the <a href="/kb/en/mysqladmin/">mysqladmin shutdown</a> command.</p>
 <h4 class="anchored_heading" id="super">SUPER</h4>
-<p>Execute superuser statements: <a href="/kb/en/change-master-to/">CHANGE MASTER TO</a>, <a href="/kb/en/data-manipulation-kill-connection-query/">KILL</a> (users who do not have this privilege can only <code>KILL</code> their own threads), <a href="/kb/en/sql-commands-purge-logs/">PURGE LOGS</a>, <a href="/kb/en/set/">SET global system variables</a>, or the <a href="/kb/en/mysqladmin/">mysqladmin debug</a> command. Also, this permission allows the user to write data even if the <a href="/kb/en/server-system-variables/#read_only">read_only</a> startup option is set, enable or disable logging, enable or disable replication on replica, specify a <code>DEFINER</code> for statements that support that clause, connect once reaching the <code>MAX_CONNECTIONS</code>. If a statement has been specified for the <a href="/kb/en/server-system-variables/#init_connect">init-connect</a> <code>mysqld</code> option, that command will not be executed when a user with <code>SUPER</code> privileges connects to the server.</p>
+<p>Execute superuser statements: <a href="/kb/en/change-master-to/">CHANGE MASTER TO</a>, <a href="/kb/en/kill/">KILL</a> (users who do not have this privilege can only <code>KILL</code> their own threads), <a href="/kb/en/purge-binary-logs/">PURGE LOGS</a>, <a href="/kb/en/set/">SET global system variables</a>, or the <a href="/kb/en/mysqladmin/">mysqladmin debug</a> command. Also, this permission allows the user to write data even if the <a href="/kb/en/server-system-variables/#read_only">read_only</a> startup option is set, enable or disable logging, enable or disable replication on replica, specify a <code>DEFINER</code> for statements that support that clause, connect once reaching the <code>MAX_CONNECTIONS</code>. If a statement has been specified for the <a href="/kb/en/server-system-variables/#init_connect">init-connect</a> <code>mysqld</code> option, that command will not be executed when a user with <code>SUPER</code> privileges connects to the server.</p>
 <p>The SUPER privilege has been split into multiple smaller privileges from <a href="/kb/en/mariadb-1052-release-notes/">MariaDB 10.5.2</a> to allow for more fine-grained privileges, although it remains an alias for these smaller privileges.</p>
 <h3 class="anchored_heading" id="database-privileges">Database Privileges</h3>
 <p>The following table lists the privileges that can be granted at the database
@@ -870,7 +871,7 @@ to specify the default database.</p>
 <tr><td><code>DROP</code></td><td>Drop a database using the <a href="/kb/en/drop-database/">DROP DATABASE</a> statement, when the privilege is granted for a database. This also grants the <code>DROP</code> privilege on all tables in the database.</td></tr>
 <tr><td><code>EVENT</code></td><td>Create, drop and alter <code>EVENT</code>s.</td></tr>
 <tr><td><code>GRANT OPTION</code></td><td>Grant database privileges. You can only grant privileges that you have.</td></tr>
-<tr><td><code>LOCK TABLES</code></td><td>Acquire explicit locks using the <a href="/kb/en/transactions-lock/">LOCK TABLES</a> statement; you also need to have the <code>SELECT</code> privilege on a table, in order to lock it.</td></tr>
+<tr><td><code>LOCK TABLES</code></td><td>Acquire explicit locks using the <a href="/kb/en/lock-tables/">LOCK TABLES</a> statement; you also need to have the <code>SELECT</code> privilege on a table, in order to lock it.</td></tr>
 </table>
 </div><h3 class="anchored_heading" id="table-privileges">Table Privileges</h3>
 <div class="cstm-style darkheader-nospace-borders"><table><tr><th>Privilege</th><th>Description</th></tr>
@@ -928,7 +929,7 @@ from the same table, such as salaries.</p>
 <span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">pam</span> <span class="k">USING</span> <span class="s1">&#39;mariadb&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="n">PROXY</span> <span class="k">ON</span> <span class="s1">&#39;dba&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="k">TO</span> <span class="s1">&#39;&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
 </pre><p>A user account can only grant the <code>PROXY</code> privilege for a specific user account if the granter also has the <code>PROXY</code> privilege for that specific user account, and if that privilege is defined <code>WITH GRANT OPTION</code>. For example, the following example fails because the granter does not have the <code>PROXY</code> privilege for that specific user account at all:</p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="k">USER</span><span class="p">(),</span> <span class="k">CURRENT_USER</span><span class="p">();</span>
+<pre class="fixed wrap"><span class="k">SELECT</span> <span class="k">USER</span><span class="p">(),</span> <span class="k">CURRENT_USER</span><span class="p">();</span>
 <span class="o">+</span><span class="c1">-----------------+-----------------+</span>
 <span class="o">|</span> <span class="k">USER</span><span class="p">()</span>          <span class="o">|</span> <span class="k">CURRENT_USER</span><span class="p">()</span>  <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------+-----------------+</span>
@@ -945,7 +946,7 @@ from the same table, such as salaries.</p>
 <span class="k">GRANT</span> <span class="n">PROXY</span> <span class="k">ON</span> <span class="s1">&#39;dba&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="k">TO</span> <span class="s1">&#39;bob&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1698</span> <span class="p">(</span><span class="mi">28000</span><span class="p">):</span> <span class="k">Access</span> <span class="n">denied</span> <span class="k">for</span> <span class="k">user</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span>
 </pre><p>And the following example fails because the granter does have the <code>PROXY</code> privilege for that specific user account, but it is not defined <code>WITH GRANT OPTION</code>:</p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="k">USER</span><span class="p">(),</span> <span class="k">CURRENT_USER</span><span class="p">();</span>
+<pre class="fixed wrap"><span class="k">SELECT</span> <span class="k">USER</span><span class="p">(),</span> <span class="k">CURRENT_USER</span><span class="p">();</span>
 <span class="o">+</span><span class="c1">-----------------+-----------------+</span>
 <span class="o">|</span> <span class="k">USER</span><span class="p">()</span>          <span class="o">|</span> <span class="k">CURRENT_USER</span><span class="p">()</span>  <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------+-----------------+</span>
@@ -963,7 +964,7 @@ from the same table, such as salaries.</p>
 <span class="k">GRANT</span> <span class="n">PROXY</span> <span class="k">ON</span> <span class="s1">&#39;dba&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="k">TO</span> <span class="s1">&#39;bob&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1698</span> <span class="p">(</span><span class="mi">28000</span><span class="p">):</span> <span class="k">Access</span> <span class="n">denied</span> <span class="k">for</span> <span class="k">user</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span>
 </pre><p>But the following example succeeds because the granter does have the <code>PROXY</code> privilege for that specific user account, and it is defined <code>WITH GRANT OPTION</code>:</p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="k">USER</span><span class="p">(),</span> <span class="k">CURRENT_USER</span><span class="p">();</span>
+<pre class="fixed wrap"><span class="k">SELECT</span> <span class="k">USER</span><span class="p">(),</span> <span class="k">CURRENT_USER</span><span class="p">();</span>
 <span class="o">+</span><span class="c1">-----------------+-----------------+</span>
 <span class="o">|</span> <span class="k">USER</span><span class="p">()</span>          <span class="o">|</span> <span class="k">CURRENT_USER</span><span class="p">()</span>  <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------+-----------------+</span>
@@ -982,7 +983,7 @@ from the same table, such as salaries.</p>
 </pre><p>A user account can grant the <code>PROXY</code> privilege for any other user account if the granter has the <code>PROXY</code> privilege for the <code>''@'%'</code> anonymous user account, like this:</p>
 <pre class="fixed"><span class="k">GRANT</span> <span class="n">PROXY</span> <span class="k">ON</span> <span class="s1">&#39;&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="k">TO</span> <span class="s1">&#39;dba&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
 </pre><p>For example, the following example succeeds because the user can grant the <code>PROXY</code> privilege for any other user account:</p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="k">USER</span><span class="p">(),</span> <span class="k">CURRENT_USER</span><span class="p">();</span>
+<pre class="fixed wrap"><span class="k">SELECT</span> <span class="k">USER</span><span class="p">(),</span> <span class="k">CURRENT_USER</span><span class="p">();</span>
 <span class="o">+</span><span class="c1">-----------------+-----------------+</span>
 <span class="o">|</span> <span class="k">USER</span><span class="p">()</span>          <span class="o">|</span> <span class="k">CURRENT_USER</span><span class="p">()</span>  <span class="o">|</span>
 <span class="o">+</span><span class="c1">-----------------+-----------------+</span>
@@ -1030,7 +1031,8 @@ statement to change a user's password with <code>GRANT</code>.</p>
 <span class="o">+</span><span class="c1">-------------------------------------------+</span>
 <span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </pre><p>And then we can create a user with the hash:</p>
-<pre class="fixed"><span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">foo2</span><span class="o">@</span><span class="n">test</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">PASSWORD</span> <span class="s1">&#39;*54958E764CE10E50764C2EECBB71D01F08549980&#39;</span><span class="p">;</span>
+<pre class="fixed"><span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">foo2</span><span class="o">@</span><span class="n">test</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> 
+  <span class="n">PASSWORD</span> <span class="s1">&#39;*54958E764CE10E50764C2EECBB71D01F08549980&#39;</span><span class="p">;</span>
 </pre><p>If you do not specify a password with the <code>IDENTIFIED BY</code> clause, the user
 will be able to connect without a password. A blank password is not a wildcard
 to match any password. The user must connect without providing a password if no
@@ -1046,9 +1048,11 @@ statement to change a user's password with <code>GRANT</code>.</p>
 <pre class="fixed"><span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="n">foo2</span><span class="o">@</span><span class="n">test</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">pam</span> <span class="k">USING</span> <span class="s1">&#39;mariadb&#39;</span><span class="p">;</span>
 </pre><p>The exact meaning of the additional argument would depend on the specific authentication plugin.</p>
 <div class="mariadb_from_10_4_0 mariadb from_10_4_0 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1040-release-notes/">10.4.0</a></h5><p>The <code>USING</code> or <code>AS</code> keyword can also be used to provide a plain-text password to a plugin if it's provided as an argument to the <a href="/kb/en/password/">PASSWORD()</a> function. This is only valid for <a href="/kb/en/authentication-plugins/">authentication plugins</a> that have implemented a hook for the <a href="/kb/en/password/">PASSWORD()</a> function. For example, the <a href="/kb/en/authentication-plugin-ed25519/">ed25519</a> authentication plugin supports this:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">safe</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">ed25519</span> <span class="k">USING</span> <span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;secret&#39;</span><span class="p">);</span>
+<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">safe</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">ed25519</span> 
+  <span class="k">USING</span> <span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;secret&#39;</span><span class="p">);</span>
 </pre></div><div class="mariadb_from_10_4_3 mariadb from_10_4_3 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1043-release-notes/">10.4.3</a></h5><p>One can specify many authentication plugins, they all work as alternatives ways of authenticating a user:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">safe</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">ed25519</span> <span class="k">USING</span> <span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;secret&#39;</span><span class="p">)</span> <span class="k">OR</span> <span class="n">unix_socket</span><span class="p">;</span>
+<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">safe</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">ed25519</span> 
+  <span class="k">USING</span> <span class="n">PASSWORD</span><span class="p">(</span><span class="s1">&#39;secret&#39;</span><span class="p">)</span> <span class="k">OR</span> <span class="n">unix_socket</span><span class="p">;</span>
 </pre></div><p>By default, when you create a user without specifying an authentication plugin, MariaDB uses the <a href="/kb/en/authentication-plugin-mysql_native_password/">mysql_native_password</a> plugin.</p>
 <h2 class="anchored_heading" id="resource-limit-options">Resource Limit Options</h2>
 <div class="mariadb_from_10_2_0 mariadb from_10_2_0 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1020-release-notes/">10.2.0</a></h5><p><a href="/kb/en/mariadb-1020-release-notes/">MariaDB 10.2.0</a> introduced a number of resource limit options.</p>
@@ -1085,10 +1089,10 @@ statement to change a user's password with <code>GRANT</code>.</p>
 </table>
 </div><p>The <code>REQUIRE</code> keyword must be used only once for all specified options, and the <code>AND</code> keyword can be used to separate individual options, but it is not required.</p>
 <p>For example, you can create a user account that requires these TLS options with the following:</p>
-<pre class="fixed"><span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span>
-    <span class="n">REQUIRE</span> <span class="n">SUBJECT</span> <span class="s1">&#39;/CN=alice/O=My Dom, Inc./C=US/ST=Oregon/L=Portland&#39;</span>
-    <span class="k">AND</span> <span class="n">ISSUER</span> <span class="s1">&#39;/C=FI/ST=Somewhere/L=City/ O=Some Company/CN=Peter Parker/emailAddress=p.parker@marvel.com&#39;</span>
-    <span class="k">AND</span> <span class="n">CIPHER</span> <span class="s1">&#39;SHA-DES-CBC3-EDH-RSA&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span>
+  <span class="n">REQUIRE</span> <span class="n">SUBJECT</span> <span class="s1">&#39;/CN=alice/O=My Dom, Inc./C=US/ST=Oregon/L=Portland&#39;</span>
+  <span class="k">AND</span> <span class="n">ISSUER</span> <span class="s1">&#39;/C=FI/ST=Somewhere/L=City/ O=Some Company/CN=Peter Parker/emailAddress=p.parker@marvel.com&#39;</span>
+  <span class="k">AND</span> <span class="n">CIPHER</span> <span class="s1">&#39;SHA-DES-CBC3-EDH-RSA&#39;</span><span class="p">;</span>
 </pre><p>If any of these options are set for a specific user account, then any client who tries to connect with that user account will have to be configured to connect with TLS.</p>
 <p>See <a href="/kb/en/securing-connections-for-client-and-server/">Securing Connections for Client and Server</a> for information on how to enable TLS on the client and server.</p>
 <h2 class="anchored_heading" id="roles">Roles</h2>

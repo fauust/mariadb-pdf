@@ -4,6 +4,7 @@
     "new_html": true,
     "new_pdf": true,
     "toc_pagenumbers": true,
+    "check_slugs": true,
     "debug_csv": false,
     "notify": false,
     "page-break": true,

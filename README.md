@@ -3,7 +3,7 @@
 ## Usage
 
 - uses a csv containing urls and other info as a base for pdf creation
-- Run Script.py, change settings for creation in the config.json
+- Run main.py, change settings for creation in the config.json
 - (Requires Converter/temp to be created)
 
 ## Dependencies:
@@ -35,7 +35,7 @@
 ```yaml
 "redownload_all_files": #indicates whether or not to re-requested all existing files
 
-"redownload_files": bool #indicates whether or not to re-request the html files in re-download.txt
+"redownload_files": bool #indicates whether or not to re-request the urls in re-download.txt (seperated by new line)
 
 "new_html": bool #indicates whether to re-use the previous output html file for pdf generation or to create a new one
 

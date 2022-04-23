@@ -252,7 +252,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-04-10 14:48">3 years ago</span></dd>
+<span class="datetime" title="2022-04-21 00:06">2 days, 23 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -445,12 +445,12 @@
 characteristics of an existing <a href="/kb/en/events/">event</a> without the need to drop and recreate it.
 The syntax for each of the <code>DEFINER</code>, <code>ON SCHEDULE</code>, <code>ON COMPLETION</code>,
 <code>COMMENT</code>, <code>ENABLE</code> <code>/</code> <code>DISABLE</code>, and <code>DO</code> clauses is exactly the
-same as when used with <code><a href="/kb/en/create-event/">CREATE EVENT</a></code>.</p>
-<p>This statement requires the <code><a href="/kb/en/grant/#database-privileges">EVENT</a></code> privilege.
+same as when used with <a href="/kb/en/create-event/">CREATE EVENT</a>.</p>
+<p>This statement requires the <a href="/kb/en/grant/#database-privileges">EVENT</a> privilege.
 When a user executes a successful <code>ALTER EVENT</code> statement, that user becomes
 the definer for the affected event.</p>
 <p>(In MySQL 5.1.11 and earlier, an event could be altered only by its definer, or
-by a user having the <code><a href="/kb/en/grant/#global-privileges">SUPER</a></code> privilege.)</p>
+by a user having the <a href="/kb/en/grant/#global-privileges">SUPER</a> privilege.)</p>
 <p><code>ALTER EVENT</code> works only with an existing event:</p>
 <pre class="fixed">ALTER EVENT no_such_event ON SCHEDULE EVERY '2:3' DAY_HOUR;
 ERROR 1539 (HY000): Unknown event 'no_such_event'

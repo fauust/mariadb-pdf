@@ -46,22 +46,24 @@ def generate_html(filename, config, mark_headers = False, header_data = None):
 def get_full_html(config, mark_headers):
     #variables
     rows = read_csv(config)
-    urls = [row["URL"] for row in rows if row["Include"] != "0"]
-    slugs = "" # TODO
+    #urls = [row["URL"] for row in rows if row["Include"] != "0"]
+    urls, slugs = get_urls_and_slugs(rows) # TODO
     total_request_time = 0
     contents_data = []
     existing_files = os.listdir("scraped_html")
     
     full_html = ""
     for index, row in enumerate(rows):
-        if row["Include"] in ['0', '']: continue # skip unecessary rows
+        if row["Include"] in ['0', '']: pass # skip unecessary rows
         elif row["Include"] in ['2', '3']:
+
             insert_text = row["Depth"].strip() + " " + row["Header"].strip()
             #if row["URL"] != "":
             name = strip_name(row["URL"])
+            replace = f"rep-{name}-rep"
             contents_data.append( (insert_text, name, row["Depth"]) )
             if mark_headers:
-                insert_text = insert_text[5:]
+                insert_text = insert_text[4:]
                 insert_text = "H3Dr" + insert_text.strip()
             #insert to html
             insert_id    = f'id="{name}"'
@@ -71,8 +73,9 @@ def get_full_html(config, mark_headers):
             if row["Include"] == "2":
                 header_tag = f'\n<h1 {insert_class} {insert_id} {insert_style}>{insert_text}</h1>\n'
             else:
-                header_tag = f'<h1 {insert_class} {insert_style}>{insert_text}</h1>\n'
-                header_tag = f'\n<a href="#{name}">{header_tag}</a>'
+                link_tag = f'<a href="#{name}">{insert_text}</a>'
+                header_tag = f'<h1 {insert_class} {insert_style}>{link_tag}</h1>\n'
+                #header_tag = header_tag
             
             full_html += header_tag
         
@@ -101,9 +104,15 @@ def get_full_html(config, mark_headers):
     
     return full_html, contents_data, urls, slugs, total_request_time
 
-def modify_full_html(html, contents_data, urls, slugs, config, header_data):
+def set_headings():
+    pass
 
+def modify_full_html(html, contents_data, urls, slugs, config, header_data):
     #contents
+    
+    print("merging html")
+
+    html = make_internal(html, urls, slugs)
     if config["add_contents"]:
         contents = create_main_contents(contents_data, header_data)
         html = contents + html
@@ -120,7 +129,7 @@ def modify_full_html(html, contents_data, urls, slugs, config, header_data):
     full_html = boiler + cover_page + second_page + html + plate
     if config["colour_external_links"]:
         full_html = colour_external_links(full_html, config)
-
+    log_external_links(full_html)
     return full_html
 
 def strip_html(html, name, row, config, mark_headers):
@@ -143,7 +152,7 @@ def strip_html(html, name, row, config, mark_headers):
     string = row["Depth"] + " " + content.h1.text
     header = string
     if mark_headers:
-        string = "H3Dr" + string.strip()[5:]
+        string = "H3Dr" + string.strip()[4:]
     content.h1.string = string
 
     text = ""
@@ -190,18 +199,14 @@ def convert_links(html, name, urls, slugs):
     html = html.replace('src="/', 'src="' + base_url + "/")
     #call other link conversions
     html = make_unique(html, name)
-    html = make_internal(html, urls, slugs)
     return html
 
 def make_unique(html, name):
     """Makes all ids in a page unique to that page"""
-    internal_refs = re.findall(r'"#[\w-]+"', html) #find all internal references
-    #refs = []
-    for ref in set(internal_refs):
-        #if ref in refs:
-        #    continue
-        #refs.append(ref)
-        ref = ref[2:][:-1]
+    internal_ids = re.findall(r'id="[\w-]+"', html) #find all internal references
+
+    for ref in internal_ids:
+        ref = ref[4:][:-1]
         if ref != name: #to prevent doubling h1 ids if that id is linked to
             find = f'id="{ref}"' #
             replacement = f'id="{name}{ref}"'
@@ -210,17 +215,26 @@ def make_unique(html, name):
             find = f'href="#{ref}"'
             replacement = f'href="#{name}{ref}"'
             html = html.replace(find, replacement)
+    
     return html
+
 
 def make_internal(html, urls, slugs):
     """Makes all absolute links internal if they are contained within the csv"""
     html = html.replace('/+quest', '+quest')
     html = html.replace('/+attach', '+attach')
+    base_url = "https://mariadb.com/kb/en/"
     for index, url in enumerate(urls):
-        if url != "":
-            name = strip_name(url)
-            html = html.replace('href="'+ url, 'href="#' + name)
-    
+        if url == "":
+            continue
+        name = strip_name(url)
+        html = html.replace('href="'+ url, 'href="#' + name)
+
+        for slug in slugs[index]:
+            if slug == "": continue
+            slug = base_url + slug + "/"
+            html = html.replace('href="'+ slug, 'href="#' + name)
+
     html = html.replace('+quest', '/+quest')
     html = html.replace('+attach', '+/attach')
 
@@ -229,15 +243,26 @@ def make_internal(html, urls, slugs):
     html = re.sub(pattern, r"\1\2\3", html)
     return html
 
-
-
-def colour_external_links(html, config):
+def colour_external_links(html, config) -> str:
     colour = config["external_link_colour"]
     output = html.replace('href="http', f'style="color: {colour};" href="http')
     return output
 
+def log_external_links(full_html):
+    links = full_html
 
-def flatten_subcontents(html):
+def get_urls_and_slugs(rows) -> tuple:
+    urls = []
+    slugs = []
+    for row in rows:
+        if row["URL"] != "":
+            urls.append(row["URL"])
+            dup_slugs = row["Duplicate slugs"]
+            slugs.append( dup_slugs.split(";") )
+    
+    return urls, slugs
+
+def flatten_subcontents(html) -> str:
     find = '<div class="table_of_contents'
     replace = '<div style="float: none;" class="table_of_contents'
     html = html.replace(find, replace)

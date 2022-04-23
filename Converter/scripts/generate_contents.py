@@ -70,7 +70,7 @@ def create_main_contents(ids, header_data = None):
     #main loop going through each id and giving the information to the counter
     arr = [(header, name, get_depth(depth_str)) for header, name, depth_str in ids]
     if header_data != None:
-        print(f"length of header_data {header_data}")
+        print(f"length of header_data {len(header_data)}")
     for index, (header, name, depth) in enumerate(arr):
         i_header = None
         if header_data != None:

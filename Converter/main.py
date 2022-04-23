@@ -18,7 +18,7 @@ def main():
     print()
     set_logging()
     create_temp()
-    delete_redownloads()
+    delete_redownloads(config)
 
     if config["toc_pagenumbers"] and config["add_body"]:
         #get header data
