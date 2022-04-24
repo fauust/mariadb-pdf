@@ -57,27 +57,32 @@ def get_date(tformat = "%Y-%m"):
 def delete_redownloads(config):
     with open("re-download.txt") as file:
         urls = [url.replace("\n", "") for url in file.readlines()]
+    
     urls = list(set(urls))
     existing_files = os.listdir("scraped_html")
 
-    count = 0
+    #count deleted files for debug
+    num_deleted = 0
+
     if config["redownload_all_files"]:
         for filename in existing_files:
             os.remove(os.path.join("scraped_html", filename))
-            count += 1
-        print(f"deleted {count} files")
-        return
-    
-    for url in urls:
-        name = url
-        if url.startswith("https"):
-            name = strip_name(url)
+            num_deleted += 1
+    else:
+        for name in urls:
+            
+             #turn url into name
+            if name.startswith("https"):
+                name = strip_name(name)
 
-        filename = name +'.html'
-        if filename in existing_files:
-            os.remove(os.path.join("scraped_html", filename))
-            count += 1
-    print(f"deleted {count} files")
-#def func
+            #delete file
+            if filename in existing_files:
+                os.remove(os.path.join("scraped_html", name + ".html"))
+                num_deleted += 1
+
+    #debug delete num_deleted
+    if num_deleted > 0: print(f"deleted {num_deleted} files")
+
+    return
 get_time = time.perf_counter
 new_page = '<div style = "page-break-after:always;"></div>\n'

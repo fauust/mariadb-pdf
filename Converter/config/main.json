@@ -3,7 +3,7 @@
     "redownload_files": true,
     "new_html": true,
     "new_pdf": true,
-    "toc_pagenumbers": true,
+    "toc_pagenumbers": false,
     "check_slugs": true,
     "debug_csv": false,
     "notify": false,
@@ -18,11 +18,11 @@
     "input_csv": "kb_urls.csv",
     "output_html": "output.html",
     "output_pdf": "MariaDBServerKnowledgeBase.pdf",
-    "number_of_rows": -1,
+    "number_of_rows": 50,
     "page-break-length": 350,
     "min_sleep_time": 10,
     "space_above_webpage": "20px;",
     "external_link_colour": "#150281",
     "parser": "html5lib",
-    "path_to_app": "wkhtmltopdf.exe"
+    "path_to_app": ""
 }

@@ -94,7 +94,8 @@ def get_full_html(config, mark_headers):
             html, header = strip_html(html, name, row, config, mark_headers)
             contents_data.append( (header, name, row["Depth"]) )
 
-            html = convert_links(html, name, urls, slugs)
+            html = absolute_links(html)
+            html = make_unique(html, name)
 
             #add full html
             full_html += html
@@ -192,13 +193,11 @@ def strip_html(html, name, row, config, mark_headers):
             
     return text, header
 
-def convert_links(html, name, urls, slugs):
-    #make absolute
+def absolute_links(html):
+    """makes page links absolute"""
     base_url = "https://mariadb.com"
     html = html.replace('href="/', 'href="' + base_url + "/")
     html = html.replace('src="/', 'src="' + base_url + "/")
-    #call other link conversions
-    html = make_unique(html, name)
     return html
 
 def make_unique(html, name):
