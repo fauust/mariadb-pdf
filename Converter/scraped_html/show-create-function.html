@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Statement that created the function" />
+    <meta property="og:description" content="Statement that created the function." />
 
-    <meta name="description" content="Statement that created the function" />
+    <meta name="description" content="Statement that created the function." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-23 16:23">11 years, 7 months ago</span></dd>
+<span class="datetime" title="2010-08-23 16:23">11 years, 8 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-09-24 02:22">4 years, 6 months ago</span></dd>
+<span class="datetime" title="2022-04-24 14:00">7 hours, 36 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -425,12 +425,11 @@
         <h2 class="anchored_heading" id="syntax">Syntax</h2>
 <pre class="fixed">SHOW CREATE FUNCTION func_name
 </pre><h2 class="anchored_heading" id="description">Description</h2>
-<p>This statement is similar to 
-<code class="highlight fixed" style="white-space:pre-wrap"><a href="/kb/en/show-create-procedure/">SHOW CREATE PROCEDURE</a></code> but for
+<p>This statement is similar to <a href="/kb/en/show-create-procedure/">SHOW CREATE PROCEDURE</a> but for
 <a href="/kb/en/stored-functions/">stored functions</a>.</p>
-<p>The output of this statement is unreliably affected by the <code><a href="/kb/en/server-system-variables/#sql_quote_show_create">sql_quote_show_create</a></code> server system variable - see <a href="http://bugs.mysql.com/bug.php?id=12719">http://bugs.mysql.com/bug.php?id=12719</a></p>
+<p>The output of this statement is unreliably affected by the <a href="/kb/en/server-system-variables/#sql_quote_show_create">sql_quote_show_create</a> server system variable - see <a href="http://bugs.mysql.com/bug.php?id=12719">http://bugs.mysql.com/bug.php?id=12719</a></p>
 <h2 class="anchored_heading" id="example">Example</h2>
-<pre class="fixed">MariaDB [test]&gt; SHOW CREATE FUNCTION VatCents\G
+<pre class="fixed wrap">SHOW CREATE FUNCTION VatCents\G
 *************************** 1. row ***************************
             Function: VatCents
             sql_mode: 
@@ -444,7 +443,7 @@ END
 character_set_client: utf8
 collation_connection: utf8_general_ci
   Database Collation: latin1_swedish_ci
-</pre><h2 class="anchored_heading" id="see-also">See also:</h2>
+</pre><h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/stored-functions/">Stored Functions</a>
 </li><li><code class="highlight fixed" style="white-space:pre-wrap"><a href="/kb/en/create-function/">CREATE FUNCTION</a></code></li></ul>
 

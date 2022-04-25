@@ -60,7 +60,7 @@ def debug_csv(filepath, config):
         did_log = missing_headers(row, line_num) or did_log #keeps did_log True
         did_log = missing_url(row, line_num) or did_log #keeps did_log True
 
-        did_log = correct_license(row, line_num) or did_log
+        #did_log = correct_license(row, line_num) or did_log
 
         include_checker.add_to_includes(row, line_num)
 
@@ -133,6 +133,10 @@ def missing_url(row, num):
         logging.debug(f"({num}) Missing Url")
         return True
     return False
+
+def log_link(link):
+    logging.debug(f"{link}")
+
 
 if __name__ == "__main__":
     debug_csv("kb_urls.csv")

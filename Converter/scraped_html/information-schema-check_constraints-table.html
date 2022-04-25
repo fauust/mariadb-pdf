@@ -268,7 +268,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-03-16 18:45">1 year ago</span></dd>
+<span class="datetime" title="2022-04-24 14:29">7 hours, 10 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -336,11 +336,6 @@
                 <li class="mariadb_from_10_2_22">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_2_22"
                             >MariaDB starting with 10.2.22</label>
-                </li>
-            
-                <li class="mariadb_from_10_5_10">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_5_10"
-                            >MariaDB starting with 10.5.10</label>
                 </li>
             
         </ul>
@@ -430,12 +425,10 @@
 <div class="cstm-style darkheader-nospace-borders"><table><tr><th>Column</th><th>Description</th></tr>
 <tr><td><code>CONSTRAINT_CATALOG</code></td><td>Always contains the string 'def'.</td></tr>
 <tr><td><code>CONSTRAINT_SCHEMA</code></td><td>Database name.</td></tr>
-<tr><td><code>TABLE_NAME</code></td><td>Table name.</td></tr>
 <tr><td><code>CONSTRAINT_NAME</code></td><td>Constraint name.</td></tr>
-</table>
-<div class="mariadb_from_10_5_10 mariadb from_10_5_10 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-10510-release-notes/">10.5.10</a></h5><table><tr><td><code>LEVEL</code></td><td>Type of the constraint ('Column' or 'Table').</td></tr>
-</table>
-</div><table><tr><td><code>CHECK_CLAUSE</code></td><td>Constraint clause.</td></tr>
+<tr><td><code>TABLE_NAME</code></td><td>Table name.</td></tr>
+<tr><td><code>LEVEL</code></td><td>Type of the constraint ('Column' or 'Table'). From <a href="/kb/en/mariadb-10510-release-notes/">MariaDB 10.5.10</a></td></tr>
+<tr><td><code>CHECK_CLAUSE</code></td><td>Constraint clause.</td></tr>
 </table>
 </div><h2 class="anchored_heading" id="example">Example</h2>
 <p>A table with a numeric table check constraint and with a default check constraint name:</p>
@@ -500,7 +493,7 @@
 <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">tt</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">10</span><span class="p">),(</span><span class="mi">20</span><span class="p">),(</span><span class="mi">100</span><span class="p">);</span>
 <span class="n">ERROR</span> <span class="mi">4025</span> <span class="p">(</span><span class="mi">23000</span><span class="p">):</span> <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">b_upper</span><span class="o">`</span> <span class="n">failed</span> <span class="k">for</span> <span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">tt</span><span class="o">`</span>
 </pre><p>From <a href="/kb/en/mariadb-10510-release-notes/">MariaDB 10.5.10</a>:</p>
-<pre class="fixed"><span class="k">create</span> <span class="k">table</span> <span class="n">majra</span><span class="p">(</span><span class="k">check</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),</span> <span class="n">x</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span> <span class="nb">int</span> <span class="k">check</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">z</span> <span class="nb">int</span><span class="p">,</span>
+<pre class="fixed wrap"><span class="k">create</span> <span class="k">table</span> <span class="n">majra</span><span class="p">(</span><span class="k">check</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),</span> <span class="n">x</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span> <span class="nb">int</span> <span class="k">check</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">z</span> <span class="nb">int</span><span class="p">,</span>
                               <span class="k">constraint</span> <span class="n">z</span> <span class="k">check</span><span class="p">(</span><span class="n">z</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),</span> <span class="k">constraint</span> <span class="n">xyz</span> <span class="k">check</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="mi">10</span> <span class="k">and</span> <span class="n">y</span><span class="o">&lt;</span><span class="mi">10</span> <span class="k">and</span> <span class="n">z</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">));</span>
 <span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">036</span> <span class="n">sec</span><span class="p">)</span>
 

@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="List of file instruments" />
+    <meta property="og:description" content="List of file instruments." />
 
-    <meta name="description" content="List of file instruments" />
+    <meta name="description" content="List of file instruments." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -268,7 +268,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-12-10 03:31">4 years, 4 months ago</span></dd>
+<span class="datetime" title="2022-04-24 18:17">3 hours, 22 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -409,7 +409,7 @@
 <tr><td><code>OPEN_COUNT</code></td><td>Open handles on the file. A value of greater than zero means that the file is currently open.</td></tr>
 </table>
 </div><h2 class="anchored_heading" id="example">Example</h2>
-<pre class="fixed">SELECT * FROM performance_schema.file_instances WHERE OPEN_COUNT&gt;0;
+<div class="cstm-style" style="font-size:0.8em;"><pre class="fixed wrap">SELECT * FROM performance_schema.file_instances WHERE OPEN_COUNT&gt;0;
 +----------------------------------------------------+--------------------------------------+------------+
 | FILE_NAME                                          | EVENT_NAME                           | OPEN_COUNT |
 +----------------------------------------------------+--------------------------------------+------------+
@@ -421,7 +421,7 @@
 | /var/lib/mysql/mysql/innodb_index_stats.ibd        | wait/io/file/innodb/innodb_data_file |          3 |
 | /var/lib/mysql/mysql/innodb_table_stats.ibd        | wait/io/file/innodb/innodb_data_file |          3 |
 ...
-</pre>
+</pre></div>
     </div>
 
 
@@ -1219,6 +1219,15 @@
                         <a href="/kb/en/performance-schema-users-table/">
                             
                             Performance Schema users Table
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/performance-schema-user_variables_by_thread-table/">
+                            
+                            Performance Schema user_variables_by_thread Table
                         </a>
                     </li>
                 

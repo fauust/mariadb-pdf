@@ -263,12 +263,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2022-03-28 13:31">2 weeks, 1 day ago</span></dd>
+<span class="datetime" title="2022-03-28 13:31">3 weeks, 6 days ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-28 13:31">2 weeks, 1 day ago</span></dd>
+<span class="datetime" title="2022-04-24 18:39">3 hours, 2 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -405,40 +405,40 @@
 </pre><h2 class="anchored_heading" id="description">Description</h2>
 <p><code>ps_thread_id</code> is a <a href="/kb/en/stored-functions/">stored function</a> available with the <a href="/kb/en/sys-schema/">Sys Schema</a> that returns the thread_id associated with the given <em>connection_id</em>. If the <em>connection_id</em> is NULL, returns the thread_id for the current connection. </p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
-<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">performance_schema</span><span class="p">.</span><span class="n">threads</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">13</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-          <span class="n">THREAD_ID</span><span class="p">:</span> <span class="mi">13</span>
-               <span class="n">NAME</span><span class="p">:</span> <span class="n">thread</span><span class="o">/</span><span class="k">sql</span><span class="o">/</span><span class="n">one_connection</span>
-               <span class="k">TYPE</span><span class="p">:</span> <span class="n">FOREGROUND</span>
-     <span class="n">PROCESSLIST_ID</span><span class="p">:</span> <span class="mi">3</span>
-   <span class="n">PROCESSLIST_USER</span><span class="p">:</span> <span class="n">msandbox</span>
-   <span class="n">PROCESSLIST_HOST</span><span class="p">:</span> <span class="n">localhost</span>
-     <span class="n">PROCESSLIST_DB</span><span class="p">:</span> <span class="n">test</span>
-<span class="n">PROCESSLIST_COMMAND</span><span class="p">:</span> <span class="n">Query</span>
-   <span class="n">PROCESSLIST_TIME</span><span class="p">:</span> <span class="mi">0</span>
-  <span class="n">PROCESSLIST_STATE</span><span class="p">:</span> <span class="n">Sending</span> <span class="k">data</span>
-   <span class="n">PROCESSLIST_INFO</span><span class="p">:</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">performance_schema</span><span class="p">.</span><span class="n">threads</span>
-   <span class="n">PARENT_THREAD_ID</span><span class="p">:</span> <span class="mi">1</span>
-               <span class="k">ROLE</span><span class="p">:</span> <span class="k">NULL</span>
-       <span class="n">INSTRUMENTED</span><span class="p">:</span> <span class="n">YES</span>
-            <span class="n">HISTORY</span><span class="p">:</span> <span class="n">YES</span>
-    <span class="n">CONNECTION_TYPE</span><span class="p">:</span> <span class="n">Socket</span>
-       <span class="n">THREAD_OS_ID</span><span class="p">:</span> <span class="mi">24379</span>
+<pre class="fixed">SELECT * FROM performance_schema.threads\G
+*************************** 13. row ***************************
+          THREAD_ID: 13
+               NAME: thread/sql/one_connection
+               TYPE: FOREGROUND
+     PROCESSLIST_ID: 3
+   PROCESSLIST_USER: msandbox
+   PROCESSLIST_HOST: localhost
+     PROCESSLIST_DB: test
+PROCESSLIST_COMMAND: Query
+   PROCESSLIST_TIME: 0
+  PROCESSLIST_STATE: Sending data
+   PROCESSLIST_INFO: SELECT * FROM performance_schema.threads
+   PARENT_THREAD_ID: 1
+               ROLE: NULL
+       INSTRUMENTED: YES
+            HISTORY: YES
+    CONNECTION_TYPE: Socket
+       THREAD_OS_ID: 24379
 
 
-<span class="k">SELECT</span> <span class="n">sys</span><span class="p">.</span><span class="n">ps_thread_id</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span> <span class="n">sys</span><span class="p">.</span><span class="n">ps_thread_id</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
-<span class="o">|</span>                  <span class="mi">13</span> <span class="o">|</span>
-<span class="o">+</span><span class="c1">---------------------+</span>
+SELECT sys.ps_thread_id(3);
++---------------------+
+| sys.ps_thread_id(3) |
++---------------------+
+|                  13 |
++---------------------+
 
-<span class="k">SELECT</span> <span class="n">sys</span><span class="p">.</span><span class="n">ps_thread_id</span><span class="p">(</span><span class="k">NULL</span><span class="p">);</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="o">|</span> <span class="n">sys</span><span class="p">.</span><span class="n">ps_thread_id</span><span class="p">(</span><span class="k">NULL</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
-<span class="o">|</span>                     <span class="mi">13</span> <span class="o">|</span>
-<span class="o">+</span><span class="c1">------------------------+</span>
+SELECT sys.ps_thread_id(NULL);
++------------------------+
+| sys.ps_thread_id(NULL) |
++------------------------+
+|                     13 |
++------------------------+
 </pre>
     </div>
 

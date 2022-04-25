@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Show status for one or all masters." />
+    <meta property="og:description" content="Show status for one or all primaries." />
 
-    <meta name="description" content="Show status for one or all masters." />
+    <meta name="description" content="Show status for one or all primaries." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -260,7 +260,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-25 23:30">1 month, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-24 13:49">7 hours, 46 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -558,10 +558,10 @@ using the channel_name directly after <code>SHOW SLAVE</code>.</p>
 </div><h3 class="anchored_heading" id="show-replica-status">SHOW REPLICA STATUS</h3>
 <div class="mariadb_from_10_5_1 mariadb from_10_5_1 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1051-release-notes/">10.5.1</a></h5><p><code>SHOW REPLICA STATUS</code> is an alias for <code>SHOW SLAVE STATUS</code> from <a href="/kb/en/mariadb-1051-release-notes/">MariaDB 10.5.1</a>. </p>
 </div><h2 class="anchored_heading" id="examples">Examples</h2>
-<p>If you issue this statement using the <code><a href="/kb/en/mysql-client/">mysql</a></code> client,
+<p>If you issue this statement using the <a href="/kb/en/mysql-client/">mysql</a> client,
 you can use a <code><code>\G</code></code> statement terminator rather than a semicolon to
 obtain a more readable vertical layout.</p>
-<pre class="fixed">SHOW SLAVE STATUS\G
+<pre class="fixed wrap">SHOW SLAVE STATUS\G
 *************************** 1. row ***************************
                Slave_IO_State: Waiting for master to send event
                   Master_Host: db01.example.com
@@ -607,7 +607,7 @@ Master_SSL_Verify_Server_Cert: No
            Master_SSL_Crlpath: 
                    Using_Gtid: No
                   Gtid_IO_Pos: 
-</pre><pre class="fixed">SHOW ALL SLAVES STATUS\G
+</pre><pre class="fixed wrap">SHOW ALL SLAVES STATUS\G
 *************************** 1. row ***************************
               Connection_name: 
               Slave_SQL_State: Slave has read all relay log; waiting for the slave I/O thread to update it
@@ -662,7 +662,7 @@ Master_SSL_Verify_Server_Cert: No
        Slave_heartbeat_period: 1800.000
                Gtid_Slave_Pos: 0-101-2320
 </pre><p>You can also access some of the variables directly from status variables:</p>
-<pre class="fixed">SET @@default_master_connection=&#34;test&#34; ;
+<pre class="fixed wrap">SET @@default_master_connection=&#34;test&#34; ;
 show status like &#34;%slave%&#34;
 
 Variable_name   Value

@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-23 18:01">11 years, 7 months ago</span></dd>
+<span class="datetime" title="2010-08-23 18:01">11 years, 8 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-12-13 09:41">4 years, 4 months ago</span></dd>
+<span class="datetime" title="2022-04-24 14:13">7 hours, 25 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -407,8 +407,8 @@
     
     <div class="answer formatted">
         <h2 class="anchored_heading" id="syntax">Syntax</h2>
-<pre class="fixed"><span class="k">SHOW</span> <span class="p">[</span><span class="k">GLOBAL</span> <span class="o">|</span> <span class="k">SESSION</span><span class="p">]</span> <span class="n">STATUS</span>
-    <span class="p">[</span><span class="k">LIKE</span> <span class="s1">&#39;pattern&#39;</span> <span class="o">|</span> <span class="k">WHERE</span> <span class="n">expr</span><span class="p">]</span>
+<pre class="fixed">SHOW [GLOBAL | SESSION] STATUS
+    [LIKE 'pattern' | WHERE expr]
 </pre><h2 class="anchored_heading" id="description">Description</h2>
 <p><code class="highlight fixed" style="white-space:pre-wrap">SHOW STATUS</code> provides server status information. This
 information also can be obtained using the <code><a href="/kb/en/mysqladmin/">mysqladmin extended-status</a></code> command, or by querying the <a href="/kb/en/information-schema-global_status-and-session_status-tables/">Information Schema GLOBAL_STATUS and SESSION_STATUS</a> tables.
@@ -428,7 +428,7 @@ same value for both <code class="highlight fixed" style="white-space:pre-wrap">G
 <p>The <code class="highlight fixed" style="white-space:pre-wrap">WHERE</code> and <code class="highlight fixed" style="white-space:pre-wrap">LIKE</code> clauses can be given to select rows using more general conditions, as discussed in <a href="/kb/en/extended-show/">Extended SHOW</a>.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
 <p>Full output from <a href="/kb/en/mariadb-10117-release-notes/">MariaDB 10.1.17</a>:</p>
-<pre class="fixed"><span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">STATUS</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">STATUS</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------------------------------------------------------+----------------------------------------+</span>
 <span class="o">|</span> <span class="n">Variable_name</span>                                                <span class="o">|</span> <span class="n">Value</span>                                  <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------------------------------------------------+----------------------------------------+</span>

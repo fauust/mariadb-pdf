@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2014-06-25 17:44">7 years, 9 months ago</span></dd>
+<span class="datetime" title="2014-06-25 17:44">7 years, 10 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-21 11:14">1 month, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-24 12:42">8 hours, 52 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -417,16 +417,16 @@
 <h2 class="anchored_heading" id="description">Description</h2>
 <p>The <code>ANALYZE statement</code> is similar to the <code>EXPLAIN statement</code>. <code>ANALYZE statement</code> will invoke the optimizer, execute the statement, and then produce <code>EXPLAIN</code> output instead of the result set. The <code>EXPLAIN</code> output will be annotated with statistics from statement execution.</p>
 <p>This lets one check how close the optimizer's estimates about the query plan are to the reality.  <code>ANALYZE</code> produces an overview, while the
-<code><a href="/kb/en/analyze-formatjson/">ANALYZE FORMAT=JSON</a></code> command provides a more detailed view of the query plan and the query execution.</p>
+<a href="/kb/en/analyze-formatjson/">ANALYZE FORMAT=JSON</a> command provides a more detailed view of the query plan and the query execution.</p>
 <p>The syntax is </p>
 <pre class="fixed"><span class="k">ANALYZE</span> <span class="n">explainable_statement</span><span class="p">;</span>
-</pre><p>where the statement is any statement for which one can run <code><a href="/kb/en/explain/">EXPLAIN</a></code>.</p>
+</pre><p>where the statement is any statement for which one can run <a href="/kb/en/explain/">EXPLAIN</a>.</p>
 <h2 class="anchored_heading" id="command-output">Command Output</h2>
 <p>Consider an example:</p>
-<pre class="fixed"><span class="k">ANALYZE</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">tbl1</span> 
-<span class="k">WHERE</span> <span class="n">key1</span> 
-  <span class="k">BETWEEN</span> <span class="mi">10</span> <span class="k">AND</span> <span class="mi">200</span> <span class="k">AND</span> 
-  <span class="n">col1</span> <span class="k">LIKE</span> <span class="s1">&#39;foo%&#39;</span><span class="err">\</span><span class="k">G</span>
+<pre class="fixed">ANALYZE SELECT * FROM tbl1 
+WHERE key1 
+  BETWEEN 10 AND 200 AND 
+  col1 LIKE 'foo%'\G
 </pre><pre class="fixed">*************************** 1. row ***************************
            id: 1
   select_type: SIMPLE
@@ -454,7 +454,7 @@ possible_keys: key1
   <span class="n">customer</span><span class="p">.</span><span class="n">c_custkey</span><span class="o">=</span><span class="n">orders</span><span class="p">.</span><span class="n">o_custkey</span> <span class="k">AND</span>
   <span class="n">customer</span><span class="p">.</span><span class="n">c_acctbal</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">AND</span>
   <span class="n">orders</span><span class="p">.</span><span class="n">o_totalprice</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="o">*</span><span class="mi">1000</span>
-</pre><pre class="fixed">+----+-------------+----------+------+---------------+-------------+---------+--------------------+--------+--------+----------+------------+-------------+
+</pre><pre class="fixed wrap">+----+-------------+----------+------+---------------+-------------+---------+--------------------+--------+--------+----------+------------+-------------+
 | id | select_type | table    | type | possible_keys | key         | key_len | ref                | rows   | r_rows | filtered | r_filtered | Extra       |
 +----+-------------+----------+------+---------------+-------------+---------+--------------------+--------+--------+----------+------------+-------------+
 |  1 | SIMPLE      | customer | ALL  | PRIMARY,...   | NULL        | NULL    | NULL               | 149095 | 150000 |    18.08 |       9.13 | Using where |
@@ -475,7 +475,7 @@ possible_keys: key1
   <span class="n">customer</span><span class="p">.</span><span class="n">c_acctbal</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">0</span> <span class="k">AND</span> 
   <span class="n">customer</span><span class="p">.</span><span class="n">c_comment</span> <span class="k">LIKE</span> <span class="s1">&#39;%foo%&#39;</span> <span class="k">AND</span>
   <span class="n">orders</span><span class="p">.</span><span class="n">o_totalprice</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="o">*</span><span class="mi">1000</span><span class="p">;</span>
-</pre><pre class="fixed">+----+-------------+----------+------+---------------+-------------+---------+--------------------+--------+--------+----------+------------+-------------+
+</pre><pre class="fixed wrap">+----+-------------+----------+------+---------------+-------------+---------+--------------------+--------+--------+----------+------------+-------------+
 | id | select_type | table    | type | possible_keys | key         | key_len | ref                | rows   | r_rows | filtered | r_filtered | Extra       |
 +----+-------------+----------+------+---------------+-------------+---------+--------------------+--------+--------+----------+------------+-------------+
 |  1 | SIMPLE      | customer | ALL  | PRIMARY,...   | NULL        | NULL    | NULL               | 149095 | 150000 |    18.08 |       0.00 | Using where |

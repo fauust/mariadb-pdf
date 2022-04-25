@@ -8,23 +8,20 @@
 
 ## Dependencies:
 
-### Python Version: 
+### Python 3.9+ (below are untested)
 
-- python 3.6 and above
+### Modules:
 
-### modules:
-
-- html5lib
 - requests
 - bs4
-- pdfkit
-- Pillow
+- html5lib
+- pdfkit (if "new_pdf" is true)
 - plyer (if "notify" is true)
 - pdfminer.six (if "toc_pagenumbers" is true)
 
 ### Applications:
 
-- if "write_to_pdf" is true:
+- if "new_pdf" is true:
 - You need to have wkhtmltopdf in the "path_to_app" set in the config
 
 
@@ -33,59 +30,57 @@
 ### Main Config
 
 ```yaml
-"redownload_all_files": #indicates whether or not to re-requested all existing files
+"redownload_all_files": #deletes all existing files in scraped_html to be re-requested
 
-"redownload_files": bool #indicates whether or not to re-request the urls in re-download.txt (seperated by new line)
+"redownload_files": bool #deletes all filenames/urls in re-download.txt to be re-requested
 
-"new_html": bool #indicates whether to re-use the previous output html file for pdf generation or to create a new one
+"new_html": bool #creates a new output html for pdf conversion
 
-"write_to_pdf": bool #indicates whether or not to process and write a new pdf file
+"new_pdf": bool #processes and writes a new pdf file
 
-"input_csv": string #which csv file to read from
+"toc_pagenumbers": bool #adds pagenumbers to the TOC
 
-"output_html": string #name of output html file
+"check_slugs": bool #checks alternate slugs based on csv information
 
-"output_pdf": string #name of output html file
+"debug_csv": bool #debugs the csv and logs to csv_debug.log
 
-"number_of_rows": int #number of rows to look through from the csv, -1 to do all rows
+"notify": bool #sets up an alert upon final completion
 
-"add_contents": bool # whether or not to add a main contents page
+"page-break": bool #sets up page breaks based on Syntax block sizes (WIP)
 
-"add_body" # adds the body of the pdf (everything excluding the contents)
+"mark_external_links": bool #places an icon next to external links
 
-"edit_cover_image": bool # edit the cover for this month's date
+"colour_external_links": bool #colours external links
 
-"read_pdf": bool #TEMPORARY - indicates whether or not to read the pdf for header info and rewrite the txt
+"add_contents": bool #creates the TOC
 
-"toc_pagenumbers": bool # whether or not to add pagenumbers to the TOC
+"add_body": #creates the main pdf body 
 
-"logging": bool # whether or not to store csv issues in the issues.log file in output
+"flatten_internal_contents": bool #flattens each pages contents to prevent text overlap
 
-"space_above_webpage": string # amount of space above each new webpage
+"remove_media_background": bool #removes specific images like folder icons for categories
 
-"page-break-length": int #the number of characters in each webpages syntax block is greater than this int, it will start the webpage on a new page in the pdf
+"catch-OSError": bool #catches the OSError raised by wkhtmltopdf if sent
 
-"page-break": bool #whether or not to use page-break-length
+"input_csv": string #filename for input csv
 
-"remove_background_media": bool # removes the file icons in some pages
+"output_html": string #filename for output html
 
-"notify": bool # sends a little popup upon completion
+"output_pdf": string #filename for output pdf
 
-"mark_external_links": bool # puts a little icon next to each external link (Currently stuck to "true")
+"number_of_rows": int #number of rows to read from the csv (-1 for all)
 
-"colour_external_links": bool # whether or not to alter the colour of external links
+"page-break-length": #length of Syntax Block at which new pages are added
 
-"external_link_colour": string # modifies the external link colour
+"min_sleep_time": int #minimum number of seconds between each GET request
 
-"flatten_internal_contents": bool #whether or not to push each page's internal contents to the left (false sometimes leads to text overlap)
+"space_above_webpage": string #space above each page (untested)
 
-"min_sleep_time": int #minimum number of seconds to wait between each get request
+"external_link_colour": string  #colour for external links
 
-"catch-OSError": bool #indicates whether or not to catch the error raised by pdf (currently always raises an error)
+"parser": string #html parser for bs4
 
-"parser": string # library to use for Bs4
-
-"path_to_exe": string #the path to the wkhtmltopdf application
+"path_to_app": string #path to wkhtmltopdf (leave empty for automatic location)
 ```
 
 ### Contents Config
@@ -110,15 +105,29 @@
 
 ```yaml
 "DPI": int # affects quality of text rendering and filesize
-"page-size": string 
-"footer-font-size": int
+
+"page-size": string #page size (eg. A4)
+
+"footer-font-size": int #size for page numbers
+
 "margin-top": string # margin-top for each page of the pdf
+
 "margin-bottom": string # margin-bottom for each page of the pdf
+
 "margin-right": string # margin-right for each page of the pdf
+
 "margin-left": string # margin-left for each page of the pdf
-"zoom": int
+
+"zoom": float #zoom level
+
 "footer-right": string #places text at footer-right of each page (can use [page] to indicate current page and [topage] to indicate total pages)
-"encoding": string
+
+"encoding": string #encoding format
+
 "footer-line": "" #leave empty for a line above the margin-bottom
-"disable-javascript": bool
-"enable-local-file-access": bool # for using Cover.jpg
+
+"quiet": "" #leave empty for quiet pdf generation
+
+"disable-javascript": bool #disables javascript
+
+"enable-local-file-access": bool #for using the cover image

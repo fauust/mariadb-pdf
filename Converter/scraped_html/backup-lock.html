@@ -260,7 +260,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-06-03 16:11">1 year, 10 months ago</span></dd>
+<span class="datetime" title="2022-04-24 13:01">8 hours, 34 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -451,7 +451,7 @@ BACKUP UNLOCK;
 This works, because the open files will point to the original table files which will not be affected if there is
 any ALTER TABLE while copying the files.</p>
 <h2 class="anchored_heading" id="privileges">Privileges</h2>
-<p>BACKUP LOCK requires the <code><a href="/kb/en/grant/">RELOAD</a></code> privilege.</p>
+<p>BACKUP LOCK requires the <a href="/kb/en/grant/">RELOAD</a> privilege.</p>
 <h2 class="anchored_heading" id="notes">Notes</h2>
 <ul start="1"><li>The idea is that the <code>BACKUP LOCK</code> should be held for as short a time as possible by the backup tool. The time to take an uncontested lock is very short! One can easily do 50,000 locks/unlocks per second on low end hardware.
 </li><li>One should use different connections for <a href="/kb/en/backup-stage/">BACKUP STAGE</a> commands and <code>BACKUP LOCK</code>. 

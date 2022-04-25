@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-04-13 21:59">8 years, 12 months ago</span></dd>
+<span class="datetime" title="2013-04-13 21:59">9 years ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-09-07 09:40">3 years, 7 months ago</span></dd>
+<span class="datetime" title="2022-04-24 13:24">8 hours, 21 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -433,7 +433,7 @@ The query cache stores results of SELECT queries so that if the identical query 
 <p>This is extremely useful in high-read, low-write environments (such as most websites). It does not scale well in environments with high throughput on multi-core machines, so it is disabled by default.</p>
 <div class="cstm-style redbox"><p>Note that the query cache cannot be enabled in certain environments. See <a href="#limitations">Limitations</a>.</p>
 </div><h2 class="anchored_heading" id="setting-up-the-query-cache">Setting Up the Query Cache</h2>
-<p>Unless MariaDB has been specifically built without the query cache, the query cache will always be available, although inactive. The <code><a href="/kb/en/server-system-variables/#have_query_cache">have_query_cache</a></code> server variable will show whether the query cache is available.</p>
+<p>Unless MariaDB has been specifically built without the query cache, the query cache will always be available, although inactive. The <a href="/kb/en/server-system-variables/#have_query_cache">have_query_cache</a> server variable will show whether the query cache is available.</p>
 <pre class="fixed"><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;have_query_cache&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------------------+-------+</span>
 <span class="o">|</span> <span class="n">Variable_name</span>    <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
@@ -458,14 +458,14 @@ The query cache stores results of SELECT queries so that if the identical query 
 <pre class="fixed"><span class="cm">/* retry */</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">t</span>
 </pre><p>Is different from :</p>
 <pre class="fixed"><span class="cm">/* retry2 */</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">t</span>
-</pre><p>See the <code><a href="/kb/en/server-system-variables/#query_cache_strip_comments">query_cache_strip_comments</a></code> server variable for an option to strip comments before searching. </p>
+</pre><p>See the <a href="/kb/en/server-system-variables/#query_cache_strip_comments">query_cache_strip_comments</a> server variable for an option to strip comments before searching. </p>
 <p>Each time changes are made to the data in a table, all affected results in the query cache are cleared. It is not possible to retrieve stale data from the query cache.</p>
 <p>When the space allocated to query cache is exhausted, the oldest results will be dropped from the cache.</p>
 <p>When using <code>query_cache_type=ON</code>, and the query specifies <code>SQL_NO_CACHE</code> (case-insensitive), the server will not cache the query and will not fetch results from the query cache.</p>
 <p>When using <code>query_cache_type=DEMAND</code> (after <a href="https://jira.mariadb.org/browse/MDEV-6631">MDEV-6631</a> feature request) and the query specifies <code>SQL_CACHE</code>, the server will cache the query.</p>
 <p>One important point of <a href="https://jira.mariadb.org/browse/MDEV-6631">MDEV-6631</a> is : switching between <code>query_cache_type=ON</code> and <code>query_cache_type=DEMAND</code> can "turn off" query cache of old queries without the <code>SQL_CACHE</code> string, that's not yet defined if we should include another <code>query_cache_type</code> (DEMAND_NO_PRUNE) value or not to allow use of old queries</p>
 <h2 class="anchored_heading" id="queries-stored-in-the-query-cache">Queries Stored in the Query Cache</h2>
-<p>If the <code><a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a></code> system variable is set to <code>1</code>, or <code>ON</code>, all queries fitting the size constraints will be stored in the cache unless they contain a <code>SQL_NO_CACHE</code> clause, or are of a nature that caching makes no sense, for example making use of a function that returns the current time. Check that <code>SQL_NO_CACHE</code> will force server to don't use query cache locks.</p>
+<p>If the <a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a> system variable is set to <code>1</code>, or <code>ON</code>, all queries fitting the size constraints will be stored in the cache unless they contain a <code>SQL_NO_CACHE</code> clause, or are of a nature that caching makes no sense, for example making use of a function that returns the current time. Check that <code>SQL_NO_CACHE</code> will force server to don't use query cache locks.</p>
 <p>If any of the following functions are present in a query, it will not be cached. Queries with these functions are sometimes called 'non-deterministic' - don't get confused with the use of this term in other contexts.</p>
 <div class="cstm-style table-class"><table><tr><td><a href="/kb/en/benchmark/">BENCHMARK()</a></td><td><a href="/kb/en/connection_id/">CONNECTION_ID()</a></td></tr>
 <tr><td><a href="/kb/en/convert_tz/">CONVERT_TZ()</a></td><td><a href="/kb/en/curdate/">CURDATE()</a></td></tr>
@@ -501,11 +501,11 @@ The query cache stores results of SELECT queries so that if the identical query 
 </li><li>It is quering a table inside a transaction after the same table executed a query cache invalidation using INSERT, UPDATE or DELETE
 </li></ul>
 <p>The query itself can also specify that it is not to be stored in the cache by using the <code>SQL_NO_CACHE</code> attribute. Query-level control is an effective way to use the cache more optimally.</p>
-<p>It is also possible to specify that <em>no</em> queries must be stored in the cache unless the query requires it. To do this, the <code><a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a></code> server variable must be set to <code>2</code>, or <code>DEMAND</code>. Then, only queries with the <code>SQL_CACHE</code> attribute are cached.</p>
+<p>It is also possible to specify that <em>no</em> queries must be stored in the cache unless the query requires it. To do this, the <a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a> server variable must be set to <code>2</code>, or <code>DEMAND</code>. Then, only queries with the <code>SQL_CACHE</code> attribute are cached.</p>
 <h2 class="anchored_heading" id="limiting-the-size-of-the-query-cache">Limiting the Size of the Query Cache</h2>
-<p>There are two main ways to limit the size of the query cache. First, the overall size in bytes is determined by the <code><a href="/kb/en/server-system-variables/#query_cache_size">query_cache_size</a></code> server variable. About 40KB is needed for various query cache structures.</p>
+<p>There are two main ways to limit the size of the query cache. First, the overall size in bytes is determined by the <a href="/kb/en/server-system-variables/#query_cache_size">query_cache_size</a> server variable. About 40KB is needed for various query cache structures.</p>
 <p>The query cache size is allocated in 1024 byte-blocks, thus it should be set to a multiple of 1024. </p>
-<p>The query result is stored using a minimum block size of <code><a href="/kb/en/server-system-variables/#query_cache_min_res_unit">query_cache_min_res_unit</a></code>. Check two conditions to use a good value of this variable: Query cache insert result blocks with locks, each new block insert lock query cache, a small value will increase locks and fragmentation and waste less memory for small results, a big value will increase memory use wasting more memory for small results but it reduce locks. Test with your workload for fine tune this variable.</p>
+<p>The query result is stored using a minimum block size of <a href="/kb/en/server-system-variables/#query_cache_min_res_unit">query_cache_min_res_unit</a>. Check two conditions to use a good value of this variable: Query cache insert result blocks with locks, each new block insert lock query cache, a small value will increase locks and fragmentation and waste less memory for small results, a big value will increase memory use wasting more memory for small results but it reduce locks. Test with your workload for fine tune this variable.</p>
 <p>If the <a href="/kb/en/sql-mode/">strict mode</a> is enabled, setting the query cache size to an invalid value will cause an error. Otherwise, it will be set to the nearest permitted value, and a warning will be triggered.</p>
 <pre class="fixed"><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;query_cache_size&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------------------+----------+</span>
@@ -524,9 +524,9 @@ The query cache stores results of SELECT queries so that if the identical query 
 <span class="o">|</span> <span class="n">query_cache_size</span> <span class="o">|</span> <span class="mi">7999488</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------------+---------+</span>
 </pre><p>The ideal size of the query cache is very dependent on the specific needs of each system. Setting a value too small will result in query results being dropped from the cache when they could potentially be re-used later. Setting a value too high could result in reduced performance due to lock contention, as the query cache is locked during updates.</p>
-<p>The second way to limit the cache is to have a maximum size for each set of query results. This prevents a single query with a huge result set taking up most of the available memory and knocking a large number of smaller queries out of the cache. This is determined by the <code><a href="/kb/en/server-system-variables/#query_cache_limit">query_cache_limit</a></code> server variable.</p>
+<p>The second way to limit the cache is to have a maximum size for each set of query results. This prevents a single query with a huge result set taking up most of the available memory and knocking a large number of smaller queries out of the cache. This is determined by the <a href="/kb/en/server-system-variables/#query_cache_limit">query_cache_limit</a> server variable.</p>
 <p>If you attempt to set a query cache that is too small (the amount depends on the architecture), the resizing will fail and the query cache will be set to zero, for example :</p>
-<pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">query_cache_size</span><span class="o">=</span><span class="mi">40000</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">query_cache_size</span><span class="o">=</span><span class="mi">40000</span><span class="p">;</span>
 <span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span><span class="p">,</span> <span class="mi">2</span> <span class="n">warnings</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">03</span> <span class="n">sec</span><span class="p">)</span>
 
 <span class="k">SHOW</span> <span class="n">WARNINGS</span><span class="p">;</span>
@@ -556,7 +556,7 @@ The query cache stores results of SELECT queries so that if the identical query 
 <p>Note that before <a href="/kb/en/what-is-mariadb-55/">MariaDB 5.5</a>, queries returned from the query cache did not increment the <a href="/kb/en/server-status-variables/#com_select">Com_select</a> status variable, so to find the total number of valid queries run on the server, add <a href="/kb/en/server-status-variables/#com_select">Com_select</a> to <a href="/kb/en/server-status-variables/#qcache_hits">Qcache_hits</a>. Starting from <a href="/kb/en/what-is-mariadb-55/">MariaDB 5.5</a>, results returned by the query cache count towards <code>Com_select</code> (see <a href="https://jira.mariadb.org/browse/MDEV-4981">MDEV-4981</a>).</p>
 <p>The <a href="/kb/en/query_cache_info-plugin/">QUERY_CACHE_INFO plugin</a> creates the <a href="/kb/en/information-schema-query_cache_info-table/">QUERY_CACHE_INFO</a>  table in the <a href="/kb/en/information_schema/">INFORMATION_SCHEMA</a>, allowing you to examine the contents of the query cache.</p>
 <h2 class="anchored_heading" id="query-cache-fragmentation">Query Cache Fragmentation</h2>
-<p>The Query Cache uses blocks of variable length, and over time may become fragmented. A high <code>Qcache_free_blocks</code> relative to <code>Qcache_total_blocks</code> may indicate fragmentation. <code><a href="/kb/en/flush-query-cache/">FLUSH QUERY CACHE</a></code> will defragment the query cache without dropping any queries :</p>
+<p>The Query Cache uses blocks of variable length, and over time may become fragmented. A high <code>Qcache_free_blocks</code> relative to <code>Qcache_total_blocks</code> may indicate fragmentation. <a href="/kb/en/flush-query-cache/">FLUSH QUERY CACHE</a> will defragment the query cache without dropping any queries :</p>
 <pre class="fixed"><span class="n">FLUSH</span> <span class="n">QUERY</span> <span class="k">CACHE</span><span class="p">;</span>
 </pre><p>After this, there will only be one free block :</p>
 <pre class="fixed"><span class="k">SHOW</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">&#39;Qcache%&#39;</span><span class="p">;</span>
@@ -573,15 +573,15 @@ The query cache stores results of SELECT queries so that if the identical query 
 <span class="o">|</span> <span class="n">Qcache_total_blocks</span>     <span class="o">|</span> <span class="mi">8833</span>     <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------------+----------+</span>
 </pre><h2 class="anchored_heading" id="emptying-and-disabling-the-query-cache">Emptying and disabling the Query Cache</h2>
-<p>To empty or clear all results from the query cache, use <code><a href="/kb/en/reset/">RESET QUERY CACHE</a></code>. <code><a href="/kb/en/flush/">FLUSH TABLES</a></code> will have the same effect.</p>
-<p>Setting either <code><a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a></code> or <code><a href="/kb/en/server-system-variables/#query_cache_size">query_cache_size</a></code> to <code>0</code> will disable the query cache, but to free up the most resources, set both to <code>0</code> when you wish to disable caching.</p>
+<p>To empty or clear all results from the query cache, use <a href="/kb/en/reset/">RESET QUERY CACHE</a>. <a href="/kb/en/flush/">FLUSH TABLES</a> will have the same effect.</p>
+<p>Setting either <a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a> or <a href="/kb/en/server-system-variables/#query_cache_size">query_cache_size</a> to <code>0</code> will disable the query cache, but to free up the most resources, set both to <code>0</code> when you wish to disable caching.</p>
 <h2 class="anchored_heading" id="limitations">Limitations</h2>
 <ul start="1"><li>The query cache needs to be disabled in order to use <a href="/kb/en/oqgraph/">OQGRAPH</a>.
 </li><li>The query cache is not used by the <a href="/kb/en/spider/">Spider</a> storage engine (amongst others).
 </li><li>The query cache also needs to be disabled for MariaDB <a href="/kb/en/galera/">Galera</a> cluster versions prior to "5.5.40-galera", "10.0.14-galera" and "10.1.2".
 </li></ul>
 <h2 class="anchored_heading" id="lock-tables-and-the-query-cache">LOCK TABLES and the Query Cache</h2>
-<p>The query cache can be used when tables have a write lock (which may seem confusing since write locks should avoid table reads). This behaviour can be changed by setting the <code><a href="/kb/en/server-system-variables/#query_cache_wlock_invalidate">query_cache_wlock_invalidate</a></code> system variable to <code>ON</code>, in which case each write lock will invalidate the table query cache. Setting to <code>OFF</code>, the default, means that cached queries can be returned even when a table lock is being held. For example:</p>
+<p>The query cache can be used when tables have a write lock (which may seem confusing since write locks should avoid table reads). This behaviour can be changed by setting the <a href="/kb/en/server-system-variables/#query_cache_wlock_invalidate">query_cache_wlock_invalidate</a> system variable to <code>ON</code>, in which case each write lock will invalidate the table query cache. Setting to <code>OFF</code>, the default, means that cached queries can be returned even when a table lock is being held. For example:</p>
 <pre class="fixed"><span class="mi">1</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">T1</span>
 <span class="o">+</span><span class="c1">---+</span>
 <span class="o">|</span> <span class="n">a</span> <span class="o">|</span>
@@ -629,21 +629,21 @@ The query cache stores results of SELECT queries so that if the identical query 
 <span class="o">+</span><span class="c1">---+</span>
 <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">---+</span>
-</pre><pre class="fixed"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">T1</span> <span class="k">VALUES</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="o">&lt;</span><span class="n">invalidate</span> <span class="n">queries</span> <span class="k">from</span> <span class="k">table</span> <span class="n">T1</span> <span class="k">and</span> <span class="n">disable</span> <span class="n">query</span> <span class="k">cache</span> <span class="k">to</span> <span class="k">table</span> <span class="n">T1</span><span class="o">&gt;</span>
-</pre><pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">T1</span> <span class="o">&lt;</span><span class="n">don</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">use</span> <span class="n">query</span> <span class="k">cache</span><span class="p">,</span> <span class="n">a</span> <span class="n">normal</span> <span class="n">query</span> <span class="k">from</span> <span class="n">innodb</span> <span class="k">table</span><span class="o">&gt;</span>
-<span class="o">+</span><span class="c1">---+</span>
-<span class="o">|</span> <span class="n">a</span> <span class="o">|</span>
-<span class="o">+</span><span class="c1">---+</span>
-<span class="o">|</span> <span class="mi">1</span> <span class="o">|</span>
-<span class="o">|</span> <span class="mi">2</span> <span class="o">|</span>
-<span class="o">+</span><span class="c1">---+</span>
-</pre><pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">T1</span> <span class="o">&lt;</span><span class="n">don</span><span class="err">&#39;</span><span class="n">t</span> <span class="n">use</span> <span class="n">query</span> <span class="k">cache</span><span class="p">,</span> <span class="n">a</span> <span class="n">normal</span> <span class="n">query</span> <span class="k">from</span> <span class="n">innodb</span> <span class="k">table</span><span class="o">&gt;</span>
-<span class="o">+</span><span class="c1">---+</span>
-<span class="o">|</span> <span class="n">a</span> <span class="o">|</span>
-<span class="o">+</span><span class="c1">---+</span>
-<span class="o">|</span> <span class="mi">1</span> <span class="o">|</span>
-<span class="o">|</span> <span class="mi">2</span> <span class="o">|</span>
-<span class="o">+</span><span class="c1">---+</span>
+</pre><pre class="fixed wrap"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">T1</span> <span class="k">VALUES</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>  <span class="o">&lt;</span><span class="n">invalidate</span> <span class="n">queries</span> <span class="k">from</span> <span class="k">table</span> <span class="n">T1</span> <span class="k">and</span> <span class="n">disable</span> <span class="n">query</span> <span class="k">cache</span> <span class="k">to</span> <span class="k">table</span> <span class="n">T1</span><span class="o">&gt;</span>
+</pre><pre class="fixed">SELECT * FROM T1 &lt;don't use query cache, a normal query from innodb table&gt;
++---+
+| a |
++---+
+| 1 |
+| 2 |
++---+
+</pre><pre class="fixed">SELECT * FROM T1 &lt;don't use query cache, a normal query from innodb table&gt;
++---+
+| a |
++---+
+| 1 |
+| 2 |
++---+
 </pre><pre class="fixed"><span class="k">COMMIT</span><span class="p">;</span>  <span class="o">&lt;</span><span class="n">query</span> <span class="k">cache</span> <span class="k">is</span> <span class="n">now</span> <span class="n">turned</span> <span class="k">on</span> <span class="k">to</span> <span class="n">T1</span> <span class="k">table</span><span class="o">&gt;</span>
 </pre><pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">T1</span> <span class="o">&lt;</span><span class="k">first</span> <span class="k">insert</span> <span class="k">to</span> <span class="n">query</span> <span class="k">cache</span><span class="p">,</span> <span class="k">using</span> <span class="n">FLAGS_IN_TRANS</span><span class="o">=</span><span class="mi">0</span><span class="o">&gt;</span>
 <span class="o">+</span><span class="c1">---+</span>
@@ -698,7 +698,7 @@ The query cache stores results of SELECT queries so that if the identical query 
 <p>When two processes execute the same query, only the last process stores the query result. All other processes increase the <a href="/kb/en/server-status-variables/#qcache_not_cached">Qcache_not_cached</a> status variable.</p>
 <h2 class="anchored_heading" id="sql_no_cache-and-sql_cache">SQL_NO_CACHE and SQL_CACHE</h2>
 <p>There are two aspects to the query cache: placing a query in the cache, and retrieving it from the cache.</p>
-<ol start="1"><li>Adding a query to the query cache. This is done automatically for cacheable queries (see (<a href="#queries-stored-in-the-query-cache">Queries Stored in the Query Cache</a>) when the <code><a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a></code> system variable is set to <code>1</code>, or <code>ON</code> and the query contains no SQL_NO_CACHE clause, or when the <code><a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a></code> system variable is set to <code>2</code>, or <code>DEMAND</code>, and the query contains the SQL_CACHE clause.
+<ol start="1"><li>Adding a query to the query cache. This is done automatically for cacheable queries (see (<a href="#queries-stored-in-the-query-cache">Queries Stored in the Query Cache</a>) when the <a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a> system variable is set to <code>1</code>, or <code>ON</code> and the query contains no SQL_NO_CACHE clause, or when the <a href="/kb/en/server-system-variables/#query_cache_type">query_cache_type</a> system variable is set to <code>2</code>, or <code>DEMAND</code>, and the query contains the SQL_CACHE clause.
 </li><li>Retrieving a query from the cache. This is done after the server receives the query and before the query parser. In this case one point should be considered: 
 </li></ol>
 <p>When using SQL_NO_CACHE, it should be after the first SELECT hint, for example :</p>

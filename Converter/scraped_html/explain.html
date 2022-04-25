@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-23 15:19">11 years, 7 months ago</span></dd>
+<span class="datetime" title="2010-08-23 15:19">11 years, 8 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-10-18 10:45">5 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-24 12:47">8 hours, 47 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -493,18 +493,18 @@ executes a <code class="highlight fixed" style="white-space:pre-wrap">SELECT</co
 <h4 class="anchored_heading" id="select_type-column">"Select_type" Column</h4>
 <p>The <code>select_type</code> column can have the following values:</p>
 <div class="cstm-style darkheader-nospace-borders"><table><tr><th>Value</th><th>Description</th><th>Comment</th></tr>
-<tr><td><code>DEPENDENT SUBQUERY</code></td><td>The <code>SUBQUERY</code> is <code>DEPENDENT</code>.</td></tr>
-<tr><td><code>DEPENDENT UNION</code></td><td>The <code>UNION</code> is <code>DEPENDENT</code>.</td></tr>
-<tr><td><code>DERIVED</code></td><td>The <code>SELECT</code> is <code>DERIVED</code> from the <code>PRIMARY</code>.</td></tr>
+<tr><td><code>DEPENDENT SUBQUERY</code></td><td>The <code>SUBQUERY</code> is <code>DEPENDENT</code>.</td><td></td></tr>
+<tr><td><code>DEPENDENT UNION</code></td><td>The <code>UNION</code> is <code>DEPENDENT</code>.</td><td></td></tr>
+<tr><td><code>DERIVED</code></td><td>The <code>SELECT</code> is <code>DERIVED</code> from the <code>PRIMARY</code>.</td><td></td></tr>
 <tr><td><code>MATERIALIZED</code></td><td>The <code>SUBQUERY</code> is <code><a href="/kb/en/semi-join-materialization-strategy/">MATERIALIZED</a></code>.</td><td>Materialized tables will be populated at first access and will be accessed by the primary key (= one key lookup). Number of rows in EXPLAIN shows the cost of populating the table</td></tr>
-<tr><td><code>PRIMARY</code></td><td>The <code>SELECT</code> is a <code>PRIMARY</code> one.</td></tr>
-<tr><td><code>SIMPLE</code></td><td>The <code>SELECT</code> is a <code>SIMPLE</code> one.</td></tr>
-<tr><td><code>SUBQUERY</code></td><td>The <code>SELECT</code> is a <code>SUBQUERY</code> of the <code>PRIMARY</code>.</td></tr>
-<tr><td><code>UNCACHEABLE SUBQUERY</code></td><td>The <code>SUBQUERY</code> is <code>UNCACHEABLE</code>.</td></tr>
-<tr><td><code>UNCACHEABLE UNION</code></td><td>The <code>UNION</code> is <code>UNCACHEABLE</code>.</td></tr>
-<tr><td><code>UNION</code></td><td>The <code>SELECT</code> is a <code>UNION</code> of the <code>PRIMARY</code>.</td></tr>
-<tr><td><code>UNION RESULT</code></td><td>The result of the <code>UNION</code>.</td></tr>
-<tr><td><code>LATERAL DERIVED</code></td><td>The <code>SELECT</code> uses a <a href="/kb/en/lateral-derived-optimization/">Lateral Derived optimization</a></td></tr>
+<tr><td><code>PRIMARY</code></td><td>The <code>SELECT</code> is a <code>PRIMARY</code> one.</td><td></td></tr>
+<tr><td><code>SIMPLE</code></td><td>The <code>SELECT</code> is a <code>SIMPLE</code> one.</td><td></td></tr>
+<tr><td><code>SUBQUERY</code></td><td>The <code>SELECT</code> is a <code>SUBQUERY</code> of the <code>PRIMARY</code>.</td><td></td></tr>
+<tr><td><code>UNCACHEABLE SUBQUERY</code></td><td>The <code>SUBQUERY</code> is <code>UNCACHEABLE</code>.</td><td></td></tr>
+<tr><td><code>UNCACHEABLE UNION</code></td><td>The <code>UNION</code> is <code>UNCACHEABLE</code>.</td><td></td></tr>
+<tr><td><code>UNION</code></td><td>The <code>SELECT</code> is a <code>UNION</code> of the <code>PRIMARY</code>.</td><td></td></tr>
+<tr><td><code>UNION RESULT</code></td><td>The result of the <code>UNION</code>.</td><td></td></tr>
+<tr><td><code>LATERAL DERIVED</code></td><td>The <code>SELECT</code> uses a <a href="/kb/en/lateral-derived-optimization/">Lateral Derived optimization</a></td><td></td></tr>
 </table>
 </div><h4 class="anchored_heading" id="type-column">"Type" Column</h4>
 <p>This column contains information on how the table is accessed.</p>
@@ -596,7 +596,7 @@ executes a <code class="highlight fixed" style="white-space:pre-wrap">SELECT</co
 <span class="o">|</span> <span class="n">Population</span> <span class="o">|</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>  <span class="o">|</span> <span class="n">YES</span>  <span class="o">|</span>     <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span>                <span class="o">|</span>
 <span class="o">+</span><span class="c1">------------+----------+------+-----+---------+----------------+</span>
 </pre><p>A simple set of examples to see how <code>EXPLAIN</code> can identify poor index usage:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">employees_example</span><span class="o">`</span> <span class="p">(</span>
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">employees_example</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
   <span class="o">`</span><span class="n">first_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
   <span class="o">`</span><span class="n">last_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
@@ -628,7 +628,7 @@ executes a <code class="highlight fixed" style="white-space:pre-wrap">SELECT</co
 <span class="o">|</span> <span class="n">employees_example</span> <span class="o">|</span>          <span class="mi">1</span> <span class="o">|</span> <span class="n">first_name</span>    <span class="o">|</span>            <span class="mi">2</span> <span class="o">|</span> <span class="n">last_name</span>     <span class="o">|</span> <span class="n">A</span>         <span class="o">|</span>        <span class="k">NULL</span> <span class="o">|</span>     <span class="k">NULL</span> <span class="o">|</span> <span class="k">NULL</span>   <span class="o">|</span>      <span class="o">|</span> <span class="n">BTREE</span>      <span class="o">|</span>         <span class="o">|</span>               <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------------+------------+---------------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+</span>
 </pre><p><code>SELECT</code> on a primary key:</p>
-<pre class="fixed"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees_example</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees_example</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+-------------+-------------------+-------+---------------+---------+---------+-------+------+-------+</span>
 <span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span>             <span class="o">|</span> <span class="k">type</span>  <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>     <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>   <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+-------------+-------------------+-------+---------------+---------+---------+-------+------+-------+</span>
@@ -636,14 +636,14 @@ executes a <code class="highlight fixed" style="white-space:pre-wrap">SELECT</co
 <span class="o">+</span><span class="c1">------+-------------+-------------------+-------+---------------+---------+---------+-------+------+-------+</span>
 </pre><p>The type is <em>const</em>, which means that only one possible result could be returned. 
 Now, returning the same record but searching by their phone number:</p>
-<pre class="fixed"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees_example</span> <span class="k">WHERE</span> <span class="n">home_phone</span><span class="o">=</span><span class="s1">&#39;326-555-3492&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">employees_example</span> <span class="k">WHERE</span> <span class="n">home_phone</span><span class="o">=</span><span class="s1">&#39;326-555-3492&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+-------------+-------------------+------+---------------+------+---------+------+------+-------------+</span>
 <span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span>             <span class="o">|</span> <span class="k">type</span> <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>  <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+-------------+-------------------+------+---------------+------+---------+------+------+-------------+</span>
 <span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="k">SIMPLE</span>      <span class="o">|</span> <span class="n">employees_example</span> <span class="o">|</span> <span class="k">ALL</span>  <span class="o">|</span> <span class="k">NULL</span>          <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span>    <span class="mi">6</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">------+-------------+-------------------+------+---------------+------+---------+------+------+-------------+</span>
 </pre><p>Here, the type is <em>All</em>, which means no index could be used. Looking at the rows count, a full table scan (all six rows) had to be performed in order to retrieve the record. If it's a requirement to search by phone number, an index will have to be created.</p>
-<p><code><a href="/kb/en/show-explain/">SHOW EXPLAIN</a></code> example:</p>
+<p><a href="/kb/en/show-explain/">SHOW EXPLAIN</a> example:</p>
 <pre class="fixed"><span class="k">SHOW</span> <span class="k">EXPLAIN</span> <span class="k">FOR</span> <span class="mi">1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">------+-------------+-------+-------+---------------+------+---------+------+---------+-------------+</span>
 <span class="o">|</span> <span class="n">id</span>   <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span> <span class="o">|</span> <span class="k">type</span>  <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>  <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span>    <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>

@@ -256,7 +256,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-22 22:07">1 month, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-24 19:25">2 hours, 7 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -577,7 +577,7 @@
 <h2 class="anchored_heading" id="description">Description</h2>
 <p>The <code>CREATE USER</code> statement creates new MariaDB accounts. To use it, you must have the global <a href="/kb/en/grant/#create-user">CREATE USER</a> privilege or the <a href="/kb/en/grant/#table-privileges">INSERT</a> privilege for the <a href="/kb/en/the-mysql-database-tables/">mysql</a> database. For each account, <code>CREATE USER</code> creates a new row in <a href="/kb/en/mysqluser-table/">mysql.user</a> (until <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a> this is a table, from <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a> it's a view) or <a href="/kb/en/mysqlglobal_priv-table/">mysql.global_priv_table</a> (from <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a>) that has no privileges.</p>
 <p>If any of the specified accounts, or any permissions for the specified accounts, already exist, then the server returns <code>ERROR 1396 (HY000)</code>. If an error occurs, <code>CREATE USER</code> will still create the accounts that do not result in an error. Only one error is produced for all users which have not been created:</p>
-<pre class="fixed">ERROR 1396 (HY000): 
+<pre class="fixed wrap">ERROR 1396 (HY000): 
   Operation CREATE USER failed for 'u1'@'%','u2'@'%'
 </pre><p><code>CREATE USER</code>, <a href="/kb/en/drop-user/">DROP USER</a>, <a href="/kb/en/create-role/">CREATE ROLE</a>, and <a href="/kb/en/drop-role/">DROP ROLE</a>  all produce the same error code when they fail.</p>
 <p>See <a href="#account-names">Account Names</a> below for details on how account names are specified. </p>
@@ -661,9 +661,9 @@ password is set.</p>
 </div><p>The <code>REQUIRE</code> keyword must be used only once for all specified options, and the <code>AND</code> keyword can be used to separate individual options, but it is not required.</p>
 <p>For example, you can create a user account that requires these TLS options with the following:</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span>
-    <span class="n">REQUIRE</span> <span class="n">SUBJECT</span> <span class="s1">&#39;/CN=alice/O=My Dom, Inc./C=US/ST=Oregon/L=Portland&#39;</span>
-    <span class="k">AND</span> <span class="n">ISSUER</span> <span class="s1">&#39;/C=FI/ST=Somewhere/L=City/ O=Some Company/CN=Peter Parker/emailAddress=p.parker@marvel.com&#39;</span>
-    <span class="k">AND</span> <span class="n">CIPHER</span> <span class="s1">&#39;SHA-DES-CBC3-EDH-RSA&#39;</span><span class="p">;</span>
+ <span class="n">REQUIRE</span> <span class="n">SUBJECT</span> <span class="s1">&#39;/CN=alice/O=My Dom, Inc./C=US/ST=Oregon/L=Portland&#39;</span>
+ <span class="k">AND</span> <span class="n">ISSUER</span> <span class="s1">&#39;/C=FI/ST=Somewhere/L=City/ O=Some Company/CN=Peter Parker/emailAddress=p.parker@marvel.com&#39;</span>
+ <span class="k">AND</span> <span class="n">CIPHER</span> <span class="s1">&#39;SHA-DES-CBC3-EDH-RSA&#39;</span><span class="p">;</span>
 </pre><p>If any of these options are set for a specific user account, then any client who tries to connect with that user account will have to be configured to connect with TLS.</p>
 <p>See <a href="/kb/en/securing-connections-for-client-and-server/">Securing Connections for Client and Server</a> for information on how to enable TLS on the client and server.</p>
 <h2 class="anchored_heading" id="resource-limit-options">Resource Limit Options</h2>

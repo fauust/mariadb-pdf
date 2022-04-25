@@ -260,7 +260,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-14 10:31">7 months ago</span></dd>
+<span class="datetime" title="2022-04-24 18:50">2 hours, 50 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -562,10 +562,10 @@
 <h3 class="anchored_heading" id="data-type-support">Data Type Support</h3>
 <ul start="1"><li>All data types are supported when defining generated columns.
 </li></ul>
-<ul start="1"><li>Using the <code><a href="/kb/en/create-table/#zerofill-column-option">ZEROFILL</a></code> column option is supported when defining generated columns.
+<ul start="1"><li>Using the <a href="/kb/en/create-table/#zerofill-column-option">ZEROFILL</a> column option is supported when defining generated columns.
 </li></ul>
 <div class="mariadb_from_10_2_6 mariadb from_10_2_6 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1026-release-notes/">10.2.6</a></h5><p>In <a href="/kb/en/mariadb-1026-release-notes/">MariaDB 10.2.6</a> and later, the following statements apply to data types for generated columns:</p>
-<ul start="1"><li>Using the <code><a href="/kb/en/auto_increment/">AUTO_INCREMENT</a></code> column option is <strong>not</strong> supported when defining generated columns. Previously, it was supported, but this support was removed, because it would not work correctly. See <a href="https://jira.mariadb.org/browse/MDEV-11117">MDEV-11117</a>.
+<ul start="1"><li>Using the <a href="/kb/en/auto_increment/">AUTO_INCREMENT</a> column option is <strong>not</strong> supported when defining generated columns. Previously, it was supported, but this support was removed, because it would not work correctly. See <a href="https://jira.mariadb.org/browse/MDEV-11117">MDEV-11117</a>.
 </li></ul>
 </div><h3 class="anchored_heading" id="index-support">Index Support</h3>
 <ul start="1"><li>Using a generated column as a table's primary key is <strong>not</strong> supported. See <a href="https://jira.mariadb.org/browse/MDEV-5590">MDEV-5590</a> for more information. If you try to use one as a primary key, then you will see an error similar to the following:
@@ -577,7 +577,7 @@
 <ul start="1"><li>However, using the <code>ON UPDATE CASCADE</code>, <code>ON UPDATE SET NULL</code>, or <code>ON DELETE SET NULL</code> clauses is <strong>not</strong> supported. If you try to use an unsupported clause, then you will see an error similar to the following:
 </li></ul>
 </li></ul>
-<pre class="fixed">ERROR 1905 (HY000): Cannot define foreign key with ON UPDATE SET NULL clause on a computed column
+<pre class="fixed wrap">ERROR 1905 (HY000): Cannot define foreign key with ON UPDATE SET NULL clause on a computed column
 </pre><div class="mariadb_from_10_2_3 mariadb from_10_2_3 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1023-release-notes/">10.2.3</a></h5><p>In <a href="/kb/en/mariadb-1023-release-notes/">MariaDB 10.2.3</a> and later, the following statements apply to indexes for generated columns:</p>
 <ul start="1"><li>Defining indexes on both <code>VIRTUAL</code> and <code>PERSISTENT</code> generated columns is supported.
 <ul start="1"><li>If an index is defined on a generated column, then the optimizer considers using it in the same way as indexes based on "real" columns.
@@ -598,32 +598,32 @@
 </li></ul>
 </li></ul>
 </li></ul>
-<ul start="1"><li>The <code><a href="/kb/en/select/">SELECT</a></code> statement supports generated columns.
+<ul start="1"><li>The <a href="/kb/en/select/">SELECT</a> statement supports generated columns.
 </li></ul>
-<ul start="1"><li>Generated columns can be referenced in the <code><a href="/kb/en/insert/">INSERT</a></code>, <code><a href="/kb/en/update/">UPDATE</a></code>, and <code><a href="/kb/en/delete/">DELETE</a></code> statements.
-<ul start="1"><li>However, <code>VIRTUAL</code> or <code>PERSISTENT</code> generated columns cannot be explicitly set to any other values than <code>NULL</code> or <code><a href="/kb/en/default/">DEFAULT</a></code>. If a generated column is explicitly set to any other value, then the outcome depends on whether <a href="/kb/en/sql-mode/#strict-mode">strict mode</a> is enabled in <code><a href="/kb/en/sql-mode/">sql_mode</a></code>. If it is not enabled, then a warning will be raised and the default generated value will be used instead. If it is enabled, then an error will be raised instead.
+<ul start="1"><li>Generated columns can be referenced in the <a href="/kb/en/insert/">INSERT</a>, <a href="/kb/en/update/">UPDATE</a>, and <a href="/kb/en/delete/">DELETE</a> statements.
+<ul start="1"><li>However, <code>VIRTUAL</code> or <code>PERSISTENT</code> generated columns cannot be explicitly set to any other values than <code>NULL</code> or <a href="/kb/en/default/">DEFAULT</a>. If a generated column is explicitly set to any other value, then the outcome depends on whether <a href="/kb/en/sql-mode/#strict-mode">strict mode</a> is enabled in <a href="/kb/en/sql-mode/">sql_mode</a>. If it is not enabled, then a warning will be raised and the default generated value will be used instead. If it is enabled, then an error will be raised instead.
 </li></ul>
 </li></ul>
-<ul start="1"><li>The <code><a href="/kb/en/create-table/">CREATE TABLE</a></code> statement has limited support for generated columns.
+<ul start="1"><li>The <a href="/kb/en/create-table/">CREATE TABLE</a> statement has limited support for generated columns.
 <ul start="1"><li>It supports defining generated columns in a new table.
 </li><li>It supports using generated columns to <a href="/kb/en/partitioning-tables/">partition tables</a>.
 </li><li>It does <strong>not</strong> support using the <a href="/kb/en/system-versioned-tables/">versioning clauses</a> with generated columns.
 </li></ul>
 </li></ul>
-<ul start="1"><li>The <code><a href="/kb/en/alter-table/">ALTER TABLE</a></code> statement has limited support for generated columns.
+<ul start="1"><li>The <a href="/kb/en/alter-table/">ALTER TABLE</a> statement has limited support for generated columns.
 <ul start="1"><li>It supports the <code>MODIFY</code> and <code>CHANGE</code> clauses for <code>PERSISTENT</code> generated columns.
-</li><li>It does <strong>not</strong> support the <code>MODIFY</code> clause for <code>VIRTUAL</code> generated columns if <code><a href="/kb/en/alter-table/#algorithm">ALGORITHM</a></code> is not set to <code>COPY</code>. See <a href="https://jira.mariadb.org/browse/MDEV-15476">MDEV-15476</a> for more information.
-</li><li>It does <strong>not</strong> support the  <code>CHANGE</code> clause for <code>VIRTUAL</code> generated columns if <code><a href="/kb/en/alter-table/#algorithm">ALGORITHM</a></code> is not set to <code>COPY</code>. See <a href="https://jira.mariadb.org/browse/MDEV-17035">MDEV-17035</a> for more information.
-</li><li>It does <strong>not</strong> support altering a table if <code><a href="/kb/en/alter-table/#algorithm">ALGORITHM</a></code> is not set to <code>COPY</code> if the table has a <code>VIRTUAL</code> generated column that is indexed. See <a href="https://jira.mariadb.org/browse/MDEV-14046">MDEV-14046</a> for more information.
-</li><li>It does <strong>not</strong> support adding a <code>VIRTUAL</code> generated column with the <code>ADD</code> clause if the same statement is also adding other columns if <code><a href="/kb/en/alter-table/#algorithm">ALGORITHM</a></code> is not set to <code>COPY</code>. See <a href="https://jira.mariadb.org/browse/MDEV-17468">MDEV-17468</a> for more information.
+</li><li>It does <strong>not</strong> support the <code>MODIFY</code> clause for <code>VIRTUAL</code> generated columns if <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> is not set to <code>COPY</code>. See <a href="https://jira.mariadb.org/browse/MDEV-15476">MDEV-15476</a> for more information.
+</li><li>It does <strong>not</strong> support the  <code>CHANGE</code> clause for <code>VIRTUAL</code> generated columns if <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> is not set to <code>COPY</code>. See <a href="https://jira.mariadb.org/browse/MDEV-17035">MDEV-17035</a> for more information.
+</li><li>It does <strong>not</strong> support altering a table if <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> is not set to <code>COPY</code> if the table has a <code>VIRTUAL</code> generated column that is indexed. See <a href="https://jira.mariadb.org/browse/MDEV-14046">MDEV-14046</a> for more information.
+</li><li>It does <strong>not</strong> support adding a <code>VIRTUAL</code> generated column with the <code>ADD</code> clause if the same statement is also adding other columns if <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> is not set to <code>COPY</code>. See <a href="https://jira.mariadb.org/browse/MDEV-17468">MDEV-17468</a> for more information.
 </li><li>It also does <strong>not</strong> support altering an existing column into a <code>VIRTUAL</code> generated column.
 </li><li>It supports using generated columns to <a href="/kb/en/partitioning-tables/">partition tables</a>.
 </li><li>It does <strong>not</strong> support using the <a href="/kb/en/system-versioned-tables/">versioning clauses</a> with generated columns.
 </li></ul>
 </li></ul>
-<ul start="1"><li>The <code><a href="/kb/en/show-create-table/">SHOW CREATE TABLE</a></code> statement supports generated columns.
+<ul start="1"><li>The <a href="/kb/en/show-create-table/">SHOW CREATE TABLE</a> statement supports generated columns.
 </li></ul>
-<ul start="1"><li>The <code><a href="/kb/en/describe/">DESCRIBE</a></code> statement can be used to check whether a table has generated columns.
+<ul start="1"><li>The <a href="/kb/en/describe/">DESCRIBE</a> statement can be used to check whether a table has generated columns.
 <ul start="1"><li>You can tell which columns are generated by looking for the ones where the <code>Extra</code> column is set to either <code>VIRTUAL</code> or <code>PERSISTENT</code>. For example:
 </li></ul>
 </li></ul>
@@ -640,7 +640,7 @@
 </li></ul>
 <ul start="1"><li><a href="/kb/en/stored-procedures/">Stored procedures</a> support generated columns.
 </li></ul>
-<ul start="1"><li>The <code><a href="/kb/en/handler-commands/">HANDLER</a></code> statement supports generated columns.
+<ul start="1"><li>The <a href="/kb/en/handler-commands/">HANDLER</a> statement supports generated columns.
 </li></ul>
 <h3 class="anchored_heading" id="expression-support">Expression Support</h3>
 <ul start="1"><li>Most legal, deterministic expressions which can be calculated are supported in expressions for generated columns.
@@ -649,7 +649,7 @@
 <ul start="1"><li>However, some <a href="/kb/en/built-in-functions/">built-in functions</a> can't be supported for technical reasons. For example,  If you try to use an unsupported function in an expression, an error is generated similar to the following:
 </li></ul>
 </li></ul>
-<pre class="fixed">ERROR 1901 (HY000): Function or expression 'dayname()' cannot be used in the GENERATED ALWAYS AS clause of `v`
+<pre class="fixed wrap">ERROR 1901 (HY000): Function or expression 'dayname()' cannot be used in the GENERATED ALWAYS AS clause of `v`
 </pre><ul start="1"><li><a href="/kb/en/subqueries/">Subqueries</a> are <strong>not</strong> supported in expressions for generated columns because the underlying data can change.
 </li></ul>
 <ul start="1"><li>Using anything that depends on data outside the row is <strong>not</strong> supported in expressions for generated columns.
@@ -689,13 +689,13 @@
 </li></ul>
 <pre class="fixed">ERROR 1908 (HY000): Constant expression in computed column function is not allowed
 </pre></div><h3 class="anchored_heading" id="making-stored-values-consistent">Making Stored Values Consistent</h3>
-<p>When a generated column is <code>PERSISTENT</code> or indexed, the value of the expression needs to be consistent regardless of the <code><a href="/kb/en/sql-mode/">SQL Mode</a></code> flags in the current session.  If it is not, then the table will be seen as corrupted when the value that should actually be returned by the computed expression and the value that was previously stored and/or indexed using a different <code><a href="/kb/en/sql-mode/">sql_mode</a></code> setting disagree.</p>
+<p>When a generated column is <code>PERSISTENT</code> or indexed, the value of the expression needs to be consistent regardless of the <a href="/kb/en/sql-mode/">SQL Mode</a> flags in the current session.  If it is not, then the table will be seen as corrupted when the value that should actually be returned by the computed expression and the value that was previously stored and/or indexed using a different <a href="/kb/en/sql-mode/">sql_mode</a> setting disagree.</p>
 <p>There are currently two affected classes of inconsistencies: character padding and unsigned subtraction:</p>
-<ul start="1"><li>For a <code>VARCHAR</code> or <code>TEXT</code> generated column the length of the value returned can vary depending on the PAD_CHAR_TO_FULL_LENGTH <code><a href="/kb/en/sql-mode/">sql_mode</a></code> flag.  To make the value consistent, create the generated column using an RTRIM() or RPAD() function.  Alternately, create the generated column as a <code>CHAR</code> column so that its data is always fully padded.
+<ul start="1"><li>For a <code>VARCHAR</code> or <code>TEXT</code> generated column the length of the value returned can vary depending on the PAD_CHAR_TO_FULL_LENGTH <a href="/kb/en/sql-mode/">sql_mode</a> flag.  To make the value consistent, create the generated column using an RTRIM() or RPAD() function.  Alternately, create the generated column as a <code>CHAR</code> column so that its data is always fully padded.
 </li></ul>
-<ul start="1"><li>If a <code>SIGNED</code> generated column is based on the subtraction of an <code>UNSIGNED</code> value, the resulting value can vary depending on how large the value is and the NO_UNSIGNED_SUBTRACTION <code><a href="/kb/en/sql-mode/">sql_mode</a></code> flag.  To make the value consistent, use <code><a href="/kb/en/cast/">CAST()</a></code> to ensure that each <code>UNSIGNED</code> operand is <code>SIGNED</code> before the subtraction.
+<ul start="1"><li>If a <code>SIGNED</code> generated column is based on the subtraction of an <code>UNSIGNED</code> value, the resulting value can vary depending on how large the value is and the NO_UNSIGNED_SUBTRACTION <a href="/kb/en/sql-mode/">sql_mode</a> flag.  To make the value consistent, use <a href="/kb/en/cast/">CAST()</a> to ensure that each <code>UNSIGNED</code> operand is <code>SIGNED</code> before the subtraction.
 </li></ul>
-<div class="mariadb_from_10_5 mariadb from_10_5 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-105/">10.5</a></h5><p>Beginning in <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>, there is a fatal error generated when trying to create a generated column whose value can change depending on the <code><a href="/kb/en/sql-mode/">SQL Mode</a></code> when its data is <code>PERSISTENT</code> or indexed.</p>
+<div class="mariadb_from_10_5 mariadb from_10_5 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-105/">10.5</a></h5><p>Beginning in <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a>, there is a fatal error generated when trying to create a generated column whose value can change depending on the <a href="/kb/en/sql-mode/">SQL Mode</a> when its data is <code>PERSISTENT</code> or indexed.</p>
 <p>For an existing generated column that has a potentially inconsistent value, a warning about a bad expression is generated the first time it is used (if warnings are enabled).</p>
 <p>Beginning in <a href="/kb/en/mariadb-1048-release-notes/">MariaDB 10.4.8</a>, <a href="/kb/en/mariadb-10318-release-notes/">MariaDB 10.3.18</a>, and <a href="/kb/en/mariadb-10227-release-notes/">MariaDB 10.2.27</a> a potentially inconsistent generated column outputs a warning when created or first used (without restricting their creation).</p>
 </div><p>Here is an example of two tables that would be rejected in <a href="/kb/en/what-is-mariadb-105/">MariaDB 10.5</a> and warned about in the other listed versions:</p>
@@ -713,7 +713,7 @@
   <span class="k">KEY</span><span class="p">(</span><span class="n">vnum</span><span class="p">)</span>
 <span class="p">);</span>
 </pre><p>The warnings for the above tables look like this:</p>
-<pre class="fixed">Warning (Code 1901): Function or expression '`txt`' cannot be used in the GENERATED ALWAYS AS clause of `vtxt`
+<pre class="fixed wrap">Warning (Code 1901): Function or expression '`txt`' cannot be used in the GENERATED ALWAYS AS clause of `vtxt`
 Warning (Code 1105): Expression depends on the @@sql_mode value PAD_CHAR_TO_FULL_LENGTH
 
 Warning (Code 1901): Function or expression '`num1` - `num2`' cannot be used in the GENERATED ALWAYS AS clause of `vnum`
@@ -752,12 +752,12 @@ Warning (Code 1105): Expression depends on the @@sql_mode value NO_UNSIGNED_SUBT
 <h3 class="anchored_heading" id="implementation-differences-compared-to-microsoft-sql-server">Implementation Differences Compared to Microsoft SQL Server</h3>
 <p>MariaDB's generated columns implementation does not enforce the following
 restrictions that are present in <a href="https://docs.microsoft.com/en-us/sql/relational-databases/tables/specify-computed-columns-in-a-table?view=sql-server-2017">Microsoft SQL Server's computed columns</a> implementation:</p>
-<ul start="1"><li>MariaDB allows <a href="/kb/en/system-variables/">server variables</a> in generated column expressions, including those that change dynamically, such as <code><a href="/kb/en/server-system-variables/#warning_count">warning_count</a></code>.
-</li><li>MariaDB allows the <code><a href="/kb/en/convert_tz/">CONVERT_TZ()</a></code> function to be called with a named <a href="/kb/en/time-zones/">time zone</a> as an argument, even though time zone names and time offsets are configurable.
-</li><li>MariaDB allows the <code><a href="/kb/en/cast/">CAST()</a></code> function to be used with non-unicode <a href="/kb/en/data-types-character-sets-and-collations/">character sets</a>, even though character sets are configurable and differ between binaries/versions.
-</li><li>MariaDB allows <code><a href="/kb/en/float/">FLOAT</a></code> expressions to be used in generated columns. Microsoft SQL Server considers these expressions to be "imprecise" due to potential cross-platform differences in floating-point implementations and precision.
-</li><li>Microsoft SQL Server requires the <code><a href="https://docs.microsoft.com/en-us/sql/t-sql/statements/set-arithabort-transact-sql?view=sql-server-2017">ARITHABORT</a></code> mode to be set, so that division by zero returns an error, and not a NULL.
-</li><li>Microsoft SQL Server requires <code>QUOTED_IDENTIFIER</code> to be set in <code><a href="/kb/en/sql-mode/">sql_mode</a></code>. In MariaDB, if data is inserted without <code>ANSI_QUOTES</code> set in <code><a href="/kb/en/sql-mode/">sql_mode</a></code>, then it will be processed and stored differently in a generated column that contains quoted identifiers.
+<ul start="1"><li>MariaDB allows <a href="/kb/en/system-variables/">server variables</a> in generated column expressions, including those that change dynamically, such as <a href="/kb/en/server-system-variables/#warning_count">warning_count</a>.
+</li><li>MariaDB allows the <a href="/kb/en/convert_tz/">CONVERT_TZ()</a> function to be called with a named <a href="/kb/en/time-zones/">time zone</a> as an argument, even though time zone names and time offsets are configurable.
+</li><li>MariaDB allows the <a href="/kb/en/cast/">CAST()</a> function to be used with non-unicode <a href="/kb/en/data-types-character-sets-and-collations/">character sets</a>, even though character sets are configurable and differ between binaries/versions.
+</li><li>MariaDB allows <a href="/kb/en/float/">FLOAT</a> expressions to be used in generated columns. Microsoft SQL Server considers these expressions to be "imprecise" due to potential cross-platform differences in floating-point implementations and precision.
+</li><li>Microsoft SQL Server requires the <a href="https://docs.microsoft.com/en-us/sql/t-sql/statements/set-arithabort-transact-sql?view=sql-server-2017">ARITHABORT</a> mode to be set, so that division by zero returns an error, and not a NULL.
+</li><li>Microsoft SQL Server requires <code>QUOTED_IDENTIFIER</code> to be set in <a href="/kb/en/sql-mode/">sql_mode</a>. In MariaDB, if data is inserted without <code>ANSI_QUOTES</code> set in <a href="/kb/en/sql-mode/">sql_mode</a>, then it will be processed and stored differently in a generated column that contains quoted identifiers.
 </li><li>In <a href="/kb/en/mariadb-1020-release-notes/">MariaDB 10.2.0</a> and before, it does not allow <a href="/kb/en/user-defined-functions/">user-defined functions (UDFs)</a> to be used in expressions for generated columns.
 </li></ul>
 <p>Microsoft SQL Server enforces the above restrictions by doing one of the following things:</p>
@@ -765,9 +765,9 @@ restrictions that are present in <a href="https://docs.microsoft.com/en-us/sql/r
 </li><li>Refusing to allow updates to a table containing them.
 </li><li>Refusing to use an index over such a column if it can not be guaranteed that the expression is fully deterministic.
 </li></ul>
-<p>In MariaDB, as long as the <code><a href="/kb/en/sql-mode/">sql_mode</a></code>, language, and other settings that were in effect during the CREATE TABLE remain unchanged, the generated column expression will always be evaluated the same. If any of these things change, then please be aware that the generated column expression might not be
+<p>In MariaDB, as long as the <a href="/kb/en/sql-mode/">sql_mode</a>, language, and other settings that were in effect during the CREATE TABLE remain unchanged, the generated column expression will always be evaluated the same. If any of these things change, then please be aware that the generated column expression might not be
 evaluated the same way as it previously was.</p>
-<p>In <a href="/kb/en/what-is-mariadb-52/">MariaDB 5.2</a>, you will get a warning if you try to update a virtual column. In <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a> and later, this warning will be converted to an error if <a href="/kb/en/sql-mode/#strict-mode">strict mode</a> is enabled in <code><a href="/kb/en/sql-mode/">sql_mode</a></code>.</p>
+<p>In <a href="/kb/en/what-is-mariadb-52/">MariaDB 5.2</a>, you will get a warning if you try to update a virtual column. In <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a> and later, this warning will be converted to an error if <a href="/kb/en/sql-mode/#strict-mode">strict mode</a> is enabled in <a href="/kb/en/sql-mode/">sql_mode</a>.</p>
 <h2 class="anchored_heading" id="development-history">Development History</h2>
 <p>Generated columns was originally developed by Andrey Zhakov. It was then modified by Sanja Byelkin and Igor Babaev at Monty Program for inclusion in MariaDB. Monty did the work on <a href="/kb/en/what-is-mariadb-102/">MariaDB 10.2</a> to lift a some of the old limitations.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>

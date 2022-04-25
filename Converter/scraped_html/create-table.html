@@ -260,7 +260,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-01-10 13:53">3 months ago</span></dd>
+<span class="datetime" title="2022-04-23 23:12">22 hours, 21 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -887,30 +887,36 @@ the <a href="/kb/en/show-columns/">SHOW FULL COLUMNS</a> statement to see column
 </div><h3 class="anchored_heading" id="without-system-versioning-column-option">WITHOUT SYSTEM VERSIONING Column Option</h3>
 <div class="mariadb_from_10_3_4 mariadb from_10_3_4 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1034-release-notes/">10.3.4</a></h5><p>Columns may be explicitly marked as excluded from system versioning. See <a href="/kb/en/system-versioned-tables/">System-versioned tables</a> for details.</p>
 </div><h2 class="anchored_heading" id="index-definitions">Index Definitions</h2>
-<pre class="highlight fixed"><p>index_definition:
+<pre class="fixed wrap">index_definition:
     {INDEX|KEY} [index_name] [index_type] (index_col_name,...) [index_option] ...
-  <code>|</code> {FULLTEXT|SPATIAL} [INDEX|KEY] [index_name] (index_col_name,...) [index_option] ...
-  <code>|</code> [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (index_col_name,...) [index_option] ...
-  <code>|</code> [CONSTRAINT [symbol]] UNIQUE [INDEX|KEY] [index_name] [index_type] (index_col_name,...) [index_option] ...
-  <code>|</code> [CONSTRAINT [symbol]] FOREIGN KEY [index_name] (index_col_name,...) reference_definition</p>
-<p>index_col_name:
-    col_name [(length)] [ASC | DESC]</p>
-<p>index_type:
-    USING {BTREE | HASH | RTREE}</p>
-<p>index_option:
+  {{{|}}} {FULLTEXT|SPATIAL} [INDEX|KEY] [index_name] (index_col_name,...) [index_option] ...
+  {{{|}}} [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (index_col_name,...) [index_option] ...
+  {{{|}}} [CONSTRAINT [symbol]] UNIQUE [INDEX|KEY] [index_name] [index_type] (index_col_name,...) [index_option] ...
+  {{{|}}} [CONSTRAINT [symbol]] FOREIGN KEY [index_name] (index_col_name,...) reference_definition
+
+index_col_name:
+    col_name [(length)] [ASC | DESC]
+
+index_type:
+    USING {BTREE | HASH | RTREE}
+
+index_option:
     [ KEY_BLOCK_SIZE [=] value
-  <code>|</code> index_type
-  <code>|</code> WITH PARSER parser_name
-  <code>|</code> COMMENT 'string'
-  <code>|</code> CLUSTERING={YES| NO} ]
-  [ IGNORED | NOT IGNORED ]</p>
-<p>reference_definition:
+  {{{|}}} index_type
+  {{{|}}} WITH PARSER parser_name
+  {{{|}}} COMMENT 'string'
+  {{{|}}} CLUSTERING={YES| NO} ]
+  [ IGNORED | NOT IGNORED ]
+
+reference_definition:
     REFERENCES tbl_name (index_col_name,...)
       [MATCH FULL | MATCH PARTIAL | MATCH SIMPLE]
       [ON DELETE reference_option]
-      [ON UPDATE reference_option]</p>
-<p>reference_option:
-    RESTRICT | CASCADE | SET NULL | NO ACTION</p></pre><p><code>INDEX</code> and <code>KEY</code> are synonyms. </p>
+      [ON UPDATE reference_option]
+
+reference_option:
+    RESTRICT | CASCADE | SET NULL | NO ACTION
+</pre><p><code>INDEX</code> and <code>KEY</code> are synonyms. </p>
 <p>Index names are optional, if not specified an automatic name will be assigned. Index name are needed to drop indexes and appear in error messages when a constraint is violated.</p>
 <h3 class="anchored_heading" id="index-categories">Index Categories</h3>
 <h4 class="anchored_heading" id="plain-indexes">Plain Indexes</h4>
@@ -951,7 +957,7 @@ the <a href="/kb/en/show-columns/">SHOW FULL COLUMNS</a> statement to see column
 <p>Different index types are optimized for different kind of operations:</p>
 <ul start="1"><li><code>BTREE</code> is the default type, and normally is the best choice. It is supported by all storage engines. It can be used to compare a column's value with a value using the =, &gt;, &gt;=, &lt;, &lt;=, <code>BETWEEN</code>, and <code>LIKE</code> operators. <code>BTREE</code> can also be used to find <code>NULL</code> values. Searches against an index prefix are possible.
 </li><li><code>HASH</code> is only supported by the MEMORY storage engine. <code>HASH</code> indexes can only be used for =, &lt;=, and &gt;= comparisons. It can not be used for the <code>ORDER BY</code> clause. Searches against an index prefix are not possible.
-</li><li><code>RTREE</code> is the default for <a href="/kb/en/spatial/"><code>SPATIAL</code></a> indexes, but if the storage engine does not support it <code>BTREE</code> can be used.
+</li><li><code>RTREE</code> is the default for <a href="/kb/en/spatial/">SPATIAL</a> indexes, but if the storage engine does not support it <code>BTREE</code> can be used.
 </li></ul>
 <p>Index columns names are listed between parenthesis. After each column, a prefix length can be specified. If no length is specified, the whole column will be indexed. <code>ASC</code> and <code>DESC</code> can be specified for compatibility with are DBMS's, but have no meaning in MariaDB.</p>
 <h4 class="anchored_heading" id="with-parser-index-option">WITH PARSER Index Option</h4>
@@ -960,7 +966,7 @@ the <a href="/kb/en/show-columns/">SHOW FULL COLUMNS</a> statement to see column
 <p>A comment of up to 1024 characters is permitted with the <code>COMMENT</code> index option.</p>
 <p>The <code>COMMENT</code> index option allows you to specify a comment with user-readable text describing what the index is for. This information is not used by the server itself.</p>
 <h4 class="anchored_heading" id="clustering-index-option">CLUSTERING Index Option</h4>
-<p>The <code>CLUSTERING</code> index option is only valid for tables using the <a href="/kb/en/tokudb/">Tokudb</a> storage engine.</p>
+<p>The <code>CLUSTERING</code> index option is only valid for tables using the <a href="/kb/en/tokudb/">TokuDB</a> storage engine.</p>
 <h4 class="anchored_heading" id="ignored-not-ignored">IGNORED / NOT IGNORED</h4>
 <div class="mariadb_from_10_6_0 mariadb from_10_6_0 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1060-release-notes/">10.6.0</a></h5><p>From <a href="/kb/en/mariadb-1060-release-notes/">MariaDB 10.6.0</a>, indexes can be specified to be ignored by the optimizer. See <a href="/kb/en/ignored-indexes/">Ignored Indexes</a>.</p>
 </div><h2 class="anchored_heading" id="periods">Periods</h2>
@@ -1021,14 +1027,14 @@ One can use most deterministic functions in a constraint, including <a href="/kb
   <code>|</code> WITH SYSTEM VERSIONING</p></pre><h3 class="anchored_heading" id="storage-engine">[STORAGE] ENGINE</h3>
 <p><code>[STORAGE] ENGINE</code> specifies a <a href="/kb/en/mariadb-storage-engines/">storage engine</a> for the table. If this option is not used, the default storage engine is used instead. That is, the <a href="/kb/en/server-system-variables/#default_storage_engine">default_storage_engine</a> session option value if it is set, or the value specified for the <code>--default-storage-engine</code> <a href="/kb/en/mysqld-options-full-list/">mysqld startup option</a>, or the default storage engine, <a href="/kb/en/innodb/">InnoDB</a>. If the specified storage engine is not installed and active, the default value will be used, unless the <code>NO_ENGINE_SUBSTITUTION</code> <a href="/kb/en/sql-mode/">SQL MODE</a> is set (default). This is only true for <code>CREATE TABLE</code>, not for <code>ALTER TABLE</code>. For a list of storage engines that are present in your server, issue a <a href="/kb/en/show-engines/">SHOW ENGINES</a>.</p>
 <h3 class="anchored_heading" id="auto_increment">AUTO_INCREMENT</h3>
-<p><code>AUTO_INCREMENT</code> specifies the initial value for the <a href="/kb/en/auto_increment/"><code>AUTO_INCREMENT</code></a> primary key. This works for MyISAM, Aria, InnoDB/XtraDB, MEMORY, and ARCHIVE tables. You can change this option with <code>ALTER TABLE</code>, but in that case the new value must be higher than the highest value which is present in the <code>AUTO_INCREMENT</code> column. If the storage engine does not support this option, you can insert (and then delete) a row having the wanted value - 1 in the <code>AUTO_INCREMENT</code> column.</p>
+<p><code>AUTO_INCREMENT</code> specifies the initial value for the <a href="/kb/en/auto_increment/">AUTO_INCREMENT</a> primary key. This works for MyISAM, Aria, InnoDB, MEMORY, and ARCHIVE tables. You can change this option with <code>ALTER TABLE</code>, but in that case the new value must be higher than the highest value which is present in the <code>AUTO_INCREMENT</code> column. If the storage engine does not support this option, you can insert (and then delete) a row having the wanted value - 1 in the <code>AUTO_INCREMENT</code> column.</p>
 <h3 class="anchored_heading" id="avg_row_length">AVG_ROW_LENGTH</h3>
 <p><code>AVG_ROW_LENGTH</code> is the average rows size. It only applies to tables using <a href="/kb/en/myisam/">MyISAM</a> and <a href="/kb/en/aria-storage-engine/">Aria</a> storage engines that have the <a href="#row_format">ROW_FORMAT</a> table option set to <code>FIXED</code> format.</p>
 <p>MyISAM uses <code>MAX_ROWS</code> and <code>AVG_ROW_LENGTH</code> to decide the maximum size of a table (default: 256TB, or the maximum file size allowed by the system).</p>
 <h3 class="anchored_heading" id="default-character-setcharset">[DEFAULT] CHARACTER SET/CHARSET</h3>
 <p><code>[DEFAULT] CHARACTER SET</code> (or <code>[DEFAULT] CHARSET</code>) is used to set a default character set for the table. This is the character set used for all columns where an explicit character set is not specified. If this option is omitted or <code>DEFAULT</code> is specified, database's default character set will be used. See <a href="/kb/en/setting-character-sets-and-collations/">Setting Character Sets and Collations</a> for details on setting the <a href="/kb/en/data-types-character-sets-and-collations/">character sets</a>.</p>
 <h3 class="anchored_heading" id="checksumtable_checksum">CHECKSUM/TABLE_CHECKSUM</h3>
-<p><code>CHECKSUM</code> (or <code>TABLE_CHECKSUM</code>) can be set to 1 to maintain a live checksum for all table's rows. This makes write operations slower, but <a href="/kb/en/checksum-table/"><code>CHECKSUM TABLE</code></a> will be very fast. This option is only supported for <a href="/kb/en/myisam/">MyISAM</a> and <a href="/kb/en/aria-storage-engine/">Aria tables</a>.</p>
+<p><code>CHECKSUM</code> (or <code>TABLE_CHECKSUM</code>) can be set to 1 to maintain a live checksum for all table's rows. This makes write operations slower, but <a href="/kb/en/checksum-table/">CHECKSUM TABLE</a> will be very fast. This option is only supported for <a href="/kb/en/myisam/">MyISAM</a> and <a href="/kb/en/aria-storage-engine/">Aria tables</a>.</p>
 <h3 class="anchored_heading" id="default-collate">[DEFAULT] COLLATE</h3>
 <p><code>[DEFAULT] COLLATE</code> is used to set a default collation for the table. This is the collation used for all columns where an explicit character set is not specified. If this option is omitted or <code>DEFAULT</code> is specified, database's default option will be used. See <a href="/kb/en/setting-character-sets-and-collations/">Setting Character Sets and Collations</a> for details on setting the <a href="/kb/en/data-types-character-sets-and-collations/">collations</a></p>
 <h3 class="anchored_heading" id="comment">COMMENT</h3>
@@ -1036,7 +1042,7 @@ One can use most deterministic functions in a constraint, including <a href="/kb
 <h3 class="anchored_heading" id="connection">CONNECTION</h3>
 <p><code>CONNECTION</code> is used to specify a server name or a connection string for a <a href="/kb/en/spider/">Spider</a>, <a href="/kb/en/connect/">CONNECT</a>, <a href="/kb/en/about-federatedx/">Federated or FederatedX table</a>.</p>
 <h3 class="anchored_heading" id="data-directoryindex-directory">DATA DIRECTORY/INDEX DIRECTORY</h3>
-<p><code>DATA DIRECTORY</code> and <code>INDEX DIRECTORY</code> are supported for MyISAM and Aria, and DATA DIRECTORY is also supported by InnoDB if the <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a> server system variable is enabled, but only in CREATE TABLE, not in <a href="/kb/en/alter-table/">ALTER TABLE</a>. So, carefully choose a path for InnoDB tables at creation time, because it cannot be changed without dropping and re-creating the table. These options specify the paths for data files and index files, respectively. If these options are omitted, the database's directory will be used to store data files and index files. Note that these table options do not work for <a href="/kb/en/managing-mariadb-partitioning/">partitioned</a> tables (use the partition options instead), or if the server has been invoked with the <a href="/kb/en/mysqld-options-full-list/"><code>--skip-symbolic-links</code> startup option</a>. To avoid the overwriting of old files with the same name that could be present in the directories, you can use <a href="/kb/en/mysqld-options-full-list/">the <code>--keep_files_on_create</code> option</a> (an error will be issued if files already exist). These options are ignored if the <code>NO_DIR_IN_CREATE</code> <a href="/kb/en/sql-mode/">SQL_MODE</a> is enabled (useful for replication slaves). Also note that symbolic links cannot be used for InnoDB tables.</p>
+<p><code>DATA DIRECTORY</code> and <code>INDEX DIRECTORY</code> are supported for MyISAM and Aria, and DATA DIRECTORY is also supported by InnoDB if the <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a> server system variable is enabled, but only in CREATE TABLE, not in <a href="/kb/en/alter-table/">ALTER TABLE</a>. So, carefully choose a path for InnoDB tables at creation time, because it cannot be changed without dropping and re-creating the table. These options specify the paths for data files and index files, respectively. If these options are omitted, the database's directory will be used to store data files and index files. Note that these table options do not work for <a href="/kb/en/managing-mariadb-partitioning/">partitioned</a> tables (use the partition options instead), or if the server has been invoked with the <a href="/kb/en/mysqld-options-full-list/">--skip-symbolic-links startup option</a>. To avoid the overwriting of old files with the same name that could be present in the directories, you can use <a href="/kb/en/mysqld-options-full-list/">the <code>--keep_files_on_create</code> option</a> (an error will be issued if files already exist). These options are ignored if the <code>NO_DIR_IN_CREATE</code> <a href="/kb/en/sql-mode/">SQL_MODE</a> is enabled (useful for replication slaves). Also note that symbolic links cannot be used for InnoDB tables.</p>
 <p><code>DATA DIRECTORY</code> works by creating symlinks from where the table would normally have been (inside the <a href="/kb/en/server-system-variables/#datadir">datadir</a>) to where the option specifies. For security reasons, to avoid bypassing the privilege system, the server does not permit symlinks inside the datadir. Therefore, <code>DATA DIRECTORY</code> cannot be used to specify a location inside the datadir. An attempt to do so will result in an error <code>1210 (HY000) Incorrect arguments to DATA DIRECTORY</code>.</p>
 <h3 class="anchored_heading" id="delay_key_write">DELAY_KEY_WRITE</h3>
 <p><code>DELAY_KEY_WRITE</code> is supported by MyISAM and Aria, and can be set to 1 to speed up write operations. In that case, when data are modified, the indexes are not updated until the table is closed. Writing the changes to the index file altogether can be much faster. However, note that this option is applied only if the <code>delay_key_write</code> server variable is set to 'ON'. If it is 'OFF' the delayed index writes are always disabled, and if it is 'ALL' the delayed index writes are always used, disregarding the value of <code>DELAY_KEY_WRITE</code>.</p>

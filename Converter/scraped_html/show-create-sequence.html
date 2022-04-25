@@ -260,7 +260,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-08-31 22:20">1 year, 7 months ago</span></dd>
+<span class="datetime" title="2022-04-24 14:04">7 hours, 33 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -453,41 +453,41 @@
 <h2 class="anchored_heading" id="description">Description</h2>
 <p>Shows the <a href="/kb/en/create-sequence/">CREATE SEQUENCE</a> statement that created the given sequence. The statement requires the <code>SELECT</code> privilege for the table.</p>
 <h2 class="anchored_heading" id="example">Example</h2>
-<pre class="fixed"><span class="k">CREATE</span> <span class="n">SEQUENCE</span> <span class="n">s1</span> <span class="k">START</span> <span class="k">WITH</span> <span class="mi">50</span><span class="p">;</span>
-<span class="k">SHOW</span> <span class="k">CREATE</span> <span class="n">SEQUENCE</span> <span class="n">s1</span><span class="err">\</span><span class="k">G</span><span class="p">;</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-       <span class="k">Table</span><span class="p">:</span> <span class="n">s1</span>
-<span class="k">Create</span> <span class="k">Table</span><span class="p">:</span> <span class="k">CREATE</span> <span class="n">SEQUENCE</span> <span class="o">`</span><span class="n">s1</span><span class="o">`</span> <span class="k">start</span> <span class="k">with</span> <span class="mi">50</span> <span class="k">minvalue</span> <span class="mi">1</span> <span class="k">maxvalue</span> <span class="mi">9223372036854775806</span> 
-  <span class="k">increment</span> <span class="k">by</span> <span class="mi">1</span> <span class="k">cache</span> <span class="mi">1000</span> <span class="n">nocycle</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span>
+<pre class="fixed wrap">CREATE SEQUENCE s1 START WITH 50;
+SHOW CREATE SEQUENCE s1\G;
+*************************** 1. row ***************************
+       Table: s1
+Create Table: CREATE SEQUENCE `s1` start with 50 minvalue 1 maxvalue 9223372036854775806 
+  increment by 1 cache 1000 nocycle ENGINE=InnoDB
 </pre><h2 class="anchored_heading" id="notes">Notes</h2>
 <p>If you want to see the underlying table structure used for the <code>SEQUENCE</code>
 you can use <a href="/kb/en/show-create-table/">SHOW CREATE TABLE</a> on the <code>SEQUENCE</code>. You can also use <code>SELECT</code> to read the current recorded state of the <code>SEQUENCE</code>:</p>
-<pre class="fixed"><span class="k">SHOW</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">s1</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-       <span class="k">Table</span><span class="p">:</span> <span class="n">s1</span>
-<span class="k">Create</span> <span class="k">Table</span><span class="p">:</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">s1</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">next_not_cached_value</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">minimum_value</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">maximum_value</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">start_value</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;start value when sequences is created </span>
-<span class="s1">     or value if RESTART is used&#39;</span><span class="p">,</span>
-  <span class="o">`</span><span class="k">increment</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;increment value&#39;</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">cache_size</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">cycle_option</span><span class="o">`</span> <span class="n">tinyint</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;0 if no cycles are allowed, </span>
-<span class="s1">     1 if the sequence should begin a new cycle when maximum_value is passed&#39;</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">cycle_count</span><span class="o">`</span> <span class="nb">bigint</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;How many cycles have been done&#39;</span>
-<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="n">SEQUENCE</span><span class="o">=</span><span class="mi">1</span>
+<pre class="fixed wrap">SHOW CREATE TABLE s1\G
+*************************** 1. row ***************************
+       Table: s1
+Create Table: CREATE TABLE `s1` (
+  `next_not_cached_value` bigint(21) NOT NULL,
+  `minimum_value` bigint(21) NOT NULL,
+  `maximum_value` bigint(21) NOT NULL,
+  `start_value` bigint(21) NOT NULL COMMENT 'start value when sequences is created 
+     or value if RESTART is used',
+  `increment` bigint(21) NOT NULL COMMENT 'increment value',
+  `cache_size` bigint(21) unsigned NOT NULL,
+  `cycle_option` tinyint(1) unsigned NOT NULL COMMENT '0 if no cycles are allowed, 
+     1 if the sequence should begin a new cycle when maximum_value is passed',
+  `cycle_count` bigint(21) NOT NULL COMMENT 'How many cycles have been done'
+) ENGINE=InnoDB SEQUENCE=1
 
-<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">s1</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-<span class="n">next_not_cached_value</span><span class="p">:</span> <span class="mi">50</span>
-        <span class="n">minimum_value</span><span class="p">:</span> <span class="mi">1</span>
-        <span class="n">maximum_value</span><span class="p">:</span> <span class="mi">9223372036854775806</span>
-          <span class="n">start_value</span><span class="p">:</span> <span class="mi">50</span>
-            <span class="k">increment</span><span class="p">:</span> <span class="mi">1</span>
-           <span class="n">cache_size</span><span class="p">:</span> <span class="mi">1000</span>
-         <span class="n">cycle_option</span><span class="p">:</span> <span class="mi">0</span>
-          <span class="n">cycle_count</span><span class="p">:</span> <span class="mi">0</span>
+SELECT * FROM s1\G
+*************************** 1. row ***************************
+next_not_cached_value: 50
+        minimum_value: 1
+        maximum_value: 9223372036854775806
+          start_value: 50
+            increment: 1
+           cache_size: 1000
+         cycle_option: 0
+          cycle_count: 0
 </pre><h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/create-sequence/">CREATE SEQUENCE</a>
 </li><li><a href="/kb/en/alter-sequence/">ALTER SEQUENCE</a></li></ul>

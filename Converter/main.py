@@ -19,7 +19,7 @@ def main():
     delete_redownloads(config)
 
     #full runthrough
-    if config["toc_pagenumbers"] and config["add_body"]:
+    if config["toc_pagenumbers"] and config["add_body"] and config["add_contents"]:
         #get header data
         html = generate_html(filename = "headers.html", config = config, mark_headers=True)
         generate_pdf(content = html, filename = "headers.pdf", config = config, mark_pages=True)

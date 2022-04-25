@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-23 17:35">11 years, 7 months ago</span></dd>
+<span class="datetime" title="2010-08-23 17:35">11 years, 8 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-25 23:33">1 month, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-24 14:10">7 hours, 27 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -444,14 +444,14 @@ statement are shown in the Info field.</p>
 <p>Threads can be killed using their thread_id or their query_id, with the <a href="/kb/en/data-manipulation-kill-connection-query/">KILL</a> statement.</p>
 <p>Since queries on this table are locking, if the <a href="/kb/en/performance-schema/">performance_schema</a> is enabled, you may want to query the <a href="/kb/en/performance-schema-threads-table/">THREADS</a> table instead.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
-<pre class="fixed">SHOW PROCESSLIST;
+<pre class="fixed wrap">SHOW PROCESSLIST;
 +----+-----------------+-----------+------+---------+------+------------------------+------------------+----------+
 | Id | User            | Host      | db   | Command | Time | State                  | Info             | Progress |
 +----+-----------------+-----------+------+---------+------+------------------------+------------------+----------+
 |  2 | event_scheduler | localhost | NULL | Daemon  | 2693 | Waiting on empty queue | NULL             |    0.000 |
 |  4 | root            | localhost | NULL | Query   |    0 | Table lock             | SHOW PROCESSLIST |    0.000 |
 +----+-----------------+-----------+------+---------+------+------------------------+------------------+----------+
-</pre><h2 class="anchored_heading" id="see-also">See also</h2>
+</pre><h2 class="anchored_heading" id="see-also">See Also</h2>
 <p><a href="/kb/en/connection_id/">CONNECTION_ID()</a></p>
 
     </div>

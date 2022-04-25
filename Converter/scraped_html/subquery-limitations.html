@@ -268,7 +268,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-26 00:17">6 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-24 18:55">2 hours, 45 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -438,9 +438,9 @@ The following tables and data will be used in the examples that follow:
 <span class="o">|</span> <span class="n">Valerius</span> <span class="o">|</span>   <span class="mi">61</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">----------+------+</span>
 </pre><p>is valid, but </p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">staff</span> <span class="k">WHERE</span> <span class="n">name</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">NAME</span> <span class="k">FROM</span> <span class="n">customer</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">name</span> <span class="k">LIMIT</span> <span class="mi">1</span><span class="p">);</span>
-<span class="n">ERROR</span> <span class="mi">1235</span> <span class="p">(</span><span class="mi">42000</span><span class="p">):</span> <span class="n">This</span> <span class="k">version</span> <span class="k">of</span> <span class="n">MariaDB</span> <span class="n">doesn</span><span class="s1">&#39;t </span>
-<span class="s1">  yet support &#39;</span><span class="k">LIMIT</span> <span class="o">&amp;</span> <span class="k">IN</span><span class="o">/</span><span class="k">ALL</span><span class="o">/</span><span class="k">ANY</span><span class="o">/</span><span class="k">SOME</span> <span class="n">subquery</span><span class="err">&#39;</span>
+<pre class="fixed">SELECT * FROM staff WHERE name IN (SELECT NAME FROM customer ORDER BY name LIMIT 1);
+ERROR 1235 (42000): This version of MariaDB doesn't 
+  yet support 'LIMIT &amp; IN/ALL/ANY/SOME subquery'
 </pre><p>is not.</p>
 <h3 class="anchored_heading" id="modifying-and-selecting-from-the-same-table">Modifying and Selecting from the Same Table</h3>
 <p>It's not possible to both modify and select from the same table in a subquery. For example:</p>

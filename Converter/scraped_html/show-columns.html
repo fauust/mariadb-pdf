@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-23 16:08">11 years, 7 months ago</span></dd>
+<span class="datetime" title="2010-08-23 16:08">11 years, 8 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-06-29 12:34">3 years, 9 months ago</span></dd>
+<span class="datetime" title="2022-04-24 12:29">9 hours, 5 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -451,8 +451,8 @@ collation and comments, as well as the privileges you have for each column.</p>
 <p>You can use <code class="highlight fixed" style="white-space:pre-wrap">db_name.tbl_name</code> as an alternative to the
 <code class="highlight fixed" style="white-space:pre-wrap">tbl_name FROM db_name</code> syntax. In other words, these two
 statements are equivalent:</p>
-<pre class="fixed">SHOW COLUMNS FROM mytable FROM mydb;
-SHOW COLUMNS FROM mydb.mytable;
+<pre class="fixed"><span class="k">SHOW</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">mytable</span> <span class="k">FROM</span> <span class="n">mydb</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">mydb</span><span class="p">.</span><span class="n">mytable</span><span class="p">;</span>
 </pre><p><code class="highlight fixed" style="white-space:pre-wrap">SHOW COLUMNS</code> displays the following values for each table
 column:</p>
 <p><strong>Field</strong> indicates the column name.</p>
@@ -496,34 +496,34 @@ value is displayed only if you use the <code class="highlight fixed" style="whit
 <p><strong>Comment</strong> indicates any comment the column has. This value is displayed
 only if you use the <code class="highlight fixed" style="white-space:pre-wrap">FULL</code> keyword.</p>
 <p><code class="highlight fixed" style="white-space:pre-wrap">SHOW FIELDS</code> is a synonym for
-<code class="highlight fixed" style="white-space:pre-wrap">SHOW COLUMNS</code>. Also <code><a href="/kb/en/describe/">DESCRIBE</a></code> and <code><a href="/kb/en/explain/">EXPLAIN</a></code> can be used as shortcuts.</p>
+<code class="highlight fixed" style="white-space:pre-wrap">SHOW COLUMNS</code>. Also <a href="/kb/en/describe/">DESCRIBE</a> and <a href="/kb/en/explain/">EXPLAIN</a> can be used as shortcuts.</p>
 <p>You can also list a table's columns with: </p>
 <pre class="fixed">mysqlshow db_name tbl_name
-</pre><p>See the <code><a href="/kb/en/mysqlshow/">mysqlshow</a></code> command for more details.</p>
-<p>The <code><a href="/kb/en/describe/">DESCRIBE</a></code> statement provides information similar to <code>SHOW COLUMNS</code>. The <code><a href="/kb/en/information-schema-columns-table/">information_schema.COLUMNS</a></code> table provides similar, but more complete, information.</p>
-<p>The <code><a href="/kb/en/show-create-table/">SHOW CREATE TABLE</a></code>, <code><a href="/kb/en/show-table-status/">SHOW TABLE STATUS</a></code>, and <code><a href="/kb/en/show-index/">SHOW INDEX</a></code> statements also provide information about tables.</p>
+</pre><p>See the <a href="/kb/en/mysqlshow/">mysqlshow</a> command for more details.</p>
+<p>The <a href="/kb/en/describe/">DESCRIBE</a> statement provides information similar to <code>SHOW COLUMNS</code>. The <a href="/kb/en/information-schema-columns-table/">information_schema.COLUMNS</a> table provides similar, but more complete, information.</p>
+<p>The <a href="/kb/en/show-create-table/">SHOW CREATE TABLE</a>, <a href="/kb/en/show-table-status/">SHOW TABLE STATUS</a>, and <a href="/kb/en/show-index/">SHOW INDEX</a> statements also provide information about tables.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
-<pre class="fixed">SHOW COLUMNS FROM city;
-+------------+----------+------+-----+---------+----------------+
-| Field      | Type     | Null | Key | Default | Extra          |
-+------------+----------+------+-----+---------+----------------+
-| Id         | int(11)  | NO   | PRI | NULL    | auto_increment |
-| Name       | char(35) | NO   |     |         |                |
-| Country    | char(3)  | NO   | UNI |         |                |
-| District   | char(20) | YES  | MUL |         |                |
-| Population | int(11)  | NO   |     | 0       |                |
-+------------+----------+------+-----+---------+----------------+
-</pre><pre class="fixed">SHOW COLUMNS FROM employees WHERE Type LIKE 'Varchar%';
-+---------------+-------------+------+-----+---------+-------+
-| Field         | Type        | Null | Key | Default | Extra |
-+---------------+-------------+------+-----+---------+-------+
-| first_name    | varchar(30) | NO   | MUL | NULL    |       |
-| last_name     | varchar(40) | NO   |     | NULL    |       |
-| position      | varchar(25) | NO   |     | NULL    |       |
-| home_address  | varchar(50) | NO   |     | NULL    |       |
-| home_phone    | varchar(12) | NO   |     | NULL    |       |
-| employee_code | varchar(25) | NO   | UNI | NULL    |       |
-+---------------+-------------+------+-----+---------+-------+
+<pre class="fixed"><span class="k">SHOW</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">city</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------------+----------+------+-----+---------+----------------+</span>
+<span class="o">|</span> <span class="n">Field</span>      <span class="o">|</span> <span class="k">Type</span>     <span class="o">|</span> <span class="k">Null</span> <span class="o">|</span> <span class="k">Key</span> <span class="o">|</span> <span class="k">Default</span> <span class="o">|</span> <span class="n">Extra</span>          <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+----------+------+-----+---------+----------------+</span>
+<span class="o">|</span> <span class="n">Id</span>         <span class="o">|</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>  <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span> <span class="n">PRI</span> <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span> <span class="n">auto_increment</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Name</span>       <span class="o">|</span> <span class="nb">char</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span> <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span>     <span class="o">|</span>         <span class="o">|</span>                <span class="o">|</span>
+<span class="o">|</span> <span class="n">Country</span>    <span class="o">|</span> <span class="nb">char</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span> <span class="n">UNI</span> <span class="o">|</span>         <span class="o">|</span>                <span class="o">|</span>
+<span class="o">|</span> <span class="n">District</span>   <span class="o">|</span> <span class="nb">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="o">|</span> <span class="n">YES</span>  <span class="o">|</span> <span class="n">MUL</span> <span class="o">|</span>         <span class="o">|</span>                <span class="o">|</span>
+<span class="o">|</span> <span class="n">Population</span> <span class="o">|</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>  <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span>     <span class="o">|</span> <span class="mi">0</span>       <span class="o">|</span>                <span class="o">|</span>
+<span class="o">+</span><span class="c1">------------+----------+------+-----+---------+----------------+</span>
+</pre><pre class="fixed"><span class="k">SHOW</span> <span class="n">COLUMNS</span> <span class="k">FROM</span> <span class="n">employees</span> <span class="k">WHERE</span> <span class="k">Type</span> <span class="k">LIKE</span> <span class="s1">&#39;Varchar%&#39;</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">---------------+-------------+------+-----+---------+-------+</span>
+<span class="o">|</span> <span class="n">Field</span>         <span class="o">|</span> <span class="k">Type</span>        <span class="o">|</span> <span class="k">Null</span> <span class="o">|</span> <span class="k">Key</span> <span class="o">|</span> <span class="k">Default</span> <span class="o">|</span> <span class="n">Extra</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+-------------+------+-----+---------+-------+</span>
+<span class="o">|</span> <span class="n">first_name</span>    <span class="o">|</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span> <span class="n">MUL</span> <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">last_name</span>     <span class="o">|</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span>     <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="k">position</span>      <span class="o">|</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span>     <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">home_address</span>  <span class="o">|</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span>     <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">home_phone</span>    <span class="o">|</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span>     <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span>       <span class="o">|</span>
+<span class="o">|</span> <span class="n">employee_code</span> <span class="o">|</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span> <span class="n">UNI</span> <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span>       <span class="o">|</span>
+<span class="o">+</span><span class="c1">---------------+-------------+------+-----+---------+-------+</span>
 </pre><h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/describe/">DESCRIBE</a>
 </li><li><a href="/kb/en/mysqlshow/">mysqlshow</a>

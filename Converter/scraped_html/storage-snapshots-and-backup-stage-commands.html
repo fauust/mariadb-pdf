@@ -260,7 +260,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-09-11 19:11">2 years, 7 months ago</span></dd>
+<span class="datetime" title="2022-04-24 13:02">8 hours, 33 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -424,7 +424,7 @@
     <li class="mariadb_from_10_4_1"><a href="#generic-backup-process-with-storage-snapshots" title="Generic Backup Process with Storage Snapshots">Generic Backup Process with Storage Snapshots</a> </ol>
 </li>
 </div>
-<p>The <code><a href="/kb/en/backup-stage/">BACKUP STAGE</a></code> commands are a set of commands to make it possible to make an efficient external backup tool. These commands could even be used by tools that perform backups by taking a snapshot of a file system, SAN, or some other kind of storage device.</p>
+<p>The <a href="/kb/en/backup-stage/">BACKUP STAGE</a> commands are a set of commands to make it possible to make an efficient external backup tool. These commands could even be used by tools that perform backups by taking a snapshot of a file system, SAN, or some other kind of storage device.</p>
 <h2 class="anchored_heading" id="generic-backup-process-with-storage-snapshots">Generic Backup Process with Storage Snapshots</h2>
 <p>A tool that backs up MariaDB by taking a snapshot of a file system, SAN, or some other kind of storage device could use each <code>BACKUP STAGE</code> command in the following way:</p>
 <ul start="1"><li>First, execute the following:
@@ -437,7 +437,7 @@ BACKUP STAGE BLOCK_COMMIT
 </li></ul>
 <pre class="fixed">BACKUP STAGE END
 </pre><p>The above ensures that all non-transactional tables are properly flushed to disk before the snapshot is done.
-Using <code>BACKUP STAGE</code> commands is also more efficient than using the <code><a href="/kb/en/flush/">FLUSH TABLES WITH READ LOCK</a></code> command as the above set of commands will not block or be blocked by write operations to transactional tables.</p>
+Using <code>BACKUP STAGE</code> commands is also more efficient than using the <a href="/kb/en/flush/">FLUSH TABLES WITH READ LOCK</a> command as the above set of commands will not block or be blocked by write operations to transactional tables.</p>
 <p>Note that when the backup is completed, one should delete all files with the "#sql" prefix, as these are files used by concurrent running <code>ALTER TABLE</code>.  Note that InnoDB will on server restart automatically delete any tables with the "#sql" prefix.</p>
 
     </div>

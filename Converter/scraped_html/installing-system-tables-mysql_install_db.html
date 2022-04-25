@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Using mysql_install_db to create the system tables in the &#39;mysql&#39; database directory" />
+    <meta property="og:description" content="Using mysql_install_db to create the system tables in the &#39;mysql&#39; database directory." />
 
-    <meta name="description" content="Using mysql_install_db to create the system tables in the &#39;mysql&#39; database directory" />
+    <meta name="description" content="Using mysql_install_db to create the system tables in the &#39;mysql&#39; database directory." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -248,7 +248,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-04-03 23:30">3 years ago</span></dd>
+<span class="datetime" title="2022-04-23 23:29">22 hours, 5 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -415,18 +415,18 @@
     
     <div class="answer formatted">
         <p><code>mysql_install_db</code> initializes the MariaDB data directory and creates the
-<a href="/kb/en/system-tables/">system tables</a> in the <code><a href="/kb/en/the-mysql-database-tables/">mysql</a></code> database, if they do not exist. MariaDB uses these tables to manage <a href="/kb/en/grant/#privilege-levels">privileges</a>, <a href="/kb/en/roles/">roles</a>, and <a href="/kb/en/plugins/">plugins</a>. It also uses them to provide the data for the <code><a href="/kb/en/help-command/">help</a></code> command in the <code><a href="/kb/en/mysql-command-line-client/">mysql</a></code> client.</p>
-<p><code><a href="/kb/en/mysql_install_db/">mysql_install_db</a></code> works by starting MariaDB Server's <code>mysqld</code> process in <code><a href="/kb/en/mysqld-options/#-bootstrap">--bootstrap</a></code> mode and sending commands to create the <a href="/kb/en/system-tables/">system tables</a> and their content.</p>
-<p>There is a version specifically for Windows, <code><a href="/kb/en/mysql_install_dbexe/">mysql_install_db.exe</a></code>.</p>
+<a href="/kb/en/system-tables/">system tables</a> in the <a href="/kb/en/the-mysql-database-tables/">mysql</a> database, if they do not exist. MariaDB uses these tables to manage <a href="/kb/en/grant/#privilege-levels">privileges</a>, <a href="/kb/en/roles/">roles</a>, and <a href="/kb/en/plugins/">plugins</a>. It also uses them to provide the data for the <a href="/kb/en/help-command/">help</a> command in the <a href="/kb/en/mysql-command-line-client/">mysql</a> client.</p>
+<p><a href="/kb/en/mysql_install_db/">mysql_install_db</a> works by starting MariaDB Server's <code>mysqld</code> process in <a href="/kb/en/mysqld-options/#-bootstrap">--bootstrap</a> mode and sending commands to create the <a href="/kb/en/system-tables/">system tables</a> and their content.</p>
+<p>There is a version specifically for Windows, <a href="/kb/en/mysql_install_dbexe/">mysql_install_db.exe</a>.</p>
 <p>To invoke <code>mysql_install_db</code>, use the following syntax:</p>
 <pre class="fixed">mysql_install_db --user=mysql
-</pre><p>For the options supported by <code><a href="/kb/en/mysql_install_db/">mysql_install_db</a></code>, see <a href="/kb/en/mysql_install_db/#options">mysql_install_db: Options</a>.</p>
-<p>For the option groups read by <code><a href="/kb/en/mysql_install_db/">mysql_install_db</a></code>, see <a href="/kb/en/mysql_install_db/#option-groups">mysql_install_db: Option Groups</a>.</p>
+</pre><p>For the options supported by <a href="/kb/en/mysql_install_db/">mysql_install_db</a>, see <a href="/kb/en/mysql_install_db/#options">mysql_install_db: Options</a>.</p>
+<p>For the option groups read by <a href="/kb/en/mysql_install_db/">mysql_install_db</a>, see <a href="/kb/en/mysql_install_db/#option-groups">mysql_install_db: Option Groups</a>.</p>
 <p>See <a href="/kb/en/mysql_install_db/#installing-system-tables">mysql_install_db: Installing System Tables</a> for information on the installation process.</p>
 <p>See <a href="/kb/en/mysql_install_db/#troubleshooting-issues">mysql_install_db: Troubleshooting Issues</a> for information on how to troubleshoot the installation process.</p>
-<h2 class="anchored_heading" id="see-also">See also:</h2>
+<h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/mysql_install_db/">mysql_install_db</a>
-</li><li>The Windows version of <code>mysql_install_db</code>: <code><a href="/kb/en/mysql_install_dbexe/">mysql_install_db.exe</a></code></li></ul>
+</li><li>The Windows version of <code>mysql_install_db</code>: <a href="/kb/en/mysql_install_dbexe/">mysql_install_db.exe</a></li></ul>
 
     </div>
 

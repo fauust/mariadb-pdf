@@ -69,15 +69,15 @@ def delete_redownloads(config):
             os.remove(os.path.join("scraped_html", filename))
             num_deleted += 1
     else:
-        for name in urls:
+        for filename in urls:
             
-             #turn url into name
-            if name.startswith("https"):
-                name = strip_name(name)
-
+             #turn url into filename
+            if filename.startswith("https"): filename = strip_name(filename) + ".html"
+            else: filename = filename + ".html"
             #delete file
+            
             if filename in existing_files:
-                os.remove(os.path.join("scraped_html", name + ".html"))
+                os.remove(os.path.join("scraped_html", filename))
                 num_deleted += 1
 
     #debug delete num_deleted

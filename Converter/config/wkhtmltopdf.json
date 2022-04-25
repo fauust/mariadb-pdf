@@ -1,7 +1,7 @@
 {
     "DPI": 80,
     "page-size": "A4",
-    "footer-font-size": 8,
+    "footer-font-size": 7,
     "margin-top": "0.6cm",
     "margin-bottom": "0.6cm",
     "margin-right": "2.6cm",
@@ -10,6 +10,7 @@
     "footer-right": "[page]/[topage]",
     "encoding": "UTF-8",
     "footer-line": "",
+    "quiet": "",
     "disable-javascript": false,
     "enable-local-file-access": true
 }

@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 
 from scripts.funcs import read_csv, strip_name, new_page, format_time, get_date
 from scripts.generate_contents import create_main_contents
+from scripts.debug_csv import log_link
 
 from scripts.waiter import Waiter
 
@@ -31,6 +32,9 @@ def generate_html(filename, config, mark_headers = False, header_data = None):
     path = os.path.join("output", filename)
     with open(path, "w", encoding="utf-8") as file:
         file.write(html)
+
+    log_external_links(html)
+    
     #print time info
     print(f"html written to {path}")
 
@@ -50,6 +54,9 @@ def get_full_html(config, mark_headers):
     urls, slugs = get_urls_and_slugs(rows) # TODO
     total_request_time = 0
     contents_data = []
+    #return early if nothing is required
+    if not config["add_body"] and not config["add_contents"]: return "", contents_data, urls, slugs, total_request_time 
+    
     existing_files = os.listdir("scraped_html")
     
     full_html = ""
@@ -76,8 +83,8 @@ def get_full_html(config, mark_headers):
                 link_tag = f'<a href="#{name}">{insert_text}</a>'
                 header_tag = f'<h1 {insert_class} {insert_style}>{link_tag}</h1>\n'
                 #header_tag = header_tag
-            
-            full_html += header_tag
+            if config["add_body"]:
+                full_html += header_tag
         
         elif row["Include"] == "1":
             name = strip_name(row["URL"])
@@ -113,24 +120,26 @@ def modify_full_html(html, contents_data, urls, slugs, config, header_data):
     
     print("merging html")
 
-    html = make_internal(html, urls, slugs)
+    html = make_internal(html, urls, slugs, config)
     if config["add_contents"]:
         contents = create_main_contents(contents_data, header_data)
         html = contents + html
 
     #flatten subcontents
-    html = flatten_subcontents(html)
+    html = flatten_subcontents(html, config)
 
     #add extra information
     boiler, plate = get_boilerplate()
     cover_page, second_page = get_title_pages(config)
-    second_page = make_internal(second_page, urls, slugs)
+    second_page = make_internal(second_page, urls, slugs, config)
+
+    #mark_external_links
+    boiler = mark_external_links(boiler, config)
 
     #merge into final html
     full_html = boiler + cover_page + second_page + html + plate
     if config["colour_external_links"]:
         full_html = colour_external_links(full_html, config)
-    log_external_links(full_html)
     return full_html
 
 def strip_html(html, name, row, config, mark_headers):
@@ -218,7 +227,7 @@ def make_unique(html, name):
     return html
 
 
-def make_internal(html, urls, slugs):
+def make_internal(html, urls, slugs, config):
     """Makes all absolute links internal if they are contained within the csv"""
     html = html.replace('/+quest', '+quest')
     html = html.replace('/+attach', '+attach')
@@ -229,10 +238,12 @@ def make_internal(html, urls, slugs):
         name = strip_name(url)
         html = html.replace('href="'+ url, 'href="#' + name)
 
-        for slug in slugs[index]:
-            if slug == "": continue
-            slug = base_url + slug + "/"
-            html = html.replace('href="'+ slug, 'href="#' + name)
+        if config["check_slugs"]:
+
+            for slug in slugs[index]:
+                if slug == "": continue
+                slug = base_url + slug + "/"
+                html = html.replace('href="'+ slug, 'href="#' + name)
 
     html = html.replace('+quest', '/+quest')
     html = html.replace('+attach', '+/attach')
@@ -246,9 +257,15 @@ def colour_external_links(html, config) -> str:
     colour = config["external_link_colour"]
     output = html.replace('href="http', f'style="color: {colour};" href="http')
     return output
-
 def log_external_links(full_html):
-    links = full_html
+    pattern = r'https://mariadb\.com/kb/en/[\w\-\d/]+'
+    links = re.findall(pattern, full_html)
+    links = list(set(links))
+    for link in links:
+        log_link(link)
+
+    return
+
 
 def get_urls_and_slugs(rows) -> tuple:
     urls = []
@@ -261,11 +278,32 @@ def get_urls_and_slugs(rows) -> tuple:
     
     return urls, slugs
 
-def flatten_subcontents(html) -> str:
+def flatten_subcontents(html, config) -> str:
+    if not config["flatten_internal_contents"]: return 
+
     find = '<div class="table_of_contents'
     replace = '<div style="float: none;" class="table_of_contents'
     html = html.replace(find, replace)
     return html
+
+def mark_external_links(boiler, config):
+    css = (
+"""
+            a[href ^= "http"]:after {
+                content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);    
+            }
+            a[class=""]:after {
+                content: ""
+            }       
+    
+"""
+    )
+
+    if not config["mark_external_links"]: css = ""
+
+    boiler = boiler.replace("/*mark-external-links*/", css)
+
+    return boiler
 
 def do_request(url, name, min_sleep_time):
     print()

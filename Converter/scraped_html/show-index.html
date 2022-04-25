@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-08-23 17:09">11 years, 7 months ago</span></dd>
+<span class="datetime" title="2010-08-23 17:09">11 years, 8 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-04-24 22:26">11 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-24 12:36">8 hours, 57 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -462,7 +462,7 @@ SHOW INDEX FROM mydb.mytable;
 <tr><td><strong><code>Cardinality</code></strong></td><td>Estimated number of unique values in the index. The cardinality statistics are calculated at various times, and can help the optimizer make improved decisions.</td></tr>
 <tr><td><strong><code>Sub_part</code></strong></td><td><code>NULL</code> if the entire column is included in the index, or the number of included characters if not.</td></tr>
 <tr><td><strong><code>Packed</code></strong></td><td><code>NULL</code> if the index is not packed, otherwise how the index is packed.</td></tr>
-<tr><td><strong><code>Null</code></strong></td><td><code>NULL</code> if <code>NULL</code> values are permitted in the column, an empty string if <code>NULL</code>'s are not permitted.</td></tr>
+<tr><td><strong><code>Null</code></strong></td><td><code>NULL</code> if <code>NULL</code> values are permitted in the column, an empty string if <code>NULL</code>s are not permitted.</td></tr>
 <tr><td><strong><code>Index_type</code></strong></td><td>The index type, which can be <code>BTREE</code>, <code>FULLTEXT</code>, <code>HASH</code> or <code>RTREE</code>. See <a href="/kb/en/storage-engine-index-types/">Storage Engine Index Types</a>.</td></tr>
 <tr><td><strong><code>Comment</code></strong></td><td>Other information, such as whether the index is disabled.</td></tr>
 <tr><td><strong><code>Index_comment</code></strong></td><td>Contents of the <code>COMMENT</code> attribute when the index was created.</td></tr>
@@ -470,7 +470,7 @@ SHOW INDEX FROM mydb.mytable;
 </table>
 </div><p>The <code class="highlight fixed" style="white-space:pre-wrap">WHERE</code> and <code class="highlight fixed" style="white-space:pre-wrap">LIKE</code> clauses can be given to select rows using more general conditions, as discussed in <a href="/kb/en/extended-show/">Extended SHOW</a>.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">employees_example</span><span class="o">`</span> <span class="p">(</span>
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">employees_example</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
   <span class="o">`</span><span class="n">first_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
   <span class="o">`</span><span class="n">last_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>

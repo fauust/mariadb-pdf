@@ -256,7 +256,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-10-12 17:07">6 months ago</span></dd>
+<span class="datetime" title="2022-04-24 20:45">57 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -471,7 +471,7 @@
 <p>If the <a href="/kb/en/binary-log/">binary log</a> is enabled on a server, then the server will use the binary log-based transaction coordinator log. Otherwise, it will use the memory-mapped file-based transaction coordinator log.</p>
 <p>See <a href="/kb/en/transaction-coordinator-log/">Transaction Coordinator Log</a> for more information.</p>
 <h2 class="anchored_heading" id="syntax">Syntax</h2>
-<pre class="fixed">XA {START|BEGIN} xid [JOIN|RESUME]
+<pre class="fixed wrap">XA {START|BEGIN} xid [JOIN|RESUME]
 
 XA END xid [SUSPEND [FOR MIGRATE]]
 
@@ -493,12 +493,12 @@ xid: gtrid [, bqual [, formatID ]]
 <p><code>XA ROLLBACK</code> rolls back and terminates an <code>IDLE</code> or <code>PREPARED</code> transaction.</p>
 <p><code>XA RECOVER</code> shows information about all <code>PREPARED</code> transactions.</p>
 <p>When trying to execute an operation which is not allowed for the transaction's current state, an error is produced:</p>
-<pre class="fixed"><span class="n">XA</span> <span class="k">COMMIT</span> <span class="s1">&#39;test&#39;</span> <span class="n">ONE</span> <span class="n">PHASE</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="n">XA</span> <span class="k">COMMIT</span> <span class="s1">&#39;test&#39;</span> <span class="n">ONE</span> <span class="n">PHASE</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1399</span> <span class="p">(</span><span class="n">XAE07</span><span class="p">):</span> <span class="n">XAER_RMFAIL</span><span class="p">:</span> <span class="n">The</span> <span class="n">command</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">executed</span> <span class="k">when</span> <span class="k">global</span> <span class="n">transaction</span> <span class="k">is</span> <span class="k">in</span> <span class="n">the</span>  <span class="n">ACTIVE</span> <span class="k">state</span>
 
 <span class="n">XA</span> <span class="k">COMMIT</span> <span class="s1">&#39;test2&#39;</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1399</span> <span class="p">(</span><span class="n">XAE07</span><span class="p">):</span> <span class="n">XAER_RMFAIL</span><span class="p">:</span> <span class="n">The</span> <span class="n">command</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">executed</span> <span class="k">when</span> <span class="k">global</span> <span class="n">transaction</span> <span class="k">is</span> <span class="k">in</span> <span class="n">the</span>  <span class="n">NON</span><span class="o">-</span><span class="k">EXISTING</span> <span class="k">state</span>
-</pre><h2 class="anchored_heading" id="xa-recover"><code>XA RECOVER</code></h2>
+</pre><h2 class="anchored_heading" id="xa-recover">XA RECOVER</h2>
 <p>The <code>XA RECOVER</code> statement shows information about all transactions which are in the <code>PREPARED</code> state. It does not matter which connection created the transaction: if it has been <code>PREPARED</code>, it appears. But this does not mean that a connection can commit or rollback a transaction which was started by another connection. Note that transactions using a 1-phase commit are never in the <code>PREPARED</code> state, so they cannot be shown by <code>XA RECOVER</code>.</p>
 <p><code>XA RECOVER</code> produces four columns:</p>
 <pre class="fixed"><span class="n">XA</span> <span class="n">RECOVER</span><span class="p">;</span>

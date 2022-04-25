@@ -260,7 +260,7 @@
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-30 09:35">1 week, 6 days ago</span></dd>
+<span class="datetime" title="2022-04-24 13:45">7 hours, 51 minutes ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -349,29 +349,9 @@
                             >MariaDB starting with 10.7.0</label>
                 </li>
             
-                <li class="mariadb_from_10_1_2">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_1_2"
-                            >MariaDB starting with 10.1.2</label>
-                </li>
-            
-                <li class="mariadb_from_10_1_2">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_1_2"
-                            >MariaDB starting with 10.1.2</label>
-                </li>
-            
                 <li class="mariadb_from_10_2_3">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_2_3"
                             >MariaDB starting with 10.2.3</label>
-                </li>
-            
-                <li class="mariadb_from_10_1_2">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_1_2"
-                            >MariaDB starting with 10.1.2</label>
-                </li>
-            
-                <li class="mariadb_from_10_1_2">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_1_2"
-                            >MariaDB starting with 10.1.2</label>
                 </li>
             
                 <li class="mariadb_from_10_2_3">
@@ -874,8 +854,7 @@ master_retry_count=4294967295
    <span class="n">IGNORE_SERVER_IDS</span> <span class="o">=</span> <span class="p">();</span>
 <span class="n">START</span> <span class="n">SLAVE</span><span class="p">;</span>
 </pre><h4 class="anchored_heading" id="do_domain_ids"><code>DO_DOMAIN_IDS</code></h4>
-<div class="mariadb_from_10_1_2 mariadb from_10_1_2 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1012-release-notes/">10.1.2</a></h5><p>The <code>DO_DOMAIN_IDS</code> option for <code>CHANGE MASTER</code> was first added in <a href="/kb/en/mariadb-1012-release-notes/">MariaDB 10.1.2</a>.</p>
-</div><p>The <code>DO_DOMAIN_IDS</code> option for <code>CHANGE MASTER</code> can be used to configure a <a href="/kb/en/replication/">replica</a> to only apply <a href="binary_log">binary log</a> events if the transaction's <a href="/kb/en/global-transaction-id/">GTID</a> is in a specific <a href="/kb/en/gtid/#gtid_domain_id">gtid_domain_id</a> value. Filtered <a href="binary_log">binary log</a> events will not get logged to the replica’s <a href="/kb/en/relay-log/">relay log</a>, and they will not be applied by the replica.</p>
+<p>The <code>DO_DOMAIN_IDS</code> option for <code>CHANGE MASTER</code> can be used to configure a <a href="/kb/en/replication/">replica</a> to only apply <a href="binary_log">binary log</a> events if the transaction's <a href="/kb/en/global-transaction-id/">GTID</a> is in a specific <a href="/kb/en/gtid/#gtid_domain_id">gtid_domain_id</a> value. Filtered <a href="binary_log">binary log</a> events will not get logged to the replica’s <a href="/kb/en/relay-log/">relay log</a>, and they will not be applied by the replica.</p>
 <p>The option's value can be specified by providing a comma-separated list of <a href="/kb/en/gtid/#gtid_domain_id">gtid_domain_id</a> values. Duplicate values are automatically ignored. For example:</p>
 <pre class="fixed"><span class="n">STOP</span> <span class="n">SLAVE</span><span class="p">;</span>
 <span class="k">CHANGE</span> <span class="n">MASTER</span> <span class="k">TO</span> 
@@ -894,8 +873,7 @@ master_retry_count=4294967295
 <span class="n">START</span> <span class="n">SLAVE</span><span class="p">;</span>
 </pre></div><div class="cstm-style greenbox"><p>The <code>DO_DOMAIN_IDS</code> option can only be specified if the replica is replicating in <a href="/kb/en/gtid/">GTID</a> mode. Therefore, the <a href="#master_use_gtid">MASTER_USE_GTID</a> option must also be set to some value other than <code>no</code> in order to use this option.</p>
 </div><h4 class="anchored_heading" id="ignore_domain_ids"><code>IGNORE_DOMAIN_IDS</code></h4>
-<div class="mariadb_from_10_1_2 mariadb from_10_1_2 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1012-release-notes/">10.1.2</a></h5><p>The <code>IGNORE_DOMAIN_IDS</code> option for <code>CHANGE MASTER</code> was first added in <a href="/kb/en/mariadb-1012-release-notes/">MariaDB 10.1.2</a>.</p>
-</div><p>The <code>IGNORE_DOMAIN_IDS</code> option for <code>CHANGE MASTER</code> can be used to configure a <a href="/kb/en/replication/">replica</a> to ignore <a href="binary_log">binary log</a> events if the transaction's <a href="/kb/en/global-transaction-id/">GTID</a> is in a specific <a href="/kb/en/gtid/#gtid_domain_id">gtid_domain_id</a> value. Filtered <a href="binary_log">binary log</a> events will not get logged to the replica’s <a href="/kb/en/relay-log/">relay log</a>, and they will not be applied by the replica.</p>
+<p>The <code>IGNORE_DOMAIN_IDS</code> option for <code>CHANGE MASTER</code> can be used to configure a <a href="/kb/en/replication/">replica</a> to ignore <a href="binary_log">binary log</a> events if the transaction's <a href="/kb/en/global-transaction-id/">GTID</a> is in a specific <a href="/kb/en/gtid/#gtid_domain_id">gtid_domain_id</a> value. Filtered <a href="binary_log">binary log</a> events will not get logged to the replica’s <a href="/kb/en/relay-log/">relay log</a>, and they will not be applied by the replica.</p>
 <p>The option's value can be specified by providing a comma-separated list of <a href="/kb/en/gtid/#gtid_domain_id">gtid_domain_id</a> values. Duplicate values are automatically ignored. For example:</p>
 <pre class="fixed"><span class="n">STOP</span> <span class="n">SLAVE</span><span class="p">;</span>
 <span class="k">CHANGE</span> <span class="n">MASTER</span> <span class="k">TO</span> 
@@ -1073,7 +1051,7 @@ This is used when you want to set up the replica to replicate the primary:</p>
                     <li>
                         <a href="/kb/en/reset-replica/">
                             
-                            RESET SLAVE
+                            RESET REPLICA/SLAVE
                         </a>
                     </li>
                 
