@@ -7,7 +7,7 @@
     "check_slugs": true,
     "debug_csv": true,
     "notify": false,
-    "page-break": false,
+    "page-break": true,
     "mark_external_links": true,
     "colour_external_links": false,
     "add_contents": true,
