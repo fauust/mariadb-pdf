@@ -258,8 +258,9 @@ def colour_external_links(html, config) -> str:
     output = html.replace('href="http', f'style="color: {colour};" href="http')
     return output
 def log_external_links(full_html):
-    pattern = r'https://mariadb\.com/kb/en/[\w\-\d/]+'
+    pattern = r'href="(https://mariadb\.com/kb/en/[\w\-\d/]+)"'
     links = re.findall(pattern, full_html)
+    #links = [link[0] for link in links]
     links = list(set(links))
     for link in links:
         log_link(link)
