@@ -21,7 +21,7 @@ def main():
     #full runthrough
     if config["toc_pagenumbers"] and config["add_body"] and config["add_contents"]:
         #get header data
-        html = generate_html(filename = "headers.html", config = config, mark_headers=True)
+        html = generate_html(filename = "headers.html", config = config, mark_headers=True, log_ext=True)
         generate_pdf(content = html, filename = "headers.pdf", config = config, mark_pages=True)
         header_data = get_pdf_data("headers.pdf", config)
 
@@ -30,7 +30,7 @@ def main():
         generate_pdf(content = html, filename = config["output_pdf"], config = config)
     #cheap runthrough (no page numbers)
     else:
-        html = generate_html(filename = config["output_html"], config = config)
+        html = generate_html(filename = config["output_html"], config = config, log_ext=True)
         generate_pdf(content = html, filename = config["output_pdf"], config = config)
 
     #csv debug

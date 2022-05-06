@@ -15,7 +15,7 @@ from scripts.waiter import Waiter
 
 WAITER = Waiter(10)
 
-def generate_html(filename, config, mark_headers = False, header_data = None):
+def generate_html(filename, config, mark_headers = False, header_data = None, log_ext=False):
     if not config["new_html"]:
         fpath = os.path.join("output", config["output_html"])
         with open(fpath, encoding="utf-8") as file:
@@ -32,8 +32,7 @@ def generate_html(filename, config, mark_headers = False, header_data = None):
     path = os.path.join("output", filename)
     with open(path, "w", encoding="utf-8") as file:
         file.write(html)
-
-    log_external_links(html)
+    if log_ext: log_external_links(html)
     
     #print time info
     print(f"html written to {path}")
