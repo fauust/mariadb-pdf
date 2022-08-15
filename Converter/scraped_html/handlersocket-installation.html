@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Installing the HandlerSocket plugin" />
+    <meta property="og:description" content="Installing the HandlerSocket plugin." />
 
-    <meta name="description" content="Installing the HandlerSocket plugin" />
+    <meta name="description" content="Installing the HandlerSocket plugin." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-05-10 21:34">10 years, 11 months ago</span></dd>
+<span class="datetime" title="2011-05-10 21:34">11 years, 1 month ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-08-13 13:24">6 years, 8 months ago</span></dd>
+<span class="datetime" title="2022-05-24 21:26">2 weeks, 4 days ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -325,25 +325,6 @@
 </div>
 
     
-
-
-
-    
-    
-
-<div class="well well-small box"><div><h5>Product Versions</h5></div><div>
-
-        <ul id="product_chooser">
-            
-                <li class="mariadb_from_5_3_0">
-                    <label><input type="checkbox" data-product-class="mariadb_from_5_3_0"
-                            >MariaDB starting with 5.3.0</label>
-                </li>
-            
-        </ul>
-    
-</div>
-</div>
 
 
 
@@ -421,14 +402,10 @@
 
     
     <div class="answer formatted">
-        <div class="mariadb_from_5_3_0 mariadb from_5_3_0 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-530-release-notes/">5.3.0</a></h5><p>Beginning with <a href="/kb/en/mariadb-530-release-notes/">MariaDB 5.3.0</a>, the <a href="/kb/en/handlersocket/">HandlerSocket</a> plugin is
-included in both source and binary distributions.</p>
-</div><p>After MariaDB is installed,
-use the <a href="/kb/en/install-plugin/">INSTALL PLUGIN</a> command (as the root user) to install
+        <p>After MariaDB is installed, use the <a href="/kb/en/install-plugin/">INSTALL PLUGIN</a> command (as the root user) to install
 the HandlerSocket plugin. This command only needs to be run once, like so:</p>
 <pre class="fixed"><span class="n">INSTALL</span> <span class="n">PLUGIN</span> <span class="n">handlersocket</span> <span class="k">SONAME</span> <span class="s1">&#39;handlersocket.so&#39;</span><span class="p">;</span>
-</pre><p>In older versions, after installing the plugin, <a href="/kb/en/show-processlist/">SHOW PROCESSLIST</a> would show
-the HandlerSocket worker threads. With the latest versions, you first need to configure some settings. All <a href="/kb/en/handlersocket-configuration-options/">HandlerSocket configuration options</a> are placed in the [mysqld] section of your my.cnf file.</p>
+</pre><p>After installing the plugin, <a href="/kb/en/show-processlist/">SHOW PROCESSLIST</a> you first need to configure some settings. All <a href="/kb/en/handlersocket-configuration-options/">HandlerSocket configuration options</a> are placed in the [mysqld] section of your my.cnf file.</p>
 <p>At least the <a href="/kb/en/handlersocket-configuration-options/#handlersocket_address">handlersocket_address</a>, <a href="/kb/en/handlersocket-configuration-options/#handlersocket_port">handlersocket_port</a> and <a href="/kb/en/handlersocket-configuration-options/#handlersocket_port_wr">handlersocket_port_wr</a> options need to be set. For example:</p>
 <pre class="fixed">handlersocket_address=&#34;127.0.0.1&#34;
 handlersocket_port=&#34;9998&#34;
@@ -436,8 +413,7 @@ handlersocket_port_wr=&#34;9999&#34;
 </pre><p>After updating the configuration options, restart MariaDB.</p>
 <p>On the client side, to make use of the plugin you will need to install the
 appropriate client library (i.e. libhsclient for C++ applications and
-perl-Net-HandlerSocket for perl applications, both available from the
-<a href="https://github.com/ahiguti/HandlerSocket-Plugin-for-MySQL">HandlerSocket website</a>). </p>
+perl-Net-HandlerSocket for perl applications).</p>
 
     </div>
 

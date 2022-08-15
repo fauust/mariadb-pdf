@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="The audit log is a set of records written as a list of fields to a file in plain‐text format" />
+    <meta property="og:description" content="The audit log is a set of records written as a list of fields to a file in plain‐text format." />
 
-    <meta name="description" content="The audit log is a set of records written as a list of fields to a file in plain‐text format" />
+    <meta name="description" content="The audit log is a set of records written as a list of fields to a file in plain‐text format." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2017-08-16 14:09">4 years, 7 months ago</span></dd>
+<span class="datetime" title="2017-08-16 14:09">4 years, 9 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-08-18 12:17">4 years, 7 months ago</span></dd>
+<span class="datetime" title="2022-04-27 19:50">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -411,9 +411,9 @@
 [timestamp],[serverhost],[username],[host],[connectionid],0,DISCONNECT,,,0 
 [timestamp],[serverhost],[username],[host],[connectionid],0,FAILED_CONNECT,,,[retcode]
 </pre><p>Here is the one audit record generated for each query event:</p>
-<pre class="fixed">[timestamp],[serverhost],[username],[host],[connectionid],[queryid],QUERY,[database],[object], [retcode]
+<pre class="fixed wrap">[timestamp],[serverhost],[username],[host],[connectionid],[queryid],QUERY,[database],[object], [retcode]
 </pre><p>Below are generic examples of records that are entered in the audit log for each type of table event:</p>
-<pre class="fixed">[timestamp],[serverhost],[username],[host],[connectionid],[queryid],CREATE,[database],[object], 
+<pre class="fixed wrap">[timestamp],[serverhost],[username],[host],[connectionid],[queryid],CREATE,[database],[object], 
 [timestamp],[serverhost],[username],[host],[connectionid],[queryid],READ,[database],[object], 
 [timestamp],[serverhost],[username],[host],[connectionid],[queryid],WRITE,[database],[object], 
 [timestamp],[serverhost],[username],[host],[connectionid],[queryid],ALTER,[database],[object], 

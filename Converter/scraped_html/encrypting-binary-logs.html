@@ -186,7 +186,7 @@
     
 
     
-    » <a class="crumb" href="/kb/en/securing-mariadb-data-at-rest-encryption/">Data-at-Rest Encryption</a>
+    » <a class="crumb" href="/kb/en/encryption-data-at-rest-encryption/">Data-at-Rest Encryption</a>
     
 
 
@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2018-12-20 02:01">3 years, 3 months ago</span></dd>
+<span class="datetime" title="2018-12-20 02:01">3 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-10-14 15:53">2 years, 6 months ago</span></dd>
+<span class="datetime" title="2022-05-02 12:01">1 month, 1 week ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -326,7 +326,7 @@
 
         <ul>
             
-                <li><a href="/kb/en/securing-mariadb-data-at-rest-encryption/">Data-at-Rest Encryption</a></li>
+                <li><a href="/kb/en/encryption-data-at-rest-encryption/">Data-at-Rest Encryption</a></li>
             
                 <li><a href="/kb/en/binary-log/">Binary Log</a></li>
             
@@ -460,7 +460,7 @@ encrypt_binlog=ON
 </li></ul>
 <ul start="1"><li>Then, start the server.
 </li></ul>
-<p>From that point forward, any new <a href="/kb/en/binary-log/">binary logs</a> will be encrypted. To delete old unencrypted <a href="/kb/en/binary-log/">binary logs</a>, you can use <code><a href="/kb/en/reset-master/">RESET MASTER</a></code> or <code><a href="/kb/en/sql-commands-purge-logs/">PURGE BINARY LOGS</a></code>.</p>
+<p>From that point forward, any new <a href="/kb/en/binary-log/">binary logs</a> will be encrypted. To delete old unencrypted <a href="/kb/en/binary-log/">binary logs</a>, you can use <a href="/kb/en/reset-master/">RESET MASTER</a> or <a href="/kb/en/sql-commands-purge-logs/">PURGE BINARY LOGS</a>.</p>
 <h2 class="anchored_heading" id="disabling-encryption">Disabling Encryption</h2>
 <p>Encryption of <a href="/kb/en/binary-log/">binary logs</a> can be disabled by doing the following process.</p>
 <ul start="1"><li>First, stop the server.
@@ -477,7 +477,7 @@ encrypt_binlog=ON
 <p>When using encrypted binary logs with <a href="/kb/en/replication/">replication</a>, it is completely supported to have different encryption keys on the master and slave. The master decrypts encrypted binary log events as it reads them from disk, and before its <a href="/kb/en/replication-threads/#binary-log-dump-thread">binary log dump thread</a> sends them to the slave, so the slave actually receives the unencrypted binary log events.</p>
 <p>If you want to ensure that binary log events are encrypted as they are transmitted between the master and slave, then you will have to use <a href="/kb/en/replication-with-secure-connections/">TLS with the replication connection</a>.</p>
 <h3 class="anchored_heading" id="effects-of-data-at-rest-encryption-on-mysqlbinlog">Effects of Data-at-Rest Encryption on mysqlbinlog</h3>
-<p><code><a href="/kb/en/mysqlbinlog/">mysqlbinlog</a></code> does not currently have the ability to decrypt encrypted <a href="/kb/en/binary-log/">binary logs</a> on its own (see <a href="https://jira.mariadb.org/browse/MDEV-8813">MDEV-8813</a> about that). In order to use mysqlbinlog with encrypted <a href="/kb/en/binary-log/">binary logs</a>, you have to use the <code><a href="https://mariadb.com/kb/en/library/mysqlbinlog-options/">--read-from-remote-server</a></code> command-line option, so that the server can decrypt the <a href="/kb/en/binary-log/">binary logs</a> for mysqlbinlog.</p>
+<p><a href="/kb/en/mysqlbinlog/">mysqlbinlog</a> does not currently have the ability to decrypt encrypted <a href="/kb/en/binary-log/">binary logs</a> on its own (see <a href="https://jira.mariadb.org/browse/MDEV-8813">MDEV-8813</a> about that). In order to use mysqlbinlog with encrypted <a href="/kb/en/binary-log/">binary logs</a>, you have to use the <a href="/kb/en/mysqlbinlog-options/">--read-from-remote-server</a> command-line option, so that the server can decrypt the <a href="/kb/en/binary-log/">binary logs</a> for mysqlbinlog.</p>
 <p>Note, using <code>--read-from-remote-server</code> option on versions of the <code>mysqlbinlog</code> utility that do not have the <a href="https://jira.mariadb.org/browse/MDEV-20574">MDEV-20574</a> fix, can corrupt binlog positions when the binary log is encrypted.</p>
 
     </div>
@@ -502,7 +502,7 @@ encrypt_binlog=ON
                     </li>
                 
                 
-                    <li><a href="/kb/en/securing-mariadb-data-at-rest-encryption/">
+                    <li><a href="/kb/en/encryption-data-at-rest-encryption/">
                         ↑ Data-at-Rest Encryption ↑
                     </a>
                     </li>
@@ -548,7 +548,7 @@ encrypt_binlog=ON
         
         <ul class="section_navigation well well-small hidden-xs hidden-sm">
             
-                <li class="parent"><a href="/kb/en/securing-mariadb-data-at-rest-encryption/">
+                <li class="parent"><a href="/kb/en/encryption-data-at-rest-encryption/">
                     ↑ Data-at-Rest Encryption ↑
                 </a>
                 </li>

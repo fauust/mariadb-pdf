@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-06-25 13:21">8 years, 9 months ago</span></dd>
+<span class="datetime" title="2013-06-25 13:21">8 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-07 13:33">7 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-04-27 21:03">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -454,7 +454,7 @@ plugin_load_add = locales
 <pre class="fixed"><span class="n">UNINSTALL</span> <span class="n">SONAME</span> <span class="s1">&#39;locales&#39;</span><span class="p">;</span>
 </pre><p>If you installed the plugin by providing the <a href="/kb/en/mysqld-options/#-plugin-load">--plugin-load</a> or the <a href="/kb/en/mysqld-options/#-plugin-load-add">--plugin-load-add</a> options in a relevant server <a href="/kb/en/configuring-mariadb-with-option-files/#option-groups">option group</a> in an <a href="/kb/en/configuring-mariadb-with-option-files/">option file</a>, then those options should be removed to prevent the plugin from being loaded the next time the server is restarted.</p>
 <h2 class="anchored_heading" id="example">Example</h2>
-<div class="cstm-style" style="font-size:0.8em;"><pre class="fixed">SELECT * FROM INFORMATION_SCHEMA.LOCALES;
+<div class="cstm-style" style="font-size:0.8em;"><pre class="fixed wrap">SELECT * FROM INFORMATION_SCHEMA.LOCALES;
 +-----+-------+-------------------------------------+-----------------------+---------------------+---------------+--------------+------------------------+
 | ID  | NAME  | DESCRIPTION                         | MAX_MONTH_NAME_LENGTH | MAX_DAY_NAME_LENGTH | DECIMAL_POINT | THOUSAND_SEP | ERROR_MESSAGE_LANGUAGE |
 +-----+-------+-------------------------------------+-----------------------+---------------------+---------------+--------------+------------------------+

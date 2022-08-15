@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2017-10-23 16:36">4 years, 5 months ago</span></dd>
+<span class="datetime" title="2017-10-23 16:36">4 years, 7 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-10-05 11:19">3 years, 6 months ago</span></dd>
+<span class="datetime" title="2022-04-26 21:02">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -405,7 +405,7 @@
 <h2 class="anchored_heading" id="encrypting-and-decrypting-backup-with-openssl">Encrypting and Decrypting Backup With openssl</h2>
 <p>The following example creates an AES-encrypted backup, protected with the password "mypass" and stores it in a file "backup.xb.enc":
 <br><br><br></p>
-<pre class="fixed">mariabackup --user=root --backup --stream=xbstream  | openssl  enc -aes-256-cbc -k mypass &gt; backup.xb.enc
+<pre class="fixed wrap">mariabackup --user=root --backup --stream=xbstream  | openssl  enc -aes-256-cbc -k mypass &gt; backup.xb.enc
 </pre><p>To decrypt and unpack this backup into the current directory, the following command can be used:</p>
 <pre class="fixed">openssl  enc -d -aes-256-cbc -k mypass -in backup.xb.enc | mbstream -x
 </pre><h2 class="anchored_heading" id="compressing-and-decompressing-backup-with-gzip">Compressing and Decompressing Backup With gzip</h2>
@@ -415,7 +415,7 @@
 <pre class="fixed">gunzip -c backupstream.gz | mbstream -x
 </pre><h2 class="anchored_heading" id="compressing-and-encrypting-backup-using-gzip-and-openssl">Compressing and Encrypting Backup, Using gzip and openssl</h2>
 <p>This example adds a compression step before the encryption, otherwise looks almost identical to the previous example:</p>
-<pre class="fixed">mariabackup --user=root --backup --stream=xbstream | gzip | openssl  enc -aes-256-cbc -k mypass &gt; backup.xb.gz.enc
+<pre class="fixed wrap">mariabackup --user=root --backup --stream=xbstream | gzip | openssl  enc -aes-256-cbc -k mypass &gt; backup.xb.gz.enc
 </pre><p>We can decrypt, decompress and unpack the backup as follow (note <code>gzip -d</code> in the pipeline):</p>
 <pre class="fixed">openssl  enc -d -aes-256-cbc -k mypass -in backup.xb.gz.enc |gzip -d| mbstream -x
 </pre><h2 class="anchored_heading" id="compressing-and-encrypting-with-7zip">Compressing and Encrypting with 7Zip</h2>
@@ -427,7 +427,7 @@
 </pre><p>7z also has builtin AES-256 encryption. To encrypt the backup from the previous example using password SECRET, add <code>-pSECRET</code> to the 7z command line.</p>
 <h2 class="anchored_heading" id="encrypting-with-gpg">Encrypting With GPG</h2>
 <p>Encryption</p>
-<pre class="fixed">mariabackup --user=root --backup --stream=xbstream | gpg -c --passphrase SECRET --batch --yes -o backup.xb.gpg
+<pre class="fixed wrap">mariabackup --user=root --backup --stream=xbstream | gpg -c --passphrase SECRET --batch --yes -o backup.xb.gpg
 </pre><p>Decrypt, unpack</p>
 <pre class="fixed">gpg --decrypt --passphrase SECRET --batch --yes  backup.xb.gpg | mbstream -x
 </pre><h2 class="anchored_heading" id="interactive-input-for-passphrases">Interactive Input for Passphrases</h2>

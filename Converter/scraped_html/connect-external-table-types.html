@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2016-12-15 09:21">5 years, 3 months ago</span></dd>
+<span class="datetime" title="2016-12-15 09:21">5 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-07-13 16:08">9 months ago</span></dd>
+<span class="datetime" title="2022-04-27 18:43">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -405,22 +405,22 @@
 <p>The way this works is by establishing a connection to the external data source and by sending it an SQL statement (or its equivalent using API functions for MONGO) enabling it to execute the original query. To enhance performance, it is necessary to have the remote data source do the maximum processing. This is needed in particular to reduce the amount of data returned by the data source.</p>
 <p>This is why, for SELECT queries, CONNECT uses the <a href="/kb/en/using-connect-condition-pushdown/">cond_push</a> MariaDB feature to retrieve the maximum of the where clause of the original query that can be added to the query sent to the data source. This is automatic and does not require anything to be done by the user.</p>
 <p>However, more can be done. In addition to accessing a remote table, CONNECT offers the possibility to specify what the remote server must do. This is done by specifying it as a view in the srcdef option. For example:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">custnum</span> <span class="n">ENGINE</span><span class="o">=</span><span class="k">CONNECT</span> <span class="n">TABLE_TYPE</span><span class="o">=</span><span class="n">XXX</span>
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">custnum</span> <span class="n">ENGINE</span><span class="o">=</span><span class="k">CONNECT</span> <span class="n">TABLE_TYPE</span><span class="o">=</span><span class="n">XXX</span>
 <span class="k">CONNECTION</span><span class="o">=</span><span class="s1">&#39;connecton string&#39;</span>
 <span class="n">SRCDEF</span><span class="o">=</span><span class="s1">&#39;select pays as country, count(*) as customers from custnum group by pays&#39;</span><span class="p">;</span>
 </pre><p>Doing so, the group by clause will be done by the remote server considerably reducing the amount of data sent back on the connection.</p>
 <p>This may even be increased by adding to the srcdef part of the “compatible” part of the query where clauses like this are done for table-based tables. Note that for MariaDB, this table has two columns, country and customers. Supposing the original query is:</p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">custnum</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;UK&#39;</span> <span class="k">OR</span> <span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;USA&#39;</span><span class="p">)</span> <span class="k">AND</span> <span class="n">customers</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">custnum</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;UK&#39;</span> <span class="k">OR</span> <span class="n">country</span> <span class="o">=</span> <span class="s1">&#39;USA&#39;</span><span class="p">)</span> <span class="k">AND</span> <span class="n">customers</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">;</span>
 </pre><p>How can we make the where clause be added to the sent srcdef? There are many problems:</p>
 <ol start="1"><li>Where to include the additional information.
 </li><li>What about the use of alias.
 </li><li>How to know what will be a where clause or a having clause.
 </li></ol>
 <p>The first problem is solved by preparing the srcdef view to receive clauses. The above example srcdef becomes:</p>
-<pre class="fixed"><span class="n">SRCDEF</span><span class="o">=</span><span class="s1">&#39;select pays as country, count(*) as customers from custnum where %s group by pays having %s&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="n">SRCDEF</span><span class="o">=</span><span class="s1">&#39;select pays as country, count(*) as customers from custnum where %s group by pays having %s&#39;</span><span class="p">;</span>
 </pre><p>The <em>%s</em> in the srcdef are place holders for eventual compatible parts of the original query where clause. If the select query does not specify a where clause, or a gives an unacceptable where clause, place holders will be filled by dummy clauses (1=1).</p>
 <p>The other problems must be solved by adding to the create table a list of columns that must be translated because they are aliases or/and aliases on aggregate functions that must become a having clause. For example, in this case:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">custnum</span> <span class="n">ENGINE</span><span class="o">=</span><span class="k">CONNECT</span> <span class="n">TABLE_TYPE</span><span class="o">=</span><span class="n">XXX</span>
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">custnum</span> <span class="n">ENGINE</span><span class="o">=</span><span class="k">CONNECT</span> <span class="n">TABLE_TYPE</span><span class="o">=</span><span class="n">XXX</span>
 <span class="k">CONNECTION</span><span class="o">=</span><span class="s1">&#39;connecton string&#39;</span>
 <span class="n">SRCDEF</span><span class="o">=</span><span class="s1">&#39;select pays as country, count(*) as customers from custnum where %s group by pays having %s&#39;</span>
 <span class="n">OPTION_LIST</span><span class="o">=</span><span class="s1">&#39;Alias=customers=*count(*);country=pays&#39;</span><span class="p">;</span>
@@ -431,7 +431,7 @@
 </li><li>The remote column name.
 </li></ol>
 <p>With this information, CONNECT will be able to make the query sent to the remote data source: </p>
-<pre class="fixed"><span class="k">select</span> <span class="n">pays</span> <span class="k">as</span> <span class="n">country</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">customers</span> <span class="k">from</span> <span class="n">custnum</span> <span class="k">where</span> <span class="p">(</span><span class="n">pays</span> <span class="o">=</span> <span class="s1">&#39;UK&#39;</span> <span class="k">OR</span> <span class="n">pays</span> <span class="o">=</span> <span class="s1">&#39;USA&#39;</span><span class="p">)</span> <span class="k">group</span> <span class="k">by</span> <span class="n">country</span> <span class="k">having</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span>
+<pre class="fixed wrap"><span class="k">select</span> <span class="n">pays</span> <span class="k">as</span> <span class="n">country</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">customers</span> <span class="k">from</span> <span class="n">custnum</span> <span class="k">where</span> <span class="p">(</span><span class="n">pays</span> <span class="o">=</span> <span class="s1">&#39;UK&#39;</span> <span class="k">OR</span> <span class="n">pays</span> <span class="o">=</span> <span class="s1">&#39;USA&#39;</span><span class="p">)</span> <span class="k">group</span> <span class="k">by</span> <span class="n">country</span> <span class="k">having</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span>
 </pre><p>Note: Some data sources, including MySQL and MariaDB, accept aliases in the having clause. In that case, the alias option could have been specified as:</p>
 <pre class="fixed"><span class="n">OPTION_LIST</span><span class="o">=</span><span class="s1">&#39;Alias=customers=*;country=pays&#39;</span><span class="p">;</span>
 </pre><p>Another option exists, phpos, enabling to specify what place holders are present and in what order. To be specified as “W”, “WH”, “H”, or “HW”. It is rarely used because by default CONNECT can set it from the srcdef content. The only cases it is needed is when the srcdef contains only a having place holder or when the having place holder occurs before the where place holder, which can occur on queries containing joins. CONNECT cannot handle more than one place holder of each type.</p>

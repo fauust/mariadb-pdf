@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-07-12 20:15">10 years, 9 months ago</span></dd>
+<span class="datetime" title="2011-07-12 20:15">10 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-06-08 11:58">1 year, 10 months ago</span></dd>
+<span class="datetime" title="2022-04-27 11:24">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -445,7 +445,7 @@
 <h2 class="anchored_heading" id="the-idea">The Idea</h2>
 <h3 class="anchored_heading" id="case-1-rowid-sorting-for-range-access">Case 1: Rowid Sorting for Range Access</h3>
 <p>Consider a range query:</p>
-<pre class="fixed"><span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">tbl</span> <span class="k">where</span> <span class="n">tbl</span><span class="p">.</span><span class="n">key1</span> <span class="k">between</span> <span class="mi">1000</span> <span class="k">and</span> <span class="mi">2000</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">tbl</span> <span class="k">where</span> <span class="n">tbl</span><span class="p">.</span><span class="n">key1</span> <span class="k">between</span> <span class="mi">1000</span> <span class="k">and</span> <span class="mi">2000</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+-------+---------------+------+---------+------+------+-----------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span> <span class="o">|</span> <span class="k">type</span>  <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>  <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                 <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+-------+---------------+------+---------+------+------+-----------------------+</span>
@@ -457,7 +457,7 @@
 <p>When the table is sufficiently big, each table record read will need to actually go to disk (and be served from buffer pool or OS cache), and query execution will be too slow to be practical. For example, a 10,000 RPM disk drive is able to make 167 seeks per second, so in the worst case, query execution will be capped at reading about 167 records per second.</p>
 <p>SSD drives do not need to do disk seeks, so they will not be hurt as badly, however the performance will still be poor in many cases.</p>
 <p>Multi-Range-Read optimization aims to make disk access faster by sorting record read requests and then doing one ordered disk sweep. If one enables Multi Range Read, <code>EXPLAIN</code> will show that a "<code>Rowid-ordered scan</code>" is used:</p>
-<pre class="fixed"><span class="k">set</span> <span class="n">optimizer_switch</span><span class="o">=</span><span class="s1">&#39;mrr=on&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">set</span> <span class="n">optimizer_switch</span><span class="o">=</span><span class="s1">&#39;mrr=on&#39;</span><span class="p">;</span>
 <span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">06</span> <span class="n">sec</span><span class="p">)</span>
 
 <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">tbl</span> <span class="k">where</span> <span class="n">tbl</span><span class="p">.</span><span class="n">key1</span> <span class="k">between</span> <span class="mi">1000</span> <span class="k">and</span> <span class="mi">2000</span><span class="p">;</span>
@@ -481,7 +481,7 @@
 </li></ul>
 <h3 class="anchored_heading" id="case-2-rowid-sorting-for-batched-key-access">Case 2: Rowid Sorting for Batched Key Access</h3>
 <p>Batched Key Access can benefit from rowid sorting in the same way as range access does. If one has a join that uses index lookups:</p>
-<pre class="fixed"><span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t1</span><span class="p">,</span><span class="n">t2</span> <span class="k">where</span> <span class="n">t2</span><span class="p">.</span><span class="n">key1</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t1</span><span class="p">,</span><span class="n">t2</span> <span class="k">where</span> <span class="n">t2</span><span class="p">.</span><span class="n">key1</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+------+---------------+------+---------+--------------+------+-------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span> <span class="o">|</span> <span class="k">type</span> <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>  <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>          <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+------+---------------+------+---------+--------------+------+-------------+</span>
@@ -490,7 +490,7 @@
 <span class="o">+</span><span class="c1">----+-------------+-------+------+---------------+------+---------+--------------+------+-------------+</span>
 <span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </pre><p>Execution of this query will cause table <code>t2</code> to be hit in random locations by lookups made through <code>t2.key1=t1.col</code>. If you enable Multi Range and and Batched Key Access, you will get table <code>t2</code> to be accessed using a <code>Rowid-ordered scan</code>:</p>
-<pre class="fixed"><span class="k">set</span> <span class="n">optimizer_switch</span><span class="o">=</span><span class="s1">&#39;mrr=on&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">set</span> <span class="n">optimizer_switch</span><span class="o">=</span><span class="s1">&#39;mrr=on&#39;</span><span class="p">;</span>
 <span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">06</span> <span class="n">sec</span><span class="p">)</span>
 
 <span class="k">set</span> <span class="n">join_cache_level</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span>
@@ -508,7 +508,7 @@
 <p>An additional source of speedup is this property: if there are multiple records in <code>t1</code> that have the same value of <code>t1.col1</code>, then regular Nested-Loops join will make multiple index lookups for the same value of <code>t2.key1=t1.col1</code>. The lookups may or may not hit the cache, depending on how big the join is.  With Batched Key Access and Multi-Range Read, no duplicate index lookups will be made.</p>
 <h3 class="anchored_heading" id="case-3-key-sorting-for-batched-key-access">Case 3: Key Sorting for Batched Key Access</h3>
 <p>Let us consider again the nested loop join example, with <code>ref</code> access on the second table:</p>
-<pre class="fixed"><span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t1</span><span class="p">,</span><span class="n">t2</span> <span class="k">where</span> <span class="n">t2</span><span class="p">.</span><span class="n">key1</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t1</span><span class="p">,</span><span class="n">t2</span> <span class="k">where</span> <span class="n">t2</span><span class="p">.</span><span class="n">key1</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+------+---------------+------+---------+--------------+------+-------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span> <span class="o">|</span> <span class="k">type</span> <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>  <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>          <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+------+---------------+------+---------+--------------+------+-------------+</span>
@@ -519,36 +519,36 @@
 <p><img src="/kb/en/multi-range-read-optimization/+image/key-sorting-regular-nl-join" alt="key-sorting-regular-nl-join" title="key-sorting-regular-nl-join"></p>
 <p>In particular, on step #5 we'll read the same index page that we've read on step #2, and the page we've read on step #4 will be re-read on step#6.  If all pages you're accessing are in the cache (in the buffer pool, if you're using InnoDB, and in the key cache, if you're using MyISAM), this is not a problem.  However, if your hit ratio is poor and you're going to hit the disk, it makes sense to sort the lookup keys, like shown in this figure:</p>
 <p><img src="/kb/en/multi-range-read-optimization/+image/key-sorting-join" alt="key-sorting-join" title="key-sorting-join"></p>
-<p>This is roughly what <code>Key-ordered scan</code> optimization does. In EXPLAIN, it looks like follows:</p>
-<pre class="fixed"><span class="k">set</span> <span class="n">optimizer_switch</span><span class="o">=</span><span class="s1">&#39;mrr=on,mrr_sort_keys=on&#39;</span><span class="p">;</span>
-<span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<p>This is roughly what <code>Key-ordered scan</code> optimization does. In EXPLAIN, it looks as follows:</p>
+<pre class="fixed wrap">set optimizer_switch='mrr=on,mrr_sort_keys=on';
+Query OK, 0 rows affected (0.00 sec)
 
-<span class="k">set</span> <span class="n">join_cache_level</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span>
-<span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">02</span> <span class="n">sec</span><span class="p">)</span>
-<span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t1</span><span class="p">,</span><span class="n">t2</span> <span class="k">where</span> <span class="n">t2</span><span class="p">.</span><span class="n">key1</span><span class="o">=</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-           <span class="n">id</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="n">select_type</span><span class="p">:</span> <span class="k">SIMPLE</span>
-        <span class="k">table</span><span class="p">:</span> <span class="n">t1</span>
-         <span class="k">type</span><span class="p">:</span> <span class="k">ALL</span>
-<span class="n">possible_keys</span><span class="p">:</span> <span class="n">a</span>
-          <span class="k">key</span><span class="p">:</span> <span class="k">NULL</span>
-      <span class="n">key_len</span><span class="p">:</span> <span class="k">NULL</span>
-          <span class="k">ref</span><span class="p">:</span> <span class="k">NULL</span>
-         <span class="k">rows</span><span class="p">:</span> <span class="mi">1000</span>
-        <span class="n">Extra</span><span class="p">:</span> <span class="k">Using</span> <span class="k">where</span>
-<span class="o">***************************</span> <span class="mi">2</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-           <span class="n">id</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="n">select_type</span><span class="p">:</span> <span class="k">SIMPLE</span>
-        <span class="k">table</span><span class="p">:</span> <span class="n">t2</span>
-         <span class="k">type</span><span class="p">:</span> <span class="k">ref</span>
-<span class="n">possible_keys</span><span class="p">:</span> <span class="n">key1</span>
-          <span class="k">key</span><span class="p">:</span> <span class="n">key1</span>
-      <span class="n">key_len</span><span class="p">:</span> <span class="mi">5</span>
-          <span class="k">ref</span><span class="p">:</span> <span class="n">test</span><span class="p">.</span><span class="n">t1</span><span class="p">.</span><span class="n">col1</span>
-         <span class="k">rows</span><span class="p">:</span> <span class="mi">1</span>
-        <span class="n">Extra</span><span class="p">:</span> <span class="k">Using</span> <span class="k">join</span> <span class="n">buffer</span> <span class="p">(</span><span class="n">flat</span><span class="p">,</span> <span class="n">BKA</span> <span class="k">join</span><span class="p">);</span> <span class="k">Key</span><span class="o">-</span><span class="n">ordered</span> <span class="n">Rowid</span><span class="o">-</span><span class="n">ordered</span> <span class="n">scan</span>
-<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+set join_cache_level=6;
+Query OK, 0 rows affected (0.02 sec)
+explain select * from t1,t2 where t2.key1=t1.col1\G
+*************************** 1. row ***************************
+           id: 1
+  select_type: SIMPLE
+        table: t1
+         type: ALL
+possible_keys: a
+          key: NULL
+      key_len: NULL
+          ref: NULL
+         rows: 1000
+        Extra: Using where
+*************************** 2. row ***************************
+           id: 1
+  select_type: SIMPLE
+        table: t2
+         type: ref
+possible_keys: key1
+          key: key1
+      key_len: 5
+          ref: test.t1.col1
+         rows: 1
+        Extra: Using join buffer (flat, BKA join); Key-ordered Rowid-ordered scan
+2 rows in set (0.00 sec)
 </pre><p>((TODO: a note about why sweep-read over InnoDB's clustered primary index scan (which is, actually the whole InnoDB table itself) will use <code>Key-ordered scan</code> algorithm, but not <code>Rowid-ordered scan</code> algorithm, even though conceptually they are the same thing in this case))</p>
 <h2 class="anchored_heading" id="buffer-space-management">Buffer Space Management</h2>
 <p>As was shown above, Multi Range Read requires sort buffers to operate. The size of the buffers is limited by system variables. If MRR has to process more data than it can fit into its buffer, it will break the scan into multiple passes. The more passes are made, the less is the speedup though, so one needs to balance between having too big buffers (which consume lots of memory) and too small buffers (which limit the possible speedup).</p>

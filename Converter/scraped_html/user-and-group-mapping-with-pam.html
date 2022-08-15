@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-01-08 03:55">3 years, 3 months ago</span></dd>
+<span class="datetime" title="2019-01-08 03:55">3 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-31 11:48">2 weeks, 6 days ago</span></dd>
+<span class="datetime" title="2022-04-27 20:52">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -516,12 +516,12 @@ MariaDB [(none)]&gt; SELECT USER(), CURRENT_USER();
 </pre><p>We can verify that our <code>foo</code> PAM user was properly mapped to the <code>bar</code> MariaDB user by looking at the return value of <code><a href="/kb/en/current_user/">CURRENT_USER()</a></code>.</p>
 <h2 class="anchored_heading" id="logging">Logging</h2>
 <p>By default, the <code>pam_user_map</code> PAM module does not perform any logging. However, if you want to enable debug logging, then you can add the <code>debug</code> module argument to the service's PAM configuration file. For example:</p>
-<pre class="fixed">auth required pam_unix.so audit
+<pre class="fixed wrap">auth required pam_unix.so audit
 auth required pam_user_map.so debug
 account required pam_unix.so audit
 </pre><p>When debug logging is enabled, the <code>pam_user_map</code> PAM module will write log entries to the <a href="/kb/en/authentication-plugin-pam/#logging">same syslog location</a> as other PAM modules, which is typically <code>/var/log/secure</code> on many systems.</p>
 <p>For example, this debug log output can look like the following:</p>
-<pre class="fixed">Jan  9 05:42:13 ip-172-30-0-198 mysqld: pam_user_map(mariadb:auth): Opening file '/etc/security/user_map.conf'.
+<pre class="fixed wrap">Jan  9 05:42:13 ip-172-30-0-198 mysqld: pam_user_map(mariadb:auth): Opening file '/etc/security/user_map.conf'.
 Jan  9 05:42:13 ip-172-30-0-198 mysqld: pam_user_map(mariadb:auth): Incoming username 'alice'.
 Jan  9 05:42:13 ip-172-30-0-198 mysqld: pam_user_map(mariadb:auth): User belongs to 2 groups [alice,dba].
 Jan  9 05:42:13 ip-172-30-0-198 mysqld: pam_user_map(mariadb:auth): Check if user is in group 'dba': YES
@@ -548,7 +548,7 @@ account sufficient pam_sss.so
 </pre><p>And if <code>/etc/security/user_map.conf</code> contained the following:</p>
 <pre class="fixed">@dba: dba
 </pre><p>Then any PAM user in the PAM group <code>dba</code> would be mapped to the MariaDB user account <code>dba</code>. But if a PAM user with the name <code>dba</code> did not also exist, then the <code>pam_user_map</code> PAM module's debug logging would write errors to the syslog like the following:</p>
-<pre class="fixed">Sep 27 17:17:05 dbserver1 mysqld: pam_user_map(mysql:auth): Opening file '/etc/security/user_map.conf'.
+<pre class="fixed wrap">Sep 27 17:17:05 dbserver1 mysqld: pam_user_map(mysql:auth): Opening file '/etc/security/user_map.conf'.
 Sep 27 17:17:05 dbserver1 mysqld: pam_user_map(mysql:auth): Incoming username 'alice'.
 Sep 27 17:17:05 dbserver1 mysqld: pam_user_map(mysql:auth): User belongs to 4 groups [dba,mongod,mongodba,mysql].
 Sep 27 17:17:05 dbserver1 mysqld: pam_user_map(mysql:auth): Check if user is in group 'mysql': YES

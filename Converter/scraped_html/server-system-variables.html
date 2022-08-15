@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-04-08 22:03">12 years ago</span></dd>
+<span class="datetime" title="2010-04-08 22:03">12 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-04-20 06:13">4 days, 13 hours ago</span></dd>
+<span class="datetime" title="2022-06-07 06:02">4 days, 12 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -2895,7 +2895,8 @@
 </li><li><a href="/kb/en/tokudb-system-variables/">TokuDB System Variables</a>
 </li></ul>
 <p>See also the <a href="/kb/en/full-list-of-mariadb-options-system-and-status-variables/">Full list of MariaDB options, system and status variables</a>. </p>
-<p>Most of these can be set with <a href="/kb/en/mysqld-options-full-list/">command line options</a> and many of them can be changed at runtime.</p>
+<p>Most of these can be set with <a href="/kb/en/mysqld-options-full-list/">command line options</a> and many of them can be changed at runtime.
+Variables that can be changed at runtime are described as "Dynamic" below, and elsewhere in the documentation.</p>
 <p>There are a few ways to see the full list of server system variables:</p>
 <ul start="1"><li>While in the mysql client, run:
 </li></ul>
@@ -3357,7 +3358,6 @@
 </li><li><strong>Dynamic:</strong> Yes
 </li><li><strong>Data Type:</strong> <code>enumeration</code>
 </li><li><strong>Default Value:</strong> NULL
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1010-release-notes/">MariaDB 10.1.0</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="default_week_format"><code>default_week_format</code></h4>
@@ -3464,7 +3464,6 @@
 </li><li><strong>Dynamic:</strong> Yes
 </li><li><strong>Data Type:</strong> <code>boolean</code>
 </li><li><strong>Default Value:</strong> <code>OFF</code>
-</li><li><strong>Introduced:</strong> 10.1.3
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="encrypt_tmp_files"><code>encrypt_tmp_files</code></h4>
@@ -3473,8 +3472,7 @@
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Dynamic:</strong> No
 </li><li><strong>Data Type:</strong> <code>boolean</code>
-</li><li><strong>Default Value:</strong> <code>OFF</code> (&gt;= <a href="/kb/en/mariadb-1017-release-notes/">MariaDB 10.1.7</a>), <code>ON</code> (&lt;= <a href="/kb/en/mariadb-1016-release-notes/">MariaDB 10.1.6</a>)
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1015-release-notes/">MariaDB 10.1.5</a>
+</li><li><strong>Default Value:</strong> <code>OFF</code>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="encryption_algorithm"><code>encryption_algorithm</code></h4>
@@ -3490,13 +3488,12 @@
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="enforce_storage_engine"><code>enforce_storage_engine</code></h4>
-<ul start="1"><li><strong>Description:</strong> Force the use of a particular storage engine for new tables. Used to avoid unwanted creation of tables using another engine. For example, setting to <a href="/kb/en/innodb/">InnoDB</a> will prevent any <a href="/kb/en/myisam/">MyISAM</a> tables from being created. If another engine is specified in a <a href="/kb/en/create-table/">CREATE TABLE</a> statement, the outcome depends on whether the <code>NO_ENGINE_SUBSTITUTION</code> <a href="/kb/en/sql-mode/">SQL_MODE</a> has been set or not. If set (the default from <a href="/kb/en/mariadb-1017-release-notes/">MariaDB 10.1.7</a>), the query will fail, while if not set, a warning will be returned and the table created according to the engine specified by this variable. The variable has a session scope, but is only modifiable by a user with the SUPER privilege.
+<ul start="1"><li><strong>Description:</strong> Force the use of a particular storage engine for new tables. Used to avoid unwanted creation of tables using another engine. For example, setting to <a href="/kb/en/innodb/">InnoDB</a> will prevent any <a href="/kb/en/myisam/">MyISAM</a> tables from being created. If another engine is specified in a <a href="/kb/en/create-table/">CREATE TABLE</a> statement, the outcome depends on whether the <code>NO_ENGINE_SUBSTITUTION</code> <a href="/kb/en/sql-mode/">SQL_MODE</a> has been set or not. If set, the query will fail, while if not set, a warning will be returned and the table created according to the engine specified by this variable. The variable has a session scope, but is only modifiable by a user with the SUPER privilege.
 </li><li><strong>Commandline:</strong> None
 </li><li><strong>Scope:</strong> Session
 </li><li><strong>Dynamic:</strong> Yes
 </li><li><strong>Data Type:</strong> <code>string</code>
 </li><li><strong>Default Value:</strong> <code>none</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="engine_condition_pushdown"><code>engine_condition_pushdown</code></h4>
@@ -3556,7 +3553,6 @@
 </li><li><strong>Dynamic:</strong> No
 </li><li><strong>Data Type:</strong> <code>bolean</code>
 </li><li><strong>Default Value:</strong> <code>OFF</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1018-release-notes/">MariaDB 10.1.8</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="external_user"><code>external_user</code></h4>
@@ -4173,9 +4169,9 @@
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Dynamic:</strong> Yes
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Default Value:</strong> <code>262144</code> (256kB) (&gt;=<a href="/kb/en/mariadb-1017-release-notes/">MariaDB 10.1.7</a>), <code>131072</code> (128kB) (&lt;=<a href="/kb/en/mariadb-1016-release-notes/">MariaDB 10.1.6</a>)
-</li><li><strong>Range (&gt;=MariaDB/MySQL 5.5):</strong> <code>128</code> to <code>18446744073709547520</code>
-</li><li><strong>Range (&lt;=MariaDB/MySQL 5.3, Windows):</strong> <code>8228</code> to <code>18446744073709547520</code>
+</li><li><strong>Default Value:</strong> <code>262144</code> (256kB)
+</li><li><strong>Range (non-Windows):</strong> <code>128</code> to <code>18446744073709547520</code>
+</li><li><strong>Range (Windows):</strong> <code>8228</code> to <code>18446744073709547520</code>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="join_buffer_space_limit"><code>join_buffer_space_limit</code></h4>
@@ -4387,7 +4383,7 @@
 <hr>
 
 <h4 class="anchored_heading" id="log_slow_admin_statements"><code>log_slow_admin_statements</code></h4>
-<ul start="1"><li><strong>Description:</strong> Log slow <a href="/kb/en/optimize-table/">OPTIMIZE</a>, <a href="/kb/en/analyze-table/">ANALYZE</a>, <a href="/kb/en/alter/">ALTER</a> and other <a href="/kb/en/slow-query-log-overview/#logging-slow-administrative-statements">administrative</a> statements to the <a href="/kb/en/slow-query-log/">slow log</a> if it is open. Before <a href="/kb/en/mariadb-10113-release-notes/">MariaDB 10.1.13</a>, this was only available as a mysqld option, not a server variable. See also <a href="#log_slow_disabled_statements">log_slow_disabled_statements</a> and <a href="#log_slow_filter">log_slow_filter</a>.
+<ul start="1"><li><strong>Description:</strong> Log slow <a href="/kb/en/optimize-table/">OPTIMIZE</a>, <a href="/kb/en/analyze-table/">ANALYZE</a>, <a href="/kb/en/alter/">ALTER</a> and other <a href="/kb/en/slow-query-log-overview/#logging-slow-administrative-statements">administrative</a> statements to the <a href="/kb/en/slow-query-log/">slow log</a> if it is open. See also <a href="#log_slow_disabled_statements">log_slow_disabled_statements</a> and <a href="#log_slow_filter">log_slow_filter</a>.
 </li><li><strong>Commandline:</strong> <code class="fixed" style="white-space:pre-wrap">--log-slow-admin-statements</code>
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Dynamic:</strong> Yes
@@ -4396,7 +4392,6 @@
 <ul start="1"><li><code>ON </code> (&gt;= <a href="/kb/en/mariadb-1024-release-notes/">MariaDB 10.2.4</a>)
 </li><li><code>OFF</code> (&lt;= <a href="/kb/en/mariadb-1023-release-notes/">MariaDB 10.2.3</a>)
 </li></ul>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-10113-release-notes/">MariaDB 10.1.13</a> (variable)
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="log_slow_disabled_statements"><code>log_slow_disabled_statements</code></h4>
@@ -4471,14 +4466,13 @@
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="log_tc_size"><code>log_tc_size</code></h4>
-<ul start="1"><li><strong>Description:</strong> Defines the size in bytes of the memory-mapped file-based transaction coordinator log, which is only used if the <a href="/kb/en/binary-log/">binary log</a> is disabled. If you have two or more XA-capable storage engines enabled, then a transaction coordinator log must be available. This size is defined in multiples of 4096. This size could always be set as a commandline option, but it was made into a system variable in <a href="/kb/en/mariadb-1013-release-notes/">MariaDB 10.1.3</a>. See <a href="/kb/en/transaction-coordinator-log/">Transaction Coordinator Log</a> for more information. Also see the <code><a href="/kb/en/mysqld-options/#-log-tc">--log-tc</a></code> server option and the <code><a href="#-tc-heuristic-recover">--tc-heuristic-recover</a></code> option.
+<ul start="1"><li><strong>Description:</strong> Defines the size in bytes of the memory-mapped file-based transaction coordinator log, which is only used if the <a href="/kb/en/binary-log/">binary log</a> is disabled. If you have two or more XA-capable storage engines enabled, then a transaction coordinator log must be available. This size is defined in multiples of 4096. See <a href="/kb/en/transaction-coordinator-log/">Transaction Coordinator Log</a> for more information. Also see the <code><a href="/kb/en/mysqld-options/#-log-tc">--log-tc</a></code> server option and the <code><a href="#-tc-heuristic-recover">--tc-heuristic-recover</a></code> option.
 </li><li><strong>Commandline:</strong> <code class="fixed" style="white-space:pre-wrap">log-tc-size=#</code>
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Dynamic:</strong> No
 </li><li><strong>Data Type:</strong> <code>numeric</code>
 </li><li><strong>Default Value:</strong> <code>24576</code>
 </li><li><strong>Range:</strong> <code>12288</code> to <code>18446744073709551615</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1013-release-notes/">MariaDB 10.1.3</a> (variable)
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="log_warnings"><code>log_warnings</code></h4>
@@ -4587,7 +4581,6 @@ This system variable's value cannot be changed after the datadir has been initia
 </li><li><strong>Default Value:</strong>
 <ul start="1"><li><code>16777216</code> (16M) &gt;= <a href="/kb/en/mariadb-1024-release-notes/">MariaDB 10.2.4</a>
 </li><li><code>4194304</code> (4M) &gt;= <a href="/kb/en/mariadb-1017-release-notes/">MariaDB 10.1.7</a>
-</li><li><code>1048576</code> (1MB) &lt;= <a href="/kb/en/mariadb-1016-release-notes/">MariaDB 10.1.6</a>
 </li><li><code>1073741824</code> (1GB) (client-side)
 </li></ul>
 </li><li><strong>Range:</strong> <code>1024</code> to <code>1073741824</code>
@@ -4793,9 +4786,8 @@ This system variable's value cannot be changed after the datadir has been initia
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Dynamic:</strong> Yes
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Default Value:</strong> <code>0.000000</code> &gt;= <a href="/kb/en/mariadb-10113-release-notes/">MariaDB 10.1.13</a>, <code>0</code> &lt;= <a href="/kb/en/mariadb-10112-release-notes/">MariaDB 10.1.12</a>
+</li><li><strong>Default Value:</strong> <code>0.000000</code>
 </li><li><strong>Range:</strong> <code>0</code> upwards
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="max_tmp_tables"><code>max_tmp_tables</code></h4>
@@ -6409,7 +6401,7 @@ the best query execution plan.
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="tmp_table_size"><code>tmp_table_size</code></h4>
-<ul start="1"><li><strong>Description:</strong> The largest size for temporary tables in memory (not <a href="/kb/en/memory-storage-engine/">MEMORY</a> tables) although if <a href="#max_heap_table_size">max_heap_table_size</a> is smaller the lower limit will apply. If a table exceeds the limit, MariaDB converts it to a MyISAM or Aria table. You can see if it's necessary to increase by comparing the <a href="/kb/en/server-status-variables/">status variables</a> <code>Created_tmp_disk_tables</code> and <code>Created_tmp_tables</code> to see how many temporary tables out of the total created needed to be converted to disk. Often complex GROUP BY queries are responsible for exceeding the limit. Defaults may be different on some systems, see for example <a href="/kb/en/differences-in-mariadb-in-debian/">Differences in MariaDB in Debian</a>. From <a href="/kb/en/mariadb-1027-release-notes/">MariaDB 10.2.7</a>, <a href="#tmp_memory_table_size">tmp_memory_table_size</a> is an alias.
+<ul start="1"><li><strong>Description:</strong> The largest size for temporary tables in memory (not <a href="/kb/en/memory-storage-engine/">MEMORY</a> tables) although if <a href="#max_heap_table_size">max_heap_table_size</a> is smaller the lower limit will apply. You can see if it's necessary to increase by comparing the <a href="/kb/en/server-status-variables/">status variables</a> <code>Created_tmp_disk_tables</code> and <code>Created_tmp_tables</code> to see how many temporary tables out of the total created needed to be converted to disk. Often complex GROUP BY queries are responsible for exceeding the limit. Defaults may be different on some systems, see for example <a href="/kb/en/differences-in-mariadb-in-debian/">Differences in MariaDB in Debian</a>. From <a href="/kb/en/mariadb-1027-release-notes/">MariaDB 10.2.7</a>, <a href="#tmp_memory_table_size">tmp_memory_table_size</a> is an alias.
 </li><li><strong>Commandline:</strong> <code class="fixed" style="white-space:pre-wrap">--tmp-table-size=#</code>
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Dynamic:</strong> Yes
@@ -6507,7 +6499,7 @@ the best query execution plan.
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="tx_isolation"><code>tx_isolation</code></h4>
-<ul start="1"><li><strong>Description:</strong> The transaction <a href="/kb/en/isolation-level/">isolation level</a>. See also <a href="/kb/en/set-transaction-isolation-level/">SET TRANSACTION ISOLATION LEVEL</a>.
+<ul start="1"><li><strong>Description:</strong> The transaction isolation level. See also <a href="/kb/en/set-transaction-isolation-level/">SET TRANSACTION ISOLATION LEVEL</a>.
 </li><li><strong>Commandline:</strong> <code class="fixed" style="white-space:pre-wrap">--transaction-isolation=name</code>
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Dynamic:</strong> Yes

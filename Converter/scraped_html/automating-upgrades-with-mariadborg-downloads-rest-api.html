@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="How to use MariaDB.Org Downloads APIs to automate upgrades" />
+    <meta property="og:description" content="How to use MariaDB.Org Downloads APIs to automate upgrades." />
 
-    <meta name="description" content="How to use MariaDB.Org Downloads APIs to automate upgrades" />
+    <meta name="description" content="How to use MariaDB.Org Downloads APIs to automate upgrades." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2021-12-26 20:36">3 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2021-12-26 20:36">5 months, 2 weeks ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-12-27 13:55">3 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-25 23:01">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -408,7 +408,7 @@
 </li><li>Save the results into a file.
 </li></ul>
 <p>This is something that we can easily do with a Unix shell:</p>
-<pre class="fixed">#!/bin/bash
+<pre class="fixed wrap">#!/bin/bash
 
 current_ga_versions=$(
     curl https://downloads.mariadb.org/rest-api/mariadb/ | \
@@ -428,11 +428,11 @@ then
     mail -s 'NOTE: New MariaDB GA Versions' devops@example.com &lt;&lt;&lt; 'There seems to be a new MariaDB GA version! Yay!'
 fi
 </pre><p>The only non-standard command here is jq. It is a great way to manipulate JSON documents, so if you don't know it you may want to take a look at <a href="https://stedolan.github.io/jq/manual/">jq documentation</a>.</p>
-<h2 class="anchored_heading" id="how-to-use-the-api-with-a-python-script">How to use the API with a Python script</h2>
+<h2 class="anchored_heading" id="how-to-use-the-api-with-a-python-script">How to Use the API with a Python Script</h2>
 <p>To use the API with Python, we need a module that is able to send HTTP requests and parse a JSON output. The <code>requests</code> module has both these features. It can be installed as follows:</p>
 <pre class="fixed">pip install requests
 </pre><p>The following script prints stable versions to the standard output:</p>
-<pre class="fixed">#!/usr/bin/env python
+<pre class="fixed wrap">#!/usr/bin/env python
 
 import requests
 

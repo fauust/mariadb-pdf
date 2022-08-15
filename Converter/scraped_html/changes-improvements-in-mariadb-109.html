@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Current Version: 10.9.0 | Status: Alpha | Release Date: 23 Mar 2022" />
+    <meta property="og:description" content="Current Version: 10.9.1 | Status: RC | Release Date: 20 May 2022" />
 
-    <meta name="description" content="Current Version: 10.9.0 | Status: Alpha | Release Date: 23 Mar 2022" />
+    <meta name="description" content="Current Version: 10.9.1 | Status: RC | Release Date: 20 May 2022" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -239,12 +239,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2022-02-09 22:43">2 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-02-09 22:43">4 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-30 09:51">3 weeks ago</span></dd>
+<span class="datetime" title="2022-06-08 22:29">2 days, 21 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -376,10 +376,10 @@
 
     
     <div class="answer formatted">
-        <div class="cstm-style hidden"><div class="cstm-style bluebox text-center centered"><p>The most recent release of <a href="/kb/en/what-is-mariadb-109/">MariaDB 10.9</a> is:<br>
-<span class="cstm-style lead"><strong><a href="/kb/en/mariadb-1090-release-notes/">MariaDB 10.9.0</a></strong> <a class="btn btn-success btn-mini" href="https://mariadb.com/downloads/">Download<span>&nbsp;</span>Now</a></span><br>
-<sub><em><a href="https://mariadb.org/download/?tab=mariadb&amp;release=10.9.0&amp;product=mariadb">Alternate download from mariadb.org</a></em></sub></p>
-</div></div>
+        <div class="cstm-style bluebox text-center centered"><p>The most recent release of <a href="/kb/en/what-is-mariadb-109/">MariaDB 10.9</a> is:<br>
+<span class="cstm-style lead"><strong><a href="/kb/en/mariadb-1091-release-notes/">MariaDB 10.9.1</a></strong> <a class="btn btn-success btn-mini" href="https://mariadb.com/downloads/">Download<span>&nbsp;</span>Now</a></span><br>
+<sub><em><a href="https://mariadb.org/download/?tab=mariadb&amp;release=10.9.1&amp;product=mariadb">Alternate download from mariadb.org</a></em></sub></p>
+</div>
 <div class="table_of_contents well well-small">
 <h3>Contents</h3>
  <ol class="toc">
@@ -392,7 +392,11 @@
 
         <li class=""><a href="#innodb" title="InnoDB">InnoDB</a></li>
 
-        <li class=""><a href="#replication" title="Replication">Replication</a></li>
+        <li class=""><a href="#hashicorp-key-management-plugin" title="Hashicorp Key Management Plugin">Hashicorp Key Management Plugin</a></li>
+
+        <li class=""><a href="#replication-and-galera" title="Replication and Galera">Replication and Galera</a></li>
+
+        <li class=""><a href="#show-analyze-formatjson" title="SHOW ANALYZE FORMAT=JSON">SHOW ANALYZE FORMAT=JSON</a></li>
 
         <li class=""><a href="#variables" title="Variables">Variables</a>    </ol>
 </li>
@@ -409,28 +413,41 @@
 </div><h2 class="anchored_heading" id="new-features-improvements">New Features &amp; Improvements</h2>
 <h3 class="anchored_heading" id="json">JSON</h3>
 <ul start="1"><li><a href="/kb/en/json_overlaps/">JSON_OVERLAPS</a> function (<a href="https://jira.mariadb.org/browse/MDEV-27677">MDEV-27677</a>)
+</li><li>Implement range notation for <a href="JSONPath_Expressions">JSONPath</a> (<a href="https://jira.mariadb.org/browse/MDEV-27911">MDEV-27911</a>)
+</li><li>Support <a href="JSONPath_Expressions">JSONPath</a> negative index (<a href="https://jira.mariadb.org/browse/MDEV-22224">MDEV-22224</a>)
 </li></ul>
 <h3 class="anchored_heading" id="innodb">InnoDB</h3>
 <ul start="1"><li><a href="/kb/en/innodb-system-variables/#innodb_log_file_size">innodb_log_file_size</a> is now dynamic (<a href="https://jira.mariadb.org/browse/MDEV-27812">MDEV-27812</a>)
 </li></ul>
-<h3 class="anchored_heading" id="replication">Replication</h3>
+<h3 class="anchored_heading" id="hashicorp-key-management-plugin">Hashicorp Key Management Plugin</h3>
+<ul start="1"><li><a href="/kb/en/hashicorp-key-management-plugin/">Hashicorp Key Management Plugin</a> for implementing <a href="/kb/en/encryption/">encryption</a> using keys stored in the Hashicorp Vault KMS (<a href="https://jira.mariadb.org/browse/MDEV-19281">MDEV-19281</a>)
+</li></ul>
+<h3 class="anchored_heading" id="replication-and-galera">Replication and Galera</h3>
 <ul start="1"><li>Implement the --do-domain-ids, --ignore-domain-ids, and --ignore-server-ids options for <a href="/kb/en/mysqlbinlog/">mariadb-binlog/mysqlbinlog</a> (<a href="https://jira.mariadb.org/browse/MDEV-20119">MDEV-20119</a>)
+</li><li>JSON file interface to wsrep node state / SST progress logging (<a href="https://jira.mariadb.org/browse/MDEV-26971">MDEV-26971</a>)
+</li></ul>
+<h3 class="anchored_heading" id="show-analyze-formatjson">SHOW ANALYZE FORMAT=JSON</h3>
+<ul start="1"><li>Extend <a href="/kb/en/show-explain/">SHOW EXPLAIN</a> to support SHOW ANALYZE [FORMAT=JSON] (<a href="https://jira.mariadb.org/browse/MDEV-27021">MDEV-27021</a>)
+</li><li>Add EXPLAIN FOR CONNECTION syntax support to <a href="/kb/en/show-explain/">SHOW EXPLAIN</a> (<a href="https://jira.mariadb.org/browse/MDEV-10000">MDEV-10000</a>)
 </li></ul>
 <h3 class="anchored_heading" id="variables">Variables</h3>
-<div class="cstm-style hidden"><ul start="1"><li>For a list of all new variables, see <a href="system-variables-added-in-mariadb-109">System Variables Added in MariaDB 10.9</a> and <a href="status-variables-added-in-mariadb-109">Status Variables Added in MariaDB 10.9</a>.
+<ul start="1"><li>For a list of all new variables, see <a href="/kb/en/system-variables-added-in-mariadb-109/">System Variables Added in MariaDB 10.9</a>.
+</li><li>Merge <a href="/kb/en/server-system-variables/#old">old</a> to <a href="/kb/en/server-system-variables/#old_mode">old_mode</a> sql variable (<a href="https://jira.mariadb.org/browse/MDEV-24920">MDEV-24920</a>)
 </li></ul>
-</div><p>The following variables have been deprecated:</p>
+<p>The following variables have been deprecated:</p>
 <ul start="1"><li><a href="/kb/en/innodb-system-variables/#innodb_change_buffering">innodb_change_buffering</a>
 </li><li><a href="/kb/en/server-system-variables/#old">old</a> (replaced by <a href="/kb/en/server-system-variables/#old_mode">old_mode</a>)
 </li></ul>
-<div class="cstm-style hidden"><h2 class="anchored_heading" id="security-vulnerabilities-fixed-in-mariadb-109">Security Vulnerabilities Fixed in <a href="/kb/en/what-is-mariadb-109/">MariaDB 10.9</a></h2>
+<div class="cstm-style hidden"><p> and <a href="status-variables-added-in-mariadb-109">Status Variables Added in MariaDB 10.9</a>.</p>
+</div><div class="cstm-style hidden"><h2 class="anchored_heading" id="security-vulnerabilities-fixed-in-mariadb-109">Security Vulnerabilities Fixed in <a href="/kb/en/what-is-mariadb-109/">MariaDB 10.9</a></h2>
 <div class="cstm-style graybox"><p>For a complete list of security vulnerabilities (CVEs) fixed across all
 versions of MariaDB, see the <a href="/kb/en/cve/">Security Vulnerabilities Fixed in MariaDB</a>
 page.</p>
 </div><div><ul class="cves"></ul></div>
 </div><h2 class="anchored_heading" id="list-of-all-mariadb-109-releases">List of All <a href="/kb/en/what-is-mariadb-109/">MariaDB 10.9</a> Releases</h2>
 <div class="cstm-style underheader graybox centered"><table><tr><th>Date</th><th>Release</th><th>Status</th><th>Release Notes</th><th>Changelog</th></tr>
-<tr><td>23 Mar 2022</td><td><strong><a href="/kb/en/mariadb-1090-release-notes/">MariaDB 10.9.0</a></strong></td><td>Alpha</td><td><a href="/kb/en/mariadb-1090-release-notes/">Release Notes</a></td></tr>
+<tr><td>20 May 2022</td><td><strong><a href="/kb/en/mariadb-1091-release-notes/">MariaDB 10.9.1</a></strong></td><td>RC</td><td><a href="/kb/en/mariadb-1091-release-notes/">Release Notes</a></td><td><a href="/kb/en/mariadb-1091-changelog/">Changelog</a></td></tr>
+<tr><td>23 Mar 2022</td><td><strong><a href="/kb/en/mariadb-1090-release-notes/">MariaDB 10.9.0</a></strong></td><td>Alpha</td><td><a href="/kb/en/mariadb-1090-release-notes/">Release Notes</a></td><td></td></tr>
 </table>
 </div>
     </div>
@@ -514,6 +531,15 @@ page.</p>
                         <a href="/kb/en/release-notes-mariadb-109-series/">
                             <span class="pull-right not_primary"></span>
                             Release Notes - MariaDB 10.9 Series
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/changelogs-mariadb-109-series/">
+                            <span class="pull-right not_primary"></span>
+                            Changelogs - MariaDB 10.9 Series
                         </a>
                     </li>
                 

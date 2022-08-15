@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-08-19 08:16">8 years, 7 months ago</span></dd>
+<span class="datetime" title="2013-08-19 08:16">8 years, 9 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-07 08:55">7 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-04-27 19:41">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -532,9 +532,9 @@ node1 &gt; SELECT * FROM s;
 +----+------+
 </pre><h3 class="anchored_heading" id="further-examples">Further Examples</h3>
 <p>Preparing 10M record table using the <a href="http://sysbench.sourceforge.net/">sysbench</a> utility </p>
-<pre class="fixed">/usr/local/skysql/sysbench/bin/sysbench --test=oltp  --db-driver=mysql  --mysql-table-engine=innodb --mysql-user=skysql --mysql-password=skyvodka --mysql-host=192.168.0.202 --mysql-port=5054 --oltp-table-size=10000000  --mysql-db=test  prepare
+<pre class="fixed wrap">/usr/local/skysql/sysbench/bin/sysbench --test=oltp  --db-driver=mysql  --mysql-table-engine=innodb --mysql-user=skysql --mysql-password=skyvodka --mysql-host=192.168.0.202 --mysql-port=5054 --oltp-table-size=10000000  --mysql-db=test  prepare
 </pre><p>Make a first read only benchmark to check the initial single node performance.</p>
-<pre class="fixed">/usr/local/skysql/sysbench/bin/sysbench --test=oltp  --db-driver=mysql  --mysql-table-engine=innodb --mysql-user=skysql --mysql-password=skyvodka --mysql-host=192.168.0.202 --mysql-port=5054 --mysql-db=test --oltp-table-size=10000000 --num-threads=4 --max-requests=100000 --oltp-read-only=on run
+<pre class="fixed wrap">/usr/local/skysql/sysbench/bin/sysbench --test=oltp  --db-driver=mysql  --mysql-table-engine=innodb --mysql-user=skysql --mysql-password=skyvodka --mysql-host=192.168.0.202 --mysql-port=5054 --mysql-db=test --oltp-table-size=10000000 --num-threads=4 --max-requests=100000 --oltp-read-only=on run
 </pre><pre class="fixed">sysbench 0.4.12:  multi-threaded system evaluation benchmark
 
 Running the test with following options:
@@ -575,7 +575,7 @@ Threads fairness:
     events (avg/stddev):           25003.5000/84.78
     execution time (avg/stddev):   91.0923/0.00
 </pre><p>Define an easy way to access the nodes from the MariaDB or MySQL client.</p>
-<pre class="fixed">alias backend1='/usr/local/skysql/mysql-client/bin/mysql  --user=skysql --password=skyvodka --host=192.168.0.202 --port=5054'
+<pre class="fixed wrap">alias backend1='/usr/local/skysql/mysql-client/bin/mysql  --user=skysql --password=skyvodka --host=192.168.0.202 --port=5054'
 alias backend2='/usr/local/skysql/mysql-client/bin/mysql  --user=skysql --password=skyvodka --host=192.168.0.203 --port=5054' 
 alias spider1='/usr/local/skysql/mysql-client/bin/mysql  --user=skysql --password=skyvodka --host=192.168.0.201 --port=5054' 
 </pre><p>Create the empty tables to hold the data and repeat for all available backend nodes.</p>
@@ -667,7 +667,7 @@ CREATE  TABLE backend.sbtest
 ) ;
 EOF
 </pre><p>Copy the data from the original sysbench table to the spider table</p>
-<pre class="fixed">#/usr/local/skysql/mariadb/bin/mysqldump  --user=skysql --password=skyvodka --host=192.168.0.202 --port=5054 --no-create-info test sbtest | spider1 backend 
+<pre class="fixed wrap">#/usr/local/skysql/mariadb/bin/mysqldump  --user=skysql --password=skyvodka --host=192.168.0.202 --port=5054 --no-create-info test sbtest | spider1 backend 
 
 #backend2 -e&#34;select count(*) from backend.sbtest;&#34;
 +----------+
@@ -683,7 +683,7 @@ EOF
 +----------+
 </pre><p>We observe a common issue with partitioning is a non uniform distribution of data between the backends. based on the partition key hashing algorithm.</p>
 <p>Rerun the Benchmark with less queries </p>
-<pre class="fixed">#/usr/local/skysql/sysbench/bin/sysbench --test=oltp  --db-driver=mysql  --mysql-table-engine=innodb --mysql-user=skysql --mysql-password=skyvodka --mysql-host=192.168.0.201 --mysql-port=5054 --mysql-db=backend --mysql-engine-trx=yes --oltp-table-size=10000000 --num-threads=4 --max-requests=100 --oltp-read-only=on run
+<pre class="fixed wrap">#/usr/local/skysql/sysbench/bin/sysbench --test=oltp  --db-driver=mysql  --mysql-table-engine=innodb --mysql-user=skysql --mysql-password=skyvodka --mysql-host=192.168.0.201 --mysql-port=5054 --mysql-db=backend --mysql-engine-trx=yes --oltp-table-size=10000000 --num-threads=4 --max-requests=100 --oltp-read-only=on run
 </pre><pre class="fixed">OLTP test statistics:
     queries performed:
         read:                            1414
@@ -794,7 +794,7 @@ CREATE TABLE bsbackend8.sbtest (
 ) ENGINE=InnoDB;
 EOF
 </pre><p>On <code>Spider Node</code></p>
-<pre class="fixed">#spider2 &lt;&lt; EOF
+<pre class="fixed wrap">#spider2 &lt;&lt; EOF
 CREATE SERVER bsbackend1 FOREIGN DATA WRAPPER mysql OPTIONS( HOST '192.168.0.202', DATABASE 'bsbackend1',USER 'skysql', PASSWORD 'skyvodka',PORT 5054);
 CREATE SERVER bsbackend2 FOREIGN DATA WRAPPER mysql OPTIONS( HOST '192.168.0.202', DATABASE 'bsbackend2',USER 'skysql', PASSWORD 'skyvodka',PORT 5054);
 CREATE SERVER bsbackend3 FOREIGN DATA WRAPPER mysql OPTIONS( HOST '192.168.0.202', DATABASE 'bsbackend3',USER 'skysql', PASSWORD 'skyvodka',PORT 5054);
@@ -866,7 +866,7 @@ mysql&gt; select sum(k) from sbtest;
 </pre><p><img src="/kb/en/spider-storage-engine-overview/+image/spbench8" alt="spbench8" title="spbench8"></p>
 <h4 class="anchored_heading" id="high-availability-setup">High Availability Setup</h4>
 <p><img src="/kb/en/spider-storage-engine-overview/+image/spider9" alt="spider9" title="spider9"></p>
-<pre class="fixed">#backend1 -e &#34;CREATE DATABASE backend_rpl&#34;
+<pre class="fixed wrap">#backend1 -e &#34;CREATE DATABASE backend_rpl&#34;
 #backend2 -e &#34;CREATE DATABASE backend_rpl&#34;
 
 #/usr/local/skysql/mariadb/bin/mysqldump  --user=skysql --password=skyvodka --host=192.168.0.202 --port=5054  backend sbtest | backend1 backend_rpl
@@ -925,7 +925,7 @@ EOF
 <pre class="fixed">#spider1 -e &#34;SELECT * FROM backend.sbtest where id=10000001&#34;;
 ERROR 1429 (HY000) at line 1: Unable to connect to foreign data source: backend1
 </pre><p>Let's fix this with spider monitoring. Note that msi is the list of spider nodes @@server_id variable participating in the quorum.  </p>
-<pre class="fixed">#spider1 &lt;&lt; EOF
+<pre class="fixed wrap">#spider1 &lt;&lt; EOF
 DROP  TABLE backend.sbtest;
 CREATE  TABLE backend.sbtest
 (
@@ -981,7 +981,7 @@ EOF
 | 10000003 | 0 |   | replicas test |
 +----------+---+---+---------------+
 </pre><p>Reintroducing the failed backend1 in the cluster:</p>
-<pre class="fixed">#spider1 &lt;&lt; EOF
+<pre class="fixed wrap">#spider1 &lt;&lt; EOF
 ALTER TABLE backend.sbtest 
 ENGINE=spider COMMENT='wrapper &#34;mysql&#34;, table &#34;sbtest&#34;'
  PARTITION BY KEY (id) 
@@ -1206,7 +1206,7 @@ EOF
                     <li>
                         <a href="/kb/en/spider-benchmarks/">
                             
-                            Spider Benchmarks 
+                            Spider Benchmarks
                         </a>
                     </li>
                 

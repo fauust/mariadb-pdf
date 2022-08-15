@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2017-04-28 17:30">4 years, 11 months ago</span></dd>
+<span class="datetime" title="2017-04-28 17:30">5 years, 1 month ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-08 09:48">2 months ago</span></dd>
+<span class="datetime" title="2022-04-26 20:59">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -688,7 +688,7 @@ InnoDB: Please refer to
 InnoDB: http://dev.mysql.com/doc/refman/5.6/en/innodb-troubleshooting-datadict.html
 InnoDB: for how to resolve the issue.
 </pre><p>Or they might look like this:</p>
-<pre class="fixed">2018-07-12 21:24:14 139666981324672 [Note] InnoDB: Ignoring data file 'db1/tab1.ibd' with space ID 200485, since the redo log references db1/tab1.ibd with space ID 200484.
+<pre class="fixed wrap">2018-07-12 21:24:14 139666981324672 [Note] InnoDB: Ignoring data file 'db1/tab1.ibd' with space ID 200485, since the redo log references db1/tab1.ibd with space ID 200484.
 </pre><p>Some of the problems related to concurrent DDL are described below.</p>
 <p>Problems solved by setting <code><a href="/kb/en/mariabackup-options/#-lock-ddl-per-table">--lock-ddl-per-table</a></code> (Mariabackup command-line option added in <a href="/kb/en/mariadb-1029-release-notes/">MariaDB 10.2.9</a>):</p>
 <ul start="1"><li>If a table is dropped during the backup, then it might still exists after the backup is prepared.

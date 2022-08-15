@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2017-02-02 00:57">5 years, 2 months ago</span></dd>
+<span class="datetime" title="2017-02-02 00:57">5 years, 4 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-11-26 20:43">4 years, 4 months ago</span></dd>
+<span class="datetime" title="2022-04-25 22:18">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -407,7 +407,7 @@ yum install rsync nmap lsof perl-DBI nc
 </li></ul>
 <p>While installing MariaDB-10.1.21-centos7-x86_64-common.rpm there might be a conflict with older MariaDB packages. we need to remove them and install the original rpm again.</p>
 <p>Here is the error message for dependencies:</p>
-<pre class="fixed"># rpm -ivh MariaDB-10.1.21-centos7-x86_64-common.rpm 
+<pre class="fixed wrap"># rpm -ivh MariaDB-10.1.21-centos7-x86_64-common.rpm 
 warning: MariaDB-10.1.21-centos7-x86_64-common.rpm: Header V4 DSA/SHA1 Signature, key ID 1bb943db: NOKEY
 error: Failed dependencies:
 	mariadb-libs &lt; 1:10.1.21-1.el7.centos conflicts with MariaDB-common-10.1.21-1.el7.centos.x86_64
@@ -421,7 +421,7 @@ Preparing packages...
 mariadb-libs-1:5.5.52-1.el7.x86_64
 </pre><p>While installing the Galera package there might be a conflict in installation for a dependency package.  
 Here is the error message:</p>
-<pre class="fixed">[root@centos-2 /]# rpm -ivh galera-25.3.19-1.rhel7.el7.centos.x86_64.rpm 
+<pre class="fixed wrap">[root@centos-2 /]# rpm -ivh galera-25.3.19-1.rhel7.el7.centos.x86_64.rpm 
 error: Failed dependencies:
 	libboost_program_options.so.1.53.0()(64bit) is needed by galera-25.3.19-1.rhel7.el7.centos.x86_64
 
@@ -429,7 +429,7 @@ The dependencies for Galera package is: libboost_program_options.so.1.53.0
 </pre><p>Solution:</p>
 <pre class="fixed">yum install boost-devel.x86_64
 </pre><p>Another warning message while installing Galera package is as shown below:</p>
-<pre class="fixed">warning: galera-25.3.19-1.rhel7.el7.centos.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID 1bb943db: NOKEY 
+<pre class="fixed wrap">warning: galera-25.3.19-1.rhel7.el7.centos.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID 1bb943db: NOKEY 
 </pre><p>The solution for this is to import the key:</p>
 <pre class="fixed">#rpm --import http://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 </pre><p>After step 4, the installation will be completed. The last step will be to run <a href="/kb/en/mysql_secure_installation/">mysql_secure_installation</a> to secure the production server by dis allowing remote login for root, creating root password and  removing the test database.</p>

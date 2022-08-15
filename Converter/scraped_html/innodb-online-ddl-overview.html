@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2017-09-06 11:15">4 years, 7 months ago</span></dd>
+<span class="datetime" title="2017-09-06 11:15">4 years, 9 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-11-29 14:45">4 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-27 14:40">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -530,8 +530,8 @@
 <p>There is also a special value that can be specified:</p>
 <ul start="1"><li>If the user specifies <code>DEFAULT</code>, then InnoDB uses its default choice for the operation. The default choice is to use the most efficient algorithm supported by the operation. The default choice will also be used if no algorithm is specified. Therefore, if you want InnoDB to use the most efficient algorithm supported by an operation, then you usually do not have to explicitly specify any algorithm at all.
 </li></ul>
-<h3 class="anchored_heading" id="specifying-an-alter-algorithm-using-the-algorithm-clause">Specifying an Alter Algorithm Using the <code>ALGORITHM</code> Clause</h3>
-<p>InnoDB supports the <code><a href="/kb/en/alter-table/#algorithm">ALGORITHM</a></code> clause.</p>
+<h3 class="anchored_heading" id="specifying-an-alter-algorithm-using-the-algorithm-clause">Specifying an Alter Algorithm Using the ALGORITHM Clause</h3>
+<p>InnoDB supports the <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> clause.</p>
 <p>The <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> clause can be used to specify the <em>least efficient</em> algorithm that the user is willing to accept. It is supported by the <a href="/kb/en/alter-table/">ALTER TABLE</a> and <a href="/kb/en/create-index/">CREATE INDEX</a> statements.</p>
 <p>For example, if a user wanted to add a column to a table, but only if the operation used an algorithm that is at least as efficient as the <code>INPLACE</code>, then they could execute the following:</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> <span class="n">tab</span> <span class="p">(</span>
@@ -563,10 +563,10 @@
 <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tab</span> <span class="k">ADD</span> <span class="k">COLUMN</span> <span class="k">c</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
 </pre></div><h2 class="anchored_heading" id="supported-alter-algorithms">Supported Alter Algorithms</h2>
 <p>The supported algorithms are described in more details below.</p>
-<h3 class="anchored_heading" id="default-algorithm"><code>DEFAULT</code> Algorithm</h3>
+<h3 class="anchored_heading" id="default-algorithm">DEFAULT Algorithm</h3>
 <p>The default behavior, which occurs if <code>ALGORITHM=DEFAULT</code> is specified, or if <code>ALGORITHM</code> is not specified at all, usually only makes a copy if the operation doesn't support being done in-place at all. In this case, the <em>most efficient</em> available algorithm will usually be used.</p>
 <p>This means that, if an operation supports the <code>INSTANT</code> algorithm, then it will use that algorithm by default. If an operation does not support the <code>INSTANT</code> algorithm, but it does support the <code>NOCOPY</code> algorithm, then it will use that algorithm by default. If an operation does not support the <code>NOCOPY</code> algorithm, but it does support the <code>INPLACE</code> algorithm, then it will use that algorithm by default.</p>
-<h3 class="anchored_heading" id="copy-algorithm"><code>COPY</code> Algorithm</h3>
+<h3 class="anchored_heading" id="copy-algorithm">COPY Algorithm</h3>
 <p>The <code>COPY</code> algorithm refers to the original <a href="/kb/en/alter-table/">ALTER TABLE</a> algorithm.</p>
 <p>When the <code>COPY</code> algorithm is used, MariaDB essentially does the following operations:</p>
 <pre class="fixed"><span class="c1">-- Create a temporary table with the new definition</span>
@@ -584,12 +584,12 @@
 <span class="c1">-- Rename the temporary table, so that it replaces the original one</span>
 <span class="k">RENAME</span> <span class="k">TABLE</span> <span class="n">tmp_tab</span> <span class="k">TO</span> <span class="n">original_tab</span><span class="p">;</span>
 </pre><p>This algorithm is very inefficient, but it is generic, so it works for all storage engines.</p>
-<p>If the <code>COPY</code> algorithm is specified with the <code><a href="/kb/en/alter-table/#algorithm">ALGORITHM</a></code> clause or with the <code><a href="/kb/en/server-system-variables/#alter_algorithm">alter_algorithm</a></code> system variable, then the <code>COPY</code> algorithm will be used even if it is not necessary. This can result in a lengthy table copy. If multiple <code><a href="/kb/en/alter-table/">ALTER TABLE</a></code> operations are required that each require the table to be rebuilt, then it is best to specify all operations in a single <code><a href="/kb/en/alter-table/">ALTER TABLE</a></code> statement, so that the table is only rebuilt once.</p>
-<h4 class="anchored_heading" id="using-the-copy-algorithm-with-innodb">Using the <code>COPY</code> Algorithm with InnoDB</h4>
+<p>If the <code>COPY</code> algorithm is specified with the <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> clause or with the <a href="/kb/en/server-system-variables/#alter_algorithm">alter_algorithm</a> system variable, then the <code>COPY</code> algorithm will be used even if it is not necessary. This can result in a lengthy table copy. If multiple <a href="/kb/en/alter-table/">ALTER TABLE</a> operations are required that each require the table to be rebuilt, then it is best to specify all operations in a single <a href="/kb/en/alter-table/">ALTER TABLE</a> statement, so that the table is only rebuilt once.</p>
+<h4 class="anchored_heading" id="using-the-copy-algorithm-with-innodb">Using the COPY Algorithm with InnoDB</h4>
 <p>If the <code>COPY</code> algorithm is used with an <a href="/kb/en/innodb/">InnoDB</a> table, then the following statements apply:</p>
 <ul start="1"><li>The table will be rebuilt using the current values of the <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a>, <a href="/kb/en/innodb-system-variables/#innodb_file_format">innodb_file_format</a>, and <a href="/kb/en/innodb-system-variables/#innodb_default_row_format">innodb_default_row_format</a> system variables.
 </li></ul>
-<ul start="1"><li>The operation will have to create a temporary table to perform the the table copy. This temporary table will be in the same directory as the original table, and it's file name will be in the format <code><code>#</code>sql${PID}_${THREAD_ID}_${TMP_TABLE_COUNT}</code>, where <code>${PID}</code> is the process ID of <code>mysqld</code>, <code>${THREAD_ID}</code> is the connection ID, and <code>${TMP_TABLE_COUNT}</code> is the number of temporary tables that the connection has open. Therefore, the <code><a href="/kb/en/server-system-variables/#datadir">datadir</a></code> may contain files with file names like <code><code>#</code>sql1234_12_1.ibd</code>.
+<ul start="1"><li>The operation will have to create a temporary table to perform the the table copy. This temporary table will be in the same directory as the original table, and it's file name will be in the format <code><code>#</code>sql${PID}_${THREAD_ID}_${TMP_TABLE_COUNT}</code>, where <code>${PID}</code> is the process ID of <code>mysqld</code>, <code>${THREAD_ID}</code> is the connection ID, and <code>${TMP_TABLE_COUNT}</code> is the number of temporary tables that the connection has open. Therefore, the <a href="/kb/en/server-system-variables/#datadir">datadir</a> may contain files with file names like <code><code>#</code>sql1234_12_1.ibd</code>.
 </li></ul>
 <ul start="1"><li>The operation inserts one record at a time into each index, which is very inefficient.
 </li></ul>
@@ -599,18 +599,18 @@
 </li></ul>
 <ul start="1"><li>The table copy operation creates a lot of <a href="/kb/en/innodb-redo-log/">InnoDB redo log</a> writes.
 </li></ul>
-<h3 class="anchored_heading" id="inplace-algorithm"><code>INPLACE</code> Algorithm</h3>
+<h3 class="anchored_heading" id="inplace-algorithm">INPLACE Algorithm</h3>
 <p>The <code>COPY</code> algorithm can be incredibly slow, because the whole table has to be copied and rebuilt. The <code>INPLACE</code> algorithm was introduced as a way to avoid this by performing operations in-place and avoiding the table copy and rebuild, when possible.</p>
 <p>When the <code>INPLACE</code> algorithm is used, the underlying storage engine uses optimizations to perform the operation while avoiding the table copy and rebuild. However, <code>INPLACE</code> is a bit of a misnomer, since some operations may still require the table to be rebuilt for some storage engines. Regardless, several operations can be performed without a full copy of the table for some storage engines.</p>
 <p>A more accurate name for the algorithm would have been the <code>ENGINE</code> algorithm, since the <a href="/kb/en/storage-engines/">storage engine</a> decides how to implement the algorithm.</p>
 <p>If an <a href="/kb/en/alter-table/">ALTER TABLE</a> operation supports the <code>INPLACE</code> algorithm, then it can be performed using optimizations by the underlying storage engine, but it may rebuilt.</p>
 <p>If the <code>INPLACE</code> algorithm is specified with the <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> clause or with the <a href="/kb/en/server-system-variables/#alter_algorithm">alter_algorithm</a> system variable and if the <a href="/kb/en/alter-table/">ALTER TABLE</a> operation does not support the <code>INPLACE</code> algorithm, then an error will be raised. For example:</p>
-<pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">alter_algorithm</span><span class="o">=</span><span class="s1">&#39;INPLACE&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">alter_algorithm</span><span class="o">=</span><span class="s1">&#39;INPLACE&#39;</span><span class="p">;</span>
 
 <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tab</span> <span class="k">MODIFY</span> <span class="k">COLUMN</span> <span class="k">c</span> <span class="nb">int</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1846</span> <span class="p">(</span><span class="mi">0</span><span class="n">A000</span><span class="p">):</span> <span class="n">ALGORITHM</span><span class="o">=</span><span class="n">INPLACE</span> <span class="k">is</span> <span class="k">not</span> <span class="n">supported</span><span class="p">.</span> <span class="n">Reason</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">change</span> <span class="k">column</span> <span class="k">type</span> <span class="n">INPLACE</span><span class="p">.</span> <span class="n">Try</span> <span class="n">ALGORITHM</span><span class="o">=</span><span class="k">COPY</span>
 </pre><p>In this case, raising an error is preferable, if the alternative is for the operation to make a copy of the table, and perform unexpectedly slowly.</p>
-<h4 class="anchored_heading" id="using-the-inplace-algorithm-with-innodb">Using the <code>INPLACE</code> Algorithm with InnoDB</h4>
+<h4 class="anchored_heading" id="using-the-inplace-algorithm-with-innodb">Using the INPLACE Algorithm with InnoDB</h4>
 <p>If the <code>INPLACE</code> algorithm is used with an <a href="/kb/en/innodb/">InnoDB</a> table, then the following statements apply:</p>
 <ul start="1"><li>The operation might have to write sort files in the directory defined by the <a href="/kb/en/innodb-system-variables/#innodb_tmpdir">innodb_tmpdir</a> system variable.
 </li></ul>
@@ -620,7 +620,7 @@
 </li></ul>
 <ul start="1"><li>If the operation requires the table to be rebuilt, then the operation might have to create temporary tables.
 <ul start="1"><li>It may have to create a temporary intermediate table for the actual table rebuild operation.
-<ul start="1"><li>In <a href="/kb/en/mariadb-10219-release-notes/">MariaDB 10.2.19</a> and later, this temporary table will be in the same directory as the original table, and it's file name will be in the format <code><code>#</code>sql${PID}_${THREAD_ID}_${TMP_TABLE_COUNT}</code>, where <code>${PID}</code> is the process ID of <code>mysqld</code>, <code>${THREAD_ID}</code> is the connection ID, and <code>${TMP_TABLE_COUNT}</code> is the number of temporary tables that the connection has open. Therefore, the <code><a href="/kb/en/server-system-variables/#datadir">datadir</a></code> may contain files with file names like <code><code>#</code>sql1234_12_1.ibd</code>.
+<ul start="1"><li>In <a href="/kb/en/mariadb-10219-release-notes/">MariaDB 10.2.19</a> and later, this temporary table will be in the same directory as the original table, and it's file name will be in the format <code><code>#</code>sql${PID}_${THREAD_ID}_${TMP_TABLE_COUNT}</code>, where <code>${PID}</code> is the process ID of <code>mysqld</code>, <code>${THREAD_ID}</code> is the connection ID, and <code>${TMP_TABLE_COUNT}</code> is the number of temporary tables that the connection has open. Therefore, the <a href="/kb/en/server-system-variables/#datadir">datadir</a> may contain files with file names like <code><code>#</code>sql1234_12_1.ibd</code>.
 </li><li>In <a href="/kb/en/mariadb-10218-release-notes/">MariaDB 10.2.18</a> and before, this temporary table will be in the same directory as the original table, and it's file name will be in the format <code><code>#</code>sql-ib${TABLESPACE_ID}-${RAND}</code>, where <code>${TABLESPACE_ID}</code> is the table's tablespace ID within InnoDB and <code>${RAND}</code> is a randomly initialized number. Therefore, the <a href="/kb/en/server-system-variables/#datadir">datadir</a> may contain files with file names like <code><code>#</code>sql-ib230291-1363966925.ibd</code>.
 </li></ul>
 </li><li>When it replaces the original table with the rebuilt table, it may also have to rename the original table using a temporary table name.
@@ -636,7 +636,7 @@
 <h4 class="anchored_heading" id="operations-supported-by-innodb-with-the-inplace-algorithm">Operations Supported by InnoDB with the <code>INPLACE</code> Algorithm</h4>
 <p>With respect to the allowed operations, the <code>INPLACE</code> algorithm supports a subset of the operations supported by the <code>COPY</code> algorithm, and it supports a superset of the operations supported by the <code>NOCOPY</code> algorithm.</p>
 <p>See <a href="/kb/en/innodb-online-ddl-operations-with-algorithminplace/">InnoDB Online DDL Operations with ALGORITHM=INPLACE</a> for more information.</p>
-<h3 class="anchored_heading" id="nocopy-algorithm"><code>NOCOPY</code> Algorithm</h3>
+<h3 class="anchored_heading" id="nocopy-algorithm">NOCOPY Algorithm</h3>
 <div class="mariadb_from_10_3 mariadb from_10_3 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-103/">10.3</a></h5><p>In <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a> and later, the <code>NOCOPY</code> algorithm is supported.</p>
 </div><p>The <code>INPLACE</code> algorithm can sometimes be surprisingly slow in instances where it has to rebuild the clustered index, because when the clustered index has to be rebuilt, the whole table has to be rebuilt. The <code>NOCOPY</code> algorithm was introduced as a way to avoid this. </p>
 <p>If an <a href="/kb/en/alter-table/">ALTER TABLE</a> operation supports the <code>NOCOPY</code> algorithm, then it can be performed without rebuilding the clustered index.</p>
@@ -649,17 +649,17 @@
 <h4 class="anchored_heading" id="operations-supported-by-innodb-with-the-nocopy-algorithm">Operations Supported by InnoDB with the <code>NOCOPY</code> Algorithm</h4>
 <p>With respect to the allowed operations, the <code>NOCOPY</code> algorithm supports a subset of the operations supported by the <code>INPLACE</code> algorithm, and it supports a superset of the operations supported by the <code>INSTANT</code> algorithm.</p>
 <p>See <a href="/kb/en/innodb-online-ddl-operations-with-algorithmnocopy/">InnoDB Online DDL Operations with ALGORITHM=NOCOPY</a> for more information.</p>
-<h3 class="anchored_heading" id="instant-algorithm"><code>INSTANT</code> Algorithm</h3>
+<h3 class="anchored_heading" id="instant-algorithm">INSTANT Algorithm</h3>
 <div class="mariadb_from_10_3 mariadb from_10_3 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-103/">10.3</a></h5><p>In <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a> and later, the <code>INSTANT</code> algorithm is supported.</p>
 </div><p>The <code>INPLACE</code> algorithm can sometimes be surprisingly slow in instances where it has to modify data files. The <code>INSTANT</code> algorithm was introduced as a way to avoid this.</p>
 <p>If an <a href="/kb/en/alter-table/">ALTER TABLE</a> operation supports the <code>INSTANT</code> algorithm, then it can be performed without modifying any data files.</p>
 <p>If the <code>INSTANT</code> algorithm is specified with the <a href="/kb/en/alter-table/#algorithm">ALGORITHM</a> clause or with the <a href="/kb/en/server-system-variables/#alter_algorithm">alter_algorithm</a> system variable and if the <a href="/kb/en/alter-table/">ALTER TABLE</a> operation does not support the <code>INSTANT</code> algorithm, then an error will be raised. For example:</p>
-<pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">alter_algorithm</span><span class="o">=</span><span class="s1">&#39;INSTANT&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">alter_algorithm</span><span class="o">=</span><span class="s1">&#39;INSTANT&#39;</span><span class="p">;</span>
 
 <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tab</span> <span class="k">MODIFY</span> <span class="k">COLUMN</span> <span class="k">c</span> <span class="nb">int</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1846</span> <span class="p">(</span><span class="mi">0</span><span class="n">A000</span><span class="p">):</span> <span class="n">ALGORITHM</span><span class="o">=</span><span class="n">INSTANT</span> <span class="k">is</span> <span class="k">not</span> <span class="n">supported</span><span class="p">.</span> <span class="n">Reason</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">change</span> <span class="k">column</span> <span class="k">type</span> <span class="n">INPLACE</span><span class="p">.</span> <span class="n">Try</span> <span class="n">ALGORITHM</span><span class="o">=</span><span class="k">COPY</span>
 </pre><p>In this case, raising an error is preferable, if the alternative is for the operation to modify data files, and perform unexpectedly slowly.</p>
-<h4 class="anchored_heading" id="operations-supported-by-innodb-with-the-instant-algorithm">Operations Supported by InnoDB with the <code>INSTANT</code> Algorithm</h4>
+<h4 class="anchored_heading" id="operations-supported-by-innodb-with-the-instant-algorithm">Operations Supported by InnoDB with the INSTANT Algorithm</h4>
 <p>With respect to the allowed operations, the <code>INSTANT</code> algorithm supports a subset of the operations supported by the <code>NOCOPY</code> algorithm.</p>
 <p>See <a href="/kb/en/innodb-online-ddl-operations-with-algorithminstant/">InnoDB Online DDL Operations with ALGORITHM=INSTANT</a> for more information.</p>
 <h2 class="anchored_heading" id="alter-locking-strategies">Alter Locking Strategies</h2>
@@ -691,15 +691,15 @@
 </li><li><a href="/kb/en/innodb-online-ddl-operations-with-algorithmnocopy/">InnoDB Online DDL Operations with ALGORITHM=NOCOPY</a>
 </li><li><a href="/kb/en/innodb-online-ddl-operations-with-algorithminstant/">InnoDB Online DDL Operations with ALGORITHM=INSTANT</a>
 </li></ul>
-<h3 class="anchored_heading" id="default-locking-strategy"><code>DEFAULT</code> Locking Strategy</h3>
+<h3 class="anchored_heading" id="default-locking-strategy">DEFAULT Locking Strategy</h3>
 <p>The default behavior, which occurs if <code>LOCK=DEFAULT</code> is specified, or if <code>LOCK</code> is not specified at all, acquire the least restrictive lock on the table that is supported for the specific operation. This permits the maximum amount of concurrency that is supported for the specific operation.</p>
-<h3 class="anchored_heading" id="none-locking-strategy"><code>NONE</code> Locking Strategy</h3>
+<h3 class="anchored_heading" id="none-locking-strategy">NONE Locking Strategy</h3>
 <p>The <code>NONE</code> locking strategy performs the operation without acquiring any lock on the table. This permits <strong>all</strong> concurrent DML.</p>
 <p>If this locking strategy is not permitted for an operation, then an error is raised.</p>
-<h3 class="anchored_heading" id="shared-locking-strategy"><code>SHARED</code> Locking Strategy</h3>
+<h3 class="anchored_heading" id="shared-locking-strategy">SHARED Locking Strategy</h3>
 <p>The <code>SHARED</code> locking strategy performs the operation after acquiring a read lock on the table. This permit <strong>read-only</strong> concurrent DML.</p>
 <p>If this locking strategy is not permitted for an operation, then an error is raised.</p>
-<h3 class="anchored_heading" id="exclusive-locking-strategy"><code>EXCLUSIVE</code> Locking Strategy</h3>
+<h3 class="anchored_heading" id="exclusive-locking-strategy">EXCLUSIVE Locking Strategy</h3>
 <p>The <code>EXCLUSIVE</code> locking strategy performs the operation after acquiring a write lock on the table. This does <strong>not</strong> permit concurrent DML.</p>
 
     </div>

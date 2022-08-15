@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-03-01 04:26">11 years, 1 month ago</span></dd>
+<span class="datetime" title="2011-03-01 04:26">11 years, 3 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-08-24 02:00">7 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-25 22:25">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -379,11 +379,6 @@
                             >MariaDB starting with 5.5</label>
                 </li>
             
-                <li class="mariadb_5_1_to_5_5">
-                    <label><input type="checkbox" data-product-class="mariadb_5_1_to_5_5"
-                            >MariaDB 5.1 - 5.5</label>
-                </li>
-            
                 <li class="mariadb_from_10_4">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_4"
                             >MariaDB starting with 10.4</label>
@@ -397,11 +392,6 @@
                 <li class="mariadb_from_10_1">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_1"
                             >MariaDB starting with 10.1</label>
-                </li>
-            
-                <li class="mariadb_from_5_5">
-                    <label><input type="checkbox" data-product-class="mariadb_from_5_5"
-                            >MariaDB starting with 5.5</label>
                 </li>
             
                 <li class="mariadb_from_10_4">
@@ -444,11 +434,6 @@
                             >MariaDB starting with 5.5</label>
                 </li>
             
-                <li class="mariadb_5_1_to_5_5">
-                    <label><input type="checkbox" data-product-class="mariadb_5_1_to_5_5"
-                            >MariaDB 5.1 - 5.5</label>
-                </li>
-            
                 <li class="mariadb_from_10_4">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_4"
                             >MariaDB starting with 10.4</label>
@@ -462,11 +447,6 @@
                 <li class="mariadb_from_10_1">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_1"
                             >MariaDB starting with 10.1</label>
-                </li>
-            
-                <li class="mariadb_from_5_5">
-                    <label><input type="checkbox" data-product-class="mariadb_from_5_5"
-                            >MariaDB starting with 5.5</label>
                 </li>
             
         </ul>
@@ -612,16 +592,7 @@
 
     <li class=""><a href="#installation-issues" title="Installation Issues">Installation Issues</a>    <ol class="toc">
 
-        <li class=""><a href="#upgrading-mariadb-server-and-mariadb-client-packages" title="Upgrading mariadb-server and mariadb-client packages">Upgrading mariadb-server and mariadb-client packages</a></li>
-
-        <li class=""><a href="#version-mismatch-between-mariadb-and-ubuntudebian-repositories" title="Version Mismatch Between MariaDB and Ubuntu/Debian Repositories">Version Mismatch Between MariaDB and Ubuntu/Debian Repositories</a>        <ol class="toc">
-
-            <li class=""><a href="#pinning-the-mariadb-repository" title="Pinning the MariaDB Repository">Pinning the MariaDB Repository</a></li>
-
-            <li class=""><a href="#specifying-specific-versions-to-install" title="Specifying Specific Versions to Install">Specifying Specific Versions to Install</a></li>
-
-            <li class=""><a href="#holding-packages" title="Holding Packages">Holding Packages</a>        </ol>
-    </ol>
+        <li class=""><a href="#upgrading-mariadb-server-and-mariadb-client-packages" title="Upgrading mariadb-server and mariadb-client packages">Upgrading mariadb-server and mariadb-client packages</a>    </ol>
 </li>
 
     <li class=""><a href="#available-deb-packages" title="Available DEB Packages">Available DEB Packages</a>    <ol class="toc">
@@ -630,9 +601,7 @@
 
         <li class=""><a href="#available-deb-packages-in-mariadb-102-and-mariadb-103" title="Available DEB Packages in MariaDB 10.2 and MariaDB 10.3">Available DEB Packages in MariaDB 10.2 and MariaDB 10.3</a></li>
 
-        <li class=""><a href="#available-deb-packages-in-mariadb-101" title="Available DEB Packages in MariaDB 10.1">Available DEB Packages in MariaDB 10.1</a></li>
-
-        <li class=""><a href="#available-deb-packages-in-mariadb-55" title="Available DEB Packages in MariaDB 5.5">Available DEB Packages in MariaDB 5.5</a>    </ol>
+        <li class=""><a href="#available-deb-packages-in-mariadb-101" title="Available DEB Packages in MariaDB 10.1">Available DEB Packages in MariaDB 10.1</a>    </ol>
 </li>
 
     <li class=""><a href="#actions-performed-by-deb-packages" title="Actions Performed by DEB Packages">Actions Performed by DEB Packages</a>    <ol class="toc">
@@ -652,17 +621,19 @@ manager.</p>
 <p>We currently have APT repositories for the following Linux distributions:</p>
 <ul start="1"><li>Debian 9 (Jessie)
 </li><li>Debian 10 (Buster)
+</li><li>Debian 11 (Bullseye)
 </li><li>Debian Unstable (Sid)
 </li><li>Ubuntu 18.04 LTS (Bionic)
 </li><li>Ubuntu 20.04 LTS (Focal)
 </li><li>Ubuntu 20.10 (Groovy)
 </li><li>Ubuntu 21.04 (Hirsute)
+</li><li>Ubuntu 21.10 (Impish)
 </li></ul>
 <h4 class="anchored_heading" id="using-the-mariadb-package-repository-setup-script">Using the MariaDB Package Repository Setup Script</h4>
 <p>If you want to install MariaDB with <code>apt</code>, then you can configure <code>apt</code> to install from MariaDB Corporation's MariaDB Package Repository by using the <a href="/kb/en/mariadb-package-repository-setup-and-usage/">MariaDB Package Repository setup script</a>.</p>
 <p>MariaDB Corporation provides a MariaDB Package Repository for several Linux distributions that use <code>apt</code> to manage packages. This repository contains software packages related to MariaDB Server, including the server itself, <a href="/kb/en/clients-utilities/">clients and utilities</a>, <a href="/kb/en/client-libraries/">client libraries</a>, <a href="/kb/en/plugins/">plugins</a>, and <a href="/kb/en/mariabackup/">Mariabackup</a>. The MariaDB Package Repository setup script automatically configures your system to install packages from the MariaDB Package Repository.</p>
 <p>To use the script, execute the following command:</p>
-<pre class="fixed">curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+<pre class="fixed wrap">curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 </pre><p>Note that this script also configures a repository for <a href="/kb/en/maxscale/">MariaDB MaxScale</a> and a repository for MariaDB Tools, which currently only contains <a href="/kb/en/percona-xtrabackup/">Percona XtraBackup</a> and its dependencies.</p>
 <p>See <a href="/kb/en/mariadb-package-repository-setup-and-usage/">MariaDB Package Repository Setup and Usage</a> for more information.</p>
 <h4 class="anchored_heading" id="using-the-mariadb-repository-configuration-tool">Using the MariaDB Repository Configuration Tool</h4>
@@ -672,14 +643,14 @@ manager.</p>
 <h5 class="anchored_heading" id="executing-add-apt-repository">Executing add-apt-repository</h5>
 <p>One way to add an <code>apt</code> repository is by using the <code><a href="http://manpages.ubuntu.com/manpages/bionic/man1/add-apt-repository.1.html">add-apt-repository</a></code> command. This command will add the repository configuration to <code>/etc/apt/sources.list</code>.</p>
 <p>For example, if you wanted to use the repository to install <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a> on Ubuntu 18.04 LTS (Bionic), then you could use the following commands to add the MariaDB <code>apt</code> repository:</p>
-<pre class="fixed">sudo apt-get install software-properties-common
+<pre class="fixed wrap">sudo apt-get install software-properties-common
 sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic main'
 </pre><p>And then you would have to update the package cache by executing the following command:</p>
 <pre class="fixed">sudo apt update
 </pre><h5 class="anchored_heading" id="creating-a-source-list-file">Creating a Source List File</h5>
 <p>Another way to add an <code>apt</code> repository is by creating a <a href="http://manpages.ubuntu.com/manpages/bionic/man5/sources.list.5.html">source list</a> file in <code>/etc/apt/sources.list.d/</code>.</p>
 <p>For example, if you wanted to use the repository to install <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a> on Ubuntu 18.04 LTS (Bionic), then you could create the <code>MariaDB.list</code> file in <code>/etc/apt/sources.list.d/</code>  with the following contents to add the MariaDB <code>apt</code> repository:</p>
-<pre class="fixed"># MariaDB 10.3 repository list - created 2019-01-27 09:50 UTC
+<pre class="fixed wrap"># MariaDB 10.3 repository list - created 2019-01-27 09:50 UTC
 # http://downloads.mariadb.org/mariadb/repositories/
 deb [arch=amd64,arm64,ppc64el] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic main
 deb-src http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic main
@@ -702,7 +673,7 @@ deb-src http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic mai
 </li></ul>
 <p>Archives are only of the distros and architectures supported at the time of release. For example <a href="/kb/en/mariadb-10038-release-notes/">MariaDB 10.0.38</a> is exists for Ubuntu <code>precise</code>, <code>trusty</code>, <code>xenial</code>, <code>wily</code>, and <code>yakkety</code> obtained looking in <a href="https://archive.mariadb.org/mariadb-10.0.38/repo/ubuntu/dists">https://archive.mariadb.org/mariadb-10.0.38/repo/ubuntu/dists</a>.</p>
 <p>For example, if you wanted to pin your repository to <a href="/kb/en/mariadb-1059-release-notes/">MariaDB 10.5.9</a> on Ubuntu 20.04 LTS (Focal), then you would have to first remove any existing MariaDB repository source list file from <code>/etc/apt/sources.list.d/</code>. And then you could use the following commands to add the MariaDB <code>apt-get</code> repository:</p>
-<pre class="fixed">sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el,s390x] http://archive.mariadb.org/mariadb-10.5.9/repo/ubuntu/ focal main main/debug'
+<pre class="fixed wrap">sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el,s390x] http://archive.mariadb.org/mariadb-10.5.9/repo/ubuntu/ focal main main/debug'
 </pre><p>Ensure you have the <a href="#Importing_the_MariaDB_GPG_Public_Key">signing key installed</a>.</p>
 <p>Ubuntu Xenial and older will need:</p>
 <pre class="fixed">sudo apt-get install -y apt-transport-https
@@ -718,9 +689,9 @@ deb-src http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic mai
 <p>If you added the <code>apt</code> repository by using the <code><a href="http://manpages.ubuntu.com/manpages/bionic/man1/add-apt-repository.1.html">add-apt-repository</a></code> command, then you can update the major release that the repository uses by using the the <code><a href="http://manpages.ubuntu.com/manpages/bionic/man1/add-apt-repository.1.html">add-apt-repository</a></code> command again.</p>
 <p>First, look for the repository string for the old version in <code>/etc/apt/sources.list</code>.</p>
 <p>And then, you can remove the repository for the old version by executing the <code><a href="http://manpages.ubuntu.com/manpages/bionic/man1/add-apt-repository.1.html">add-apt-repository</a></code> command and providing the <code>--remove</code> option. For example, if you wanted to remove a <a href="/kb/en/what-is-mariadb-102/">MariaDB 10.2</a> repository, then you could do so by executing something like the following:</p>
-<pre class="fixed">sudo add-apt-repository --remove 'deb [arch=amd64,arm64,ppc64el] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.2/ubuntu bionic main'
+<pre class="fixed wrap">sudo add-apt-repository --remove 'deb [arch=amd64,arm64,ppc64el] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.2/ubuntu bionic main'
 </pre><p>After that, you can add the repository for the new version with the <code><a href="http://manpages.ubuntu.com/manpages/bionic/man1/add-apt-repository.1.html">add-apt-repository</a></code> command. For example, if you wanted to use the repository to install <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a> on Ubuntu 18.04 LTS (Bionic), then you could use the following commands to add the MariaDB <code>apt</code> repository:</p>
-<pre class="fixed">sudo apt-get install software-properties-common
+<pre class="fixed wrap">sudo apt-get install software-properties-common
 sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic main'
 </pre><p>And then you would have to update the package cache by executing the following command:</p>
 <pre class="fixed">sudo apt update
@@ -746,7 +717,7 @@ sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://sfo1.mirrors.digi
 </pre><div class="cstm-style bluebox"><p>Starting with Debian 9 (Stretch), the <code><a href="https://manpages.debian.org/stretch/dirmngr/dirmngr.8.en.html">dirmngr</a></code> package needs to be installed before the GPG public key can be imported. To install it, execute: <code>sudo apt install dirmngr</code></p>
 </div><p>If you are unsure which GPG public key you need, then it is perfectly safe to import both keys.</p>
 <p>The command used to import the GPG public key is the same on both Debian and Ubuntu. For example:</p>
-<pre class="fixed">$ sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
+<pre class="fixed wrap">$ sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
 Executing: gpg --ignore-time-conflict --no-options --no-default-keyring --secret-keyring /tmp/tmp.ASyOPV87XC --trustdb-name /etc/apt/trustdb.gpg --keyring /etc/apt/trusted.gpg --primary-keyring /etc/apt/trusted.gpg --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
 gpg: requesting key 1BB943DB from hkp server keyserver.ubuntu.com
 gpg: key 1BB943DB: <span class="s2">&quot;MariaDB Package Signing Key &lt;package-signing-key@mariadb.org&gt;&quot;</span> imported
@@ -764,7 +735,7 @@ gpg:               imported: 1
 </pre></div><div class="mariadb_10_2_to_10_3 mariadb 10_2_to_10_3 product"><h5 class="product_title">MariaDB <a href="/kb/en/what-is-mariadb-102/">10.2</a> - <a href="/kb/en/what-is-mariadb-103/">10.3</a></h5><p>In <a href="/kb/en/what-is-mariadb-102/">MariaDB 10.2</a> and <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a>, to Install the most common packages, execute the following command:</p>
 <pre class="fixed">sudo apt-get install mariadb-server galera mariadb-client libmariadb3 mariadb-backup mariadb-common
 </pre></div><div class="mariadb_to_10_1 mariadb to_10_1 product"><h5 class="product_title">MariaDB until <a href="/kb/en/what-is-mariadb-101/">10.1</a></h5><p>In <a href="/kb/en/what-is-mariadb-101/">MariaDB 10.1</a> and before, to Install the most common packages, execute the following command:</p>
-<pre class="fixed">sudo apt-get install mariadb-server galera mariadb-client libmysqlclient18 mariadb-backup mariadb-common
+<pre class="fixed wrap">sudo apt-get install mariadb-server galera mariadb-client libmysqlclient18 mariadb-backup mariadb-common
 </pre></div><h4 class="anchored_heading" id="installing-mariadb-server-with-apt">Installing MariaDB Server with APT</h4>
 <p>To Install MariaDB Server, first you would have to update the package cache by executing the following command:</p>
 <pre class="fixed">sudo apt update
@@ -813,7 +784,7 @@ gpg:               imported: 1
 <p>To install an older version of a package instead of the latest version we just
 need to specify the package name, an equal sign, and then the version number.</p>
 <p>However, when installing an older version of a package, if <code>apt-get</code> has to install dependencies, then it will automatically choose to install the latest versions of those packages. To ensure that all MariaDB packages are on the same version in this scenario, it is necessary to specify them all. Therefore, to install <a href="/kb/en/mariadb-10314-release-notes/">MariaDB 10.3.14</a> from this <code>apt</code> repository, we would do the following:</p>
-<pre class="fixed">sudo apt-get install mariadb-server<span class="o">=</span>10.3.14-1 mariadb-client<span class="o">=</span>10.3.14-1 <span class="nv">libmariadb3</span><span class="o">=</span>10.3.14-1 mariadb-backup<span class="o">=</span>10.3.14-1 mariadb-common<span class="o">=</span>10.3.14-1
+<pre class="fixed wrap">sudo apt-get install mariadb-server<span class="o">=</span>10.3.14-1 mariadb-client<span class="o">=</span>10.3.14-1 <span class="nv">libmariadb3</span><span class="o">=</span>10.3.14-1 mariadb-backup<span class="o">=</span>10.3.14-1 mariadb-common<span class="o">=</span>10.3.14-1
 </pre><p>The rest of the install and setup process is as normal.</p>
 <h2 class="anchored_heading" id="installing-mariadb-with-dpkg">Installing MariaDB with dpkg</h2>
 <p>While it is not recommended, it is possible to download and install the
@@ -822,7 +793,7 @@ need to specify the package name, an equal sign, and then the version number.</p
 <ul start="1"><li><a href="https://downloads.mariadb.com">https://downloads.mariadb.com</a>
 </li></ul>
 <p>For example, to install the <a href="/kb/en/mariadb-1048-release-notes/">MariaDB 10.4.8</a> <code>.deb</code> packages on Ubuntu 18.04 LTS (Bionic), you could execute the following: </p>
-<pre class="fixed">sudo apt-get update
+<pre class="fixed wrap">sudo apt-get update
 sudo apt-get install libdbi-perl libdbd-mysql-perl psmisc libaio1 socat
 wget https://downloads.mariadb.com/MariaDB/mariadb-10.4.8/repo/ubuntu/mariadb-10.4.8-ubuntu-bionic-amd64-debs.tar
 tar -xvf mariadb-10.4.8-ubuntu-bionic-amd64-debs.tar
@@ -861,75 +832,6 @@ this is definitely a bug.</p>
 <p>A fix is planned for this bug in a future version of MariaDB. In the mean time,
 when upgrading MariaDB, use '<code>apt-get upgrade</code>' or
 '<code>apt-get install mariadb-server-5.5</code>'.</p>
-</div><div class="mariadb_5_1_to_5_5 mariadb 5_1_to_5_5 product"><h5 class="product_title">MariaDB <a href="/kb/en/what-is-mariadb-51/">5.1</a> - <a href="/kb/en/what-is-mariadb-55/">5.5</a></h5><h3 class="anchored_heading" id="version-mismatch-between-mariadb-and-ubuntudebian-repositories">Version Mismatch Between MariaDB and Ubuntu/Debian Repositories</h3>
-<p>As mentioned <a href="https://lists.launchpad.net/maria-discuss/msg00698.html">here</a> (and in <a href="https://jira.mariadb.org/browse/MDEV-4080">MDEV-4080</a> and <a href="https://jira.mariadb.org/browse/MDEV-3882">MDEV-3882</a>)
-sometimes APT will refuse to install MariaDB. Or, if MariaDB is already installed, suggest the removal of MariaDB to apply an upgrade to the
-<code>mysql-common</code> or <code>libmysqlclient</code> packages. This happens whenever the version
-number of those two packages is higher in the distribution repositories than
-the versions in the MariaDB
-repositories. Most MariaDB packages have different names than their MySQL
-counterparts, but in order for upgrades from MySQL to MariaDB to be successful
-in APT, those two packages must be named the same. Because they have the same
-names, APT just checks the version numbers and tries to install what it
-considers to be the most recent.</p>
-<p>It is rare for the version numbers of <code>mysql-common</code> or <code>libmysqlclient</code> to be
-higher in the official Ubuntu or Debian repositories than they are in the
-MariaDB repositories, but it has happened. Whenever it has it has been because of
-critical bug fix releases for bugs that existed in the
-version of MySQL in the distribution repositories but which had already been
-fixed in the version of MariaDB in the MariaDB repositories.</p>
-<p>If a situation as described above exists when you try to install MariaDB you
-will get an error like this:</p>
-<pre class="fixed">The following packages have unmet dependencies:
- mariadb-server : Depends: mariadb-server-5.5 but it is not going to be installed
-E: Unable to correct problems, you have held broken packages.
-</pre><p>There are three primary ways of fixing this issue:</p>
-<ol start="1"><li><a href="#pinning-the-mariadb-repository">Pinning the MariaDB Repository</a>
-</li><li><a href="#specifying-specific-versions-to-install">Specifying Specific Versions to Install</a> 
-</li><li><a href="#holding-packages">Holding Packages</a>
-</li></ol>
-<p>Click on the links above to jump to directions for each (or simply scroll down).</p>
-<h4 class="anchored_heading" id="pinning-the-mariadb-repository">Pinning the MariaDB Repository</h4>
-<p>It is possible to <em>pin</em> the MariaDB repository used so the packages it provides will always have an higher priority over the ones from the system repositories.</p>
-<p>This is done by creating a file with the '<code>.pref</code>' extension under '<code>/etc/apt/preferences.d/</code>' with the
-following contents:</p>
-<pre class="fixed">Package: *
-Pin: origin &lt;mirror-domain&gt;
-Pin-Priority: 1000
-</pre><p>Replace '<code>&lt;mirror-domain&gt;</code>' with the domain name of the MariaDB mirror you
-use. For example '<code>ftp.osuosl.org</code>'.</p>
-<h4 class="anchored_heading" id="specifying-specific-versions-to-install">Specifying Specific Versions to Install</h4>
-<p>A way to fix this is to specify the exact version of the two packages that you
-want to install. To do this, first determine the full version numbers of the
-affected packages. An easy way to do so is with <code>'apt-cache show'</code>:</p>
-<pre class="fixed">apt-cache show mysql-common <span class="p">|</span> grep Version
-apt-cache show libmysqlclient18 <span class="p">|</span> grep Version
-</pre><p>For each of the above you will be given a list of versions. The ones in the
-MariaDB repositories will have "mariadb" in the version strings and are
-the ones you want. With the version numbers in hand you will be able to install
-MariaDB by explicitly specifying the version numbers like so:</p>
-<pre class="fixed">apt-get install mariadb-server-5.5 mariadb-client-5.5 <span class="se">\</span>
-  <span class="nv">libmysqlclient18</span><span class="o">=</span>&lt;version-number&gt; <span class="se">\</span>
-  mysql-common<span class="o">=</span>&lt;version-number&gt;
-</pre><p>Replace the two instances of <code>&lt;version-number&gt;</code> in the example above with the
-actual version number of MariaDB that you want to install.</p>
-<p>Even after having installed these specific packages versions, running '<code>apt-get dist-upgrade</code>' will still try to upgrade the packages to the highest version available.</p>
-<h4 class="anchored_heading" id="holding-packages">Holding Packages</h4>
-<p>After MariaDB is installed, and as long as the version number issue exists, an
-'<code>apt-get dist-upgrade</code>' will try to remove MariaDB in order to install the
-"upgraded" <code>libmysqlclient</code> and <code>mysql-common</code> packages. To prevent this from
-happening you can <em>hold</em> them so that apt doesn't try to upgrade them. To do
-so, open a terminal, become root with '<code>sudo -s</code>', and then enter the
-following:</p>
-<pre class="fixed"><span class="nb">echo</span> libmysqlclient18 hold <span class="p">|</span> dpkg --set-selections
-<span class="nb">echo</span> mysql-common hold <span class="p">|</span> dpkg --set-selections
-</pre><p>The holds will prevent you from upgrading MariaDB, so when you want to remove
-the holds, open a terminal, become root with '<code>sudo -s</code>', and then enter the
-following:</p>
-<pre class="fixed"><span class="nb">echo</span> libmysqlclient18 install <span class="p">|</span> dpkg --set-selections
-<span class="nb">echo</span> mysql-common install <span class="p">|</span> dpkg --set-selections
-</pre><p>You will then be able to upgrade MariaDB as normal
-(e.g. with '<code>sudo apt-get update; sudo apt-get upgrade</code>').</p>
 </div><h2 class="anchored_heading" id="available-deb-packages">Available DEB Packages</h2>
 <p>The available DEB packages depend on the specific MariaDB release series.</p>
 <h3 class="anchored_heading" id="available-deb-packages-in-mariadb-104">Available DEB Packages in <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a></h3>
@@ -995,18 +897,6 @@ following:</p>
 <tr><td><code>mariadb-plugin-gssapi-server</code></td><td>The server-side component of the <code><a href="/kb/en/authentication-plugin-gssapi/">gssapi</a></code> authentication plugin.</td></tr>
 <tr><td><code>mariadb-plugin-spider</code></td><td>The <code><a href="/kb/en/spider/">SPIDER</a></code> storage engine.</td></tr>
 <tr><td><code>mariadb-plugin-tokudb</code></td><td>The <a href="/kb/en/tokudb/">TokuDB</a> storage engine.</td></tr>
-<tr><td><code>mariadb-server</code></td><td>The server and server tools, like <a href="/kb/en/myisamchk/">myisamchk</a> and <a href="/kb/en/mysqlhotcopy/">mysqlhotcopy</a> are here.</td></tr>
-<tr><td><code>mariadb-server-core</code></td><td>The core server.</td></tr>
-<tr><td><code>mariadb-test</code></td><td><code class="fixed" style="white-space:pre-wrap">mysql-client-test</code> executable, and <strong>mysql-test</strong> framework with the tests.</td></tr>
-<tr><td><code>mariadb-test-data</code></td><td>MariaDB database regression test suite - data files</td></tr>
-</table>
-</div></div><h3 class="anchored_heading" id="available-deb-packages-in-mariadb-55">Available DEB Packages in <a href="/kb/en/what-is-mariadb-55/">MariaDB 5.5</a></h3>
-<div class="mariadb_from_5_5 mariadb from_5_5 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-55/">5.5</a></h5><p>In <a href="/kb/en/what-is-mariadb-55/">MariaDB 5.5</a>, the following DEBs are available:</p>
-<div class="cstm-style darkheader-nospace-borders"><table><tr><th>Package Name</th><th>Description</th></tr>
-<tr><td><code>libmysqlclient18</code></td><td>Dynamic client libraries.</td></tr>
-<tr><td><code>mariadb-client</code></td><td>Client tools like <code class="fixed" style="white-space:pre-wrap">mysql</code> CLI, <code class="fixed" style="white-space:pre-wrap">mysqldump</code>, and others.</td></tr>
-<tr><td><code>mariadb-client-core</code></td><td>Core client tools</td></tr>
-<tr><td><code>mariadb-common</code></td><td>Character set files and <code class="fixed" style="white-space:pre-wrap">/etc/my.cnf</code></td></tr>
 <tr><td><code>mariadb-server</code></td><td>The server and server tools, like <a href="/kb/en/myisamchk/">myisamchk</a> and <a href="/kb/en/mysqlhotcopy/">mysqlhotcopy</a> are here.</td></tr>
 <tr><td><code>mariadb-server-core</code></td><td>The core server.</td></tr>
 <tr><td><code>mariadb-test</code></td><td><code class="fixed" style="white-space:pre-wrap">mysql-client-test</code> executable, and <strong>mysql-test</strong> framework with the tests.</td></tr>

@@ -249,12 +249,12 @@ alongside MySQL." />
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2012-05-31 12:56">9 years, 10 months ago</span></dd>
+<span class="datetime" title="2012-05-31 12:56">10 years ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-02-05 21:18">1 year, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-25 22:45">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -432,7 +432,7 @@ databases/applications one by one.)</p>
   - as of writing this article) and extract the files in a directory of your
   choice. I will assume for this article that the directory was <strong>/opt</strong>.
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql ~]# cat /etc/issue
+<pre class="fixed wrap">[root@mariadb-near-mysql ~]# cat /etc/issue
 CentOS release 6.2 (Final)
 
 [root@mariadb-near-mysql ~]# rpm -qa mysql*
@@ -446,7 +446,7 @@ mysql-server-5.1.61-1.el6_2.1.x86_64
  1974 ?        Sl     0:06  \_ /usr/libexec/mysqld --basedir=/usr --datadir=/var/lib/mysql --user=mysql ...
 </pre><ul start="1"><li>Create data directory and symlinks as below:
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql opt]# mkdir mariadb-data
+<pre class="fixed wrap">[root@mariadb-near-mysql opt]# mkdir mariadb-data
 [root@mariadb-near-mysql opt]# ln -s mariadb-5.5.24-linux-x86_64 mariadb
 [root@mariadb-near-mysql opt]# ls -al
 total 20
@@ -457,13 +457,13 @@ drwxr-xr-x. 13 root root 4096 2012-06-06 07:07 mariadb-5.5.24-linux-x86_64
 drwxr-xr-x.  2 root root 4096 2012-06-06 07:26 mariadb-data
 </pre><ul start="1"><li>Create group <strong>mariadb</strong> and user <strong>mariadb</strong> and set correct ownerships:
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql opt]# groupadd --system mariadb
+<pre class="fixed wrap">[root@mariadb-near-mysql opt]# groupadd --system mariadb
 [root@mariadb-near-mysql opt]# useradd -c &#34;MariaDB Server&#34; -d /opt/mariadb -g mariadb --system mariadb
 [root@mariadb-near-mysql opt]# chown -R mariadb:mariadb mariadb-5.5.24-linux-x86_64/
 [root@mariadb-near-mysql opt]# chown -R mariadb:mariadb mariadb-data/
 </pre><ul start="1"><li>Create a new <strong>my.cnf</strong> in <strong>/opt/mariadb</strong> from support files:
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql opt]# cp mariadb/support-files/my-medium.cnf mariadb-data/my.cnf
+<pre class="fixed wrap">[root@mariadb-near-mysql opt]# cp mariadb/support-files/my-medium.cnf mariadb-data/my.cnf
 [root@mariadb-near-mysql opt]# chown mariadb:mariadb mariadb-data/my.cnf
 </pre><ul start="1"><li>Edit the file <strong>/opt/mariadb-data/my.cnf</strong> and add custom paths, socket, port, user and the most important of all: data directory and base directory. Finally the file should have at least the following:
 </li></ul>
@@ -479,11 +479,11 @@ socket		= /opt/mariadb-data/mariadb.sock
 user            = mariadb
 </pre><ul start="1"><li>Copy the init.d script from support files in the right location:
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql opt]# cp mariadb/support-files/mysql.server /etc/init.d/mariadb
+<pre class="fixed wrap">[root@mariadb-near-mysql opt]# cp mariadb/support-files/mysql.server /etc/init.d/mariadb
 [root@mariadb-near-mysql opt]# chmod +x /etc/init.d/mariadb
 </pre><ul start="1"><li>Edit <strong>/etc/init.d/mariadb</strong> replacing <strong>mysql</strong> with <strong>mariadb</strong> as below:
 </li></ul>
-<pre class="fixed">- # Provides: mysql
+<pre class="fixed wrap">- # Provides: mysql
 + # Provides: mariadb
 - basedir=
 + basedir=/opt/mariadb
@@ -495,30 +495,30 @@ user            = mariadb
 mariadb to use only one cnf file. In the <strong>start</strong> section after
 <strong>$bindir/mysqld_safe</strong> add <strong>--defaults-file=/opt/mariadb-data/my.cnf</strong>.
 Finally the lines should look like:</p>
-<pre class="fixed"># Give extra arguments to mysqld with the my.cnf file. This script
+<pre class="fixed wrap"># Give extra arguments to mysqld with the my.cnf file. This script
 # may be overwritten at next upgrade.
 $bindir/mysqld_safe --defaults-file=/opt/mariadb-data/my.cnf --datadir=&#34;$datadir&#34; --pid-file=&#34;$mysqld_pid_file_path&#34; $other_args &gt;/dev/null 2&gt;&amp;1 &amp;
 </pre><p>The same change needs to be made to the mysqladmin command below in the wait_for_ready() function so that the mariadb start command can properly listen for the server start. In the <strong>wait_for_ready()</strong> function, after <strong>$bindir/mysqladmin</strong> add <strong>--defaults-file=/opt/mariadb-data/my.cnf</strong>.
 The lines should look like:</p>
-<pre class="fixed">wait_for_ready () {
+<pre class="fixed wrap">wait_for_ready () {
 [...]
     if $bindir/mysqladmin --defaults-file=/opt/mariadb-data/my.cnf ping &gt;/dev/null 2&gt;&amp;1; then
 </pre><ul start="1"><li>Run <strong>mysql_install_db</strong> by explicitly giving it the my.cnf file as argument:
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql opt]# cd mariadb
+<pre class="fixed wrap">[root@mariadb-near-mysql opt]# cd mariadb
 [root@mariadb-near-mysql mariadb]# scripts/mysql_install_db --defaults-file=/opt/mariadb-data/my.cnf
 </pre><ul start="1"><li>Now you can start MariaDB by
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql opt]# /etc/init.d/mariadb start
+<pre class="fixed wrap">[root@mariadb-near-mysql opt]# /etc/init.d/mariadb start
 Starting MySQL...                                          [  OK  ]
 </pre><ul start="1"><li>Make MariaDB start at system start:
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql opt]# cd /etc/init.d
+<pre class="fixed wrap">[root@mariadb-near-mysql opt]# cd /etc/init.d
 [root@mariadb-near-mysql init.d]# chkconfig --add mariadb 
 [root@mariadb-near-mysql init.d]# chkconfig --levels 3 mariadb on
 </pre><ul start="1"><li>Finally test that you have both instances running:
 </li></ul>
-<pre class="fixed">[root@mariadb-near-mysql ~]# mysql -e &#34;SELECT VERSION();&#34;
+<pre class="fixed wrap">[root@mariadb-near-mysql ~]# mysql -e &#34;SELECT VERSION();&#34;
 +-----------+
 | VERSION() |
 +-----------+

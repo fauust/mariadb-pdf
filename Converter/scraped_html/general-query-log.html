@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Log of every SQL query received from a client, as well as connects/disconnects" />
+    <meta property="og:description" content="Log of every SQL query received from a client, as well as connects/disconnects." />
 
-    <meta name="description" content="Log of every SQL query received from a client, as well as connects/disconnects" />
+    <meta name="description" content="Log of every SQL query received from a client, as well as connects/disconnects." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-03-31 13:24">9 years ago</span></dd>
+<span class="datetime" title="2013-03-31 13:24">9 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-04-01 21:38">3 years ago</span></dd>
+<span class="datetime" title="2022-05-02 12:15">1 month, 1 week ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -417,7 +417,7 @@
 
     <li class=""><a href="#rotating-the-general-query-log-on-unix-and-linux" title="Rotating the General Query Log on Unix and Linux">Rotating the General Query Log on Unix and Linux</a></li>
 
-    <li class=""><a href="#see-also" title="See also">See also</a> </ol>
+    <li class=""><a href="#see-also" title="See Also">See Also</a> </ol>
 </li>
 </div>
 <p>The general query log is a log of every SQL query received from a client, as well as each client connect and disconnect. Since it's a record of every query received by the server, it can grow large quite quickly.</p>
@@ -489,7 +489,7 @@ command_type: Query
 ...
 </pre><p>See <a href="/kb/en/writing-logs-into-tables/">Writing logs into tables</a> for more information.</p>
 <h2 class="anchored_heading" id="disabling-the-general-query-log-for-a-session">Disabling the General Query Log for a Session</h2>
-<p>A user with the <code><a href="https://mariadb.com/kb/en/library/grant/#global-privileges">SUPER</a></code> privilege can disable logging to the general query log for a connection by setting the <code><a href="/kb/en/server-system-variables/#sql_log_off">SQL_LOG_OFF</a></code> system variable to <code>1</code>. For example:</p>
+<p>A user with the <a href="/kb/en/grant/#global-privileges">SUPER</a> privilege can disable logging to the general query log for a connection by setting the <a href="/kb/en/server-system-variables/#sql_log_off">SQL_LOG_OFF</a> system variable to <code>1</code>. For example:</p>
 <pre class="fixed">SET SESSION SQL_LOG_OFF=1;
 </pre><h2 class="anchored_heading" id="disabling-the-general-query-log-for-specific-statements">Disabling the General Query Log for Specific Statements</h2>
 <p>In <a href="/kb/en/mariadb-1031-release-notes/">MariaDB 10.3.1</a> and later, it is possible to disable logging to the general query log for specific types of statements by setting the <code><a href="/kb/en/server-system-variables/#log_disabled_statements">log_disabled_statements</a></code> system variable. This option cannot be set dynamically. It can be set in a server <a href="/kb/en/configuring-mariadb-with-option-files/#option-groups">option group</a> in an <a href="/kb/en/configuring-mariadb-with-option-files/">option file</a> prior to starting up the server. For example:</p>
@@ -500,8 +500,8 @@ general_log
 general_log_file=queries.log
 log_disabled_statements='slave,sp'
 </pre><h2 class="anchored_heading" id="rotating-the-general-query-log-on-unix-and-linux">Rotating the General Query Log on Unix and Linux</h2>
-<p>Unix and Linux distributions offer the <code><a href="https://linux.die.net/man/8/logrotate">logrotate</a></code> utility, which makes it very easy to rotate log files. See <a href="/kb/en/rotating-logs-on-unix-and-linux/">Rotating Logs on Unix and Linux</a> for more information on how to use this utility to rotate the general query log.</p>
-<h2 class="anchored_heading" id="see-also">See also</h2>
+<p>Unix and Linux distributions offer the <a href="https://linux.die.net/man/8/logrotate">logrotate</a> utility, which makes it very easy to rotate log files. See <a href="/kb/en/rotating-logs-on-unix-and-linux/">Rotating Logs on Unix and Linux</a> for more information on how to use this utility to rotate the general query log.</p>
+<h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/server_audit-mariadb-audit-plugin/">MariaDB audit plugin</a></li></ul>
 
     </div>

@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-06-18 17:02">11 years, 9 months ago</span></dd>
+<span class="datetime" title="2010-06-18 17:02">11 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-01-30 23:04">3 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-27 19:17">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -321,30 +321,6 @@
 </div>
 
     
-
-
-
-    
-    
-
-<div class="well well-small box"><div><h5>Product Versions</h5></div><div>
-
-        <ul id="product_chooser">
-            
-                <li class="mariadb_from_5_1">
-                    <label><input type="checkbox" data-product-class="mariadb_from_5_1"
-                            >MariaDB starting with 5.1</label>
-                </li>
-            
-                <li class="mariadb_from_5_1">
-                    <label><input type="checkbox" data-product-class="mariadb_from_5_1"
-                            >MariaDB starting with 5.1</label>
-                </li>
-            
-        </ul>
-    
-</div>
-</div>
 
 
 
@@ -422,52 +398,51 @@
 
     
     <div class="answer formatted">
-        <div class="mariadb_from_5_1 mariadb from_5_1 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-51/">5.1</a></h5><p>The FederatedX storage engine was first released in <a href="/kb/en/what-is-mariadb-51/">MariaDB 5.1</a>.</p>
-</div><p>The FederatedX storage engine is a fork of MySQL's <a href="https://dev.mysql.com/doc/refman/5.5/en/federated-storage-engine.html">Federated storage engine</a>, which is no longer being developed by Oracle. The original purpose of FederatedX was to keep this storage engine's development progressing-- to both add new features as well as fix old bugs.</p>
+        <p>The FederatedX storage engine is a fork of MySQL's <a href="https://dev.mysql.com/doc/refman/5.5/en/federated-storage-engine.html">Federated storage engine</a>, which is no longer being developed by Oracle. The original purpose of FederatedX was to keep this storage engine's development progressing-- to both add new features as well as fix old bugs.</p>
 <p>Since <a href="/kb/en/what-is-mariadb-100/">MariaDB 10.0</a>, the <a href="/kb/en/connect/">CONNECT</a> storage engine also allows access to a remote database via MySQL or ODBC connection (table types: <a href="/kb/en/connect-table-types-mysql-table-type-accessing-mysqlmariadb-tables/">MYSQL</a>, <a href="/kb/en/connect-table-types-odbc-table-type-accessing-tables-from-other-dbms/">ODBC</a>). However, in the current implementation there are several limitations.</p>
 <div class="table_of_contents well well-small">
 <h3>Contents</h3>
  <ol class="toc">
 
-    <li class="mariadb_from_5_1"><a href="#what-is-the-federatedx-storage-engine" title="What is the FederatedX storage engine?">What is the FederatedX storage engine?</a></li>
+    <li class=""><a href="#what-is-the-federatedx-storage-engine" title="What is the FederatedX storage engine?">What is the FederatedX storage engine?</a></li>
 
-    <li class="mariadb_from_5_1"><a href="#history" title="History">History</a></li>
+    <li class=""><a href="#history" title="History">History</a></li>
 
-    <li class="mariadb_from_5_1"><a href="#installing-the-plugin" title="Installing the Plugin">Installing the Plugin</a></li>
+    <li class=""><a href="#installing-the-plugin" title="Installing the Plugin">Installing the Plugin</a></li>
 
-    <li class="mariadb_from_5_1"><a href="#uninstalling-the-plugin" title="Uninstalling the Plugin">Uninstalling the Plugin</a></li>
+    <li class=""><a href="#uninstalling-the-plugin" title="Uninstalling the Plugin">Uninstalling the Plugin</a></li>
 
-    <li class="mariadb_from_5_1"><a href="#how-federatedx-works" title="How FederatedX works">How FederatedX works</a>    <ol class="toc">
+    <li class=""><a href="#how-federatedx-works" title="How FederatedX works">How FederatedX works</a>    <ol class="toc">
 
-        <li class="mariadb_from_5_1"><a href="#internal-workings-of-federatedx" title="Internal workings of FederatedX">Internal workings of FederatedX</a>        <ol class="toc">
+        <li class=""><a href="#internal-workings-of-federatedx" title="Internal workings of FederatedX">Internal workings of FederatedX</a>        <ol class="toc">
 
-            <li class="mariadb_from_5_1"><a href="#federatedx-table-creation" title="FederatedX table creation">FederatedX table creation</a>        </ol>
+            <li class=""><a href="#federatedx-table-creation" title="FederatedX table creation">FederatedX table creation</a>        </ol>
 </li>
 
-        <li class="mariadb_from_5_1"><a href="#method-calls" title="Method calls">Method calls</a>        <ol class="toc">
+        <li class=""><a href="#method-calls" title="Method calls">Method calls</a>        <ol class="toc">
 
-            <li class="mariadb_from_5_1"><a href="#select" title="SELECT">SELECT</a></li>
+            <li class=""><a href="#select" title="SELECT">SELECT</a></li>
 
-            <li class="mariadb_from_5_1"><a href="#insert" title="INSERT">INSERT</a></li>
+            <li class=""><a href="#insert" title="INSERT">INSERT</a></li>
 
-            <li class="mariadb_from_5_1"><a href="#update" title="UPDATE">UPDATE</a>        </ol>
+            <li class=""><a href="#update" title="UPDATE">UPDATE</a>        </ol>
     </ol>
 </li>
 
-    <li class="mariadb_from_5_1"><a href="#federatedx-capabilities-and-limitations" title="FederatedX capabilities and limitations">FederatedX capabilities and limitations</a></li>
+    <li class=""><a href="#federatedx-capabilities-and-limitations" title="FederatedX capabilities and limitations">FederatedX capabilities and limitations</a></li>
 
-    <li class="mariadb_from_5_1"><a href="#how-do-you-use-federatedx" title="How do you use FederatedX?">How do you use FederatedX?</a>    <ol class="toc">
+    <li class=""><a href="#how-do-you-use-federatedx" title="How do you use FederatedX?">How do you use FederatedX?</a>    <ol class="toc">
 
-        <li class="mariadb_from_5_1"><a href="#how-to-see-the-storage-engine-in-action" title="How to see the storage engine in action">How to see the storage engine in action</a>    </ol>
+        <li class=""><a href="#how-to-see-the-storage-engine-in-action" title="How to see the storage engine in action">How to see the storage engine in action</a>    </ol>
 </li>
 
-    <li class="mariadb_from_5_1"><a href="#how-do-i-create-a-federated-server" title="How do I create a federated server?">How do I create a federated server?</a></li>
+    <li class=""><a href="#how-do-i-create-a-federated-server" title="How do I create a federated server?">How do I create a federated server?</a></li>
 
-    <li class="mariadb_from_5_1"><a href="#how-does-federatedx-differ-from-the-old-federated-engine" title="How does FederatedX differ from the old Federated Engine?">How does FederatedX differ from the old Federated Engine?</a></li>
+    <li class=""><a href="#how-does-federatedx-differ-from-the-old-federated-engine" title="How does FederatedX differ from the old Federated Engine?">How does FederatedX differ from the old Federated Engine?</a></li>
 
-    <li class="mariadb_from_5_1"><a href="#where-can-i-get-federatedx" title="Where can I get FederatedX">Where can I get FederatedX</a>    <ol class="toc">
+    <li class=""><a href="#where-can-i-get-federatedx" title="Where can I get FederatedX">Where can I get FederatedX</a>    <ol class="toc">
 
-        <li class="mariadb_from_5_1"><a href="#what-are-the-plans-for-federatedx" title="What are the plans for FederatedX?">What are the plans for FederatedX?</a>    </ol>
+        <li class=""><a href="#what-are-the-plans-for-federatedx" title="What are the plans for FederatedX?">What are the plans for FederatedX?</a>    </ol>
  </ol>
 </li>
 </div>
@@ -610,7 +585,7 @@ ha_federatedx::reset
 <h2 class="anchored_heading" id="how-do-you-use-federatedx">How do you use FederatedX?</h2>
 <p>To use this handler, it's very simple. You must have two databases running, either both on the same host, or on different hosts.</p>
 <p>First, on the foreign database you create a table, for example:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test_table</span> <span class="p">(</span>
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test_table</span> <span class="p">(</span>
   <span class="n">id</span>     <span class="nb">int</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">auto_increment</span><span class="p">,</span>
   <span class="n">name</span>   <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">default</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
   <span class="n">other</span>  <span class="nb">int</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">default</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
@@ -619,7 +594,8 @@ ha_federatedx::reset
   <span class="k">KEY</span> <span class="n">other_key</span> <span class="p">(</span><span class="n">other</span><span class="p">))</span>
 <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span><span class="p">;</span>
 </pre><p>Then, on the server that will be connecting to the foreign host (client), you create a federated table without specifying the table structure:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test_table</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">FEDERATED</span> <span class="k">CONNECTION</span><span class="o">=</span><span class="s1">&#39;mysql://root@127.0.0.1:9306/federatedx/test_federatedx&#39;</span><span class="p">;</span>
+<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test_table</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">FEDERATED</span> 
+  <span class="k">CONNECTION</span><span class="o">=</span><span class="s1">&#39;mysql://root@127.0.0.1:9306/federatedx/test_federatedx&#39;</span><span class="p">;</span>
 </pre><p>Notice the "ENGINE" and "CONNECTION" fields? This is where you
 respectively set the engine type, "FEDERATED" and foreign
 host information, this being the database your 'client' database

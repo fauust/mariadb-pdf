@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2015-06-12 16:23">6 years, 10 months ago</span></dd>
+<span class="datetime" title="2015-06-12 16:23">6 years, 12 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-04-08 09:28">1 year ago</span></dd>
+<span class="datetime" title="2022-04-26 21:33">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -398,7 +398,7 @@
     <div class="answer formatted">
         <p>When a WHERE clause is related to the partitioning expression, the optimizer knows which partitions are relevant for the query. Other partitions will not be read. This optimization is called <em>partition pruning</em>.</p>
 <p><a href="/kb/en/explain/">EXPLAIN PARTITIONS</a> can be used to know which partitions will be read for a given query. A column called <code>partitions</code> will contain a comma-separated list of the accessed partitions. For example:</p>
-<pre class="fixed">EXPLAIN PARTITIONS SELECT * FROM orders WHERE id &lt; 15000000;
+<pre class="fixed wrap">EXPLAIN PARTITIONS SELECT * FROM orders WHERE id &lt; 15000000;
 +------+-------------+--------+------------+-------+---------------+---------+---------+------+------+-------------+
 | id   | select_type | table  | partitions | type  | possible_keys | key     | key_len | ref  | rows | Extra       |
 +------+-------------+--------+------------+-------+---------------+---------+---------+------+------+-------------+

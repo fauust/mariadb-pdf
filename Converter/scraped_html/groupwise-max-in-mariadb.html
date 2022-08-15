@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Finding the largest row for each group" />
+    <meta property="og:description" content="Finding the largest row for each group." />
 
-    <meta name="description" content="Finding the largest row for each group" />
+    <meta name="description" content="Finding the largest row for each group." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2016-06-20 15:41">5 years, 9 months ago</span></dd>
+<span class="datetime" title="2016-06-20 15:41">5 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2016-07-19 19:03">5 years, 8 months ago</span></dd>
+<span class="datetime" title="2022-04-27 07:54">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -559,7 +559,7 @@ gives 3 solutions; only the "Uncorrelated" one is "good", the other two are "bad
 | Manitoba                  |    1 | ...
 </pre><p>The performance of this is O(N), actually about 3N, where N is the number of source rows.</p>
 <p>EXPLAIN EXTENDED gives</p>
-<pre class="fixed">+----+-------------+------------+--------+---------------+------+---------+------+------+----------+----------------+
+<pre class="fixed wrap">+----+-------------+------------+--------+---------------+------+---------+------+------+----------+----------------+
 | id | select_type | table      | type   | possible_keys | key  | key_len | ref  | rows | filtered | Extra          |
 +----+-------------+------------+--------+---------------+------+---------+------+------+----------+----------------+
 |  1 | PRIMARY     | &lt;derived2&gt; | system | NULL          | NULL | NULL    | NULL |    1 |   100.00 | Using filesort |

@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2017-11-30 10:42">4 years, 4 months ago</span></dd>
+<span class="datetime" title="2017-11-30 10:42">4 years, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-11-30 11:52">4 years, 4 months ago</span></dd>
+<span class="datetime" title="2022-04-27 19:21">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -419,7 +419,7 @@ mroonga_highlight_html(text[[, keyword1, ..., keywordN]])
 | &amp;lt;p&amp;gt;MariaDB includes the Mroonga storage engine&amp;lt;/p&amp;gt;. |
 +-----------------------------------------------------------------+
 </pre><p>Highlighting the words <code>MariaDB</code> and <code>Mroonga</code> in a given text:</p>
-<pre class="fixed">SELECT mroonga_highlight_html('MariaDB includes the Mroonga storage engine.', 'MariaDB', 'Mroonga') 
+<pre class="fixed wrap">SELECT mroonga_highlight_html('MariaDB includes the Mroonga storage engine.', 'MariaDB', 'Mroonga') 
   AS highlighted_html;
 +--------------------------------------------------------------------------------------------------------+
 | highlighted_html                                                                                       |
@@ -427,7 +427,7 @@ mroonga_highlight_html(text[[, keyword1, ..., keywordN]])
 | &lt;span class=&#34;keyword&#34;&gt;MariaDB&lt;/span&gt; includes the &lt;span class=&#34;keyword&#34;&gt;Mroonga&lt;/span&gt; storage engine. |
 +--------------------------------------------------------------------------------------------------------+
 </pre><p>The same outcome, formulated as a Groonga query:</p>
-<pre class="fixed">SELECT mroonga_highlight_html('MariaDB includes the Mroonga storage engine.', 'MariaDB OR Mroonga' 
+<pre class="fixed wrap">SELECT mroonga_highlight_html('MariaDB includes the Mroonga storage engine.', 'MariaDB OR Mroonga' 
   AS query) AS highlighted_text;
 +--------------------------------------------------------------------------------------------------------+
 | highlighted_text                                                                                       |

@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="timeout causing apt to fail while the database is running" />
+    <meta property="og:description" content="timeout causing apt to fail while the database is running." />
 
-    <meta name="description" content="timeout causing apt to fail while the database is running" />
+    <meta name="description" content="timeout causing apt to fail while the database is running." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2016-03-31 14:46">6 years ago</span></dd>
+<span class="datetime" title="2016-03-31 14:46">6 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2016-03-31 15:38">6 years ago</span></dd>
+<span class="datetime" title="2022-04-26 14:22">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -390,7 +390,7 @@
     <div class="answer formatted">
         <p>After running <code>apt-upgrade mariadb</code>, it's possible that apt shows a fail in trying to start the server, but in fact the database is up and running, which then provokes apt to remain in a non finished state.</p>
 <p>For example:</p>
-<pre class="fixed"># apt-get upgrade
+<pre class="fixed wrap"># apt-get upgrade
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
@@ -422,8 +422,7 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
 <p>To overcome this, the timeout needs to be increased. This can be achieved as follows:</p>
 <ul start="1"><li><strong>On systems where systemd is not enabled/supported:</strong> The timeout can be increased by setting MYSQLD_STARTUP_TIMEOUT either directly in the script or via the command line. In <a href="/kb/en/mariadb-10113-release-notes/">MariaDB 10.1.13</a> and later versions, the init script also sources /etc/default/mariadb, so it can also be used to set MYSQLD_STARTUP_TIMEOUT to persistently change the startup timeout. The default timeout has been increased from 30s to 60s in <a href="/kb/en/mariadb-10113-release-notes/">MariaDB 10.1.13</a>.
 </li></ul>
-<ul start="1"><li><strong>On systems that support systemd</strong>: The startup timeout can be increased by setting <a href="/kb/en/systemd/">TimeoutStartSec systemd</a> option. 
-</li></ul>
+<ul start="1"><li><strong>On systems that support systemd</strong>: The startup timeout can be increased by setting <a href="/kb/en/systemd/">TimeoutStartSec systemd</a> option.</li></ul>
 
     </div>
 

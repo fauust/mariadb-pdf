@@ -2,7 +2,6 @@ import re
 import os
 import json
 import time
-import logging
 import csv
 
 from datetime import date
@@ -39,10 +38,6 @@ def read_csv(config):
     if config["number_of_rows"] > 0:
         contents = contents[:config["number_of_rows"]]
     return [row for row in contents if row["URL"] != ""]
-
-def set_logging():
-    logging.getLogger("requests").setLevel(logging.ERROR)
-    logging.getLogger('pdfminer').setLevel(logging.ERROR)
 
 def create_temp():
     if "temp" not in os.listdir():

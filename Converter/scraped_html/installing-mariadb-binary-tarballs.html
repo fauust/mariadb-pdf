@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-03-01 03:38">11 years, 1 month ago</span></dd>
+<span class="datetime" title="2011-03-01 03:38">11 years, 3 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-01-05 11:29">3 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-06-01 23:38">1 week, 2 days ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -491,13 +491,13 @@ cat &gt; /etc/systemd/system/mariadb.service.d/datadir.conf <span class="s">&lt;
 <span class="s">ReadWritePaths=/usr/local/mysql/data</span>
 <span class="s">EOF</span>
 
-systemclt daemon-reload
+systemctl daemon-reload
 </pre><p>After this you can start and stop the service using </p>
 <pre class="fixed">systenctl start mariadb.service
 </pre><p>and </p>
 <pre class="fixed">systemctl stop mariadb.service 
 </pre><p>respectively.</p>
-<p>Please refer to the <a href="https://mariadb.com/kb/en/library/systemd/">systemd</a> page for further information.</p>
+<p>Please refer to the <a href="/kb/en/systemd/">systemd</a> page for further information.</p>
 <h3 class="anchored_heading" id="post-installation">Post Installation</h3>
 <p>After this, remember to set proper passwords for all accounts accessible from
 untrusted sources, to avoid exposing the host to security risks! </p>

@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Testing HandlerSocket in a source distribution" />
+    <meta property="og:description" content="Testing HandlerSocket in a source distribution." />
 
-    <meta name="description" content="Testing HandlerSocket in a source distribution" />
+    <meta name="description" content="Testing HandlerSocket in a source distribution." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-06-09 08:46">10 years, 10 months ago</span></dd>
+<span class="datetime" title="2011-06-09 08:46">11 years ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-01-28 09:44">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-25 08:17">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -439,11 +439,10 @@ make
 should do:<pre class="fixed">make install
 </pre>
 If you do this, you don't have to set <code>PERL5LIB</code> below.
-</li><li>Run the handlersocket test suite<pre class="fixed"><span class="nb">cd</span> plugin/handler_socket/regtest/test_01_lib
+</li><li>Run the handlersocket test suite<pre class="fixed wrap"><span class="nb">cd</span> plugin/handler_socket/regtest/test_01_lib
 <span class="nv">MYHOST</span><span class="o">=</span>127.0.0.1 <span class="nv">MYPORT</span><span class="o">=</span><span class="m">9306</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>../../libhsclient/.libs/ <span class="se">\</span>
 <span class="nv">PERL5LIB</span><span class="o">=</span>../common:../../perl-Net-HandlerSocket/lib:../../perl-Net-HandlerSocket/blib/arch/auto/Net/HandlerSocket/ ./run.sh
-</pre>
-</li></ol>
+</pre></li></ol>
 
     </div>
 

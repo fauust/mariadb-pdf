@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2021-06-11 18:45">10 months ago</span></dd>
+<span class="datetime" title="2021-06-11 18:45">1 year ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-03 01:31">7 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-04-25 22:50">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -396,7 +396,7 @@
 <p>Here we discuss how to automate such tasks using Ansible. For example, here we show how to install a package or how to import a GPG key; but for an updated list of the necessary packages and for the keyserver to use, you should refer to <a href="https://mariadb.com/kb/en/installing-mariadb-deb-files/">Installing MariaDB .deb Files</a>.</p>
 <h2 class="anchored_heading" id="adding-apt-repositories">Adding apt Repositories</h2>
 <p>To <a href="/kb/en/installing-mariadb-deb-files/#executing-add-apt-repository">add a repository</a>:</p>
-<pre class="fixed">- name: Add specified repository into sources list
+<pre class="fixed wrap">- name: Add specified repository into sources list
   ansible.builtin.apt_repository:
     repo: deb [arch=amd64,arm64,ppc64el] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic main
     state: present

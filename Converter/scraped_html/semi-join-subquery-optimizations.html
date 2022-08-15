@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-07-12 17:02">10 years, 9 months ago</span></dd>
+<span class="datetime" title="2011-07-12 17:02">10 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-01-28 10:48">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-05-12 14:32">1 month ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -461,7 +461,7 @@
 <h3 class="anchored_heading" id="difference-from-inner-joins">Difference from inner joins</h3>
 <p>Semi-join operations are similar to regular relational joins. There is a difference though: with semi-joins, you don't care how many matches an inner table has for an outer row. In the above countries-with-big-cities example, Germany will be returned once, even if it has three cities with populations of more than one million each.</p>
 <h2 class="anchored_heading" id="semi-join-optimizations-in-mariadb">Semi-join optimizations in MariaDB</h2>
-<p>MariaDB uses semi-join optimizations to run IN subqueries starting from <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>. Starting in <a href="/kb/en/mariadb-533-release-notes/">MariaDB 5.3.3</a>, Semi-join subquery optimizations are enabled by default. You can disable them by turning off their <a href="/kb/en/server-system-variables/#optimizer_switch">optimizer_switch</a> like so:</p>
+<p>MariaDB uses semi-join optimizations to run IN subqueries.The optimizations are enabled by default. You can disable them by turning off their <a href="/kb/en/server-system-variables/#optimizer_switch">optimizer_switch</a> like so:</p>
 <pre class="fixed"><span class="k">SET</span> <span class="n">optimizer_switch</span><span class="o">=</span><span class="s1">&#39;semijoin=off&#39;</span>
 </pre><p>MariaDB has five different semi-join execution strategies:</p>
 <ul start="1"><li><a href="/kb/en/table-pullout-optimization/">Table pullout optimization</a>
@@ -474,8 +474,7 @@
 <ul start="1"><li><a href="/kb/en/what-is-mariadb-53/">What is MariaDB 5.3</a>
 </li><li><a href="/kb/en/subquery-optimizations-map/">Subquery Optimizations Map</a>
 </li><li><a href="http://s.petrunia.net/blog/?p=35">"Observations about subquery use cases"</a> blog post
-</li><li><a href="http://en.wikipedia.org/wiki/Semijoin">http:<em>en.wikipedia.org/wiki/Semijoin</em></a>
-</li></ul>
+</li><li><a href="http://en.wikipedia.org/wiki/Semijoin">http:<em>en.wikipedia.org/wiki/Semijoin</em></a></li></ul>
 
     </div>
 

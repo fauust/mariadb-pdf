@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-03-05 22:27">3 years, 1 month ago</span></dd>
+<span class="datetime" title="2019-03-05 22:27">3 years, 3 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-04-03 03:24">3 years ago</span></dd>
+<span class="datetime" title="2022-04-26 21:31">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -446,7 +446,7 @@
 <h2 class="anchored_heading" id="known-issues">Known Issues</h2>
 <h3 class="anchored_heading" id="you-must-enable-exactly-n-storage-engines">You must enable exactly N storage engines</h3>
 <p>Prior to <a href="/kb/en/mariadb-10110-release-notes/">MariaDB 10.1.10</a>, if you were using the memory-mapped file-based transaction coordinator log, and then if the server crashed and you changed the number of XA-capable storage engines that it loaded, then you could see errors like the following:</p>
-<pre class="fixed">2018-11-30 23:08:49 140046048638848 [Note] Recovering after a crash using tc.log          
+<pre class="fixed wrap">2018-11-30 23:08:49 140046048638848 [Note] Recovering after a crash using tc.log          
 2018-11-30 23:08:49 140046048638848 [ERROR] Recovery failed! You must enable exactly 3 storage engines that support two-phase commit protocol
 2018-11-30 23:08:49 140046048638848 [ERROR] Crash recovery failed. Either correct the problem (if it's, for example, out of memory error) and restart, or delete tc log and start mysqld with --tc-heuristic-recover={commit|rollback}
 2018-11-30 23:08:49 140046048638848 [ERROR] Can't init tc log
@@ -455,7 +455,7 @@
 <p>See <a href="https://jira.mariadb.org/browse/MDEV-9214">MDEV-9214</a> for more information.</p>
 <h3 class="anchored_heading" id="bad-magic-header-in-tc-log">Bad magic header in tc log</h3>
 <p>If you are using the memory-mapped file-based transaction coordinator log, then it is possible to see errors like the following:</p>
-<pre class="fixed">2018-09-19  4:29:31 0 [Note] Recovering after a crash using tc.log                                                               
+<pre class="fixed wrap">2018-09-19  4:29:31 0 [Note] Recovering after a crash using tc.log                                                               
 2018-09-19  4:29:31 0 [ERROR] Bad magic header in tc log
 2018-09-19  4:29:31 0 [ERROR] Crash recovery failed. Either correct the problem (if it's, for example, out of memory error) and restart, or delete tc log and start mysqld with --tc-heuristic-recover={commit|rollback}                                           
 2018-09-19  4:29:31 0 [ERROR] Can't init tc log

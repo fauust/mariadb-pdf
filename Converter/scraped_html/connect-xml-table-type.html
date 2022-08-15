@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2015-01-26 12:33">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2015-01-26 12:33">7 years, 4 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-07-13 16:06">9 months ago</span></dd>
+<span class="datetime" title="2022-04-27 18:41">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -406,8 +406,6 @@
 </li>
 
     <li class=""><a href="#having-columns-defined-by-discovery" title="Having Columns defined by Discovery">Having Columns defined by Discovery</a></li>
-
-    <li class=""><a href="#write-operations-on-xml-tables" title="Write operations on XML tables">Write operations on XML tables</a></li>
 
     <li class=""><a href="#multiple-nodes-in-the-xml-document" title="Multiple nodes in the XML document">Multiple nodes in the XML document</a></li>
 
@@ -725,7 +723,7 @@ sorted and used in joins, even in the one-side of the join.</p>
 <span class="n">tabname</span><span class="o">=</span><span class="s1">&#39;BIBLIO&#39;</span> <span class="n">option_list</span><span class="o">=</span><span class="s1">&#39;rownode=BOOK,Level=1&#39;</span><span class="p">;</span>
 </pre><p>This will define the table as:</p>
 <p>From Connect 1.7.0002</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">xsampall</span><span class="o">`</span> <span class="p">(</span>
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">xsampall</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ISBN</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="o">`</span><span class="n">XPATH</span><span class="o">`=</span><span class="s1">&#39;@&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">LANG</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="o">`</span><span class="n">XPATH</span><span class="o">`=</span><span class="s1">&#39;@&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">SUBJECT</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="o">`</span><span class="n">XPATH</span><span class="o">`=</span><span class="s1">&#39;@&#39;</span><span class="p">,</span>
@@ -739,8 +737,12 @@ sorted and used in joins, even in the one-side of the join.</p>
   <span class="o">`</span><span class="n">PUBLISHER_PLACE</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="o">`</span><span class="n">XPATH</span><span class="o">`=</span><span class="s1">&#39;PUBLISHER/PLACE&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">DATEPUB</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="k">CONNECT</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span> <span class="o">`</span><span class="n">TABLE_TYPE</span><span class="o">`=</span><span class="s1">&#39;XML&#39;</span> <span class="o">`</span><span class="n">FILE_NAME</span><span class="o">`=</span><span class="s1">&#39;Xsample.xml&#39;</span> <span class="o">`</span><span class="n">TABNAME</span><span class="o">`=</span><span class="s1">&#39;BIBLIO&#39;</span> <span class="o">`</span><span class="n">OPTION_LIST</span><span class="o">`=</span><span class="s1">&#39;rownode=BOOK,Depth=1&#39;</span><span class="p">;</span>
-</pre><p>Before Connect 1.7.0002</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">xsampall</span><span class="o">`</span> <span class="p">(</span>
+<span class="o">&lt;&lt;/</span><span class="k">sql</span><span class="o">&gt;&gt;</span>
+
+
+<span class="k">Before</span> <span class="k">Connect</span> <span class="mi">1</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0002</span>
+<span class="o">&lt;&lt;</span><span class="k">sql</span><span class="o">&gt;&gt;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">xsampall</span><span class="o">`</span> <span class="p">(</span>
   <span class="o">`</span><span class="n">ISBN</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="o">`</span><span class="n">FIELD_FORMAT</span><span class="o">`=</span><span class="s1">&#39;@&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">LANG</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="o">`</span><span class="n">FIELD_FORMAT</span><span class="o">`=</span><span class="s1">&#39;@&#39;</span><span class="p">,</span>
   <span class="o">`</span><span class="n">SUBJECT</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="o">`</span><span class="n">FIELD_FORMAT</span><span class="o">`=</span><span class="s1">&#39;@&#39;</span><span class="p">,</span>
@@ -755,35 +757,51 @@ sorted and used in joins, even in the one-side of the join.</p>
   <span class="o">`</span><span class="n">DATEPUB</span><span class="o">`</span> <span class="nb">char</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="k">CONNECT</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">latin1</span> <span class="o">`</span><span class="n">TABLE_TYPE</span><span class="o">`=</span><span class="s1">&#39;XML&#39;</span> <span class="o">`</span><span class="n">FILE_NAME</span><span class="o">`=</span><span class="s1">&#39;Xsample.xml&#39;</span> 
   <span class="o">`</span><span class="n">TABNAME</span><span class="o">`=</span><span class="s1">&#39;BIBLIO&#39;</span> <span class="o">`</span><span class="n">OPTION_LIST</span><span class="o">`=</span><span class="s1">&#39;rownode=BOOK,Level=1&#39;</span><span class="p">;</span>
-</pre><p>This method can be used as a quick way to make a “template” table definition that can later be edited to make the desired definition. In particular, column names are constructed from all the nodes of their path in order to have distinct column names. This can be manually edited to have the desired names, provided their XPATH is not modified.</p>
-<p>To have a preview of how columns will be defined, you can use a catalog table like this:</p>
-<pre class="fixed"><span class="k">create</span> <span class="k">table</span> <span class="n">xsacol</span>
+<span class="o">&lt;&lt;/</span><span class="k">sql</span><span class="o">&gt;&gt;</span>
+
+<span class="n">This</span> <span class="k">method</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="k">as</span> <span class="n">a</span> <span class="n">quick</span> <span class="n">way</span> <span class="k">to</span> <span class="n">make</span> <span class="n">a</span> <span class="err">“</span><span class="k">template</span><span class="err">”</span> <span class="k">table</span> <span class="n">definition</span> <span class="n">that</span> <span class="n">can</span> <span class="n">later</span> <span class="n">be</span> <span class="n">edited</span> <span class="k">to</span> <span class="n">make</span> <span class="n">the</span> <span class="n">desired</span> <span class="n">definition</span><span class="p">.</span> <span class="k">In</span> <span class="n">particular</span><span class="p">,</span> <span class="k">column</span> <span class="k">names</span> <span class="k">are</span> <span class="n">constructed</span> <span class="k">from</span> <span class="k">all</span> <span class="n">the</span> <span class="n">nodes</span> <span class="k">of</span> <span class="n">their</span> <span class="n">path</span> <span class="k">in</span> <span class="k">order</span> <span class="k">to</span> <span class="n">have</span> <span class="k">distinct</span> <span class="k">column</span> <span class="k">names</span><span class="p">.</span> <span class="n">This</span> <span class="n">can</span> <span class="n">be</span> <span class="n">manually</span> <span class="n">edited</span> <span class="k">to</span> <span class="n">have</span> <span class="n">the</span> <span class="n">desired</span> <span class="k">names</span><span class="p">,</span> <span class="n">provided</span> <span class="n">their</span> <span class="n">XPATH</span> <span class="k">is</span> <span class="k">not</span> <span class="n">modified</span><span class="p">.</span>
+
+<span class="k">To</span> <span class="n">have</span> <span class="n">a</span> <span class="n">preview</span> <span class="k">of</span> <span class="n">how</span> <span class="n">columns</span> <span class="n">will</span> <span class="n">be</span> <span class="k">defined</span><span class="p">,</span> <span class="n">you</span> <span class="n">can</span> <span class="n">use</span> <span class="n">a</span> <span class="k">catalog</span> <span class="k">table</span> <span class="k">like</span> <span class="n">this</span><span class="p">:</span>
+
+<span class="o">&lt;&lt;</span><span class="k">sql</span><span class="o">&gt;&gt;</span>
+<span class="k">create</span> <span class="k">table</span> <span class="n">xsacol</span>
 <span class="n">engine</span><span class="o">=</span><span class="k">CONNECT</span> <span class="n">table_type</span><span class="o">=</span><span class="n">XML</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;Xsample.xml&#39;</span>
 <span class="n">tabname</span><span class="o">=</span><span class="s1">&#39;BIBLIO&#39;</span> <span class="n">option_list</span><span class="o">=</span><span class="s1">&#39;rownode=BOOK,Level=1&#39;</span> <span class="n">catfunc</span><span class="o">=</span><span class="n">col</span><span class="p">;</span>
-</pre><p>And when asking:</p>
-<pre class="fixed"><span class="k">select</span> <span class="k">column_name</span> <span class="n">Name</span><span class="p">,</span> <span class="n">type_name</span> <span class="k">Type</span><span class="p">,</span> <span class="n">column_size</span> <span class="k">Size</span><span class="p">,</span> <span class="k">nullable</span><span class="p">,</span> <span class="n">xpath</span> <span class="k">from</span> <span class="n">xsacol</span><span class="p">;</span>
-</pre><p>You get the description of what the table columns will be:</p>
-<div class="cstm-style darkheader-nospace-borders"><table><tr><th>Name</th><th>Type</th><th>Size</th><th>nullable</th><th>xpath</th></tr>
-<tr><td>ISBN</td><td>CHAR</td><td>13</td><td>0</td><td>@</td></tr>
-<tr><td>LANG</td><td>CHAR</td><td>2</td><td>0</td><td>@</td></tr>
-<tr><td>SUBJECT</td><td>CHAR</td><td>12</td><td>0</td><td>@</td></tr>
-<tr><td>AUTHOR_FIRSTNAME</td><td>CHAR</td><td>15</td><td>0</td><td>AUTHOR/FIRSTNAME</td></tr>
-<tr><td>AUTHOR_LASTNAME</td><td>CHAR</td><td>8</td><td>0</td><td>AUTHOR/LASTNAME</td></tr>
-<tr><td>TRANSLATOR_PREFIX</td><td>CHAR</td><td>24</td><td>1</td><td>TRANSLATOR/@PREFIX</td></tr>
-<tr><td>TRANSLATOR_FIRSTNAME</td><td>CHAR</td><td>7</td><td>1</td><td>TRANSLATOR/FIRSTNAME</td></tr>
-<tr><td>TRANSLATOR_LASTNAME</td><td>CHAR</td><td>6</td><td>1</td><td>TRANSLATOR/LASTNAME</td></tr>
-<tr><td>TITLE</td><td>CHAR</td><td>30</td><td>0</td><td></td></tr>
-<tr><td>PUBLISHER_NAME</td><td>CHAR</td><td>15</td><td>0</td><td>PUBLISHER/NAME</td></tr>
-<tr><td>PUBLISHER_PLACE</td><td>CHAR</td><td>5</td><td>0</td><td>PUBLISHER/PLACE</td></tr>
-<tr><td>DATEPUB</td><td>CHAR</td><td>4</td><td>0</td><td></td></tr>
-</table>
-</div><h2 class="anchored_heading" id="write-operations-on-xml-tables">Write operations on XML tables</h2>
-<p>You can freely use the Update, Delete and Insert commands with XML tables.
-However, you must understand that the format of the updated or inserted data
-follows the specifications of the table you created, not the ones of the
-original source file. For instance, let us suppose we insert a new book using
-the <em>xsamp</em> table (not the <em>xsampall</em> table) with the command:</p>
-<pre class="fixed"><span class="k">insert</span> <span class="k">into</span> <span class="nf">xsamp</span>
+<span class="o">&lt;&lt;/</span><span class="k">sql</span><span class="o">&gt;&gt;</span>
+
+<span class="k">And</span> <span class="k">when</span> <span class="n">asking</span><span class="p">:</span>
+
+<span class="o">&lt;&lt;</span><span class="k">sql</span><span class="o">&gt;&gt;</span>
+<span class="k">select</span> <span class="k">column_name</span> <span class="n">Name</span><span class="p">,</span> <span class="n">type_name</span> <span class="k">Type</span><span class="p">,</span> <span class="n">column_size</span> <span class="k">Size</span><span class="p">,</span> <span class="k">nullable</span><span class="p">,</span> <span class="n">xpath</span> <span class="k">from</span> <span class="n">xsacol</span><span class="p">;</span>
+<span class="o">&lt;&lt;/</span><span class="k">sql</span><span class="o">&gt;&gt;</span>
+
+<span class="n">You</span> <span class="k">get</span> <span class="n">the</span> <span class="n">description</span> <span class="k">of</span> <span class="n">what</span> <span class="n">the</span> <span class="k">table</span> <span class="n">columns</span> <span class="n">will</span> <span class="n">be</span><span class="p">:</span>
+
+<span class="o">&lt;&lt;</span><span class="n">style</span> <span class="k">class</span><span class="o">=</span><span class="ss">&quot;darkheader-nospace-borders&quot;</span><span class="o">&gt;&gt;</span>
+<span class="o">|=</span> <span class="n">Name</span> <span class="o">|=</span> <span class="k">Type</span> <span class="o">|=</span> <span class="k">Size</span> <span class="o">|=</span> <span class="k">nullable</span> <span class="o">|=</span> <span class="n">xpath</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">ISBN</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">13</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="o">@</span> <span class="o">|</span> 
+<span class="o">|</span> <span class="n">LANG</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">2</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="o">@</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">SUBJECT</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">12</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="o">@</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">AUTHOR_FIRSTNAME</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">15</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">AUTHOR</span><span class="o">/</span><span class="n">FIRSTNAME</span> <span class="o">|</span> 
+<span class="o">|</span> <span class="n">AUTHOR_LASTNAME</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">8</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">AUTHOR</span><span class="o">/</span><span class="n">LASTNAME</span> <span class="o">|</span> 
+<span class="o">|</span> <span class="n">TRANSLATOR_PREFIX</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">24</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">TRANSLATOR</span><span class="o">/@</span><span class="k">PREFIX</span> <span class="o">|</span> 
+<span class="o">|</span> <span class="n">TRANSLATOR_FIRSTNAME</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">7</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">TRANSLATOR</span><span class="o">/</span><span class="n">FIRSTNAME</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">TRANSLATOR_LASTNAME</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">6</span> <span class="o">|</span> <span class="mi">1</span> <span class="o">|</span> <span class="n">TRANSLATOR</span><span class="o">/</span><span class="n">LASTNAME</span> <span class="o">|</span> 
+<span class="o">|</span> <span class="n">TITLE</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">30</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span>  <span class="o">|</span> 
+<span class="o">|</span> <span class="n">PUBLISHER_NAME</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">15</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">PUBLISHER</span><span class="o">/</span><span class="n">NAME</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">PUBLISHER_PLACE</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">5</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">PUBLISHER</span><span class="o">/</span><span class="n">PLACE</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">DATEPUB</span> <span class="o">|</span> <span class="nb">CHAR</span> <span class="o">|</span> <span class="mi">4</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="o">|</span>
+<span class="o">&lt;&lt;/</span><span class="n">style</span><span class="o">&gt;&gt;</span>
+
+<span class="o">==</span> <span class="k">Write</span> <span class="n">operations</span> <span class="k">on</span> <span class="n">XML</span> <span class="n">tables</span>
+<span class="n">You</span> <span class="n">can</span> <span class="n">freely</span> <span class="n">use</span> <span class="n">the</span> <span class="k">Update</span><span class="p">,</span> <span class="k">Delete</span> <span class="k">and</span> <span class="k">Insert</span> <span class="n">commands</span> <span class="k">with</span> <span class="n">XML</span> <span class="n">tables</span><span class="p">.</span>
+<span class="n">However</span><span class="p">,</span> <span class="n">you</span> <span class="n">must</span> <span class="n">understand</span> <span class="n">that</span> <span class="n">the</span> <span class="n">format</span> <span class="k">of</span> <span class="n">the</span> <span class="n">updated</span> <span class="k">or</span> <span class="n">inserted</span> <span class="k">data</span>
+<span class="n">follows</span> <span class="n">the</span> <span class="n">specifications</span> <span class="k">of</span> <span class="n">the</span> <span class="k">table</span> <span class="n">you</span> <span class="n">created</span><span class="p">,</span> <span class="k">not</span> <span class="n">the</span> <span class="n">ones</span> <span class="k">of</span> <span class="n">the</span>
+<span class="n">original</span> <span class="k">source</span> <span class="n">file</span><span class="p">.</span> <span class="k">For</span> <span class="n">instance</span><span class="p">,</span> <span class="n">let</span> <span class="n">us</span> <span class="n">suppose</span> <span class="n">we</span> <span class="k">insert</span> <span class="n">a</span> <span class="k">new</span> <span class="n">book</span> <span class="k">using</span>
+<span class="n">the</span> <span class="o">//</span><span class="n">xsamp</span><span class="o">//</span> <span class="k">table</span> <span class="p">(</span><span class="k">not</span> <span class="n">the</span> <span class="o">//</span><span class="n">xsampall</span><span class="o">//</span> <span class="k">table</span><span class="p">)</span> <span class="k">with</span> <span class="n">the</span> <span class="n">command</span><span class="p">:</span>
+
+<span class="o">&lt;&lt;</span><span class="n">code</span> <span class="n">lang</span><span class="o">=</span><span class="n">mysql</span> <span class="n">inline</span><span class="o">=</span><span class="k">false</span><span class="o">&gt;&gt;</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">xsamp</span>
   <span class="p">(</span><span class="n">isbn</span><span class="p">,</span> <span class="n">lang</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">publisher</span><span class="p">,</span><span class="n">datepub</span><span class="p">)</span>
   <span class="k">values</span> <span class="p">(</span><span class="s1">&#39;9782212090529&#39;</span><span class="p">,</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span><span class="s1">&#39;général&#39;</span><span class="p">,</span><span class="s1">&#39;Alain Michard&#39;</span><span class="p">,</span>
          <span class="s1">&#39;XML, Langage et Applications&#39;</span><span class="p">,</span><span class="s1">&#39;Eyrolles Paris&#39;</span><span class="p">,</span><span class="mi">1998</span><span class="p">);</span>
@@ -830,8 +848,8 @@ components of the original document:</p>
    <span class="k">values</span><span class="p">(</span><span class="s1">&#39;9782212090529&#39;</span><span class="p">,</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span><span class="s1">&#39;général&#39;</span><span class="p">,</span><span class="s1">&#39;Alain&#39;</span><span class="p">,</span><span class="s1">&#39;Michard&#39;</span><span class="p">,</span>
       <span class="s1">&#39;XML, Langage et Applications&#39;</span><span class="p">,</span><span class="s1">&#39;Eyrolles&#39;</span><span class="p">,</span><span class="s1">&#39;Paris&#39;</span><span class="p">,</span><span class="mi">1998</span><span class="p">);</span>
 </pre><p>Now the added book, in the XML file, will have the required structure:</p>
-<pre class="fixed">   <span class="nt">&lt;BOOK</span> <span class="na">ISBN=</span><span class="s">&quot;9782212090529&quot;</span> <span class="na">LANG=</span><span class="s">&quot;fr&quot;</span> <span class="na">SUBJECT=</span><span class="s">&quot;général&quot;</span>
-      <span class="err">&lt;AUTHOR</span><span class="nt">&gt;</span>
+<pre class="fixed">   <span class="nt">&lt;BOOK</span> <span class="na">ISBN=</span><span class="s">&quot;9782212090529&quot;</span> <span class="na">LANG=</span><span class="s">&quot;fr&quot;</span> <span class="na">SUBJECT=</span><span class="s">&quot;général&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;AUTHOR&gt;</span>
          <span class="nt">&lt;FIRSTNAME&gt;</span>Alain<span class="nt">&lt;/FIRSTNAME&gt;</span>
          <span class="nt">&lt;LASTNAME&gt;</span>Michard<span class="nt">&lt;/LASTNAME&gt;</span>
       <span class="nt">&lt;/AUTHOR&gt;</span>

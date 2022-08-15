@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2020-03-24 12:24">2 years ago</span></dd>
+<span class="datetime" title="2020-03-24 12:24">2 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-02 14:44">1 month, 1 week ago</span></dd>
+<span class="datetime" title="2022-04-26 23:34">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -452,7 +452,7 @@
 </li><li>Join it with table customer. 
 </li></ol>
 <p>The EXPLAIN would look like so:</p>
-<pre class="fixed">+------+-------------+------------+-------+---------------+-----------+---------+---------------------------+-------+--------------------------+
+<pre class="fixed wrap">+------+-------------+------------+-------+---------------+-----------+---------+---------------------------+-------+--------------------------+
 | id   | select_type | table      | type  | possible_keys | key       | key_len | ref                       | rows  | Extra                    |
 +------+-------------+------------+-------+---------------+-----------+---------+---------------------------+-------+--------------------------+
 |    1 | PRIMARY     | customer   | range | PRIMARY,name  | name      | 103     | NULL                      | 2     | Using where; Using index |
@@ -467,7 +467,7 @@ This allows pushing the equality <code>customer.customer_id=OCT_TOTALS.customer_
 </li><li>For each customer_id, compute the October totals, for this specific customer.
 </li></ol>
 <p>The EXPLAIN output will look like so:</p>
-<pre class="fixed">+------+-----------------+------------+-------+---------------+-----------+---------+---------------------------+------+--------------------------+
+<pre class="fixed wrap">+------+-----------------+------------+-------+---------------+-----------+---------+---------------------------+------+--------------------------+
 | id   | select_type     | table      | type  | possible_keys | key       | key_len | ref                       | rows | Extra                    |
 +------+-----------------+------------+-------+---------------+-----------+---------+---------------------------+------+--------------------------+
 |    1 | PRIMARY         | customer   | range | PRIMARY,name  | name      | 103     | NULL                      | 2    | Using where; Using index |

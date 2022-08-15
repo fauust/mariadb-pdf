@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2018-12-09 23:22">3 years, 4 months ago</span></dd>
+<span class="datetime" title="2018-12-09 23:22">3 years, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-01-24 04:03">2 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-05-11 12:57">1 month ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -429,11 +429,11 @@
 </li>
 </div><p>
 When you create a table using the <a href="/kb/en/xtradb-and-innodb/">InnoDB storage engine</a>, data written to that table is stored on the file system in a data file called a tablespace.  Tablespace files contain both the data and indexes.</p>
-<p>When <code><a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table=ON</a></code> is set, InnoDB uses one tablespace file per InnoDB table. These tablespace files have the <code>.ibd</code> extension. When <code><a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table=OFF</a></code> is set, InnoDB stores all tables in the <a href="/kb/en/innodb-system-tablespaces/">InnoDB system tablespace</a>.</p>
-<p>InnoDB versions in MySQL 5.7 and above also support an additional type of tablespace called <a href="https://dev.mysql.com/doc/refman/5.7/en/general-tablespaces.html">general tablespaces</a> that are created with <code><a href="https://dev.mysql.com/doc/refman/5.7/en/create-tablespace.html">CREATE TABLESPACE</a></code>. However, InnoDB versions in MariaDB Server do not currently support general tablespaces or <code><a href="/kb/en/create-tablespace/">CREATE TABLESPACE</a></code>.</p>
+<p>When <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table=ON</a> is set, InnoDB uses one tablespace file per InnoDB table. These tablespace files have the <code>.ibd</code> extension. When <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table=OFF</a> is set, InnoDB stores all tables in the <a href="/kb/en/innodb-system-tablespaces/">InnoDB system tablespace</a>.</p>
+<p>InnoDB versions in MySQL 5.7 and above also support an additional type of tablespace called <a href="https://dev.mysql.com/doc/refman/5.7/en/general-tablespaces.html">general tablespaces</a> that are created with <a href="https://dev.mysql.com/doc/refman/5.7/en/create-tablespace.html">CREATE TABLESPACE</a>. However, InnoDB versions in MariaDB Server do not support general tablespaces or <a href="/kb/en/create-tablespace/">CREATE TABLESPACE</a>.</p>
 <h2 class="anchored_heading" id="file-per-table-tablespace-locations">File-Per-Table Tablespace Locations</h2>
-<p>By default, InnoDB's file-per-table tablespaces are created in the system's data directory, which is defined by the <code><a href="/kb/en/server-system-variables/#datadir">datadir</a></code> system variable. The system variable <code><a href="/kb/en/innodb-system-variables/#innodb_data_home_dir">innodb_data_home_dir</a></code> will not change the location of file-per-table tablespaces.</p>
-<p>In the event that you have a specific tablespace that you need stored in a dedicated path, you can set the location using the <code><a href="/kb/en/create-table/#data-directoryindex-directory">DATA DIRECTORY</a></code> table option when you create the table.</p>
+<p>By default, InnoDB's file-per-table tablespaces are created in the system's data directory, which is defined by the <a href="/kb/en/server-system-variables/#datadir">datadir</a> system variable. The system variable <a href="/kb/en/innodb-system-variables/#innodb_data_home_dir">innodb_data_home_dir</a> will not change the location of file-per-table tablespaces.</p>
+<p>In the event that you have a specific tablespace that you need stored in a dedicated path, you can set the location using the <a href="/kb/en/create-table/#data-directoryindex-directory">DATA DIRECTORY</a> table option when you create the table.</p>
 <p>For instance,</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t1</span> <span class="p">(</span>
    <span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
@@ -447,12 +447,12 @@ drwxr-xr-x 3 mysql mysql  4096 Dec 8 18:46 ..
 -rw-rw---- 1 mysql mysql 98304 Dec 8 20:41 t1.ibd
 </pre><p>Note, the system user that runs the MariaDB Server process (which is usually <code>mysql</code>) must have write permissions on the given path.</p>
 <h2 class="anchored_heading" id="copying-transportable-tablespaces">Copying Transportable Tablespaces</h2>
-<p>InnoDB's file-per-table tablespaces are transportable, which means that you can copy a file-per-table tablespace from one MariaDB Server to another server.  You may find this useful in cases where you need to transport full tables between servers and don't want to use backup tools like <code><a href="/kb/en/mariabackup/">mariabackup</a></code> or <code><a href="/kb/en/mysqldump/">mysqldump</a></code>. In fact, this process can even be used with <code><a href="/kb/en/mariabackup/">mariabackup</a></code> in some cases, such as when <a href="/kb/en/partial-backup-and-restore-with-mariabackup/">restoring partial backups</a> or when <a href="/kb/en/restoring-individual-tables-and-partitions-with-mariabackup/">restoring individual tables or partitions from a backup</a>.</p>
+<p>InnoDB's file-per-table tablespaces are transportable, which means that you can copy a file-per-table tablespace from one MariaDB Server to another server.  You may find this useful in cases where you need to transport full tables between servers and don't want to use backup tools like <a href="/kb/en/mariabackup/">mariabackup</a> or <a href="/kb/en/mysqldump/">mysqldump</a>. In fact, this process can even be used with <a href="/kb/en/mariabackup/">mariabackup</a> in some cases, such as when <a href="/kb/en/partial-backup-and-restore-with-mariabackup/">restoring partial backups</a> or when <a href="/kb/en/restoring-individual-tables-and-partitions-with-mariabackup/">restoring individual tables or partitions from a backup</a>.</p>
 <h3 class="anchored_heading" id="copying-transportable-tablespaces-for-non-partitioned-tables">Copying Transportable Tablespaces for Non-partitioned Tables</h3>
 <p>You can copy the transportable tablespace of a non-partitioned table from one server to another by exporting the tablespace file from the original server, and then importing the tablespace file into the new server.</p>
 <h4 class="anchored_heading" id="exporting-transportable-tablespaces-for-non-partitioned-tables">Exporting Transportable Tablespaces for Non-partitioned Tables</h4>
 <p>You can export a non-partitioned table by locking the table and copying the table's <code>.ibd</code> and <code>.cfg</code> files from the relevant <a href="#file-per-table-tablespace-locations">tablespace location</a> for the table to a backup location. For example, the process would go like this:</p>
-<ul start="1"><li>First, use the <code><a href="/kb/en/flush-tables-for-export/">FLUSH TABLES ... FOR EXPORT</a></code> statement on the target table:
+<ul start="1"><li>First, use the <a href="/kb/en/flush-tables-for-export/">FLUSH TABLES ... FOR EXPORT</a> statement on the target table:
 </li></ul>
 <pre class="fixed"><span class="n">FLUSH</span> <span class="n">TABLES</span> <span class="n">test</span><span class="p">.</span><span class="n">t1</span> <span class="k">FOR</span> <span class="n">EXPORT</span><span class="p">;</span>
 </pre><p>This forces the server to close the table and provides your connection with a read lock on the table.</p>
@@ -460,18 +460,18 @@ drwxr-xr-x 3 mysql mysql  4096 Dec 8 18:46 ..
 </li></ul>
 <pre class="fixed"># cp /data/contacts/test/t1.ibd /data/saved-tablespaces/
 # cp /data/contacts/test/t1.cfg /data/saved-tablespaces/
-</pre><ul start="1"><li>Then, once you've copied the files, you can release the lock with <code><a href="/kb/en/lock-tables-and-unlock-tables/">UNLOCK TABLES</a></code>:
+</pre><ul start="1"><li>Then, once you've copied the files, you can release the lock with <a href="/kb/en/lock-tables-and-unlock-tables/">UNLOCK TABLES</a>:
 </li></ul>
 <pre class="fixed"><span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
 </pre><h4 class="anchored_heading" id="importing-transportable-tablespaces-for-non-partitioned-tables">Importing Transportable Tablespaces for Non-partitioned Tables</h4>
 <p>You can import a non-partitioned table by discarding the table's original tablespace, copying the table's <code>.ibd</code> and <code>.cfg</code> files from the backup location to the relevant <a href="#file-per-table-tablespace-locations">tablespace location</a> for the table, and then telling the server to import the tablespace. For example, the process would go like this:</p>
-<ul start="1"><li>First, on the destination server, you need to create a copy of the table. Use the same <code><a href="/kb/en/create-table/">CREATE TABLE</a></code> statement that was used to create the table on the original server:
+<ul start="1"><li>First, on the destination server, you need to create a copy of the table. Use the same <a href="/kb/en/create-table/">CREATE TABLE</a> statement that was used to create the table on the original server:
 </li></ul>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t1</span> <span class="p">(</span>
    <span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
    <span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 <span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span>
-</pre><ul start="1"><li>Then, use <code><a href="/kb/en/alter-table/#discard-tablespace">ALTER TABLE ... DISCARD TABLESPACE</a></code> to discard the new table's tablespace:
+</pre><ul start="1"><li>Then, use <a href="/kb/en/alter-table/#discard-tablespace">ALTER TABLE ... DISCARD TABLESPACE</a> to discard the new table's tablespace:
 </li></ul>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t1</span> <span class="n">DISCARD</span> <span class="n">TABLESPACE</span><span class="p">;</span>
 </pre><ul start="1"><li>Then, copy the <code>.ibd</code> and <code>.cfg</code> files from the original server to the relevant directory on the target MariaDB Server:
@@ -479,7 +479,7 @@ drwxr-xr-x 3 mysql mysql  4096 Dec 8 18:46 ..
 <pre class="fixed"># scp /data/tablespaces/t1.ibd target-server.com:/var/lib/mysql/test/
 # scp /data/tablespaces/t1.cfg target-server.com:/var/lib/mysql/test/
 </pre><div class="cstm-style bluebox"><p>File-per-table tablespaces can be imported with just the <code>.ibd</code> file in many cases. If you do not have the tablespace's <code>.cfg</code> file for whatever reason, then it is usually worth trying to import the tablespace with just the <code>.ibd</code> file.</p>
-</div><ul start="1"><li>Then, once the files are in the proper directory on the target server, use <code><a href="/kb/en/alter-table/#import-tablespace">ALTER TABLE ... IMPORT TABLESPACE</a></code> to import the new table's tablespace:
+</div><ul start="1"><li>Then, once the files are in the proper directory on the target server, use <a href="/kb/en/alter-table/#import-tablespace">ALTER TABLE ... IMPORT TABLESPACE</a> to import the new table's tablespace:
 </li></ul>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t1</span> <span class="n">IMPORT</span> <span class="n">TABLESPACE</span><span class="p">;</span>
 </pre><h3 class="anchored_heading" id="copying-transportable-tablespaces-for-partitioned-tables">Copying Transportable Tablespaces for Partitioned Tables</h3>
@@ -504,7 +504,7 @@ drwxr-xr-x 3 mysql mysql  4096 Dec 8 18:46 ..
    <span class="p">(</span><span class="s1">&#39;Chris Calendar&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
    <span class="p">(</span><span class="s1">&#39;Kyle Joiner&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> 
    <span class="p">(</span><span class="s1">&#39;Will Fong&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
-</pre><ul start="1"><li>Then, we need to export the partitioned tablespace from the original server, which follows the same process as exporting non-partitioned tablespaces. That means that we need to use the <code><a href="/kb/en/flush-tables-for-export/">FLUSH TABLES ... FOR EXPORT</a></code> statement on the target table:
+</pre><ul start="1"><li>Then, we need to export the partitioned tablespace from the original server, which follows the same process as exporting non-partitioned tablespaces. That means that we need to use the <a href="/kb/en/flush-tables-for-export/">FLUSH TABLES ... FOR EXPORT</a> statement on the target table:
 </li></ul>
 <pre class="fixed"><span class="n">FLUSH</span> <span class="n">TABLES</span> <span class="n">test</span><span class="p">.</span><span class="n">t2</span> <span class="k">FOR</span> <span class="n">EXPORT</span><span class="p">;</span>
 </pre><p>This forces the server to close the table and provides your connection with a read lock on the table.</p>
@@ -527,7 +527,7 @@ total 428
 <pre class="fixed">$ mkdir /tmp/backup
 $ sudo cp /var/lib/mysql/test/*.ibd /tmp/backup
 $ sudo cp /var/lib/mysql/test/*.cfg /tmp/backup
-</pre><ul start="1"><li>Then, once we've copied the files, we can release the lock with <code><a href="/kb/en/lock-tables-and-unlock-tables/">UNLOCK TABLES</a></code>:
+</pre><ul start="1"><li>Then, once we've copied the files, we can release the lock with <a href="/kb/en/lock-tables-and-unlock-tables/">UNLOCK TABLES</a>:
 </li></ul>
 <pre class="fixed"><span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
 </pre><h4 class="anchored_heading" id="importing-transportable-tablespaces-for-partitioned-tables">Importing Transportable Tablespaces for Partitioned Tables</h4>
@@ -548,14 +548,14 @@ $ sudo cp /var/lib/mysql/test/*.cfg /tmp/backup
    <span class="n">PARTITION</span> <span class="n">p2</span> <span class="k">VALUES</span> <span class="k">LESS</span> <span class="k">THAN</span> <span class="p">(</span><span class="mi">16</span><span class="p">),</span>
    <span class="n">PARTITION</span> <span class="n">p3</span> <span class="k">VALUES</span> <span class="k">LESS</span> <span class="k">THAN</span> <span class="k">MAXVALUE</span>
 <span class="p">);</span>
-</pre><ul start="1"><li>Then, using this table as a model, we need to create a placeholder of this table with the same structure that does not use partitioning. This can be done with a <code><a href="/kb/en/create-table/#create-select">CREATE TABLE... AS SELECT</a></code> statement:
+</pre><ul start="1"><li>Then, using this table as a model, we need to create a placeholder of this table with the same structure that does not use partitioning. This can be done with a <a href="/kb/en/create-table/#create-select">CREATE TABLE... AS SELECT</a> statement:
 </li></ul>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t2_placeholder</span> <span class="k">AS</span>
    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">test</span><span class="p">.</span><span class="n">t2</span> <span class="k">WHERE</span> <span class="k">NULL</span><span class="p">;</span>
 </pre><p>This statement will create a new table called <code>t2_placeholder</code> that has the same schema structure as <code>t2</code>, but it does not use partitioning and it contains no rows.</p>
 <h5 class="anchored_heading" id="for-each-partition">For Each Partition</h5>
 <p>From this point forward, the rest of our steps need to happen for each individual partition. For each partition, we need to do the following process:</p>
-<ul start="1"><li>First, we need to use <code><a href="/kb/en/alter-table/#discard-tablespace">ALTER TABLE ... DISCARD TABLESPACE</a></code> to discard the placeholder table's tablespace:
+<ul start="1"><li>First, we need to use <a href="/kb/en/alter-table/#discard-tablespace">ALTER TABLE ... DISCARD TABLESPACE</a> to discard the placeholder table's tablespace:
 </li></ul>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t2_placeholder</span> <span class="n">DISCARD</span> <span class="n">TABLESPACE</span><span class="p">;</span>
 </pre><ul start="1"><li>Then, copy the <code>.ibd</code> and <code>.cfg</code> files for the next partition to the relevant directory for the <code>t2_placeholder</code> table on the target MariaDB Server:
@@ -564,7 +564,7 @@ $ sudo cp /var/lib/mysql/test/*.cfg /tmp/backup
 # cp /tmp/backup/t2#P#p0.ibd /var/lib/mysql/test/t2_placeholder.ibd
 # chown mysql:mysql /var/lib/mysql/test/t2_placeholder*
 </pre><div class="cstm-style bluebox"><p>File-per-table tablespaces can be imported with just the <code>.ibd</code> file in many cases. If you do not have the tablepace's <code>.cfg</code> file for whatever reason, then it is usually worth trying to import the tablespace with just the <code>.ibd</code> file.</p>
-</div><ul start="1"><li>Then, once the files are in the proper directory on the target server, we need to use <code><a href="/kb/en/alter-table/#import-tablespace">ALTER TABLE ... IMPORT TABLESPACE</a></code> to import the new table's tablespace:
+</div><ul start="1"><li>Then, once the files are in the proper directory on the target server, we need to use <a href="/kb/en/alter-table/#import-tablespace">ALTER TABLE ... IMPORT TABLESPACE</a> to import the new table's tablespace:
 </li></ul>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t2_placeholder</span> <span class="n">IMPORT</span> <span class="n">TABLESPACE</span><span class="p">;</span>
 </pre><p>The placeholder table now contains data from the <code>p0</code> partition on the source server.</p>
@@ -575,7 +575,7 @@ $ sudo cp /var/lib/mysql/test/*.cfg /tmp/backup
 <span class="o">+</span><span class="c1">-------------+--------------+</span>
 <span class="o">|</span>           <span class="mi">1</span> <span class="o">|</span> <span class="n">Geoff</span> <span class="n">Montee</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------------+--------------+</span>
-</pre><ul start="1"><li>Then, it's time to transfer the partition from the placeholder to the target table.  This can be done with an <code><a href="/kb/en/alter-table/#exchange-partition">ALTER TABLE... EXCHANGE PARTITION</a></code> statement:
+</pre><ul start="1"><li>Then, it's time to transfer the partition from the placeholder to the target table.  This can be done with an <a href="/kb/en/alter-table/#exchange-partition">ALTER TABLE... EXCHANGE PARTITION</a> statement:
 </li></ul>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t2</span> <span class="n">EXCHANGE</span> <span class="n">PARTITION</span> <span class="n">p0</span> <span class="k">WITH</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t2_placeholder</span><span class="p">;</span>
 </pre><p>The target table now contains the first partition from the source table.</p>
@@ -604,19 +604,19 @@ $ sudo cp /var/lib/mysql/test/*.cfg /tmp/backup
 <pre class="fixed"><span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">test</span><span class="p">.</span><span class="n">t2_placeholder</span><span class="p">;</span>
 </pre><h3 class="anchored_heading" id="known-problems-with-copying-transportable-tablespaces">Known Problems with Copying Transportable Tablespaces</h3>
 <h4 class="anchored_heading" id="differing-storage-formats-for-temporal-columns">Differing Storage Formats for Temporal Columns</h4>
-<p><a href="/kb/en/mariadb-1012-release-notes/">MariaDB 10.1.2</a> added the <code><a href="/kb/en/server-system-variables/#mysql56_temporal_format">mysql56_temporal_format</a></code> system variable, which enables a new MySQL 5.6-compatible storage format for the <code><a href="/kb/en/time/">TIME</a></code>, <code><a href="/kb/en/datetime/">DATETIME</a></code> and <code><a href="/kb/en/timestamp/">TIMESTAMP</a></code> data types.</p>
+<p><a href="/kb/en/mariadb-1012-release-notes/">MariaDB 10.1.2</a> added the <a href="/kb/en/server-system-variables/#mysql56_temporal_format">mysql56_temporal_format</a> system variable, which enables a new MySQL 5.6-compatible storage format for the <a href="/kb/en/time/">TIME</a>, <a href="/kb/en/datetime/">DATETIME</a> and <a href="/kb/en/timestamp/">TIMESTAMP</a> data types.</p>
 <p>If a file-per-tablespace file contains columns that use one or more of these temporal data types and if the tablespace file's original table was created with a certain storage format for these columns, then the tablespace file can only be imported into tables that were also created with the same storage format for these columns as the original table. Otherwise, you will see errors like the following:</p>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">dt_test</span> <span class="n">IMPORT</span> <span class="n">TABLESPACE</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1808</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="k">Schema</span> <span class="n">mismatch</span> <span class="p">(</span><span class="k">Column</span> <span class="n">dt</span> <span class="n">precise</span> <span class="k">type</span> <span class="n">mismatch</span><span class="p">.)</span>
 </pre><p>See <a href="https://jira.mariadb.org/browse/MDEV-15225">MDEV-15225</a> for more information.</p>
-<p>See the pages for the <code><a href="/kb/en/time/">TIME</a></code>, <code><a href="/kb/en/datetime/">DATETIME</a></code> and <code><a href="/kb/en/timestamp/">TIMESTAMP</a></code> data types to determine how to update the storage format for temporal columns in tables that were created before <a href="/kb/en/mariadb-1012-release-notes/">MariaDB 10.1.2</a> or that were created with <code><a href="/kb/en/server-system-variables/#mysql56_temporal_format">mysql56_temporal_format=OFF</a></code>.</p>
+<p>See the pages for the <a href="/kb/en/time/">TIME</a>, <a href="/kb/en/datetime/">DATETIME</a> and <a href="/kb/en/timestamp/">TIMESTAMP</a> data types to determine how to update the storage format for temporal columns in tables that were created before <a href="/kb/en/mariadb-1012-release-notes/">MariaDB 10.1.2</a> or that were created with <a href="/kb/en/server-system-variables/#mysql56_temporal_format">mysql56_temporal_format=OFF</a>.</p>
 <h4 class="anchored_heading" id="differing-row_format-values">Differing ROW_FORMAT Values</h4>
-<p>InnoDB file-per-table tablespaces can use different <a href="/kb/en/xtradbinnodb-storage-formats/">row formats</a>. A specific row format can be specified when creating a table either by setting the <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option or by the setting the <code><a href="/kb/en/innodb-system-variables/#innodb_default_row_format">innodb_default_row_format</a></code> system variable. See <a href="/kb/en/innodb-storage-formats/#setting-a-tables-row-format">Setting a Table's Row Format</a> for more information on how to set an InnoDB table's row format.</p>
+<p>InnoDB file-per-table tablespaces can use different <a href="/kb/en/xtradbinnodb-storage-formats/">row formats</a>. A specific row format can be specified when creating a table either by setting the <a href="/kb/en/create-table/#row_format">ROW_FORMAT</a> table option or by the setting the <a href="/kb/en/innodb-system-variables/#innodb_default_row_format">innodb_default_row_format</a> system variable. See <a href="/kb/en/innodb-storage-formats/#setting-a-tables-row-format">Setting a Table's Row Format</a> for more information on how to set an InnoDB table's row format.</p>
 <p>If a file-per-tablespace file was created with a certain row format, then the tablespace file can only be imported into tables that were created with the same row format as the original table. Otherwise, you will see errors like the following:</p>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">t0</span> <span class="n">IMPORT</span> <span class="n">TABLESPACE</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1808</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="k">Schema</span> <span class="n">mismatch</span> <span class="p">(</span><span class="n">Expected</span> <span class="n">FSP_SPACE_FLAGS</span><span class="o">=</span><span class="mi">0</span><span class="n">x21</span><span class="p">,</span> <span class="p">.</span><span class="n">ibd</span> <span class="n">file</span> <span class="k">contains</span> <span class="mi">0</span><span class="n">x0</span><span class="p">.)</span>
-</pre><p>The error message will be a bit more descriptive in <a href="/kb/en/mariadb-10217-release-notes/">MariaDB 10.2.17</a> and later:</p>
-<pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">t0</span> <span class="n">IMPORT</span> <span class="n">TABLESPACE</span><span class="p">;</span>
+</pre><p>The error message is a bit more descriptive in <a href="/kb/en/mariadb-10217-release-notes/">MariaDB 10.2.17</a> and later:</p>
+<pre class="fixed wrap"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">t0</span> <span class="n">IMPORT</span> <span class="n">TABLESPACE</span><span class="p">;</span>
 <span class="n">ERROR</span> <span class="mi">1808</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="k">Schema</span> <span class="n">mismatch</span> <span class="p">(</span><span class="k">Table</span> <span class="n">flags</span> <span class="n">don</span><span class="err">&#39;</span><span class="n">t</span> <span class="k">match</span><span class="p">,</span> <span class="n">server</span> <span class="k">table</span> <span class="n">has</span> <span class="mi">0</span><span class="n">x1</span> <span class="k">and</span> <span class="n">the</span> <span class="n">meta</span><span class="o">-</span><span class="k">data</span> <span class="n">file</span> <span class="n">has</span> <span class="mi">0</span><span class="n">x0</span><span class="p">;</span> <span class="p">.</span><span class="n">cfg</span> <span class="n">file</span> <span class="n">uses</span> <span class="n">ROW_FORMAT</span><span class="o">=</span><span class="n">REDUNDANT</span><span class="p">)</span>
 </pre><p>Be sure to check a tablespace's row format before moving it from one server to another. Keep in mind that the default row format can change between major versions of MySQL or MariaDB. See <a href="/kb/en/innodb-storage-formats/#checking-a-tables-row-format">Checking a Table's Row Format</a> for information on how to check an InnoDB table's row format.</p>
 <p>See <a href="https://jira.mariadb.org/browse/MDEV-15049">MDEV-15049</a> and <a href="https://jira.mariadb.org/browse/MDEV-16851">MDEV-16851</a> for more information.</p>

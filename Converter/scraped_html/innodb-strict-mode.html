@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-04-09 23:44">9 years ago</span></dd>
+<span class="datetime" title="2013-04-09 23:44">9 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-09-04 01:46">2 years, 7 months ago</span></dd>
+<span class="datetime" title="2022-04-27 14:34">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -451,10 +451,10 @@
 <p><a href="/kb/en/innodb/">InnoDB</a> strict mode is similar to <a href="/kb/en/sql-mode/#strict-mode">SQL strict mode</a>. When it is enabled, certain InnoDB warnings become errors instead.</p>
 <h2 class="anchored_heading" id="configuring-innodb-strict-mode">Configuring InnoDB Strict Mode</h2>
 <div class="mariadb_from_10_2_2 mariadb from_10_2_2 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1022-release-notes/">10.2.2</a></h5><p>In <a href="/kb/en/mariadb-1022-release-notes/">MariaDB 10.2.2</a> and later, InnoDB strict mode is enabled by default.</p>
-</div><p>InnoDB strict mode can be enabled or disabled by configuring the <code><a href="/kb/en/xtradbinnodb-server-system-variables/#innodb_strict_mode">innodb_strict_mode</a></code> server system variable.</p>
-<p>Its global value can be changed dynamically with <code><a href="/kb/en/set/#global-session">SET GLOBAL</a></code>. For example:</p>
+</div><p>InnoDB strict mode can be enabled or disabled by configuring the <a href="/kb/en/xtradbinnodb-server-system-variables/#innodb_strict_mode">innodb_strict_mode</a> server system variable.</p>
+<p>Its global value can be changed dynamically with <a href="/kb/en/set/#global-session">SET GLOBAL</a>. For example:</p>
 <pre class="fixed">SET GLOBAL innodb_strict_mode=ON;
-</pre><p>Its value for the current session can also be changed dynamically with <code><a href="/kb/en/set/#global-session">SET SESSION</a></code>. For example:</p>
+</pre><p>Its value for the current session can also be changed dynamically with <a href="/kb/en/set/#global-session">SET SESSION</a>. For example:</p>
 <pre class="fixed">SET SESSION innodb_strict_mode=ON;
 </pre><p>It can also be set in a server <a href="/kb/en/configuring-mariadb-with-option-files/#option-groups">option group</a> in an <a href="/kb/en/configuring-mariadb-with-option-files/">option file</a> prior to starting up the server. For example:</p>
 <pre class="fixed">[mariadb]
@@ -464,9 +464,9 @@ innodb_strict_mode=ON
 <h3 class="anchored_heading" id="wrong-create-options">Wrong Create Options</h3>
 <p>If InnoDB strict mode is enabled, and if a DDL statement is executed and invalid or conflicting <a href="/kb/en/create-table/#table-options">table options</a> are specified, then an error is raised. The error will only be a generic error that says the following:</p>
 <pre class="fixed">ERROR 1005 (HY000): Can't create table `db1`.`tab` (errno: 140 &#34;Wrong create options&#34;)
-</pre><p>However, more details about the error can be found by executing <code><a href="/kb/en/show-warnings/">SHOW WARNINGS</a></code>.</p>
+</pre><p>However, more details about the error can be found by executing <a href="/kb/en/show-warnings/">SHOW WARNINGS</a>.</p>
 <p>For example, the error is raised in the following cases:</p>
-<ul start="1"><li>The <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option is set to a non-zero value, but the <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option is set to some row format other than the <code><a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a></code> row format. For example:
+<ul start="1"><li>The <a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a> table option is set to a non-zero value, but the <a href="/kb/en/create-table/#row_format">ROW_FORMAT</a> table option is set to some row format other than the <a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a> row format. For example:
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
 
@@ -487,7 +487,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option is set to a non-zero value, but the configured value is larger than either <code>16</code> or the value of the <code><a href="/kb/en/innodb-system-variables/#innodb_page_size">innodb_page_size</a></code> system variable, whichever is smaller.
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a> table option is set to a non-zero value, but the configured value is larger than either <code>16</code> or the value of the <a href="/kb/en/innodb-system-variables/#innodb_page_size">innodb_page_size</a> system variable, whichever is smaller.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
 
@@ -507,7 +507,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option is set to a non-zero value, but the <code><a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a></code> system variable is not set to <code>ON</code>.
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a> table option is set to a non-zero value, but the <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a> system variable is not set to <code>ON</code>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_file_per_table</span><span class="o">=</span><span class="k">OFF</span><span class="p">;</span>
 <span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
@@ -528,7 +528,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option is set to a non-zero value, but it is not set to one of the supported values: [1, 2, 4, 8, 16].
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a> table option is set to a non-zero value, but it is not set to one of the supported values: [1, 2, 4, 8, 16].
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
 
@@ -548,7 +548,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+-----------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option is set to the <code><a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a></code> row format, but the <code><a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a></code> system variable is not set to <code>ON</code>.
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#row_format">ROW_FORMAT</a> table option is set to the <a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a> row format, but the <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a> system variable is not set to <code>ON</code>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_file_per_table</span><span class="o">=</span><span class="k">OFF</span><span class="p">;</span>
 <span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
@@ -569,7 +569,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option is set to a value, but it is not set to one of the values supported by InnoDB: <code><a href="/kb/en/innodb-redundant-row-format/">REDUNDANT</a></code>, <code><a href="/kb/en/innodb-compact-row-format/">COMPACT</a></code>, <code><a href="/kb/en/innodb-dynamic-row-format/">DYNAMIC</a></code>, and <code><a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a></code>.
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#row_format">ROW_FORMAT</a> table option is set to a value, but it is not set to one of the values supported by InnoDB: <a href="/kb/en/innodb-redundant-row-format/">REDUNDANT</a>, <a href="/kb/en/innodb-compact-row-format/">COMPACT</a>, <a href="/kb/en/innodb-dynamic-row-format/">DYNAMIC</a>, and <a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
 
@@ -589,7 +589,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>Either the <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option is set to a non-zero value or the <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option is set to the <code><a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a></code> row format, but the <code><a href="/kb/en/innodb-system-variables/#innodb_page_size">innodb_page_size</a></code> system variable is set to a value greater than <code>16k</code>.
+</pre><ul start="1"><li>Either the <a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a> table option is set to a non-zero value or the <a href="/kb/en/create-table/#row_format">ROW_FORMAT</a> table option is set to the <a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a> row format, but the <a href="/kb/en/innodb-system-variables/#innodb_page_size">innodb_page_size</a> system variable is set to a value greater than <code>16k</code>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
 
@@ -609,7 +609,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+-----------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#data-directoryindex-directory">DATA DIRECTORY</a></code> table option is set, but the <code><a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a></code> system variable is not set to <code>ON</code>.
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#data-directoryindex-directory">DATA DIRECTORY</a> table option is set, but the <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a> system variable is not set to <code>ON</code>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_file_per_table</span><span class="o">=</span><span class="k">OFF</span><span class="p">;</span>
 <span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
@@ -630,7 +630,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#data-directoryindex-directory">DATA DIRECTORY</a></code> table option is set, but the table is a <a href="/kb/en/create-table/#create-temporary-table">temporary table</a>.
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#data-directoryindex-directory">DATA DIRECTORY</a> table option is set, but the table is a <a href="/kb/en/create-table/#create-temporary-table">temporary table</a>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
 
@@ -650,48 +650,48 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#data-directoryindex-directory">INDEX DIRECTORY</a></code> table option is set.
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#data-directoryindex-directory">INDEX DIRECTORY</a> table option is set.
 </li></ul>
-<pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
+<pre class="fixed">SET SESSION innodb_strict_mode=ON;
 
-<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> <span class="n">tab</span> <span class="p">(</span>
-   <span class="n">id</span> <span class="nb">int</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-   <span class="n">str</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="k">INDEX</span> <span class="n">DIRECTORY</span><span class="o">=</span><span class="s1">&#39;/mariadb&#39;</span><span class="p">;</span>
-<span class="n">ERROR</span> <span class="mi">1005</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="n">Can</span><span class="s1">&#39;t create table `db1`.`tab` (errno: 140 &quot;Wrong create options&quot;)</span>
+CREATE OR REPLACE TABLE tab (
+   id int PRIMARY KEY,
+   str varchar(50)
+)
+INDEX DIRECTORY='/mariadb';
+ERROR 1005 (HY000): Can't create table `db1`.`tab` (errno: 140 &#34;Wrong create options&#34;)
 
-<span class="s1">SHOW WARNINGS;</span>
-<span class="s1">+---------+------+--------------------------------------------------------------------+</span>
-<span class="s1">| Level   | Code | Message                                                            |</span>
-<span class="s1">+---------+------+--------------------------------------------------------------------+</span>
-<span class="s1">| Warning | 1478 | InnoDB: INDEX DIRECTORY is not supported                           |</span>
-<span class="s1">| Error   | 1005 | Can&#39;</span><span class="n">t</span> <span class="k">create</span> <span class="k">table</span> <span class="o">`</span><span class="n">db1</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">tab</span><span class="o">`</span> <span class="p">(</span><span class="n">errno</span><span class="p">:</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
-<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="#page_compressed">PAGE_COMPRESSED</a></code> table option is set to <code>1</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is enabled, but the <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option is set to some row format other than the <code><a href="/kb/en/innodb-compact-row-format/">COMPACT</a></code> or <code><a href="/kb/en/innodb-dynamic-row-format/">DYNAMIC</a></code> row formats.
+SHOW WARNINGS;
++---------+------+--------------------------------------------------------------------+
+| Level   | Code | Message                                                            |
++---------+------+--------------------------------------------------------------------+
+| Warning | 1478 | InnoDB: INDEX DIRECTORY is not supported                           |
+| Error   | 1005 | Can't create table `db1`.`tab` (errno: 140 &#34;Wrong create options&#34;) |
+| Warning | 1030 | Got error 140 &#34;Wrong create options&#34; from storage engine InnoDB    |
++---------+------+--------------------------------------------------------------------+
+3 rows in set (0.000 sec)
+</pre><ul start="1"><li>The <a href="#page_compressed">PAGE_COMPRESSED</a> table option is set to <code>1</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is enabled, but the <a href="/kb/en/create-table/#row_format">ROW_FORMAT</a> table option is set to some row format other than the <a href="/kb/en/innodb-compact-row-format/">COMPACT</a> or <a href="/kb/en/innodb-dynamic-row-format/">DYNAMIC</a> row formats.
 </li></ul>
-<pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
+<pre class="fixed">SET SESSION innodb_strict_mode=ON;
 
-<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> <span class="n">tab</span> <span class="p">(</span>
-   <span class="n">id</span> <span class="nb">int</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-   <span class="n">str</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">PAGE_COMPRESSED</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">ROW_FORMAT</span><span class="o">=</span><span class="n">COMPRESSED</span><span class="p">;</span>
-<span class="n">ERROR</span> <span class="mi">1005</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="n">Can</span><span class="s1">&#39;t create table `db1`.`tab` (errno: 140 &quot;Wrong create options&quot;)</span>
+CREATE OR REPLACE TABLE tab (
+   id int PRIMARY KEY,
+   str varchar(50)
+)
+PAGE_COMPRESSED=1
+ROW_FORMAT=COMPRESSED;
+ERROR 1005 (HY000): Can't create table `db1`.`tab` (errno: 140 &#34;Wrong create options&#34;)
 
-<span class="s1">SHOW WARNINGS;</span>
-<span class="s1">+---------+------+--------------------------------------------------------------------+</span>
-<span class="s1">| Level   | Code | Message                                                            |</span>
-<span class="s1">+---------+------+--------------------------------------------------------------------+</span>
-<span class="s1">| Warning |  140 | InnoDB: PAGE_COMPRESSED table can&#39;</span><span class="n">t</span> <span class="n">have</span> <span class="n">ROW_TYPE</span><span class="o">=</span><span class="n">COMPRESSED</span>       <span class="o">|</span>
-<span class="o">|</span> <span class="n">Error</span>   <span class="o">|</span> <span class="mi">1005</span> <span class="o">|</span> <span class="n">Can</span><span class="err">&#39;</span><span class="n">t</span> <span class="k">create</span> <span class="k">table</span> <span class="o">`</span><span class="n">db1</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">tab</span><span class="o">`</span> <span class="p">(</span><span class="n">errno</span><span class="p">:</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
-<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="#page_compressed">PAGE_COMPRESSED</a></code> table option is set to <code>1</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is enabled, but the <code><a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a></code> system variable is not set to <code>ON</code>.
+SHOW WARNINGS;
++---------+------+--------------------------------------------------------------------+
+| Level   | Code | Message                                                            |
++---------+------+--------------------------------------------------------------------+
+| Warning |  140 | InnoDB: PAGE_COMPRESSED table can't have ROW_TYPE=COMPRESSED       |
+| Error   | 1005 | Can't create table `db1`.`tab` (errno: 140 &#34;Wrong create options&#34;) |
+| Warning | 1030 | Got error 140 &#34;Wrong create options&#34; from storage engine InnoDB    |
++---------+------+--------------------------------------------------------------------+
+3 rows in set (0.000 sec)
+</pre><ul start="1"><li>The <a href="#page_compressed">PAGE_COMPRESSED</a> table option is set to <code>1</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is enabled, but the <a href="/kb/en/innodb-system-variables/#innodb_file_per_table">innodb_file_per_table</a> system variable is not set to <code>ON</code>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_file_per_table</span><span class="o">=</span><span class="k">OFF</span><span class="p">;</span>
 <span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
@@ -712,29 +712,29 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="#page_compressed">PAGE_COMPRESSED</a></code> table option is set to <code>1</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is enabled, but the <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option is also specified.
+</pre><ul start="1"><li>The <a href="#page_compressed">PAGE_COMPRESSED</a> table option is set to <code>1</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is enabled, but the <a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a> table option is also specified.
 </li></ul>
-<pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
+<pre class="fixed">SET SESSION innodb_strict_mode=ON;
 
-<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">TABLE</span> <span class="n">tab</span> <span class="p">(</span>
-   <span class="n">id</span> <span class="nb">int</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
-   <span class="n">str</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">PAGE_COMPRESSED</span><span class="o">=</span><span class="mi">1</span>
-<span class="n">KEY_BLOCK_SIZE</span><span class="o">=</span><span class="mi">4</span><span class="p">;</span>
-<span class="n">ERROR</span> <span class="mi">1005</span> <span class="p">(</span><span class="n">HY000</span><span class="p">):</span> <span class="n">Can</span><span class="s1">&#39;t create table `db1`.`tab` (errno: 140 &quot;Wrong create options&quot;)</span>
+CREATE OR REPLACE TABLE tab (
+   id int PRIMARY KEY,
+   str varchar(50)
+)
+PAGE_COMPRESSED=1
+KEY_BLOCK_SIZE=4;
+ERROR 1005 (HY000): Can't create table `db1`.`tab` (errno: 140 &#34;Wrong create options&#34;)
 
-<span class="s1">SHOW WARNINGS;</span>
-<span class="s1">+---------+------+--------------------------------------------------------------------+</span>
-<span class="s1">| Level   | Code | Message                                                            |</span>
-<span class="s1">+---------+------+--------------------------------------------------------------------+</span>
-<span class="s1">| Warning |  140 | InnoDB: PAGE_COMPRESSED table can&#39;</span><span class="n">t</span> <span class="n">have</span> <span class="n">key_block_size</span>            <span class="o">|</span>
-<span class="o">|</span> <span class="n">Error</span>   <span class="o">|</span> <span class="mi">1005</span> <span class="o">|</span> <span class="n">Can</span><span class="err">&#39;</span><span class="n">t</span> <span class="k">create</span> <span class="k">table</span> <span class="o">`</span><span class="n">db1</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">tab</span><span class="o">`</span> <span class="p">(</span><span class="n">errno</span><span class="p">:</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span><span class="p">)</span> <span class="o">|</span>
-<span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
-<span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
-<span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#page_compression_level">PAGE_COMPRESSION_LEVEL</a></code> table option is set, but 
- the <code><a href="#page_compressed">PAGE_COMPRESSED</a></code> table option is set to <code>0</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is disabled.
+SHOW WARNINGS;
++---------+------+--------------------------------------------------------------------+
+| Level   | Code | Message                                                            |
++---------+------+--------------------------------------------------------------------+
+| Warning |  140 | InnoDB: PAGE_COMPRESSED table can't have key_block_size            |
+| Error   | 1005 | Can't create table `db1`.`tab` (errno: 140 &#34;Wrong create options&#34;) |
+| Warning | 1030 | Got error 140 &#34;Wrong create options&#34; from storage engine InnoDB    |
++---------+------+--------------------------------------------------------------------+
+3 rows in set (0.000 sec)
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#page_compression_level">PAGE_COMPRESSION_LEVEL</a> table option is set, but 
+ the <a href="#page_compressed">PAGE_COMPRESSED</a> table option is set to <code>0</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is disabled.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
 
@@ -756,7 +756,7 @@ innodb_strict_mode=ON
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">000</span> <span class="n">sec</span><span class="p">)</span>
 </pre><div class="mariadb_to_10_2 mariadb to_10_2 product"><h5 class="product_title">MariaDB until <a href="/kb/en/what-is-mariadb-102/">10.2</a></h5><p>In <a href="/kb/en/what-is-mariadb-102/">MariaDB 10.2</a> and before, the error is raised in the following additional cases:</p>
-<ul start="1"><li>The <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option is set to a non-zero value, but the <code><a href="/kb/en/innodb-system-variables/#innodb_file_format">innodb_file_format</a></code> system variable is not set to <code>Barracuda</code>.
+<ul start="1"><li>The <a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a> table option is set to a non-zero value, but the <a href="/kb/en/innodb-system-variables/#innodb_file_format">innodb_file_format</a> system variable is not set to <code>Barracuda</code>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_file_format</span><span class="o">=</span><span class="s1">&#39;Antelope&#39;</span><span class="p">;</span>
 <span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
@@ -777,7 +777,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>    <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option is set to either the <code><a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a></code> or the <code><a href="/kb/en/innodb-dynamic-row-format/">DYNAMIC</a></code> row format, but the <code><a href="/kb/en/innodb-system-variables/#innodb_file_format">innodb_file_format</a></code> system variable is not set to <code>Barracuda</code>.
+</pre><ul start="1"><li>The <a href="/kb/en/create-table/#row_format">ROW_FORMAT</a> table option is set to either the <a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a> or the <a href="/kb/en/innodb-dynamic-row-format/">DYNAMIC</a> row format, but the <a href="/kb/en/innodb-system-variables/#innodb_file_format">innodb_file_format</a> system variable is not set to <code>Barracuda</code>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_file_format</span><span class="o">=</span><span class="s1">&#39;Antelope&#39;</span><span class="p">;</span>
 <span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
@@ -798,7 +798,7 @@ innodb_strict_mode=ON
 <span class="o">|</span> <span class="n">Warning</span> <span class="o">|</span> <span class="mi">1030</span> <span class="o">|</span> <span class="n">Got</span> <span class="n">error</span> <span class="mi">140</span> <span class="ss">&quot;Wrong create options&quot;</span> <span class="k">from</span> <span class="k">storage</span> <span class="n">engine</span> <span class="n">InnoDB</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------+------+-----------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
-</pre><ul start="1"><li>The <code><a href="#page_compressed">PAGE_COMPRESSED</a></code> table option is set to <code>1</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is enabled, but the <code><a href="/kb/en/innodb-system-variables/#innodb_file_format">innodb_file_format</a></code> system variable is not set to <code>Barracuda</code>.
+</pre><ul start="1"><li>The <a href="#page_compressed">PAGE_COMPRESSED</a> table option is set to <code>1</code>, so <a href="/kb/en/compression/">InnoDB page compression</a> is enabled, but the <a href="/kb/en/innodb-system-variables/#innodb_file_format">innodb_file_format</a> system variable is not set to <code>Barracuda</code>.
 </li></ul>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">innodb_file_format</span><span class="o">=</span><span class="s1">&#39;Antelope&#39;</span><span class="p">;</span>
 <span class="k">SET</span> <span class="k">SESSION</span> <span class="n">innodb_strict_mode</span><span class="o">=</span><span class="k">ON</span><span class="p">;</span>
@@ -821,7 +821,7 @@ innodb_strict_mode=ON
 <span class="o">+</span><span class="c1">---------+------+--------------------------------------------------------------------+</span>
 <span class="mi">3</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </pre></div><h3 class="anchored_heading" id="compressed-row-format">COMPRESSED Row Format</h3>
-<p>If InnoDB strict mode is enabled, and if a table uses the <code><a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a></code> row format, and if the table's <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> is too small to contain a row, then an error is returned by the statement.</p>
+<p>If InnoDB strict mode is enabled, and if a table uses the <a href="/kb/en/innodb-compressed-row-format/">COMPRESSED</a> row format, and if the table's <a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a> is too small to contain a row, then an error is returned by the statement.</p>
 <h3 class="anchored_heading" id="row-size-too-large">Row Size Too Large</h3>
 <p>If InnoDB strict mode is enabled, and if a table exceeds its row format's <a href="/kb/en/innodb-row-formats-overview/#maximum-row-size">maximum row size</a>, then InnoDB will return an error.</p>
 <pre class="fixed">ERROR 1118 (42000): Row size too large (&gt; 8126). Changing some columns to 

@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-10-21 16:02">8 years, 5 months ago</span></dd>
+<span class="datetime" title="2013-10-21 16:02">8 years, 7 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-07-21 07:59">8 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-26 13:59">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -484,7 +484,7 @@ Fatal error: Can't open privilege tables: Table 'mysql.host' doesn't exist
 <p>If the <a href="/kb/en/system-tables/">system tables</a> really do not exist, then you may need to create them with <code><a href="/kb/en/mysql_install_db/">mysql_install_db</a></code>. See <a href="/kb/en/installing-system-tables-mysql_install_db/">Installing System Tables (mysql_install_db)</a> for more information.</p>
 <h2 class="anchored_heading" id="cant-create-test-file">Can't Create Test File</h2>
 <p>One of the first tests on startup is to check whether MariaDB can write to the data directory. When this fails, it will log an error like this:</p>
-<pre class="fixed">May 13 10:24:28 mariadb3 mysqld[19221]: 2019-05-13 10:24:28 0 [Warning] Can't create test file /usr/local/data/mariadb/mariadb3.lower-test
+<pre class="fixed wrap">May 13 10:24:28 mariadb3 mysqld[19221]: 2019-05-13 10:24:28 0 [Warning] Can't create test file /usr/local/data/mariadb/mariadb3.lower-test
 May 13 10:24:28 mariadb3 mysqld[19221]: 2019-05-13 10:24:28 0 [ERROR] Aborting
 </pre><p>This is usually a permission error on the directory in which this file is being written. Ensure that the entire <code><a href="/kb/en/server-system-variables/#datadir">datadir</a></code> is owned by the user running <code>mysqld</code>, usually <code>mysql</code>. Ensure that directories have the "x" (execute) directory permissions for the owner. Ensure that all the parent directories of the <code><a href="/kb/en/server-system-variables/#datadir">datadir</a></code> upwards have "x" (execute) permissions for all (<code>user</code>, <code>group</code>, and <code>other</code>).</p>
 <p>Once this is checked look at the <a href="#systemd">systemd</a> and <a href="#selinux">selinux</a> documentation below, or <a href="https://blogs.oracle.com/jsmyth/apparmor-and-mysql">apparmor</a>.</p>
@@ -604,7 +604,7 @@ InnoDB: You may have to recover from a backup.
                     <li>
                         <a href="/kb/en/starting-and-stopping-mariadb-automatically/">
                             
-                            Starting and Stopping MariaDB
+                            Starting and Stopping MariaDB Server
                         </a>
                     </li>
                 

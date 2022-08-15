@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-04-16 08:57">2 years, 12 months ago</span></dd>
+<span class="datetime" title="2019-04-16 08:57">3 years, 1 month ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-10-20 12:10">5 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-27 19:26">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -456,7 +456,7 @@ MyRocks supports several compression algorithms.
 <pre class="fixed"><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">plugins</span> <span class="k">where</span> <span class="n">plugin_name</span><span class="o">=</span><span class="s1">&#39;ROCKSDB&#39;</span>
 </pre><p>(note that you need the "ROCKSDB" plugin. Other auxiliary plugins like "ROCKSDB_TRX" might still get loaded).</p>
 <p>Another way is to detect the error is check the error log. When option parsing fails, it will contain messages like so:</p>
-<pre class="fixed">2019-04-16 11:07:57 140283675678016 [Warning] Invalid cf config for cf1 in override options (options: cf1={compression=kLZ4Compression;bottommost_compression=kZSTDCompression;})
+<pre class="fixed wrap">2019-04-16 11:07:57 140283675678016 [Warning] Invalid cf config for cf1 in override options (options: cf1={compression=kLZ4Compression;bottommost_compression=kZSTDCompression;})
 2019-04-16 11:07:57 140283675678016 [ERROR] RocksDB: Failed to initialize CF options map.
 2019-04-16 11:07:57 140283675678016 [ERROR] Plugin 'ROCKSDB' init function returned error.
 2019-04-16 11:07:57 140283675678016 [ERROR] Plugin 'ROCKSDB' registration as a STORAGE ENGINE failed.

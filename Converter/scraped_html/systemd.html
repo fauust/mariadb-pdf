@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="How systemd is configured on MariaDB packages and how to alter its configuration" />
+    <meta property="og:description" content="How systemd is configured on MariaDB packages and how to alter its configuration." />
 
-    <meta name="description" content="How systemd is configured on MariaDB packages and how to alter its configuration" />
+    <meta name="description" content="How systemd is configured on MariaDB packages and how to alter its configuration." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2015-11-28 04:57">6 years, 4 months ago</span></dd>
+<span class="datetime" title="2015-11-28 04:57">6 years, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-23 20:56">1 month, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-06-01 14:37">1 week, 3 days ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -316,16 +316,6 @@
 <div class="well well-small box"><div><h5>Product Versions</h5></div><div>
 
         <ul id="product_chooser">
-            
-                <li class="mariadb_from_10_1_8">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_1_8"
-                            >MariaDB starting with 10.1.8</label>
-                </li>
-            
-                <li class="mariadb_from_10_1_8">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_1_8"
-                            >MariaDB starting with 10.1.8</label>
-                </li>
             
                 <li class="mariadb_from_10_6_0">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_6_0"
@@ -418,8 +408,7 @@
 
     
     <div class="answer formatted">
-        <div class="mariadb_from_10_1_8 mariadb from_10_1_8 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1018-release-notes/">10.1.8</a></h5><p>The MariaDB <code>systemd</code> service was first released in <a href="/kb/en/mariadb-1018-release-notes/">MariaDB 10.1.8</a> on supported Linux distributions.</p>
-</div><p><code>systemd</code> is a <code><a href="/kb/en/sysvinit/">sysVinit</a></code> replacement that is the default service manager on the following Linux distributions:</p>
+        <p><code>systemd</code> is a <code><a href="/kb/en/sysvinit/">sysVinit</a></code> replacement that is the default service manager on the following Linux distributions:</p>
 <ul start="1"><li>RHEL 7 and above
 </li><li>CentOS 7 and above
 </li><li>Fedora 15 and above
@@ -435,98 +424,98 @@
 <h3>Contents</h3>
  <ol class="toc">
 
-    <li class="mariadb_from_10_1_8"><a href="#locating-the-mariadb-services-unit-file" title="Locating the MariaDB Service&#39;s Unit File">Locating the MariaDB Service&#39;s Unit File</a></li>
+    <li class=""><a href="#locating-the-mariadb-services-unit-file" title="Locating the MariaDB Service&#39;s Unit File">Locating the MariaDB Service&#39;s Unit File</a></li>
 
-    <li class="mariadb_from_10_1_8"><a href="#interacting-with-the-mariadb-server-process" title="Interacting with the MariaDB Server Process">Interacting with the MariaDB Server Process</a>    <ol class="toc">
+    <li class=""><a href="#interacting-with-the-mariadb-server-process" title="Interacting with the MariaDB Server Process">Interacting with the MariaDB Server Process</a>    <ol class="toc">
 
-        <li class="mariadb_from_10_1_8"><a href="#starting-the-mariadb-server-process-on-boot" title="Starting the MariaDB Server Process on Boot">Starting the MariaDB Server Process on Boot</a></li>
+        <li class=""><a href="#starting-the-mariadb-server-process-on-boot" title="Starting the MariaDB Server Process on Boot">Starting the MariaDB Server Process on Boot</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#starting-the-mariadb-server-process" title="Starting the MariaDB Server Process">Starting the MariaDB Server Process</a></li>
+        <li class=""><a href="#starting-the-mariadb-server-process" title="Starting the MariaDB Server Process">Starting the MariaDB Server Process</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#stopping-the-mariadb-server-process" title="Stopping the MariaDB Server Process">Stopping the MariaDB Server Process</a></li>
+        <li class=""><a href="#stopping-the-mariadb-server-process" title="Stopping the MariaDB Server Process">Stopping the MariaDB Server Process</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#restarting-the-mariadb-server-process" title="Restarting the MariaDB Server Process">Restarting the MariaDB Server Process</a></li>
+        <li class=""><a href="#restarting-the-mariadb-server-process" title="Restarting the MariaDB Server Process">Restarting the MariaDB Server Process</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#checking-the-status-of-the-mariadb-server-process" title="Checking the Status of the MariaDB Server Process">Checking the Status of the MariaDB Server Process</a></li>
+        <li class=""><a href="#checking-the-status-of-the-mariadb-server-process" title="Checking the Status of the MariaDB Server Process">Checking the Status of the MariaDB Server Process</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#interacting-with-multiple-mariadb-server-processes" title="Interacting with Multiple MariaDB Server Processes">Interacting with Multiple MariaDB Server Processes</a>        <ol class="toc">
+        <li class=""><a href="#interacting-with-multiple-mariadb-server-processes" title="Interacting with Multiple MariaDB Server Processes">Interacting with Multiple MariaDB Server Processes</a>        <ol class="toc">
 
-            <li class="mariadb_from_10_1_8"><a href="#default-configuration-of-multiple-instances-in-104-and-later" title="Default configuration of Multiple Instances in 10.4 and Later">Default configuration of Multiple Instances in 10.4 and Later</a></li>
+            <li class=""><a href="#default-configuration-of-multiple-instances-in-104-and-later" title="Default configuration of Multiple Instances in 10.4 and Later">Default configuration of Multiple Instances in 10.4 and Later</a></li>
 
-            <li class="mariadb_from_10_1_8"><a href="#custom-configuration-of-multiple-instances-in-104-and-later" title="Custom configuration of Multiple Instances in 10.4 and Later">Custom configuration of Multiple Instances in 10.4 and Later</a></li>
+            <li class=""><a href="#custom-configuration-of-multiple-instances-in-104-and-later" title="Custom configuration of Multiple Instances in 10.4 and Later">Custom configuration of Multiple Instances in 10.4 and Later</a></li>
 
-            <li class="mariadb_from_10_1_8"><a href="#configuring-multiple-instances-in-103-and-earlier" title="Configuring Multiple Instances in 10.3 and Earlier">Configuring Multiple Instances in 10.3 and Earlier</a>        </ol>
+            <li class=""><a href="#configuring-multiple-instances-in-103-and-earlier" title="Configuring Multiple Instances in 10.3 and Earlier">Configuring Multiple Instances in 10.3 and Earlier</a>        </ol>
     </ol>
 </li>
 
-    <li class="mariadb_from_10_1_8"><a href="#systemd-and-galera-cluster" title="Systemd and Galera Cluster">Systemd and Galera Cluster</a>    <ol class="toc">
+    <li class=""><a href="#systemd-and-galera-cluster" title="Systemd and Galera Cluster">Systemd and Galera Cluster</a>    <ol class="toc">
 
-        <li class="mariadb_from_10_1_8"><a href="#bootstrapping-a-new-cluster" title="Bootstrapping a New Cluster">Bootstrapping a New Cluster</a></li>
+        <li class=""><a href="#bootstrapping-a-new-cluster" title="Bootstrapping a New Cluster">Bootstrapping a New Cluster</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#recovering-a-nodes-cluster-position" title="Recovering a Node&#39;s Cluster Position">Recovering a Node&#39;s Cluster Position</a></li>
+        <li class=""><a href="#recovering-a-nodes-cluster-position" title="Recovering a Node&#39;s Cluster Position">Recovering a Node&#39;s Cluster Position</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#ssts-and-systemd" title="SSTs and Systemd">SSTs and Systemd</a>    </ol>
+        <li class=""><a href="#ssts-and-systemd" title="SSTs and Systemd">SSTs and Systemd</a>    </ol>
 </li>
 
-    <li class="mariadb_from_10_1_8"><a href="#configuring-the-systemd-service" title="Configuring the Systemd Service">Configuring the Systemd Service</a>    <ol class="toc">
+    <li class=""><a href="#configuring-the-systemd-service" title="Configuring the Systemd Service">Configuring the Systemd Service</a>    <ol class="toc">
 
-        <li class="mariadb_from_10_1_8"><a href="#useful-systemd-options" title="Useful Systemd Options">Useful Systemd Options</a></li>
+        <li class=""><a href="#useful-systemd-options" title="Useful Systemd Options">Useful Systemd Options</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-the-systemd-service-timeout" title="Configuring the Systemd Service Timeout">Configuring the Systemd Service Timeout</a></li>
+        <li class=""><a href="#configuring-the-systemd-service-timeout" title="Configuring the Systemd Service Timeout">Configuring the Systemd Service Timeout</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-the-open-files-limit" title="Configuring the Open Files Limit">Configuring the Open Files Limit</a></li>
+        <li class=""><a href="#configuring-the-open-files-limit" title="Configuring the Open Files Limit">Configuring the Open Files Limit</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-the-core-file-size" title="Configuring the Core File Size">Configuring the Core File Size</a></li>
+        <li class=""><a href="#configuring-the-core-file-size" title="Configuring the Core File Size">Configuring the Core File Size</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-mariadb-to-write-the-error-log-to-syslog" title="Configuring MariaDB to Write the Error Log to Syslog">Configuring MariaDB to Write the Error Log to Syslog</a></li>
+        <li class=""><a href="#configuring-mariadb-to-write-the-error-log-to-syslog" title="Configuring MariaDB to Write the Error Log to Syslog">Configuring MariaDB to Write the Error Log to Syslog</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-limitmemlock" title="Configuring LimitMEMLOCK">Configuring LimitMEMLOCK</a></li>
+        <li class=""><a href="#configuring-limitmemlock" title="Configuring LimitMEMLOCK">Configuring LimitMEMLOCK</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-access-to-home-directories" title="Configuring Access to Home Directories">Configuring Access to Home Directories</a></li>
+        <li class=""><a href="#configuring-access-to-home-directories" title="Configuring Access to Home Directories">Configuring Access to Home Directories</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-the-umask" title="Configuring the umask">Configuring the umask</a></li>
+        <li class=""><a href="#configuring-the-umask" title="Configuring the umask">Configuring the umask</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-the-data-directory" title="Configuring the data directory">Configuring the data directory</a>    </ol>
+        <li class=""><a href="#configuring-the-data-directory" title="Configuring the data directory">Configuring the data directory</a>    </ol>
 </li>
 
-    <li class="mariadb_from_10_1_8"><a href="#systemd-socket-activation" title="Systemd Socket Activation">Systemd Socket Activation</a>    <ol class="toc">
+    <li class=""><a href="#systemd-socket-activation" title="Systemd Socket Activation">Systemd Socket Activation</a>    <ol class="toc">
 
-        <li class="mariadb_from_10_1_8"><a href="#using-systemd-socket-activation" title="Using Systemd Socket Activation">Using Systemd Socket Activation</a></li>
+        <li class=""><a href="#using-systemd-socket-activation" title="Using Systemd Socket Activation">Using Systemd Socket Activation</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#when-to-use-systemd-socket-activation" title="When to Use Systemd Socket Activation">When to Use Systemd Socket Activation</a></li>
+        <li class=""><a href="#when-to-use-systemd-socket-activation" title="When to Use Systemd Socket Activation">When to Use Systemd Socket Activation</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#downsides-to-using-systemd-socket-activiation" title="Downsides to Using Systemd Socket Activiation">Downsides to Using Systemd Socket Activiation</a></li>
+        <li class=""><a href="#downsides-to-using-systemd-socket-activiation" title="Downsides to Using Systemd Socket Activiation">Downsides to Using Systemd Socket Activiation</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#configuring-systemd-socket-activation" title="Configuring Systemd Socket Activation">Configuring Systemd Socket Activation</a></li>
+        <li class=""><a href="#configuring-systemd-socket-activation" title="Configuring Systemd Socket Activation">Configuring Systemd Socket Activation</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#extra-port" title="Extra Port">Extra Port</a></li>
+        <li class=""><a href="#extra-port" title="Extra Port">Extra Port</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#multi-instance-socket-activation" title="Multi-instance socket activation">Multi-instance socket activation</a>    </ol>
+        <li class=""><a href="#multi-instance-socket-activation" title="Multi-instance socket activation">Multi-instance socket activation</a>    </ol>
 </li>
 
-    <li class="mariadb_from_10_1_8"><a href="#systemd-socket-activation-for-hosting-service-providers" title="Systemd Socket Activation for Hosting Service Providers">Systemd Socket Activation for Hosting Service Providers</a>    <ol class="toc">
+    <li class=""><a href="#systemd-socket-activation-for-hosting-service-providers" title="Systemd Socket Activation for Hosting Service Providers">Systemd Socket Activation for Hosting Service Providers</a>    <ol class="toc">
 
-        <li class="mariadb_from_10_1_8"><a href="#end-user-benefits" title="End User Benefits">End User Benefits</a></li>
+        <li class=""><a href="#end-user-benefits" title="End User Benefits">End User Benefits</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#hosting-service-provider-benefits" title="Hosting Service Provider Benefits">Hosting Service Provider Benefits</a></li>
+        <li class=""><a href="#hosting-service-provider-benefits" title="Hosting Service Provider Benefits">Hosting Service Provider Benefits</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#downsides-to-the-hosting-service-provider" title="Downsides to the Hosting Service Provider">Downsides to the Hosting Service Provider</a></li>
+        <li class=""><a href="#downsides-to-the-hosting-service-provider" title="Downsides to the Hosting Service Provider">Downsides to the Hosting Service Provider</a></li>
 
-        <li class="mariadb_from_10_1_8"><a href="#example-on-configuration-items-for-a-per-user-systemd-socket-activitated-multi-instance-service" title="Example on configuration Items for a per user, systemd socket activitated multi-instance service">Example on configuration Items for a per user, systemd socket activitated multi-instance service</a>        <ol class="toc">
+        <li class=""><a href="#example-on-configuration-items-for-a-per-user-systemd-socket-activitated-multi-instance-service" title="Example on configuration Items for a per user, systemd socket activitated multi-instance service">Example on configuration Items for a per user, systemd socket activitated multi-instance service</a>        <ol class="toc">
 
-            <li class="mariadb_from_10_1_8"><a href="#a-mariadb-template-file" title="A MariaDB Template File">A MariaDB Template File</a></li>
+            <li class=""><a href="#a-mariadb-template-file" title="A MariaDB Template File">A MariaDB Template File</a></li>
 
-            <li class="mariadb_from_10_1_8"><a href="#custom-configuration-for-the-multiinstance-service" title="Custom Configuration for the Multiinstance Service">Custom Configuration for the Multiinstance Service</a></li>
+            <li class=""><a href="#custom-configuration-for-the-multiinstance-service" title="Custom Configuration for the Multiinstance Service">Custom Configuration for the Multiinstance Service</a></li>
 
-            <li class="mariadb_from_10_1_8"><a href="#custom-configuration-for-the-multi-instance-socket" title="Custom Configuration for the Multi-instance Socket">Custom Configuration for the Multi-instance Socket</a>        </ol>
+            <li class=""><a href="#custom-configuration-for-the-multi-instance-socket" title="Custom Configuration for the Multi-instance Socket">Custom Configuration for the Multi-instance Socket</a>        </ol>
     </ol>
 </li>
 
-    <li class="mariadb_from_10_1_8"><a href="#systemd-journal" title="Systemd Journal">Systemd Journal</a></li>
+    <li class=""><a href="#systemd-journal" title="Systemd Journal">Systemd Journal</a></li>
 
-    <li class="mariadb_from_10_1_8"><a href="#converting-mysqld_safe-options-to-systemd-options" title="Converting mysqld_safe Options to Systemd Options">Converting mysqld_safe Options to Systemd Options</a></li>
+    <li class=""><a href="#converting-mysqld_safe-options-to-systemd-options" title="Converting mysqld_safe Options to Systemd Options">Converting mysqld_safe Options to Systemd Options</a></li>
 
-    <li class="mariadb_from_10_1_8"><a href="#known-issues" title="Known Issues">Known Issues</a> </ol>
+    <li class=""><a href="#known-issues" title="Known Issues">Known Issues</a> </ol>
 </li>
 </div>
 <h2 class="anchored_heading" id="locating-the-mariadb-services-unit-file">Locating the MariaDB Service's Unit File</h2>
@@ -611,10 +600,10 @@ Environment='MYSQLD_MULTI_INSTANCE=--defaults-file=/home/%I/my.cnf \
            └─migrated-from-my.cnf-settings.conf, timeoutstartsec.conf
 ...
 </pre><p>If you want to configure the <code>systemd</code> service, then you can create a file with the <code>.conf</code> extension in that directory. The configuration option(s) that you would like to change would need to be placed in an appropriate section within the file, usually <code>[Service]</code>. If a <code>systemd</code> option is a list, then you may need to set the option to empty before you set the replacement values. For example:</p>
-<pre class="fixed">[Service]
+<pre class="fixed wrap">[Service]
 
 ExecStart=
-ExecStart=/usr/bin/numactl --interleave=all  /usr/sbin/mysqld ${MYSQLD_OPTS} ${_WSREP_NEW_CLUSTER} ${_WSREP_START_POSITION}
+ExecStart=/usr/bin/numactl --interleave=all  /usr/sbin/mysqld $MYSQLD_OPTS $_WSREP_NEW_CLUSTER $_WSREP_START_POSITION
 </pre><p>After any configuration change, you will need to execute the following for the change to go into effect:</p>
 <pre class="fixed">sudo systemctl daemon-reload
 </pre><h3 class="anchored_heading" id="useful-systemd-options">Useful Systemd Options</h3>
@@ -638,7 +627,7 @@ ExecStart=/usr/bin/numactl --interleave=all  /usr/sbin/mysqld ${MYSQLD_OPTS} ${_
 <tr><td></td><td>ExecStartPre=/usr/sbin/sysctl -q -w vm.drop_caches=3</td><td></td></tr>
 <tr><td><code><a href="/kb/en/mysqld_safe/#mysqld_safe-options">malloc-lib</a></code></td><td><code><a href="https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Environment=">Environment=LD_PRELOAD=/path/to/library</a></code></td><td></td></tr>
 <tr><td><code><a href="/kb/en/mysqld_safe/#mysqld_safe-options">numa-interleave</a></code></td><td><code><a href="https://www.freedesktop.org/software/systemd/man/systemd.exec.html#NUMAPolicy=">NUMAPolicy=interleave</a></code></td><td>from systemd v243 onwards</td></tr>
-<tr><td></td><td>or: <code>ExecStart=/usr/bin/numactl --interleave=all /usr/sbin/mysqld ${MYSQLD_OPTS} ${_WSREP_NEW_CLUSTER}  ${_WSREP_START_POSITION}</code></td><td>prepending <code>ExecStart=/usr/bin/numactl --interleave=all</code> to existing <code>ExecStart</code> setting</td></tr>
+<tr><td></td><td>or: <code>ExecStart=/usr/bin/numactl --interleave=all /usr/sbin/mysqld $MYSQLD_OPTS $_WSREP_NEW_CLUSTER  $_WSREP_START_POSITION</code></td><td>prepending <code>ExecStart=/usr/bin/numactl --interleave=all</code> to existing <code>ExecStart</code> setting</td></tr>
 <tr><td><code><a href="/kb/en/mysqld_safe/#mysqld_safe-options">no-auto-restart</a></code></td><td>Restart={exit-status}</td><td></td></tr>
 </table>
 </div><p>Note: the <code><a href="http://www.freedesktop.org/software/systemd/man/systemd.service.html">systemd</a></code> manual contains the official meanings for these options. The manual also lists considerably more options than the ones listed above.</p>
@@ -747,8 +736,8 @@ sudo systemctl daemon-reload
 <p>When doing a standard binary tarball install the datadir will be under /usr/local/data. The systemd service file makes the whole /usr directory tree write protected via</p>
 <pre class="fixed"># Prevent writes to /usr, /boot, and /etc
 ProtectSystem=full
-</pre><p>though. So when just copying the distributed service file a tarball install will not start up, complaining e.g.a about</p>
-<pre class="fixed">[Warning] Can't create test file /usr/local/.../data/ubuntu-focal.lower-test
+</pre><p>though. So when just copying the distributed service file a tarball install will not start up, complaining e.g. about</p>
+<pre class="fixed wrap">[Warning] Can't create test file /usr/local/.../data/ubuntu-focal.lower-test
 [ERROR] mariadbd: File '/usr/local/.../data/aria_log_control' not found (Errcode: 30 &#34;Read-only file system&#34;)
 [ERROR] mariadbd: Got error 'Can't open file' when trying to use aria control file '/usr/local/.../data/aria_log_control'
 </pre><p>So when using a data directory under /usr/local that specific directory needs to be made writable for the service using the ReadWritePaths setting:</p>
@@ -853,7 +842,7 @@ access to the unix socket(s). For more information see #<a href="/kb/en/authenti
 </li><li>If the MariaDB version was upgrade, the upgrade changes are made automaticly
 </li><li><code>LimitData</code> places a hard upper limit so the user doesn't exceed a portion of the server resources
 </li></ul>
-<pre class="fixed"># cat /etc/systemd/system/mariadb@.service.d/user.conf
+<pre class="fixed wrap"># cat /etc/systemd/system/mariadb@.service.d/user.conf
 [Service]
 User=%I
 ProtectHome=false
@@ -892,7 +881,7 @@ ListenStream=/home/%I/mariadb-extra.sock
 </pre><h2 class="anchored_heading" id="systemd-journal">Systemd Journal</h2>
 <p><code>systemd</code> has its own logging system called the <code>systemd</code> journal. The <code>systemd</code> journal contains information about the service startup process. It is a good place to look when a failure has occurred.</p>
 <p>The MariaDB <code>systemd</code> service's journal can be queried by using the <code><a href="https://www.freedesktop.org/software/systemd/man/journalctl.html">journalctl</a></code> command. For example:</p>
-<pre class="fixed">$ sudo journalctl n 20 -u mariadb.service
+<pre class="fixed wrap">$ sudo journalctl n 20 -u mariadb.service
 -- Logs begin at Fri 2019-01-25 13:49:04 EST, end at Fri 2019-01-25 18:07:02 EST. --
 Jan 25 13:49:15 ip-172-30-0-249.us-west-2.compute.internal systemd[1]: Starting MariaDB 10.1.37 database server...
 Jan 25 13:49:16 ip-172-30-0-249.us-west-2.compute.internal mysqld[2364]: 2019-01-25 13:49:16 140547528317120 [Note] /usr/sbin/mysqld (mysqld 10.1.37-MariaDB) starting as process 2364 ...
@@ -987,7 +976,7 @@ Jan 25 18:08:32 ip-172-30-0-249.us-west-2.compute.internal systemd[1]: mariadb.s
                     <li>
                         <a href="/kb/en/starting-and-stopping-mariadb-automatically/">
                             
-                            Starting and Stopping MariaDB
+                            Starting and Stopping MariaDB Server
                         </a>
                     </li>
                 

@@ -247,12 +247,12 @@ Using the analyzer is very simp..." />
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2012-03-23 21:09">10 years ago</span></dd>
+<span class="datetime" title="2012-03-23 21:09">10 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-12-02 14:02">3 years, 4 months ago</span></dd>
+<span class="datetime" title="2022-04-25 15:59">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -403,7 +403,7 @@ Using the analyzer is very simp..." />
 <p>Using the analyzer is very simple.</p>
 <ol start="1"><li>In the mysql client, run <code>EXPLAIN</code> on a query and copy the output. For example:
 </li></ol>
-<pre class="fixed">MariaDB [test]&gt; EXPLAIN SELECT * FROM t1 INNER JOIN t2 INNER JOIN t3 WHERE t1.a=t2.a AND t2.a=t3.a;
+<pre class="fixed wrap">EXPLAIN SELECT * FROM t1 INNER JOIN t2 INNER JOIN t3 WHERE t1.a=t2.a AND t2.a=t3.a;
 +------+-------------+-------+------+---------------+------+---------+------+------+--------------------------------------------------------+
 | id   | select_type | table | type | possible_keys | key  | key_len | ref  | rows | Extra                                                  |
 +------+-------------+-------+------+---------------+------+---------+------+------+--------------------------------------------------------+

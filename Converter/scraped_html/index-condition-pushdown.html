@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Index Condition Pushdown optimization" />
+    <meta property="og:description" content="Index Condition Pushdown optimization." />
 
-    <meta name="description" content="Index Condition Pushdown optimization" />
+    <meta name="description" content="Index Condition Pushdown optimization." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-07-12 13:01">10 years, 9 months ago</span></dd>
+<span class="datetime" title="2011-07-12 13:01">10 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2016-12-28 11:12">5 years, 3 months ago</span></dd>
+<span class="datetime" title="2022-04-27 07:47">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -329,25 +329,6 @@
 </div>
 
     
-
-
-
-    
-    
-
-<div class="well well-small box"><div><h5>Product Versions</h5></div><div>
-
-        <ul id="product_chooser">
-            
-                <li class="mariadb_from_5_3_3">
-                    <label><input type="checkbox" data-product-class="mariadb_from_5_3_3"
-                            >MariaDB starting with 5.3.3</label>
-                </li>
-            
-        </ul>
-    
-</div>
-</div>
 
 
 
@@ -429,28 +410,27 @@
 <h3>Contents</h3>
  <ol class="toc">
 
-    <li class="mariadb_from_5_3_3"><a href="#the-idea-behind-index-condition-pushdown" title="The idea behind index condition pushdown">The idea behind index condition pushdown</a></li>
+    <li class=""><a href="#the-idea-behind-index-condition-pushdown" title="The Idea Behind Index Condition Pushdown">The Idea Behind Index Condition Pushdown</a></li>
 
-    <li class="mariadb_from_5_3_3"><a href="#example-speedup" title="Example speedup">Example speedup</a></li>
+    <li class=""><a href="#example-speedup" title="Example Speedup">Example Speedup</a></li>
 
-    <li class="mariadb_from_5_3_3"><a href="#status-variables" title="Status variables">Status variables</a></li>
+    <li class=""><a href="#status-variables" title="Status Variables">Status Variables</a></li>
 
-    <li class="mariadb_from_5_3_3"><a href="#see-also" title="See Also">See Also</a> </ol>
+    <li class=""><a href="#see-also" title="See Also">See Also</a> </ol>
 </li>
 </div>
 <p>Index Condition Pushdown is an optimization that is applied for access methods that access table data through indexes: <code>range</code>, <code>ref</code>, <code>eq_ref</code>, <code>ref_or_null</code>, and <a href="/kb/en/block-based-join-algorithms/#batch-key-access-join">Batched Key Access</a>.</p>
 <p>The idea is to check part of the WHERE condition that refers to index fields (we call it <em>Pushed Index Condition</em>) as soon as we've accessed the index. If the <em>Pushed Index Condition</em> is not satisfied, we won't need to read the whole table record.</p>
-<div class="mariadb_from_5_3_3 mariadb from_5_3_3 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-533-release-notes/">5.3.3</a></h5><p>Starting in <a href="/kb/en/mariadb-533-release-notes/">MariaDB 5.3.3</a>, Index Condition Pushdown is <strong>on</strong> by default. To disable it, set its optimizer_switch flag like so:</p>
+<p>Index Condition Pushdown is <strong>on</strong> by default. To disable it, set its optimizer_switch flag like so:</p>
 <pre class="fixed"><span class="k">SET</span> <span class="n">optimizer_switch</span><span class="o">=</span><span class="s1">&#39;index_condition_pushdown=off&#39;</span>
-</pre></div><p>When Index Condition Pushdown is used, EXPLAIN will show "Using index condition":</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">test</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">tbl</span> <span class="k">where</span> <span class="n">key_col1</span> <span class="k">between</span> <span class="mi">10</span> <span class="k">and</span> <span class="mi">11</span> <span class="k">and</span> <span class="n">key_col2</span> <span class="k">like</span> <span class="s1">&#39;%foo%&#39;</span><span class="p">;</span>
+</pre><p>When Index Condition Pushdown is used, EXPLAIN will show "Using index condition":</p>
+<pre class="fixed wrap"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">test</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">tbl</span> <span class="k">where</span> <span class="n">key_col1</span> <span class="k">between</span> <span class="mi">10</span> <span class="k">and</span> <span class="mi">11</span> <span class="k">and</span> <span class="n">key_col2</span> <span class="k">like</span> <span class="s1">&#39;%foo%&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+-------+---------------+----------+---------+------+------+-----------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span> <span class="o">|</span> <span class="k">type</span>  <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>      <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                 <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+-------+---------------+----------+---------+------+------+-----------------------+</span>
 <span class="o">|</span>  <span class="mi">1</span> <span class="o">|</span> <span class="k">SIMPLE</span>      <span class="o">|</span> <span class="n">tbl</span>   <span class="o">|</span> <span class="n">range</span> <span class="o">|</span> <span class="n">key_col1</span>      <span class="o">|</span> <span class="n">key_col1</span> <span class="o">|</span> <span class="mi">5</span>       <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">index</span> <span class="n">condition</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+-------+---------------+----------+---------+------+------+-----------------------+</span>
-<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="n">sec</span><span class="p">)</span>
-</pre><h2 class="anchored_heading" id="the-idea-behind-index-condition-pushdown">The idea behind index condition pushdown</h2>
+</pre><h2 class="anchored_heading" id="the-idea-behind-index-condition-pushdown">The Idea Behind Index Condition Pushdown</h2>
 <p>In disk-based storage engines, making an index lookup is done in two steps, like shown on the picture:</p>
 <p><img src="/kb/en/index-condition-pushdown/+image/index-access-2phases" alt="index-access-2phases" title="index-access-2phases"></p>
 <p>Index Condition Pushdown optimization tries to cut down the number of full record reads by checking whether index records satisfy part of the WHERE condition that can be checked for them:</p>
@@ -459,7 +439,7 @@
 - How many records will be filtered out 
 - How expensive it was to read them</p>
 <p>The former depends on the query and the dataset. The latter is generally bigger when table records are on disk and/or are big, especially when they have <a href="/kb/en/blob/">blobs</a>.</p>
-<h2 class="anchored_heading" id="example-speedup">Example speedup</h2>
+<h2 class="anchored_heading" id="example-speedup">Example Speedup</h2>
 <p>I used DBT-3 benchmark data, with scale factor=1. Since the benchmark defines very few indexes, we've added a multi-column index (index condition pushdown is usually useful with multi-column indexes: the first component(s) is what index access is done for, the subsequent have columns that we read and check conditions on).</p>
 <pre class="fixed"><span class="k">alter</span> <span class="k">table</span> <span class="n">lineitem</span> <span class="k">add</span> <span class="k">index</span> <span class="n">s_r</span> <span class="p">(</span><span class="n">l_shipdate</span><span class="p">,</span> <span class="n">l_receiptdate</span><span class="p">);</span>
 </pre><p>The query was to find big (l_quantity &gt; 40) orders that were made in January 1993 that took more than 25 days to ship:</p>
@@ -475,7 +455,7 @@
  <span class="o">|</span> <span class="n">lineitem</span> <span class="o">|</span> <span class="n">range</span> <span class="o">|</span> <span class="n">s_r</span>                  <span class="o">|</span> <span class="n">s_r</span> <span class="o">|</span> <span class="mi">4</span>       <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="mi">152064</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
 <span class="o">-+</span><span class="c1">----------+-------+----------------------+-----+---------+------+--------+-------------+</span>
 </pre><p>with Index Condition Pushdown:</p>
-<pre class="fixed"><span class="o">-+</span><span class="c1">-----------+-------+---------------+-----+---------+------+--------+------------------------------------+</span>
+<pre class="fixed wrap"><span class="o">-+</span><span class="c1">-----------+-------+---------------+-----+---------+------+--------+------------------------------------+</span>
  <span class="o">|</span> <span class="k">table</span>     <span class="o">|</span> <span class="k">type</span> <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span> <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span> <span class="o">|</span> <span class="k">rows</span>     <span class="o">|</span> <span class="n">Extra</span>                              <span class="o">|</span>
 <span class="o">-+</span><span class="c1">-----------+-------+---------------+-----+---------+------+--------+------------------------------------+</span>
  <span class="o">|</span> <span class="n">lineitem</span> <span class="o">|</span> <span class="n">range</span> <span class="o">|</span> <span class="n">s_r</span>            <span class="o">|</span> <span class="n">s_r</span> <span class="o">|</span> <span class="mi">4</span>       <span class="o">|</span> <span class="k">NULL</span> <span class="o">|</span> <span class="mi">152064</span> <span class="o">|</span> <span class="k">Using</span> <span class="k">index</span> <span class="n">condition</span><span class="p">;</span> <span class="k">Using</span> <span class="k">where</span> <span class="o">|</span>
@@ -484,7 +464,7 @@
 <ul start="1"><li>Cold buffer pool: from 5 min down to 1 min
 </li><li>Hot buffer pool: from 0.19 sec down to 0.07 sec
 </li></ul>
-<h2 class="anchored_heading" id="status-variables">Status variables</h2>
+<h2 class="anchored_heading" id="status-variables">Status Variables</h2>
 <p>There are two server status variables:</p>
 <div class="cstm-style darkheader-nospace-borders"><table><tr><th>Variable name</th><th>Meaning</th></tr>
 <tr><td><a href="/kb/en/server-status-variables/#handler_icp_attempts">Handler_icp_attempts</a></td><td>Number of times pushed index condition was checked.</td></tr>
@@ -493,8 +473,7 @@
 </div><p>That way, the value <code class="fixed" style="white-space:pre-wrap">Handler_icp_attempts - Handler_icp_match</code> shows the number records that the server did not have to read because of Index Condition Pushdown.</p>
 <h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/what-is-mariadb-53/">What is MariaDB 5.3</a>
-</li><li><a href="http://dev.mysql.com/doc/refman/5.6/en/index-condition-pushdown-optimization.html">Index Condition Pushdown</a> in MySQL 5.6 manual (MariaDB's and MySQL 5.6's Index Condition Pushdown implementations have the same ancestry so are very similar to one another). 
-</li></ul>
+</li><li><a href="http://dev.mysql.com/doc/refman/5.6/en/index-condition-pushdown-optimization.html">Index Condition Pushdown</a> in MySQL 5.6 manual (MariaDB's and MySQL 5.6's Index Condition Pushdown implementations have the same ancestry so are very similar to one another).</li></ul>
 
     </div>
 

@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-09-11 11:02">2 years, 7 months ago</span></dd>
+<span class="datetime" title="2019-09-11 11:02">2 years, 9 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-07-13 16:30">9 months ago</span></dd>
+<span class="datetime" title="2022-04-27 19:14">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -394,13 +394,13 @@
 <pre class="fixed">$ sudo ln -s /..path to../ha_connect.so /usr/lib64/libconnect.so
 </pre><p>This provides a library whose name begins with “lib”. It was made in /usr/lib64/ because it was the directory of the libcpprest.so Casablanca library. This solved the need of a file in /etc/ld.so.conf.d as this was already done for the cpprest library.  Note that the -s parameter is a must, without it all sort of nasty errors are met when using the feature.</p>
 <p>Then compile and install the OEM module with:</p>
-<pre class="fixed">$ makdir oem
+<pre class="fixed wrap">$ makdir oem
 $ cd oem
 $ makedir Release
 $ make -f oemrest.mak
 $ sudo cp rest.so /usr/local/mysql/lib/plugin
 </pre><p>The oemrest.mak file:</p>
-<pre class="fixed">#LINUX
+<pre class="fixed wrap">#LINUX
 CPP = g++
 LD = g++
 OD = ./Release/
@@ -442,7 +442,7 @@ clean:
 <p>The file type is JSON by default. If not, it must be specified like this:</p>
 <pre class="fixed">OPTION_LIST=’Ftype=XML’
 </pre><p>To be added to the create table statement. For instance:</p>
-<pre class="fixed"><span class="k">CREATE</span>  <span class="k">TABLE</span> <span class="n">webw</span>
+<pre class="fixed wrap"><span class="k">CREATE</span>  <span class="k">TABLE</span> <span class="n">webw</span>
 <span class="n">ENGINE</span><span class="o">=</span><span class="k">CONNECT</span> <span class="n">TABLE_TYPE</span><span class="o">=</span><span class="n">OEM</span> <span class="n">MODULE</span><span class="o">=</span><span class="s1">&#39;Rest.dll&#39;</span> <span class="n">SUBTYPE</span><span class="o">=</span><span class="n">REST</span>
 <span class="n">FILE_NAME</span><span class="o">=</span><span class="s1">&#39;weatherdata.xml&#39;</span>
 <span class="n">HTTP</span><span class="o">=</span><span class="s1">&#39;https://samples.openweathermap.org/data/2.5/forecast?q=London,us&amp;mode=xml&amp;appid=b6907d289e10d714a6e88b30761fae22&#39;</span>

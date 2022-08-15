@@ -131,3 +131,9 @@
 "disable-javascript": bool #disables javascript
 
 "enable-local-file-access": bool #for using the cover image
+```
+# The Scraper
+
+The scraper is for finding what needs to be added to the csv.
+
+It currently operates in a seperate directory resulting in duplicate files.

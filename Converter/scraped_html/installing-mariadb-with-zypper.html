@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-01-23 23:43">3 years, 2 months ago</span></dd>
+<span class="datetime" title="2019-01-23 23:43">3 years, 4 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-06-20 19:32">2 years, 9 months ago</span></dd>
+<span class="datetime" title="2022-04-25 22:15">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -521,7 +521,7 @@ repository using <code><a href="https://en.wikipedia.org/wiki/ZYpp">zypper</a></
 <p>If you want to install MariaDB with <code>zypper</code>, then you can configure <code>zypper</code> to install from MariaDB Corporation's MariaDB Package Repository by using the <a href="/kb/en/mariadb-package-repository-setup-and-usage/">MariaDB Package Repository setup script</a>.</p>
 <p>MariaDB Corporation provides a MariaDB Package Repository for several Linux distributions that use <code>zypper</code> to manage packages. This repository contains software packages related to MariaDB Server, including the server itself, <a href="/kb/en/clients-utilities/">clients and utilities</a>, <a href="/kb/en/client-libraries/">client libraries</a>, <a href="/kb/en/plugins/">plugins</a>, and <a href="/kb/en/mariabackup/">Mariabackup</a>. The MariaDB Package Repository setup script automatically configures your system to install packages from the MariaDB Package Repository.</p>
 <p>To use the script, execute the following command:</p>
-<pre class="fixed">curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
+<pre class="fixed wrap">curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash
 </pre><p>Note that this script also configures a repository for <a href="/kb/en/maxscale/">MariaDB MaxScale</a> and a repository for MariaDB Tools, which currently only contains <a href="/kb/en/percona-xtrabackup/">Percona XtraBackup</a> and its dependencies.</p>
 <p>See <a href="/kb/en/mariadb-package-repository-setup-and-usage/">MariaDB Package Repository Setup and Usage</a> for more information.</p>
 <h3 class="anchored_heading" id="using-the-mariadb-repository-configuration-tool">Using the MariaDB Repository Configuration Tool</h3>
@@ -564,9 +564,9 @@ is <code>0x1BB943DB</code>. The full key fingerprint is:</p>
 <p>After the <code>zypper</code> repository is configured, you can install MariaDB by executing the <code><a href="https://en.opensuse.org/SDB:Zypper_manual_(plain)">zypper</a></code> command. The specific command that you would use would depend on which specific packages that you want to install.</p>
 <h3 class="anchored_heading" id="installing-the-most-common-packages-with-zypp">Installing the Most Common Packages with ZYpp</h3>
 <div class="mariadb_from_10_4 mariadb from_10_4 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-104/">10.4</a></h5><p>In <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a> and later, to Install the most common packages, execute the following command:</p>
-<pre class="fixed">sudo zypper install MariaDB-server galera-4 MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common
+<pre class="fixed wrap">sudo zypper install MariaDB-server galera-4 MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common
 </pre></div><div class="mariadb_to_10_3 mariadb to_10_3 product"><h5 class="product_title">MariaDB until <a href="/kb/en/what-is-mariadb-103/">10.3</a></h5><p>In <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a> and before, to Install the most common packages, execute the following command:</p>
-<pre class="fixed">sudo zypper install MariaDB-server galera MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common
+<pre class="fixed wrap">sudo zypper install MariaDB-server galera MariaDB-client MariaDB-shared MariaDB-backup MariaDB-common
 </pre></div><h3 class="anchored_heading" id="installing-mariadb-server-with-zypp">Installing MariaDB Server with ZYpp</h3>
 <p>To Install MariaDB Server, execute the following command:</p>
 <pre class="fixed">sudo zypper install MariaDB-server
@@ -597,8 +597,8 @@ import it after it downloads the packages, but before it prompts you to install 
 <div class="mariadb_from_5_5_64 mariadb from_5_5_64 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-5564-release-notes/">5.5.64</a></h5><p>The MariaDB <code>zypper</code> repository first added <code><a href="https://en.opensuse.org/openSUSE:Packaging_guidelines#Debuginfo">debuginfo</a></code> packages in <a href="/kb/en/mariadb-5564-release-notes/">MariaDB 5.5.64</a>, <a href="/kb/en/mariadb-10139-release-notes/">MariaDB 10.1.39</a>, <a href="/kb/en/mariadb-10223-release-notes/">MariaDB 10.2.23</a>, <a href="/kb/en/mariadb-10314-release-notes/">MariaDB 10.3.14</a>, and <a href="/kb/en/mariadb-1044-release-notes/">MariaDB 10.4.4</a>.</p>
 </div><p>The MariaDB <code>zypper</code> repository also contains <code><a href="https://en.opensuse.org/openSUSE:Packaging_guidelines#Debuginfo">debuginfo</a></code> packages. These package may be needed when <a href="/kb/en/how-to-produce-a-full-stack-trace-for-mysqld/">debugging a problem</a>.</p>
 <h4 class="anchored_heading" id="installing-debug-info-for-the-most-common-packages-with-zypp">Installing Debug Info for the Most Common Packages with ZYpp</h4>
-<p>To install <code><a href="https://en.opensuse.org/openSUSE:Packaging_guidelines#Debuginfo">debuginfo</a></code> for the most common packages, execute the following command:</p>
-<pre class="fixed">sudo zypper install MariaDB-server-debuginfo MariaDB-client-debuginfo MariaDB-shared-debuginfo MariaDB-backup-debuginfo MariaDB-common-debuginfo
+<p>To install <a href="https://en.opensuse.org/openSUSE:Packaging_guidelines#Debuginfo">debuginfo</a> for the most common packages, execute the following command:</p>
+<pre class="fixed wrap">sudo zypper install MariaDB-server-debuginfo MariaDB-client-debuginfo MariaDB-shared-debuginfo MariaDB-backup-debuginfo MariaDB-common-debuginfo
 </pre><h4 class="anchored_heading" id="installing-debug-info-for-mariadb-server-with-zypp">Installing Debug Info for MariaDB Server with ZYpp</h4>
 <p>To install <code><a href="https://en.opensuse.org/openSUSE:Packaging_guidelines#Debuginfo">debuginfo</a></code> for MariaDB Server, execute the following command:</p>
 <pre class="fixed">sudo zypper install MariaDB-server-debuginfo
@@ -625,7 +625,7 @@ other available versions.</p>
 <p>The packages that the MariaDB-server package depend on are: MariaDB-client,
 MariaDB-shared, and MariaDB-common. Therefore, to install <a href="/kb/en/mariadb-10314-release-notes/">MariaDB 10.3.14</a> from this <code>zypper</code>
 repository, we would do the following:</p>
-<pre class="fixed">sudo zypper install MariaDB-server-10.3.14 MariaDB-client-10.3.14 MariaDB-shared-10.3.14 MariaDB-backup-10.3.14 MariaDB-common-10.3.14
+<pre class="fixed wrap">sudo zypper install MariaDB-server-10.3.14 MariaDB-client-10.3.14 MariaDB-shared-10.3.14 MariaDB-backup-10.3.14 MariaDB-common-10.3.14
 </pre><p>The rest of the install and setup process is as normal.</p>
 <h2 class="anchored_heading" id="after-installation">After Installation</h2>
 <p>After the installation is complete, you can <a href="/kb/en/starting-and-stopping-mariadb-starting-and-stopping-mariadb/">start MariaDB</a>.</p>

@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-12-17 20:58">2 years, 3 months ago</span></dd>
+<span class="datetime" title="2019-12-17 20:58">2 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-23 00:41">2 weeks, 6 days ago</span></dd>
+<span class="datetime" title="2022-04-26 14:47">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -450,11 +450,11 @@
 <p>For more information see <a href="/kb/en/numeric-data-type-overview/">Numeric Data Type Overview</a>.</p>
 <h3 class="anchored_heading" id="integer-numbers">Integer Numbers</h3>
 <div class="cstm-style darkheader-nospace-borders left"><table><tr><th>SQL Server Types</th><th>Size (bytes)</th><th>MariaDB Types</th><th>Size (bytes)</th><th>Notes</th></tr>
-<tr><td><code>tinyint</code></td><td>1</td><td><a href="/kb/en/tinyint/">TINYINT</a></td><td>1</td></tr>
-<tr><td><code>smallint</code></td><td>2</td><td><a href="/kb/en/smallint/">SMALLINT</a></td><td>2</td></tr>
+<tr><td><code>tinyint</code></td><td>1</td><td><a href="/kb/en/tinyint/">TINYINT</a></td><td>1</td><td></td></tr>
+<tr><td><code>smallint</code></td><td>2</td><td><a href="/kb/en/smallint/">SMALLINT</a></td><td>2</td><td></td></tr>
 <tr><td></td><td></td><td><a href="/kb/en/mediumint/">MEDIUMINT</a></td><td>3</td><td>Takes 3 bytes on disk, but 4 bytes in memory</td></tr>
-<tr><td><code>int</code></td><td>1</td><td><a href="/kb/en/int/">INT</a> / <a href="/kb/en/integer/">INTEGER</a></td><td>4</td></tr>
-<tr><td><code>bigint</code></td><td>8</td><td><a href="/kb/en/bigint/">BIGINT</a></td><td>8</td></tr>
+<tr><td><code>int</code></td><td>1</td><td><a href="/kb/en/int/">INT</a> / <a href="/kb/en/integer/">INTEGER</a></td><td>4</td><td></td></tr>
+<tr><td><code>bigint</code></td><td>8</td><td><a href="/kb/en/bigint/">BIGINT</a></td><td>8</td><td></td></tr>
 </table>
 </div><h3 class="anchored_heading" id="real-numbers-approximated">Real Numbers (approximated)</h3>
 <div class="cstm-style darkheader-nospace-borders left"><table><tr><th>SQL Server Types</th><th>Precision</th><th>Size</th><th>MariaDB Types</th><th>Size</th></tr>
@@ -502,9 +502,9 @@ where <code>value</code> is a sequence of 0 and 1 digits. Hexadecimal syntax can
 <tr><td><code>date</code></td><td>0001-01-01 - 9999-12-31</td><td>3</td><td>/</td><td><a href="/kb/en/date/">DATE</a></td><td>0001-01-01 - 9999-12-31</td><td>3</td><td>/</td><td>They cover the same range</td></tr>
 <tr><td><code>datetime</code></td><td>1753-01-01 - 9999-12-31</td><td>8</td><td>0 to 3, rounded</td><td><a href="/kb/en/datetime/">DATETIME</a></td><td>001-01-01 - 9999-12-31</td><td>8</td><td>0 to 6</td><td>MariaDB values are not approximated, see below.</td></tr>
 <tr><td><code>datetime2</code></td><td>001-01-01 - 9999-12-31</td><td>8</td><td>6 to 8</td><td><a href="/kb/en/datetime/">DATETIME</a></td><td>001-01-01 - 9999-12-31</td><td>8</td><td>0 to 6</td><td>MariaDB values are not approximated, see below.</td></tr>
-<tr><td><code>smalldatetime</code></td><td></td><td></td><td></td><td><a href="/kb/en/datetime/">DATETIME</a></td><td></td><td></td><td></td></tr>
-<tr><td><code>datetimeoffset</code></td><td></td><td></td><td></td><td><a href="/kb/en/datetime/">DATETIME</a></td><td></td><td></td><td></td></tr>
-<tr><td><code>time</code></td><td></td><td></td><td></td><td><a href="/kb/en/time/">TIME</a></td><td></td><td></td><td></td></tr>
+<tr><td><code>smalldatetime</code></td><td></td><td></td><td></td><td><a href="/kb/en/datetime/">DATETIME</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>datetimeoffset</code></td><td></td><td></td><td></td><td><a href="/kb/en/datetime/">DATETIME</a></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><code>time</code></td><td></td><td></td><td></td><td><a href="/kb/en/time/">TIME</a></td><td></td><td></td><td></td><td></td></tr>
 </table>
 </div><p>You may also consider the following MariaDB types:</p>
 <ul start="1"><li><a href="/kb/en/timestamp/">TIMESTAMP</a> has little to do with SQL Server's <code>timestamp</code>. In MariaDB it is the number of seconds elapsed since the beginning of 1970-01-01, with a decimal precision up to 6 digits (0 by default). The value can optionally be automatically set to the current timestamp on insert, on update, or both. It is not meant to be a unique row identifier.

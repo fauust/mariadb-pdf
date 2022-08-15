@@ -10,7 +10,6 @@ def generate_pdf(content, filename, config, mark_pages=False):
         return
     print("making_pdf")
     start_time = time.perf_counter()
-
     with open(os.path.join("config", "wkhtmltopdf.json")) as file:
         pdf_options = json.loads(file.read())
     if mark_pages: pdf_options["footer-right"] += "PAGE"

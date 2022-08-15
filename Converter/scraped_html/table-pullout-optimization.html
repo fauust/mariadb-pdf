@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Table pullout is an optimization for Semi-join subqueries" />
+    <meta property="og:description" content="Table pullout is an optimization for Semi-join subqueries." />
 
-    <meta name="description" content="Table pullout is an optimization for Semi-join subqueries" />
+    <meta name="description" content="Table pullout is an optimization for Semi-join subqueries." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-12-22 23:12">10 years, 3 months ago</span></dd>
+<span class="datetime" title="2011-12-22 23:12">10 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-01-28 10:48">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-26 23:18">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -417,7 +417,8 @@
 </div>
 <p>Table pullout is an optimization for <a href="/kb/en/semi-join-subquery-optimizations/">Semi-join subqueries</a>.</p>
 <h2 class="anchored_heading" id="the-idea-of-table-pullout">The idea of Table Pullout</h2>
-<p>Sometimes, a subquery can be re-written as a join. For example:</p>
+<p>Sometimes, a subquery can be re-written as a join. For example:
+<br><br></p>
 <pre class="fixed"><span class="k">select</span> <span class="o">*</span>
 <span class="k">from</span> <span class="n">City</span> 
 <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">in</span> <span class="p">(</span><span class="k">select</span> <span class="n">Country</span><span class="p">.</span><span class="n">Code</span>
@@ -430,8 +431,8 @@
 <span class="k">where</span>
  <span class="n">City</span><span class="p">.</span><span class="n">Country</span><span class="o">=</span><span class="n">Country</span><span class="p">.</span><span class="n">Code</span> <span class="k">AND</span> <span class="n">Country</span><span class="p">.</span><span class="n">Population</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span><span class="p">;</span>
 </pre><h2 class="anchored_heading" id="table-pullout-in-action">Table pullout in action</h2>
-<p>If one runs <code><a href="/kb/en/explain/">EXPLAIN</a></code> for the above query in MySQL 5.1-5.6 or <a href="/kb/en/what-is-mariadb-51/">MariaDB 5.1</a>-5.2, they'll get this plan:</p>
-<pre class="fixed"><span class="n">MySQL</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">in</span> <span class="p">(</span><span class="k">select</span> <span class="n">Country</span><span class="p">.</span><span class="n">Code</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">Population</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+<p>If one runs <a href="/kb/en/explain/">EXPLAIN</a> for the above query in MySQL 5.1-5.6 or <a href="/kb/en/what-is-mariadb-51/">MariaDB 5.1</a>-5.2, they'll get this plan:</p>
+<pre class="fixed wrap"><span class="n">MySQL</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">in</span> <span class="p">(</span><span class="k">select</span> <span class="n">Country</span><span class="p">.</span><span class="n">Code</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">Population</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">----+--------------------+---------+-----------------+--------------------+---------+---------+------+------+-------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span>        <span class="o">|</span> <span class="k">table</span>   <span class="o">|</span> <span class="k">type</span>            <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>     <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+--------------------+---------+-----------------+--------------------+---------+---------+------+------+-------------+</span>
@@ -441,7 +442,7 @@
 <span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </pre><p>It shows that the optimizer is going to do a full scan on table <code>City</code>, and for each city it will do a lookup in table <code>Country</code>.</p>
 <p>If one runs the same query in <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>, they will get this plan:</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">in</span> <span class="p">(</span><span class="k">select</span> <span class="n">Country</span><span class="p">.</span><span class="n">Code</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">Population</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+<pre class="fixed wrap"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">in</span> <span class="p">(</span><span class="k">select</span> <span class="n">Country</span><span class="p">.</span><span class="n">Code</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">Population</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">----+-------------+---------+-------+--------------------+------------+---------+--------------------+------+-----------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span>   <span class="o">|</span> <span class="k">type</span>  <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>        <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>                <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                 <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+---------+-------+--------------------+------------+---------+--------------------+------+-----------------------+</span>
@@ -454,21 +455,21 @@
 </li><li>The `Country` table is first, followed by the `City` table.
 </li></ul>
 <p>Indeed, if one runs EXPLAIN EXTENDED; SHOW WARNINGS, they will see that the subquery is gone and it was replaced with a join:</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">show</span> <span class="n">warnings</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-  <span class="k">Level</span><span class="p">:</span> <span class="n">Note</span>
-   <span class="n">Code</span><span class="p">:</span> <span class="mi">1003</span>
-<span class="n">Message</span><span class="p">:</span> <span class="k">select</span> <span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">City</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">ID</span><span class="o">`</span> <span class="k">AS</span> <span class="o">`</span><span class="n">ID</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">City</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">Name</span><span class="o">`</span> <span class="k">AS</span> 
-<span class="o">`</span><span class="n">Name</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">City</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">Country</span><span class="o">`</span> <span class="k">AS</span> <span class="o">`</span><span class="n">Country</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">City</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">Population</span><span class="o">`</span> <span class="k">AS</span> 
-<span class="o">`</span><span class="n">Population</span><span class="o">`</span> 
+<pre class="fixed">MariaDB [world]&gt; show warnings\G
+*************************** 1. row ***************************
+  Level: Note
+   Code: 1003
+Message: select `world`.`City`.`ID` AS `ID`,`world`.`City`.`Name` AS 
+`Name`,`world`.`City`.`Country` AS `Country`,`world`.`City`.`Population` AS 
+`Population` 
 
   
-   <span class="k">from</span> <span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">City</span><span class="o">`</span> <span class="k">join</span> <span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">Country</span><span class="o">`</span> <span class="k">where</span> 
+   from `world`.`City` join `world`.`Country` where 
 
 
-<span class="p">((</span><span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">City</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">Country</span><span class="o">`</span> <span class="o">=</span> <span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">Country</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">Code</span><span class="o">`</span><span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="o">`</span><span class="n">world</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">Country</span><span class="o">`</span><span class="p">.</span>
-<span class="o">`</span><span class="n">Population</span><span class="o">`</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)))</span>
-<span class="mi">1</span> <span class="k">row</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+((`world`.`City`.`Country` = `world`.`Country`.`Code`) and (`world`.`Country`.
+`Population` &lt; (100 * 1000)))
+1 row in set (0.00 sec)
 </pre><p>Changing the subquery into a join allows feeding the join to the join optimizer, which can make a choice between two possible join orders:</p>
 <ol start="1"><li>City -&gt; Country
 </li><li>Country -&gt; City

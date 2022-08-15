@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-12-23 00:06">10 years, 3 months ago</span></dd>
+<span class="datetime" title="2011-12-23 00:06">10 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-01-28 10:53">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-26 23:27">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -422,7 +422,7 @@
 
     <li class=""><a href="#firstmatch-factsheet" title="FirstMatch factsheet">FirstMatch factsheet</a></li>
 
-    <li class=""><a href="#see-also" title="See also">See also</a> </ol>
+    <li class=""><a href="#see-also" title="See Also">See Also</a> </ol>
 </li>
 </div>
 <p><code>FirstMatch</code> is an execution strategy for <a href="/kb/en/semi-join-subquery-optimizations/">Semi-join subqueries</a>.</p>
@@ -441,7 +441,9 @@
 <p>Note that the short-cutting has to take place after "Using where" has been applied. It would have been wrong to short-cut after we found Trier.</p>
 <h2 class="anchored_heading" id="firstmatch-in-action">FirstMatch in action</h2>
 <p>The <code>EXPLAIN</code> for the above query will look as follows:</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span>  <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="k">and</span> <span class="n">Country</span><span class="p">.</span><span class="n">continent</span><span class="o">=</span><span class="s1">&#39;Europe&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> 
+  <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="k">and</span> <span class="n">Country</span><span class="p">.</span><span class="n">continent</span><span class="o">=</span><span class="s1">&#39;Europe&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----+-------------+---------+------+--------------------+-----------+---------+--------------------+------+----------------------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span>   <span class="o">|</span> <span class="k">type</span> <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>       <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>                <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                            <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+---------+------+--------------------+-----------+---------+--------------------+------+----------------------------------+</span>
@@ -452,7 +454,9 @@
 
 </pre><p><code class="fixed" style="white-space:pre-wrap">FirstMatch(Country)</code> in the Extra column means that <em>as soon as we have produced one matching record combination, short-cut the execution and jump back to the Country</em> table.</p>
 <p><code>FirstMatch</code>'s query plan is very similar to one you would get in MySQL:</p>
-<pre class="fixed"><span class="n">MySQL</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span>  <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="k">and</span> <span class="n">Country</span><span class="p">.</span><span class="n">continent</span><span class="o">=</span><span class="s1">&#39;Europe&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="n">MySQL</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span>  <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> 
+  <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> 
+   <span class="k">and</span> <span class="n">Country</span><span class="p">.</span><span class="n">continent</span><span class="o">=</span><span class="s1">&#39;Europe&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----+--------------------+---------+----------------+--------------------+-----------+---------+-------+------+------------------------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span>        <span class="o">|</span> <span class="k">table</span>   <span class="o">|</span> <span class="k">type</span>           <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>       <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>   <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                              <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+--------------------+---------+----------------+--------------------+-----------+---------+-------+------+------------------------------------+</span>
@@ -475,7 +479,7 @@
 </li><li>But it cannot be applied if the subquery has meaningful <code>GROUP BY</code> and/or aggregate functions.
 </li><li>Use of the <code>FirstMatch</code> strategy is controlled with the <code class="fixed" style="white-space:pre-wrap">firstmatch=on|off</code> flag in the <a href="/kb/en/server-system-variables/#optimizer_switch">optimizer_switch</a> variable.
 </li></ul>
-<h2 class="anchored_heading" id="see-also">See also</h2>
+<h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/semi-join-subquery-optimizations/">Semi-join subquery optimizations</a>
 </li></ul>
 <p>In-depth material:</p>

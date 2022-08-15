@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-01-11 03:33">3 years, 3 months ago</span></dd>
+<span class="datetime" title="2019-01-11 03:33">3 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-17 18:04">1 month ago</span></dd>
+<span class="datetime" title="2022-04-27 20:54">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -619,7 +619,7 @@ shadowWarning: 0
 EOF
 ldapmodify -a -x -D cn=Manager,dc=support,dc=mariadb,dc=com -W -f ~/createDbaUsers.ldif
 </pre><p>Note that each of these users needs a password, so we can set it for each user with <code><a href="http://www.openldap.org/software/man.cgi?query=ldappasswd&amp;apropos=0&amp;sektion=1&amp;manpath=OpenLDAP+2.4-Release&amp;format=html">ldappasswd</a></code>:</p>
-<pre class="fixed">ldappasswd -x -D cn=Manager,dc=support,dc=mariadb,dc=com -W -S uid=foo,ou=People,dc=support,dc=mariadb,dc=com
+<pre class="fixed wrap">ldappasswd -x -D cn=Manager,dc=support,dc=mariadb,dc=com -W -S uid=foo,ou=People,dc=support,dc=mariadb,dc=com
 ldappasswd -x -D cn=Manager,dc=support,dc=mariadb,dc=com -W -S uid=gmontee,ou=People,dc=support,dc=mariadb,dc=com
 ldappasswd -x -D cn=Manager,dc=support,dc=mariadb,dc=com -W -S uid=bstillman,ou=People,dc=support,dc=mariadb,dc=com
 </pre><p>And then let's create our <code>dba</code> group </p>
@@ -631,7 +631,7 @@ gidNumber: 678
 EOF
 ldapmodify -a -x -D cn=Manager,dc=support,dc=mariadb,dc=com -W -f ~/createDbaGroup.ldif
 </pre><p>And then let's add our two users to it:</p>
-<pre class="fixed">tee ~/addUsersToDbaGroup.ldif &lt;&lt;EOF
+<pre class="fixed wrap">tee ~/addUsersToDbaGroup.ldif &lt;&lt;EOF
 dn: cn=dba,ou=Groups,dc=support,dc=mariadb,dc=com
 changetype: modify
 add: memberuid

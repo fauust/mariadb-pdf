@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-03-16 05:16">3 years ago</span></dd>
+<span class="datetime" title="2019-03-16 05:16">3 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-05-27 08:00">2 years, 10 months ago</span></dd>
+<span class="datetime" title="2022-05-02 12:13">1 month, 1 week ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -574,7 +574,7 @@ recover_binlog_info = 0
 <h2 class="anchored_heading" id="tabledeltameta"><code>&lt;table&gt;.delta.meta</code></h2>
 <p>If the backup is an <a href="/kb/en/incremental-backup-and-restore-with-mariabackup/">incremental backup</a>, then this file contains metadata about <code>&lt;table&gt;.delta</code> files. The fields in this file are listed below.</p>
 <h3 class="anchored_heading" id="page_size"><code>page_size</code></h3>
-<p>This field contains either the value of <code><a href="/kb/en/innodb-system-variables/#innodb_page_size">innodb_page_size</a></code> or the value of the <code><a href="https://mariadb.com/kb/en/library/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option for the table if the <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option for the table is set to <code><a href="/kb/en/innodb-storage-formats/#compressed">COMPRESSED</a></code>.</p>
+<p>This field contains either the value of <code><a href="/kb/en/innodb-system-variables/#innodb_page_size">innodb_page_size</a></code> or the value of the <code><a href="/kb/en/create-table/#key_block_size">KEY_BLOCK_SIZE</a></code> table option for the table if the <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option for the table is set to <code><a href="/kb/en/innodb-storage-formats/#compressed">COMPRESSED</a></code>.</p>
 <h3 class="anchored_heading" id="zip_size"><code>zip_size</code></h3>
 <p>If the <code><a href="/kb/en/create-table/#row_format">ROW_FORMAT</a></code> table option for this table is set to <code><a href="/kb/en/innodb-storage-formats/#compressed">COMPRESSED</a></code>, then this field contains the value of the compressed page size.</p>
 <h3 class="anchored_heading" id="space_id"><code>space_id</code></h3>

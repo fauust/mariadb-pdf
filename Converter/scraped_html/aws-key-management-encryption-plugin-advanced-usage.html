@@ -188,7 +188,7 @@ This document assumes you&#39;ve already set up an Amazon Web Services (AWS) acc
     
 
     
-    » <a class="crumb" href="/kb/en/securing-mariadb-data-at-rest-encryption/">Data-at-Rest Encryption</a>
+    » <a class="crumb" href="/kb/en/encryption-data-at-rest-encryption/">Data-at-Rest Encryption</a>
     
 
     
@@ -261,12 +261,12 @@ This document assumes you&#39;ve already set up an Amazon Web Services (AWS) acc
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2016-02-29 18:41">6 years, 1 month ago</span></dd>
+<span class="datetime" title="2016-02-29 18:41">6 years, 3 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2017-06-30 20:24">4 years, 9 months ago</span></dd>
+<span class="datetime" title="2022-05-19 13:02">3 weeks, 2 days ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -526,7 +526,7 @@ kms_mfa_socket = /tmp/kms_mfa_socket
 <p>Note that the temporary credentials put into the environment of the MariaDB process will expire after a period of time defined by the request to the AWS Security Token Service (STS). In the example below, they will expire after 900 seconds. After that time, MariaDB may be unable to generate new encrypted data keys, which means that, for example, an attempt to create a table with a previously-unused key ID would fail.</p>
 <h4 class="anchored_heading" id="wrapper-program-example">Wrapper program example</h4>
 <p>Here's an example wrapper program written in go. Build this into an executable named <code>iam-kms-wrapper</code> and use it as instructed above. This could of course be written in any language for which an appropriate AWS SDK exists, but go has the benefit of compiling to a static binary, which means you do not have to worry about interpreter versions or installing complex dependencies on the host that runs your MariaDB server.</p>
-<pre class="fixed"><span class="kn">package</span> <span class="nx">main</span>
+<pre class="fixed wrap"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;syscall&quot;</span>
@@ -664,14 +664,14 @@ aws_secret_access_key=pVdGwbuK5/jG64aBK1oEJOXRlkdM0aAylgabCDef
 </li><li>Click "Save Changes".
 </li></ol>
 <p>You've now added a new IAM user and you've given that user privileges to enable and disable your key. This user will be able to perform those operations using the AWS CLI or via a script of your own design using the AWS API. For example, using the <a href="https://aws.amazon.com/cli/">AWS CLI</a>:</p>
-<pre class="fixed">$ cat ~/.aws/credentials
+<pre class="fixed wrap">$ cat ~/.aws/credentials
 [MDBEncAdmin]
 aws_access_key_id=AKIAJMPPNO7EBKABCDEF
 aws_secret_access_key=pVdGwbuK5/jG64aBK1oEJOXRlkdM0aAylgabCDef
 
 $ AWS_PROFILE=MDBEncAdmin aws --region us-east-1 kms disable-key --key-id arn:aws:kms:us-east-1:551888181234:key/abcdf8f6-084b-4cff-99ca-abcdef6c7907c
 </pre><p>In order for MariaDB to start, this new user will have to enable the master key, then the DBA can start MariaDB, and this user can once again disable the master key after the service has started. Note that in this workflow, MariaDB will be unable to create new encryption keys, such as would be done when a user creates a table that refers to a non-existent key ID. The AWS KMS plugin will encounter an error if it tries to generate a new encryption key while the master key is disabled. In that scenario, the key administrator would have to enable the key before the operation could succeed. Here's what you should expect to see in the journal if MariaDB tries to interact with a disabled master key:</p>
-<pre class="fixed">[ERROR] AWS KMS plugin : GenerateDataKeyWithoutPlaintext failed : DisabledException - Unable to parse ExceptionName: DisabledException Message: arn:aws:kms:us-east-1:551888181234:key/abcdf8f6-084b-4cff-99ca-abcdef6c7907c is disabled.
+<pre class="fixed wrap">[ERROR] AWS KMS plugin : GenerateDataKeyWithoutPlaintext failed : DisabledException - Unable to parse ExceptionName: DisabledException Message: arn:aws:kms:us-east-1:551888181234:key/abcdf8f6-084b-4cff-99ca-abcdef6c7907c is disabled.
 </pre><h4 class="anchored_heading" id="adding-mfa">Adding MFA</h4>
 <p>It's also possible to add MFA to this technique so that the user that enables &amp; disables the master key has to authenticate using an MFA device. Adapt the instructions in the MFA section above to add MFA to the policy section for the user with EnableKey and DisableKeys privileges, add an MFA device for that user, use Security Token Service (STS) to get temporary security credentials, and then use those credentials to make the API calls. Here's an example Python script that follows that workflow: </p>
 <pre class="fixed"><span class="ch">#!/usr/bin/env python</span>
@@ -875,6 +875,15 @@ $ AWS_PROFILE=MDBEncAdmin python kms-manage-key enable 799870
                         <a href="/kb/en/file-key-management-encryption-plugin/">
                             
                             File Key Management Encryption Plugin
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/hashicorp-key-management-plugin/">
+                            
+                            Hashicorp Key Management Plugin
                         </a>
                     </li>
                 

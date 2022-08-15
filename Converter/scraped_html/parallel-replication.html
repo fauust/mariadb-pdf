@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-10-14 17:45">8 years, 6 months ago</span></dd>
+<span class="datetime" title="2013-10-14 17:45">8 years, 8 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-01-22 11:59">2 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-26 21:49">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -493,7 +493,7 @@ with a later InnoDB update). DDL statements are not applied in parallel with
 any other transactions, earlier or later.</p>
 <p>The different kind of transactions can be identified in the output of
 <a href="/kb/en/mysqlbinlog/">mariadb-binlog/mysqlbinlog</a>. For example:</p>
-<pre class="fixed">#150324 13:06:26 server id 1  end_log_pos 6881 	GTID 0-1-42 ddl
+<pre class="fixed wrap">#150324 13:06:26 server id 1  end_log_pos 6881 	GTID 0-1-42 ddl
 ...
 #150324 13:06:26 server id 1  end_log_pos 7816 	GTID 0-1-47
 ...
@@ -633,7 +633,7 @@ limit for how much memory it will use for this.</p>
 <p>If this value is set too high, and the replica is far (eg. gigabytes of binlog)
 behind the primary, then the <a href="/kb/en/replication-threads/#slave-sql-thread">SQL thread</a> can quickly read all of that and fill up memory with huge amounts of binlog events faster than the <a href="/kb/en/replication-threads/#worker-threads">worker threads</a> can consume them.</p>
 <p>On the other hand, if set too low, the <a href="/kb/en/replication-threads/#slave-sql-thread">SQL thread</a> might not have sufficient space for queuing enough events to keep the worker threads busy, which could reduce performance. In this case, the <a href="/kb/en/replication-threads/#slave-sql-thread">SQL thread</a> will have the <a href="/kb/en/thread-states/">thread state</a> that states <code>Waiting for room in worker thread event queue</code>. For example:</p>
-<pre class="fixed">+----+-------------+-----------+------+---------+--------+-----------------------------------------------+------------------+----------+
+<pre class="fixed wrap">+----+-------------+-----------+------+---------+--------+-----------------------------------------------+------------------+----------+
 | Id | User        | Host      | db   | Command | Time   | State                                         | Info             | Progress |
 +----+-------------+-----------+------+---------+--------+-----------------------------------------------+------------------+----------+
 |  3 | system user |           | NULL | Connect |    139 | closing tables                                | NULL             |    0.000 |

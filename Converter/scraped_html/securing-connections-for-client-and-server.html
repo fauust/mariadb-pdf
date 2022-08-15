@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2018-10-24 12:28">3 years, 5 months ago</span></dd>
+<span class="datetime" title="2018-10-24 12:28">3 years, 7 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-22 14:02">3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-26 20:46">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -463,10 +463,10 @@
 <h2 class="anchored_heading" id="enabling-tls">Enabling TLS</h2>
 <h3 class="anchored_heading" id="enabling-tls-for-mariadb-server">Enabling TLS for MariaDB Server</h3>
 <p>In order to enable TLS on a MariaDB server that was compiled with TLS support, there are a number of system variables that you need to set, such as:</p>
-<ul start="1"><li>You need to set the path to the server's X509 certificate by setting the <code><a href="/kb/en/ssltls-system-variables/#ssl_cert">ssl_cert</a></code> system variable.
-</li><li>You need to set the path to the server's private key by setting the <code><a href="/kb/en/ssltls-system-variables/#ssl_key">ssl_key</a></code> system variable.
-</li><li>You need to set the path to the certificate authority (CA) chain that can verify the server's certificate by setting either the <code><a href="/kb/en/ssltls-system-variables/#ssl_ca">ssl_ca</a></code> or the <code><a href="/kb/en/ssltls-system-variables/#ssl_capath">ssl_capath</a></code> system variables.
-</li><li>If you want to restrict the server to certain ciphers, then you also need to set the <code><a href="/kb/en/ssltls-system-variables/#ssl_cipher">ssl_cipher</a></code> system variable.
+<ul start="1"><li>You need to set the path to the server's X509 certificate by setting the <a href="/kb/en/ssltls-system-variables/#ssl_cert">ssl_cert</a> system variable.
+</li><li>You need to set the path to the server's private key by setting the <a href="/kb/en/ssltls-system-variables/#ssl_key">ssl_key</a> system variable.
+</li><li>You need to set the path to the certificate authority (CA) chain that can verify the server's certificate by setting either the <a href="/kb/en/ssltls-system-variables/#ssl_ca">ssl_ca</a> or the <a href="/kb/en/ssltls-system-variables/#ssl_capath">ssl_capath</a> system variables.
+</li><li>If you want to restrict the server to certain ciphers, then you also need to set the <a href="/kb/en/ssltls-system-variables/#ssl_cipher">ssl_cipher</a> system variable.
 </li></ul>
 <p>For example, to set these variables for the server, add the system variables to a relevant server <a href="/kb/en/configuring-mariadb-with-option-files/#option-groups">option group</a> in an <a href="/kb/en/configuring-mariadb-with-option-files/">option file</a>:</p>
 <pre class="fixed">[mariadb]
@@ -475,7 +475,7 @@ ssl_cert = /etc/my.cnf.d/certificates/server-cert.pem
 ssl_key = /etc/my.cnf.d/certificates/server-key.pem
 ssl_ca = /etc/my.cnf.d/certificates/ca.pem
 </pre><p>And then <a href="/kb/en/starting-and-stopping-mariadb-starting-and-stopping-mariadb/">restart the server</a> to make the changes persistent.</p>
-<p>Once the server is back up, you can check that TLS is enabled by checking the value of the <code><a href="/kb/en/ssltls-system-variables/#have_ssl">have_ssl</a></code> system variable. For example:</p>
+<p>Once the server is back up, you can check that TLS is enabled by checking the value of the <a href="/kb/en/ssltls-system-variables/#have_ssl">have_ssl</a> system variable. For example:</p>
 <pre class="fixed"><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;have_ssl&#39;</span><span class="p">;</span>
 
 <span class="o">+</span><span class="c1">---------------+-------+</span>
@@ -486,7 +486,7 @@ ssl_ca = /etc/my.cnf.d/certificates/ca.pem
 </pre><h4 class="anchored_heading" id="reloading-the-servers-certificates-and-keys-dynamically">Reloading the Server's Certificates and Keys Dynamically</h4>
 <div class="mariadb_from_10_4 mariadb from_10_4 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/what-is-mariadb-104/">10.4</a></h5><p>The <code>FLUSH SSL</code> command was first added in <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a>.</p>
 </div><p>In <a href="/kb/en/what-is-mariadb-104/">MariaDB 10.4</a> and later, the <code>FLUSH SSL</code> command can be used to dynamically reinitialize the server's <a href="/kb/en/data-in-transit-encryption/">TLS</a> context.</p>
-<p>See <code><a href="/kb/en/flush/#flush-ssl">FLUSH SSL</a></code> for more information.</p>
+<p>See <a href="/kb/en/flush/#flush-ssl">FLUSH SSL</a> for more information.</p>
 <h3 class="anchored_heading" id="enabling-tls-for-mariadb-clients">Enabling TLS for MariaDB Clients</h3>
 <p>Different <a href="/kb/en/clients-utilities/">clients and utilities</a> may use different methods to enable TLS.</p>
 <p>For many of the standard <a href="/kb/en/clients-utilities/">clients and utilities</a> that come bundled with MariaDB, you can enable two-way TLS by adding the same options that were set for the server to a relevant client <a href="/kb/en/configuring-mariadb-with-option-files/#option-groups">option group</a> in an <a href="/kb/en/configuring-mariadb-with-option-files/">option file</a>. For example:</p>
@@ -505,7 +505,7 @@ ssl_cert = /etc/my.cnf.d/certificates/client-cert.pem
 ssl_key = /etc/my.cnf.d/certificates/client-key.pem
 ssl_ca = /etc/my.cnf.d/certificates/ca.pem
 ssl-verify-server-cert
-</pre><p>Or if you wanted to specify them on the command-line with the <code><a href="/kb/en/mysql-command-line-client/">mysql</a></code> client, then you could execute something like this:</p>
+</pre><p>Or if you wanted to specify them on the command-line with the <a href="/kb/en/mysql-command-line-client/">mysql</a> client, then you could execute something like this:</p>
 <pre class="fixed">$ mysql -u myuser -p -h myserver.mydomain.com \
    --ssl-cert=/etc/my.cnf.d/certificates/client-cert.pem \
    --ssl-key=/etc/my.cnf.d/certificates/client-key.pem \
@@ -519,7 +519,7 @@ ssl-verify-server-cert
 ...
 ssl_ca = /etc/my.cnf.d/certificates/ca.pem
 ssl-verify-server-cert
-</pre><p>Or if you wanted to specify them on the command-line with the <code><a href="/kb/en/mysql-command-line-client/">mysql</a></code> client, then you could execute something like this:</p>
+</pre><p>Or if you wanted to specify them on the command-line with the <a href="/kb/en/mysql-command-line-client/">mysql</a> client, then you could execute something like this:</p>
 <pre class="fixed">$ mysql -u myuser -p -h myserver.mydomain.com \
    --ssl-ca=/etc/my.cnf.d/certificates/ca.pem \
    --ssl-verify-server-cert
@@ -528,7 +528,7 @@ ssl-verify-server-cert
 <pre class="fixed">[client-mariadb]
 ...
 ssl
-</pre><p>Or if you wanted to specify them on the command-line with the <code><a href="/kb/en/mysql-command-line-client/">mysql</a></code> client, then you could execute something like this:</p>
+</pre><p>Or if you wanted to specify them on the command-line with the <a href="/kb/en/mysql-command-line-client/">mysql</a> client, then you could execute something like this:</p>
 <pre class="fixed">$ mysql -u myuser -p -h myserver.mydomain.com \
    --ssl
 </pre><h3 class="anchored_heading" id="enabling-tls-for-mariadb-connectorc-clients">Enabling TLS for MariaDB Connector/C Clients</h3>
@@ -538,7 +538,7 @@ ssl
 <h3 class="anchored_heading" id="enabling-tls-for-mariadb-connectorj-clients">Enabling TLS for MariaDB Connector/J Clients</h3>
 <p>See the documentation on <a href="/kb/en/using-tls-ssl-with-mariadb-java-connector/">Using TLS/SSL with MariaDB Connector/J</a> for information on how to enable TLS for clients that use MariaDB Connector/J.</p>
 <h2 class="anchored_heading" id="verifying-that-a-connection-is-using-tls">Verifying that a Connection is Using TLS</h2>
-<p>You can verify that a connection is using TLS by checking the connection's <code><a href="https://mariadb.com/kb/en/library/ssltls-status-variables/#ssl_cipher">Ssl_cipher</a></code> status variable. If it is non-empty, then the connection is using TLS. For example:</p>
+<p>You can verify that a connection is using TLS by checking the connection's <a href="https://mariadb.com/kb/en/library/ssltls-status-variables/#ssl_cipher">Ssl_cipher</a> status variable. If it is non-empty, then the connection is using TLS. For example:</p>
 <pre class="fixed"><span class="k">SHOW</span> <span class="k">SESSION</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">&#39;Ssl_cipher&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------+---------------------------+</span>
 <span class="o">|</span> <span class="n">Variable_name</span> <span class="o">|</span> <span class="n">Value</span>                     <span class="o">|</span>
@@ -549,7 +549,7 @@ ssl
 </pre><h2 class="anchored_heading" id="requiring-tls">Requiring TLS</h2>
 <p>From <a href="/kb/en/mariadb-1052-release-notes/">MariaDB 10.5.2</a>, the <a href="/kb/en/server-system-variables/#require_secure_transport">require_secure_transport</a> system variable is available. When set (by default it is off), connections attempted using insecure transport will be rejected. Secure transports are SSL/TLS, Unix sockets or named pipes. Note that requirements set for specific user accounts will take precedence over this setting.</p>
 <h3 class="anchored_heading" id="requiring-tls-for-specific-user-accounts">Requiring TLS for Specific User Accounts</h3>
-<p>You can set certain TLS-related restrictions for specific user accounts. For instance, you might use this with user accounts that require access to sensitive data while sending it across networks that you do not control. These restrictions can be enabled for a user account with the <code><a href="/kb/en/create-user/">CREATE USER</a></code>, <code><a href="/kb/en/alter-user/">ALTER USER</a></code>, or <code><a href="/kb/en/grant/">GRANT</a></code> statements. For example:</p>
+<p>You can set certain TLS-related restrictions for specific user accounts. For instance, you might use this with user accounts that require access to sensitive data while sending it across networks that you do not control. These restrictions can be enabled for a user account with the <a href="/kb/en/create-user/">CREATE USER</a>, <a href="/kb/en/alter-user/">ALTER USER</a>, or <a href="/kb/en/grant/">GRANT</a> statements. For example:</p>
 <ul start="1"><li>A user account must connect via TLS if the user account is defined with the <code>REQUIRE SSL</code> clause.
 </li></ul>
 <pre class="fixed"><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> 
@@ -568,12 +568,12 @@ ssl
    <span class="n">REQUIRE</span> <span class="n">SUBJECT</span> <span class="s1">&#39;/CN=alice/O=My Dom, Inc./C=US/ST=Oregon/L=Portland&#39;</span><span class="p">;</span>
 </pre><ul start="1"><li>A user account must connect via TLS with a client certificate that must be signed by a specific certificate authority if the user account is defined with the <code>REQUIRE ISSUER</code> clause.
 </li></ul>
-<pre class="fixed"><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> 
+<pre class="fixed wrap"><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> 
    <span class="n">REQUIRE</span> <span class="n">SUBJECT</span> <span class="s1">&#39;/CN=alice/O=My Dom, Inc./C=US/ST=Oregon/L=Portland&#39;</span>
    <span class="k">AND</span> <span class="n">ISSUER</span> <span class="s1">&#39;/C=FI/ST=Somewhere/L=City/ O=Some Company/CN=Peter Parker/emailAddress=p.parker@marvel.com&#39;</span><span class="p">;</span>
 </pre><h3 class="anchored_heading" id="requiring-tls-for-specific-user-accounts-from-specific-hosts">Requiring TLS for Specific User Accounts from Specific Hosts</h3>
 <p>A user account can have different definitions depending on what host the user account is logging in from. Therefore, it is possible to have different TLS requirements for the same username for different hosts. For example:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> 
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> 
    <span class="n">REQUIRE</span> <span class="k">NONE</span><span class="p">;</span>
 
 <span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;alice&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span>

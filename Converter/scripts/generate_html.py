@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 from scripts.funcs import read_csv, strip_name, new_page, format_time, get_date
 from scripts.generate_contents import create_main_contents
-from scripts.debug_csv import log_link
+from scripts.debug_csv import debug
 
 from scripts.waiter import Waiter
 
@@ -57,7 +57,6 @@ def get_full_html(config, mark_headers):
     if not config["add_body"] and not config["add_contents"]: return "", contents_data, urls, slugs, total_request_time 
     
     existing_files = os.listdir("scraped_html")
-    
     full_html = ""
     for index, row in enumerate(rows):
         if row["Include"] in ['0', '']: pass # skip unecessary rows
@@ -88,7 +87,6 @@ def get_full_html(config, mark_headers):
         elif row["Include"] == "1":
             name = strip_name(row["URL"])
             filename = name + ".html"
-
             #request
             if filename not in existing_files:
                 existing_files.append(filename) #do not do duplicate requests (might be unnecessary)
@@ -256,22 +254,20 @@ def colour_external_links(html, config) -> str:
     colour = config["external_link_colour"]
     output = html.replace('href="http', f'style="color: {colour};" href="http')
     return output
+
 def log_external_links(full_html):
     pattern = r'href="(https://mariadb\.com/kb/en/[\w\-\d/]+)"'
     links = re.findall(pattern, full_html)
     #links = [link[0] for link in links]
     links = list(set(links))
     for link in links:
-        log_link(link)
-
-    return
-
+        debug(f"Found External Link ({link})")
 
 def get_urls_and_slugs(rows) -> tuple:
     urls = []
     slugs = []
     for row in rows:
-        if row["URL"] != "":
+        if row["URL"] != "" and row["Include"] != "0":
             urls.append(row["URL"])
             dup_slugs = row["Duplicate slugs"]
             slugs.append( dup_slugs.split(";") )

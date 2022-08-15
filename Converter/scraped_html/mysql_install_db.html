@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2012-01-15 14:54">10 years, 2 months ago</span></dd>
+<span class="datetime" title="2012-01-15 14:54">10 years, 4 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-02 22:27">1 month, 1 week ago</span></dd>
+<span class="datetime" title="2022-04-25 16:11">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -578,7 +578,8 @@ errors.</p>
 </li><li>Second, if authentication fails with the <code><a href="/kb/en/authentication-plugin-unix-socket/">unix_socket</a></code> authentication plugin, then it is configured to try to use the <code><a href="/kb/en/authentication-plugin-mysql_native_password/">mysql_native_password</a></code> authentication plugin.
 </li></ul>
 <p>The definition of the default <code>root@localhost</code> user account is:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">unix_socket</span> <span class="k">OR</span> <span class="n">mysql_native_password</span> <span class="k">USING</span> <span class="s1">&#39;invalid&#39;</span><span class="p">;</span>
+<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">unix_socket</span> 
+  <span class="k">OR</span> <span class="n">mysql_native_password</span> <span class="k">USING</span> <span class="s1">&#39;invalid&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="n">PROXY</span> <span class="k">ON</span> <span class="s1">&#39;&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span> <span class="k">TO</span> <span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
 </pre><p>Since <code>mysql_install_db</code> sets <code>--auth-root-authentication-method=socket</code> by default, the following additional user accounts are <strong>not</strong> created by default:</p>
@@ -588,7 +589,8 @@ errors.</p>
 </li></ul>
 <p>However, an additional user account that is defined by the <code>--auth-root-socket-user</code> option is created. If this option is not set, then the value defaults to the value of the <code>--user</code> option. On most systems, the <code>--user</code> option will use the value of <code>mysql</code> by default, so this additional user account would be called <code>mysql@localhost</code>.</p>
 <p>The definition of this <code>mysql@localhost</code> user account is similar to the <code>root@localhost</code> user account:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;mysql&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">unix_socket</span> <span class="k">OR</span> <span class="n">mysql_native_password</span> <span class="k">USING</span> <span class="s1">&#39;invalid&#39;</span><span class="p">;</span>
+<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;mysql&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">IDENTIFIED</span> <span class="n">VIA</span> <span class="n">unix_socket</span> 
+  <span class="k">OR</span> <span class="n">mysql_native_password</span> <span class="k">USING</span> <span class="s1">&#39;invalid&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;mysql&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="k">WITH</span> <span class="k">GRANT</span> <span class="k">OPTION</span><span class="p">;</span>
 </pre><p>An invalid password is initially set for both of these user accounts. This means that before a password can be used to authenticate as either of these user accounts, the accounts must first be given a valid password by executing the <code><a href="/kb/en/set-password/">SET PASSWORD</a></code> statement.</p>
 <p>For example, here is an example of setting the password for the <code>root@localhost</code> user account immediately after installation:</p>
@@ -597,7 +599,7 @@ $ sudo systemctl start mariadb
 $ sudo mysql
 ...
 MariaDB&gt; SET PASSWORD = PASSWORD('XH4VmT3_jt');
-</pre><p>You may notice in the above example that the <code><a href="/kb/en/mysql-command-line-client/">mysql</a></code> command-line client is executed via <code><a href="https://linux.die.net/man/8/sudo">sudo</a></code>. This allows the <code>root@localhost</code> user account to successfully authenticate via the <code><a href="/kb/en/authentication-plugin-unix-socket/">unix_socket</a></code> authentication plugin.</p>
+</pre><p>You may notice in the above example that the <a href="/kb/en/mysql-command-line-client/">mysql</a> command-line client is executed via <a href="https://linux.die.net/man/8/sudo">sudo</a>. This allows the <code>root@localhost</code> user account to successfully authenticate via the <a href="/kb/en/authentication-plugin-unix-socket/">unix_socket</a> authentication plugin.</p>
 </div><div class="mariadb_to_10_3 mariadb to_10_3 product"><h5 class="product_title">MariaDB until <a href="/kb/en/what-is-mariadb-103/">10.3</a></h5><p>In <a href="/kb/en/what-is-mariadb-103/">MariaDB 10.3</a> and before, <code>mysql_install_db</code> sets <code>--auth-root-authentication-method=normal</code> by default. When this is set, the following default accounts are created with no password:</p>
 <ul start="1"><li><code>root@localhost</code>
 </li><li><code>root@127.0.0.1</code>
@@ -680,109 +682,109 @@ We have an anonymous user that has no privileges, but still can see the <code>te
 <strong>Where does this come from?</strong></p>
 <hr>
 <p>Login with the <code>root</code>/<code>unix</code> user to find out all privileges that the anonymous user has:</p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">mysql</span><span class="p">.</span><span class="k">user</span> <span class="k">WHERE</span> <span class="k">user</span><span class="o">=</span><span class="s1">&#39;&#39;</span> <span class="k">AND</span> <span class="k">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-                  <span class="k">Host</span><span class="p">:</span> <span class="n">localhost</span>
-                  <span class="k">User</span><span class="p">:</span> 
-              <span class="n">Password</span><span class="p">:</span> 
-           <span class="n">Select_priv</span><span class="p">:</span> <span class="n">N</span>
-           <span class="n">Insert_priv</span><span class="p">:</span> <span class="n">N</span>
-           <span class="n">Update_priv</span><span class="p">:</span> <span class="n">N</span>
-           <span class="n">Delete_priv</span><span class="p">:</span> <span class="n">N</span>
-           <span class="n">Create_priv</span><span class="p">:</span> <span class="n">N</span>
-             <span class="n">Drop_priv</span><span class="p">:</span> <span class="n">N</span>
-           <span class="n">Reload_priv</span><span class="p">:</span> <span class="n">N</span>
-         <span class="n">Shutdown_priv</span><span class="p">:</span> <span class="n">N</span>
-          <span class="n">Process_priv</span><span class="p">:</span> <span class="n">N</span>
-             <span class="n">File_priv</span><span class="p">:</span> <span class="n">N</span>
-            <span class="n">Grant_priv</span><span class="p">:</span> <span class="n">N</span>
-       <span class="n">References_priv</span><span class="p">:</span> <span class="n">N</span>
-            <span class="n">Index_priv</span><span class="p">:</span> <span class="n">N</span>
-            <span class="n">Alter_priv</span><span class="p">:</span> <span class="n">N</span>
-          <span class="n">Show_db_priv</span><span class="p">:</span> <span class="n">N</span>
-            <span class="n">Super_priv</span><span class="p">:</span> <span class="n">N</span>
- <span class="n">Create_tmp_table_priv</span><span class="p">:</span> <span class="n">N</span>
-      <span class="n">Lock_tables_priv</span><span class="p">:</span> <span class="n">N</span>
-          <span class="n">Execute_priv</span><span class="p">:</span> <span class="n">N</span>
-       <span class="n">Repl_slave_priv</span><span class="p">:</span> <span class="n">N</span>
-      <span class="n">Repl_client_priv</span><span class="p">:</span> <span class="n">N</span>
-      <span class="n">Create_view_priv</span><span class="p">:</span> <span class="n">N</span>
-        <span class="n">Show_view_priv</span><span class="p">:</span> <span class="n">N</span>
-   <span class="n">Create_routine_priv</span><span class="p">:</span> <span class="n">N</span>
-    <span class="n">Alter_routine_priv</span><span class="p">:</span> <span class="n">N</span>
-      <span class="n">Create_user_priv</span><span class="p">:</span> <span class="n">N</span>
-            <span class="n">Event_priv</span><span class="p">:</span> <span class="n">N</span>
-          <span class="n">Trigger_priv</span><span class="p">:</span> <span class="n">N</span>
-<span class="n">Create_tablespace_priv</span><span class="p">:</span> <span class="n">N</span>
-   <span class="n">Delete_history_priv</span><span class="p">:</span> <span class="n">N</span>
-              <span class="n">ssl_type</span><span class="p">:</span> 
-            <span class="n">ssl_cipher</span><span class="p">:</span> 
-           <span class="n">x509_issuer</span><span class="p">:</span> 
-          <span class="n">x509_subject</span><span class="p">:</span> 
-         <span class="n">max_questions</span><span class="p">:</span> <span class="mi">0</span>
-           <span class="n">max_updates</span><span class="p">:</span> <span class="mi">0</span>
-       <span class="n">max_connections</span><span class="p">:</span> <span class="mi">0</span>
-  <span class="n">max_user_connections</span><span class="p">:</span> <span class="mi">0</span>
-                <span class="n">plugin</span><span class="p">:</span> 
- <span class="n">authentication_string</span><span class="p">:</span> 
-      <span class="n">password_expired</span><span class="p">:</span> <span class="n">N</span>
-               <span class="n">is_role</span><span class="p">:</span> <span class="n">N</span>
-          <span class="n">default_role</span><span class="p">:</span> 
-    <span class="n">max_statement_time</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">000000</span>
+<pre class="fixed">SELECT * FROM mysql.user WHERE user='' AND host='localhost'\G
+*************************** 1. row ***************************
+                  Host: localhost
+                  User: 
+              Password: 
+           Select_priv: N
+           Insert_priv: N
+           Update_priv: N
+           Delete_priv: N
+           Create_priv: N
+             Drop_priv: N
+           Reload_priv: N
+         Shutdown_priv: N
+          Process_priv: N
+             File_priv: N
+            Grant_priv: N
+       References_priv: N
+            Index_priv: N
+            Alter_priv: N
+          Show_db_priv: N
+            Super_priv: N
+ Create_tmp_table_priv: N
+      Lock_tables_priv: N
+          Execute_priv: N
+       Repl_slave_priv: N
+      Repl_client_priv: N
+      Create_view_priv: N
+        Show_view_priv: N
+   Create_routine_priv: N
+    Alter_routine_priv: N
+      Create_user_priv: N
+            Event_priv: N
+          Trigger_priv: N
+Create_tablespace_priv: N
+   Delete_history_priv: N
+              ssl_type: 
+            ssl_cipher: 
+           x509_issuer: 
+          x509_subject: 
+         max_questions: 0
+           max_updates: 0
+       max_connections: 0
+  max_user_connections: 0
+                plugin: 
+ authentication_string: 
+      password_expired: N
+               is_role: N
+          default_role: 
+    max_statement_time: 0.000000
 </pre><p>As seen above from the <a href="/kb/en/mysqluser-table/">mysql.user</a> table, the anonymous user doesn't have any global privileges.
 Still, the anonymous user can see databases, so there must be a way so that anonymous user can see the <code>test</code> and <code>test_electricity</code> databases.</p>
 <p>Let's check for grants on the database level. That information can be found in the <a href="/kb/en/mysqldb-table/">mysql.db</a> table.
 Looking at the <code>mysql.db</code> table, it already contains 2 rows created when the <code>mysql_install_db</code> script was invoked.</p>
 <p>The anonymous user has database privileges (without <code>grant</code>, <code>alter_routine</code> and <code>execute</code>) on <code>test</code> and <code>test_%</code> databases:</p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">mysql</span><span class="p">.</span><span class="n">db</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-                 <span class="k">Host</span><span class="p">:</span> <span class="o">%</span>
-                   <span class="n">Db</span><span class="p">:</span> <span class="n">test</span>
-                 <span class="k">User</span><span class="p">:</span> 
-          <span class="n">Select_priv</span><span class="p">:</span> <span class="n">Y</span>
-          <span class="n">Insert_priv</span><span class="p">:</span> <span class="n">Y</span>
-          <span class="n">Update_priv</span><span class="p">:</span> <span class="n">Y</span>
-          <span class="n">Delete_priv</span><span class="p">:</span> <span class="n">Y</span>
-          <span class="n">Create_priv</span><span class="p">:</span> <span class="n">Y</span>
-            <span class="n">Drop_priv</span><span class="p">:</span> <span class="n">Y</span>
-           <span class="n">Grant_priv</span><span class="p">:</span> <span class="n">N</span>
-      <span class="n">References_priv</span><span class="p">:</span> <span class="n">Y</span>
-           <span class="n">Index_priv</span><span class="p">:</span> <span class="n">Y</span>
-           <span class="n">Alter_priv</span><span class="p">:</span> <span class="n">Y</span>
-<span class="n">Create_tmp_table_priv</span><span class="p">:</span> <span class="n">Y</span>
-     <span class="n">Lock_tables_priv</span><span class="p">:</span> <span class="n">Y</span>
-     <span class="n">Create_view_priv</span><span class="p">:</span> <span class="n">Y</span>
-       <span class="n">Show_view_priv</span><span class="p">:</span> <span class="n">Y</span>
-  <span class="n">Create_routine_priv</span><span class="p">:</span> <span class="n">Y</span>
-   <span class="n">Alter_routine_priv</span><span class="p">:</span> <span class="n">N</span>
-         <span class="n">Execute_priv</span><span class="p">:</span> <span class="n">N</span>
-           <span class="n">Event_priv</span><span class="p">:</span> <span class="n">Y</span>
-         <span class="n">Trigger_priv</span><span class="p">:</span> <span class="n">Y</span>
-  <span class="n">Delete_history_priv</span><span class="p">:</span> <span class="n">Y</span>
-<span class="o">***************************</span> <span class="mi">2</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-                 <span class="k">Host</span><span class="p">:</span> <span class="o">%</span>
-                   <span class="n">Db</span><span class="p">:</span> <span class="n">test</span><span class="err">\</span><span class="n">_</span><span class="o">%</span>
-                 <span class="k">User</span><span class="p">:</span> 
-          <span class="n">Select_priv</span><span class="p">:</span> <span class="n">Y</span>
-          <span class="n">Insert_priv</span><span class="p">:</span> <span class="n">Y</span>
-          <span class="n">Update_priv</span><span class="p">:</span> <span class="n">Y</span>
-          <span class="n">Delete_priv</span><span class="p">:</span> <span class="n">Y</span>
-          <span class="n">Create_priv</span><span class="p">:</span> <span class="n">Y</span>
-            <span class="n">Drop_priv</span><span class="p">:</span> <span class="n">Y</span>
-           <span class="n">Grant_priv</span><span class="p">:</span> <span class="n">N</span>
-      <span class="n">References_priv</span><span class="p">:</span> <span class="n">Y</span>
-           <span class="n">Index_priv</span><span class="p">:</span> <span class="n">Y</span>
-           <span class="n">Alter_priv</span><span class="p">:</span> <span class="n">Y</span>
-<span class="n">Create_tmp_table_priv</span><span class="p">:</span> <span class="n">Y</span>
-     <span class="n">Lock_tables_priv</span><span class="p">:</span> <span class="n">Y</span>
-     <span class="n">Create_view_priv</span><span class="p">:</span> <span class="n">Y</span>
-       <span class="n">Show_view_priv</span><span class="p">:</span> <span class="n">Y</span>
-  <span class="n">Create_routine_priv</span><span class="p">:</span> <span class="n">Y</span>
-   <span class="n">Alter_routine_priv</span><span class="p">:</span> <span class="n">N</span>
-         <span class="n">Execute_priv</span><span class="p">:</span> <span class="n">N</span>
-           <span class="n">Event_priv</span><span class="p">:</span> <span class="n">Y</span>
-         <span class="n">Trigger_priv</span><span class="p">:</span> <span class="n">Y</span>
-  <span class="n">Delete_history_priv</span><span class="p">:</span> <span class="n">Y</span>
+<pre class="fixed">SELECT * FROM mysql.db\G
+*************************** 1. row ***************************
+                 Host: %
+                   Db: test
+                 User: 
+          Select_priv: Y
+          Insert_priv: Y
+          Update_priv: Y
+          Delete_priv: Y
+          Create_priv: Y
+            Drop_priv: Y
+           Grant_priv: N
+      References_priv: Y
+           Index_priv: Y
+           Alter_priv: Y
+Create_tmp_table_priv: Y
+     Lock_tables_priv: Y
+     Create_view_priv: Y
+       Show_view_priv: Y
+  Create_routine_priv: Y
+   Alter_routine_priv: N
+         Execute_priv: N
+           Event_priv: Y
+         Trigger_priv: Y
+  Delete_history_priv: Y
+*************************** 2. row ***************************
+                 Host: %
+                   Db: test\_%
+                 User: 
+          Select_priv: Y
+          Insert_priv: Y
+          Update_priv: Y
+          Delete_priv: Y
+          Create_priv: Y
+            Drop_priv: Y
+           Grant_priv: N
+      References_priv: Y
+           Index_priv: Y
+           Alter_priv: Y
+Create_tmp_table_priv: Y
+     Lock_tables_priv: Y
+     Create_view_priv: Y
+       Show_view_priv: Y
+  Create_routine_priv: Y
+   Alter_routine_priv: N
+         Execute_priv: N
+           Event_priv: Y
+         Trigger_priv: Y
+  Delete_history_priv: Y
 </pre><p>The first row is reserved for explicit usage for the <code>test</code> database, which is automatically created with <code>mysql_install_db</code>.</p>
 <p>Since database <code>test_electricity</code> satisfies the <code>test_%</code> pattern where <code>test_</code> is a prefix, we can understand why the user has the right to work with the newly-created database.</p>
 <p>As long as records in <code>mysql.db</code> for the anonymous user exists, each new user created will have the privileges for the <code>test</code> and <code>test_%</code> databases.</p>

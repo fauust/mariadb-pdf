@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Semi-join Materialization is a subquery materialization used for Semi-join subqueries" />
+    <meta property="og:description" content="Semi-join Materialization is a subquery materialization used for Semi-join subqueries." />
 
-    <meta name="description" content="Semi-join Materialization is a subquery materialization used for Semi-join subqueries" />
+    <meta name="description" content="Semi-join Materialization is a subquery materialization used for Semi-join subqueries." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-12-23 00:14">10 years, 3 months ago</span></dd>
+<span class="datetime" title="2011-12-23 00:14">10 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-01-28 11:00">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-26 23:30">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -447,7 +447,8 @@
 <h2 class="anchored_heading" id="semi-join-materialization-in-action">Semi-join materialization in action</h2>
 <h3 class="anchored_heading" id="materialization-scan">Materialization-Scan</h3>
 <p>If we chose to look for cities with a population greater than 7 million, the optimizer will use Materialization-Scan and <code>EXPLAIN</code> will show this:</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span>  <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+<pre class="fixed wrap"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> 
+  <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span>  <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">----+--------------+-------------+--------+--------------------+------------+---------+--------------------+------+-----------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span>  <span class="o">|</span> <span class="k">table</span>       <span class="o">|</span> <span class="k">type</span>   <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>        <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>                <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                 <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+--------------+-------------+--------+--------------------+------------+---------+--------------------+------+-----------------------+</span>
@@ -464,7 +465,8 @@
 <p>The optimizer chose to do a full scan over the materialized table, so this is an example of a use of the Materialization-Scan strategy.</p>
 <p>As for execution costs, we're going to read 15 rows from table City, write 15 rows to materialized table, read them back (the optimizer assumes there won't be any duplicates), and then do 15 eq_ref accesses to table Country.  In total, we'll do 45 reads and 15 writes.</p>
 <p>By comparison, if you run the <code>EXPLAIN</code> in MySQL, you'll get this:</p>
-<pre class="fixed"><span class="n">MySQL</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span>  <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
+<pre class="fixed wrap"><span class="n">MySQL</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> 
+  <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span>  <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">----+--------------------+---------+-------+--------------------+------------+---------+------+------+------------------------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span>        <span class="o">|</span> <span class="k">table</span>   <span class="o">|</span> <span class="k">type</span>  <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>        <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                              <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+--------------------+---------+-------+--------------------+------------+---------+------+------+------------------------------------+</span>
@@ -474,7 +476,8 @@
 </pre><p>...which is a plan to do <code>(239 + 239*15) = 3824</code> table reads.</p>
 <h3 class="anchored_heading" id="materialization-lookup">Materialization-Lookup</h3>
 <p>Let's modify the query slightly and look for countries which have cities with a population over one millon (instead of seven): </p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span>  <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="p">;</span>
+<pre class="fixed wrap"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> 
+  <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span>  <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="p">;</span>
 <span class="o">+</span><span class="c1">----+--------------+-------------+--------+--------------------+--------------+---------+------+------+-----------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span>  <span class="o">|</span> <span class="k">table</span>       <span class="o">|</span> <span class="k">type</span>   <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>          <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                 <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+--------------+-------------+--------+--------------------+--------------+---------+------+------+-----------------------+</span>
@@ -489,7 +492,8 @@
 </li></ul>
 <p>This means that the optimizer is planning to do index lookups into the materialized table. In other words, we're going to use the Materialization-lookup strategy.</p>
 <p>In MySQL (or with <code class="fixed" style="white-space:pre-wrap">optimizer_switch='semijoin=off,materialization=off'</code>), one will get this <code>EXPLAIN</code>:</p>
-<pre class="fixed"><span class="n">MySQL</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span>  <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="p">;</span>
+<pre class="fixed wrap"><span class="n">MySQL</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> 
+  <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span>  <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="p">;</span>
 <span class="o">+</span><span class="c1">----+--------------------+---------+----------------+--------------------+---------+---------+------+------+-------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span>        <span class="o">|</span> <span class="k">table</span>   <span class="o">|</span> <span class="k">type</span>           <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>     <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+--------------------+---------+----------------+--------------------+---------+---------+------+------+-------------+</span>
@@ -502,7 +506,7 @@
 <p>MariaDB is able to use Semi-join materialization strategy when the subquery has grouping (other semi-join strategies are not applicable in this case).</p>
 <p>This allows for efficient execution of queries that search for the best/last element in a certain group. </p>
 <p>For example, let's find cities that have the biggest population on their continent: </p>
-<pre class="fixed"><span class="k">explain</span> 
+<pre class="fixed wrap"><span class="k">explain</span> 
 <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">City</span> 
 <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="k">in</span> <span class="p">(</span><span class="k">select</span> <span class="k">max</span><span class="p">(</span><span class="n">City</span><span class="p">.</span><span class="n">Population</span><span class="p">)</span> <span class="k">from</span> <span class="n">City</span><span class="p">,</span> <span class="n">Country</span> 
                           <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span><span class="o">=</span><span class="n">Country</span><span class="p">.</span><span class="n">Code</span> 
@@ -534,8 +538,7 @@
 </li><li>Is shown in <code>EXPLAIN</code> as <code class="fixed" style="white-space:pre-wrap">type=MATERIALIZED</code> for the subquery, and a line with
 <code class="fixed" style="white-space:pre-wrap">table=&lt;subqueryN&gt;</code> in the parent subquery.
 </li><li>Is enabled when one has both <code class="fixed" style="white-space:pre-wrap">materialization=on</code> and <code class="fixed" style="white-space:pre-wrap">semijoin=on</code> in the <a href="/kb/en/server-system-variables/#optimizer_switch">optimizer_switch</a> variable.
-</li><li>The <code class="fixed" style="white-space:pre-wrap">materialization=on|off</code> flag is shared with <a href="/kb/en/non-semi-join-subquery-optimizations/#materialization-for-non-correlated-in-subqueries">Non-semijoin materialization</a>.
-</li></ul>
+</li><li>The <code class="fixed" style="white-space:pre-wrap">materialization=on|off</code> flag is shared with <a href="/kb/en/non-semi-join-subquery-optimizations/#materialization-for-non-correlated-in-subqueries">Non-semijoin materialization</a>.</li></ul>
 
     </div>
 

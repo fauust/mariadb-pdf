@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="Spider Cluster Management" />
+    <meta property="og:description" content="Spider cluster management." />
 
-    <meta name="description" content="Spider Cluster Management" />
+    <meta name="description" content="Spider cluster management." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2014-01-02 17:21">8 years, 3 months ago</span></dd>
+<span class="datetime" title="2014-01-02 17:21">8 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-08-13 07:56">2 years, 8 months ago</span></dd>
+<span class="datetime" title="2022-04-27 19:45">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -410,8 +410,9 @@
 </li>
 </div>
 <h2 class="anchored_heading" id="direct-sql">Direct SQL</h2>
-<p>Direct SQL is a way to map reduced execution on remote backends and store the results in a local table. This can either be sequential, using the UDF function <a href="/kb/en/spider_direct_sql/">spider_direct_sql</a>, or concurrently, using <a href="/kb/en/spider_bg_direct_sql/">spider_bg_direct_sql</a>.</p>
-<pre class="fixed">spider1 backend &lt;&lt; EOF 
+<p>Direct SQL is a way to map reduced execution on remote backends and store the results in a local table. This can either be sequential, using the UDF function <a href="/kb/en/spider_direct_sql/">spider_direct_sql</a>, or concurrently, using <a href="/kb/en/spider_bg_direct_sql/">spider_bg_direct_sql</a>.
+<br><br></p>
+<pre class="fixed wrap">spider1 backend &lt;&lt; EOF 
 CREATE TEMPORARY TABLE res
 (
   id int(10) unsigned NOT NULL,
@@ -472,7 +473,7 @@ SELECT spider_bg_direct_sql( 'SELECT count(*) ,min(NOW(6)),min(DATABASE())) FROM
 | handlersocket_verbose         | 10            |
 | handlersocket_wrlock_timeout  | 12            |
 +-------------------------------+---------------+
-</pre><pre class="fixed">spider1 backend &lt;&lt; EOF 
+</pre><pre class="fixed wrap">spider1 backend &lt;&lt; EOF 
 CREATE TEMPORARY TABLE res
 (
   id int(10) unsigned NOT NULL,
@@ -500,11 +501,11 @@ SET GLOBAL spider_log_result_errors=1;
 SET GLOBAL spider_log_result_error_with_sql=3;
 </pre><h2 class="anchored_heading" id="compiling-in-debug-mode">Compiling in Debug Mode</h2>
 <p>Compile MariaDB in debug mode </p>
-<pre class="fixed">#cmake -DBUILD_CONFIG=mysql_release -DCMAKE_BUILD_TYPE=Debug  -DWITH_FAST_MUTEXES=ON  -DWITH_VALGRIND=ON
+<pre class="fixed wrap">#cmake -DBUILD_CONFIG=mysql_release -DCMAKE_BUILD_TYPE=Debug  -DWITH_FAST_MUTEXES=ON  -DWITH_VALGRIND=ON
 </pre><p>Run MariaDB the following way to have a detailed command trace file </p>
-<pre class="fixed">mysqld --debug=S:T:t:r:p:n:L:i:F:f:D:d,info,error,query,qcache,my,exit,general,where:O,/tmp/mysqld.trace 
+<pre class="fixed wrap">mysqld --debug=S:T:t:r:p:n:L:i:F:f:D:d,info,error,query,qcache,my,exit,general,where:O,/tmp/mysqld.trace 
 </pre><p>Or with Valgrind to get a complete stack trace on a crash.</p>
-<pre class="fixed">valgrind /usr/local/mysql/bin/mysqld --basedir=/usr/local/mysql --datadir=/data/inetbase/mysql --plugin-dir=/usr/local/mysql/lib/plugin --user=mysql --log-error=/data/inetbase/mysql/lucifer.err --open-files-limit=65000 --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/run/mysqld/mysqld.sock --port=3306
+<pre class="fixed wrap">valgrind /usr/local/mysql/bin/mysqld --basedir=/usr/local/mysql --datadir=/data/inetbase/mysql --plugin-dir=/usr/local/mysql/lib/plugin --user=mysql --log-error=/data/inetbase/mysql/lucifer.err --open-files-limit=65000 --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/run/mysqld/mysqld.sock --port=3306
 </pre><p>Report the issue in <a href="https://jira.mariadb.org">MariaDB JIRA</a> (see <a href="/kb/en/reporting-bugs/">Reporting Bugs</a>) or to the MariaDB Corporation support center.</p>
 <h2 class="anchored_heading" id="compiling-in-static">Compiling in Static</h2>
 <p>Available since version  3.1.14</p>
@@ -537,10 +538,13 @@ SET GLOBAL spider_log_result_error_with_sql=3;
 <p>To activate the performance schema, use the <a href="/kb/en/performance-schema-system-variables/#performance_schema">performance_schema</a> system variable and add the following to the server section of the <a href="/kb/en/configuring-mariadb-with-mycnf/">MariaDB configuration file</a>.</p>
 <pre class="fixed">performance_schema=on
 </pre><p>Activate the Spider probes to be monitored. </p>
-<pre class="fixed">UPDATE performance_schema.setup_instruments SET ENABLED='YES', TIMED='yes' WHERE NAME LIKE '%spider%';
+<pre class="fixed">UPDATE performance_schema.setup_instruments SET 
+  ENABLED='YES', TIMED='yes' WHERE NAME LIKE '%spider%';
 </pre><p>Run your queries ...</p>
 <p>And check the performance metrics. Remove specific Spider metrics to have a more global view.  </p>
-<pre class="fixed">SELECT * FROM performance_schema.events_waits_summary_global_by_event_name WHERE COUNT_STAR&lt;&gt;0 AND EVENT_NAME LIKE '%spider%' ORDER BY SUM_TIMER_WAIT DESC LIMIT 10;
+<pre class="fixed">SELECT * FROM performance_schema.events_waits_summary_global_by_event_name 
+  WHERE COUNT_STAR&lt;&gt;0 AND EVENT_NAME LIKE '%spider%' 
+  ORDER BY SUM_TIMER_WAIT DESC LIMIT 10;
 </pre>
     </div>
 
@@ -753,7 +757,7 @@ SET GLOBAL spider_log_result_error_with_sql=3;
                     <li>
                         <a href="/kb/en/spider-benchmarks/">
                             
-                            Spider Benchmarks 
+                            Spider Benchmarks
                         </a>
                     </li>
                 

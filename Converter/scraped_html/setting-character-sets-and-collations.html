@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-06-24 13:59">8 years, 9 months ago</span></dd>
+<span class="datetime" title="2013-06-24 13:59">8 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-12-06 15:04">4 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-04-27 12:38">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -462,7 +462,7 @@
 In MariaDB, the default <a href="/kb/en/data-types-character-sets-and-collations/">character set</a> is latin1, and the default collation is latin1_swedish_ci (however this may differ in some distros, see for example <a href="/kb/en/differences-in-mariadb-in-debian/">Differences in MariaDB in Debian</a>). Both character sets and collations can be specified from the server right down to the column level, as well as for client-server connections. When changing a character set and not specifying a collation, the default collation for the new character set is always used. </p>
 <p>Character sets and collations always cascade down, so a column without a specified collation will look for the table default, the table for the database, and the database for the server. It's therefore possible to have extremely fine-grained control over all the character sets and collations used in your data.</p>
 <p>Default collations for each character set can be viewed with the <a href="/kb/en/show-collation/">SHOW COLLATION</a> statement, for example, to find the default collation for the latin2 character set:</p>
-<pre class="fixed"><span class="k">SHOW</span> <span class="k">COLLATION</span> <span class="k">LIKE</span> <span class="s1">&#39;latin2%&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SHOW</span> <span class="k">COLLATION</span> <span class="k">LIKE</span> <span class="s1">&#39;latin2%&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">---------------------+---------+----+---------+----------+---------+</span>
 <span class="o">|</span> <span class="k">Collation</span>           <span class="o">|</span> <span class="n">Charset</span> <span class="o">|</span> <span class="n">Id</span> <span class="o">|</span> <span class="k">Default</span> <span class="o">|</span> <span class="n">Compiled</span> <span class="o">|</span> <span class="n">Sortlen</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">---------------------+---------+----+---------+----------+---------+</span>
@@ -484,14 +484,14 @@ In MariaDB, the default <a href="/kb/en/data-types-character-sets-and-collations
   <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;keybcs2_bin&#39;</span><span class="p">;</span>
 </pre><pre class="fixed"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">czech_slovak_names</span> <span class="k">COLLATE</span> <span class="o">=</span> <span class="s1">&#39;keybcs2_general_ci&#39;</span><span class="p">;</span>
 </pre><p>To determine the default character set used by a database, use: </p>
-<pre class="fixed"><span class="k">SHOW</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">czech_slovak_names</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SHOW</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">czech_slovak_names</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------------+--------------------------------------------------------------------------------+</span>
 <span class="o">|</span> <span class="k">Database</span>           <span class="o">|</span> <span class="k">Create</span> <span class="k">Database</span>                                                                <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------+--------------------------------------------------------------------------------+</span>
 <span class="o">|</span> <span class="n">czech_slovak_names</span> <span class="o">|</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="o">`</span><span class="n">czech_slovak_names</span><span class="o">`</span> <span class="cm">/*!40100 DEFAULT CHARACTER SET keybcs2 */</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------------+--------------------------------------------------------------------------------+</span>
 </pre><p>or alternatively, for the character set and collation:</p>
-<pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">SCHEMATA</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">SCHEMATA</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------+--------------------+----------------------------+------------------------+----------+</span>
 <span class="o">|</span> <span class="k">CATALOG_NAME</span> <span class="o">|</span> <span class="k">SCHEMA_NAME</span>        <span class="o">|</span> <span class="n">DEFAULT_CHARACTER_SET_NAME</span> <span class="o">|</span> <span class="n">DEFAULT_COLLATION_NAME</span> <span class="o">|</span> <span class="n">SQL_PATH</span> <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------+--------------------+----------------------------+------------------------+----------+</span>
@@ -502,7 +502,7 @@ In MariaDB, the default <a href="/kb/en/data-types-character-sets-and-collations
 <span class="o">|</span> <span class="n">def</span>          <span class="o">|</span> <span class="n">test</span>               <span class="o">|</span> <span class="n">latin1</span>                     <span class="o">|</span> <span class="n">latin1_swedish_ci</span>      <span class="o">|</span> <span class="k">NULL</span>     <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------+--------------------+----------------------------+------------------------+----------+</span>
 </pre><p>It is also possible to specify only the collation, and, since each collation only applies to one character set, the associated character set will automatically be specified.</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">danish_names</span> <span class="k">COLLATE</span> <span class="s1">&#39;utf8_danish_ci&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">danish_names</span> <span class="k">COLLATE</span> <span class="s1">&#39;utf8_danish_ci&#39;</span><span class="p">;</span>
 
 <span class="k">SHOW</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">danish_names</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------------+----------------------------------------------------------------------------------------------+</span>
@@ -524,7 +524,7 @@ In MariaDB, the default <a href="/kb/en/data-types-character-sets-and-collations
 <p>For example, an ascii TEXT column requires a single byte per character, so the column can hold up to 65,535 characters. If the column is converted to utf8, 3 bytes can be required for each character, so the column will be converted to <a href="/kb/en/mediumtext/">MEDIUMTEXT</a> to be able to hold the same number of characters.</p>
 <p><code>CONVERT TO CHARACTER SET binary</code> will convert <a href="/kb/en/char/">CHAR</a>, <a href="/kb/en/varchar/">VARCHAR</a> and <a href="/kb/en/text/">TEXT</a> columns to <a href="/kb/en/binary/">BINARY</a>, <a href="/kb/en/varbinary/">VARBINARY</a> and <a href="/kb/en/blob/">BLOB</a> respectively, and from that point will no longer have a character set, or be affected by future <code>CONVERT TO CHARACTER SET</code> statements. </p>
 <p>To avoid data type changes resulting from <code>CONVERT TO CHARACTER SET</code>, use <code>MODIFY</code> on the individual columns instead. For example:</p>
-<pre class="fixed"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="k">table_name</span> <span class="k">MODIFY</span> <span class="n">ascii_text_column</span> <span class="nb">TEXT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="k">table_name</span> <span class="k">MODIFY</span> <span class="n">ascii_text_column</span> <span class="nb">TEXT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8</span><span class="p">;</span>
 <span class="k">ALTER</span> <span class="k">TABLE</span> <span class="k">table_name</span> <span class="k">MODIFY</span> <span class="n">ascii_varchar_column</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8</span><span class="p">;</span>
 </pre><h2 class="anchored_heading" id="column-level">Column Level</h2>
 <p>Character sets and collations can also be specified for columns that are character types CHAR, TEXT or VARCHAR. The <a href="/kb/en/create-table/">CREATE TABLE</a> and <a href="/kb/en/alter-table/">ALTER TABLE</a> statements support optional character set and collation clauses for this purpose - unlike those at the table level, the column level definitions are standard SQL.</p>
@@ -534,56 +534,56 @@ In MariaDB, the default <a href="/kb/en/data-types-character-sets-and-collations
 </pre><p>If neither collation nor character set is provided, the table default is used. If only the character set is specified, that character set's default collation is used, while if only the collation is specified, the associated character set is used. </p>
 <div class="cstm-style redbox"><p>When using <a href="/kb/en/alter-table/">ALTER TABLE</a> to change a column's character set, you need to ensure the character sets are compatible with your data. MariaDB will map the data as best it can, but it's possible to lose data if care is not taken.</p>
 </div><p>The <a href="/kb/en/show-create-table/">SHOW CREATE TABLE</a> statement or INFORMATION SCHEMA database can be used to determine column character sets and collations.</p>
-<pre class="fixed"><span class="k">SHOW</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">european_names</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-       <span class="k">Table</span><span class="p">:</span> <span class="n">european_names</span>
-<span class="k">Create</span> <span class="k">Table</span><span class="p">:</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">european_names</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">croatian_names</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">cp1250</span> <span class="k">COLLATE</span> <span class="n">cp1250_croatian_ci</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">greek_names</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">greek</span> <span class="k">DEFAULT</span> <span class="k">NULL</span>
-<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span> <span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8_danish_ci</span>
-</pre><pre class="fixed"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">COLUMNS</span> <span class="k">WHERE</span> <span class="k">TABLE_NAME</span> <span class="k">LIKE</span> <span class="s1">&#39;european%&#39;</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-           <span class="n">TABLE_CATALOG</span><span class="p">:</span> <span class="n">def</span>
-            <span class="n">TABLE_SCHEMA</span><span class="p">:</span> <span class="n">danish_names</span>
-              <span class="k">TABLE_NAME</span><span class="p">:</span> <span class="n">european_names</span>
-             <span class="k">COLUMN_NAME</span><span class="p">:</span> <span class="n">croatian_names</span>
-        <span class="n">ORDINAL_POSITION</span><span class="p">:</span> <span class="mi">1</span>
-          <span class="n">COLUMN_DEFAULT</span><span class="p">:</span> <span class="k">NULL</span>
-             <span class="n">IS_NULLABLE</span><span class="p">:</span> <span class="n">YES</span>
-               <span class="n">DATA_TYPE</span><span class="p">:</span> <span class="nb">varchar</span>
-<span class="n">CHARACTER_MAXIMUM_LENGTH</span><span class="p">:</span> <span class="mi">40</span>
-  <span class="n">CHARACTER_OCTET_LENGTH</span><span class="p">:</span> <span class="mi">40</span>
-       <span class="n">NUMERIC_PRECISION</span><span class="p">:</span> <span class="k">NULL</span>
-           <span class="n">NUMERIC_SCALE</span><span class="p">:</span> <span class="k">NULL</span>
-      <span class="n">DATETIME_PRECISION</span><span class="p">:</span> <span class="k">NULL</span>
-      <span class="k">CHARACTER_SET_NAME</span><span class="p">:</span> <span class="n">cp1250</span>
-          <span class="k">COLLATION_NAME</span><span class="p">:</span> <span class="n">cp1250_croatian_ci</span>
-             <span class="n">COLUMN_TYPE</span><span class="p">:</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
-              <span class="n">COLUMN_KEY</span><span class="p">:</span> 
-                   <span class="n">EXTRA</span><span class="p">:</span> 
-              <span class="k">PRIVILEGES</span><span class="p">:</span> <span class="k">select</span><span class="p">,</span><span class="k">insert</span><span class="p">,</span><span class="k">update</span><span class="p">,</span><span class="k">references</span>
-          <span class="n">COLUMN_COMMENT</span><span class="p">:</span> 
-<span class="o">***************************</span> <span class="mi">2</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-           <span class="n">TABLE_CATALOG</span><span class="p">:</span> <span class="n">def</span>
-            <span class="n">TABLE_SCHEMA</span><span class="p">:</span> <span class="n">danish_names</span>
-              <span class="k">TABLE_NAME</span><span class="p">:</span> <span class="n">european_names</span>
-             <span class="k">COLUMN_NAME</span><span class="p">:</span> <span class="n">greek_names</span>
-        <span class="n">ORDINAL_POSITION</span><span class="p">:</span> <span class="mi">2</span>
-          <span class="n">COLUMN_DEFAULT</span><span class="p">:</span> <span class="k">NULL</span>
-             <span class="n">IS_NULLABLE</span><span class="p">:</span> <span class="n">YES</span>
-               <span class="n">DATA_TYPE</span><span class="p">:</span> <span class="nb">varchar</span>
-<span class="n">CHARACTER_MAXIMUM_LENGTH</span><span class="p">:</span> <span class="mi">40</span>
-  <span class="n">CHARACTER_OCTET_LENGTH</span><span class="p">:</span> <span class="mi">40</span>
-       <span class="n">NUMERIC_PRECISION</span><span class="p">:</span> <span class="k">NULL</span>
-           <span class="n">NUMERIC_SCALE</span><span class="p">:</span> <span class="k">NULL</span>
-      <span class="n">DATETIME_PRECISION</span><span class="p">:</span> <span class="k">NULL</span>
-      <span class="k">CHARACTER_SET_NAME</span><span class="p">:</span> <span class="n">greek</span>
-          <span class="k">COLLATION_NAME</span><span class="p">:</span> <span class="n">greek_general_ci</span>
-             <span class="n">COLUMN_TYPE</span><span class="p">:</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
-              <span class="n">COLUMN_KEY</span><span class="p">:</span> 
-                   <span class="n">EXTRA</span><span class="p">:</span> 
-              <span class="k">PRIVILEGES</span><span class="p">:</span> <span class="k">select</span><span class="p">,</span><span class="k">insert</span><span class="p">,</span><span class="k">update</span><span class="p">,</span><span class="k">references</span>
-          <span class="n">COLUMN_COMMENT</span><span class="p">:</span> 
+<pre class="fixed wrap">SHOW CREATE TABLE european_names\G
+*************************** 1. row ***************************
+       Table: european_names
+Create Table: CREATE TABLE `european_names` (
+  `croatian_names` varchar(40) CHARACTER SET cp1250 COLLATE cp1250_croatian_ci DEFAULT NULL,
+  `greek_names` varchar(40) CHARACTER SET greek DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci
+</pre><pre class="fixed wrap">SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME LIKE 'european%'\G
+*************************** 1. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: danish_names
+              TABLE_NAME: european_names
+             COLUMN_NAME: croatian_names
+        ORDINAL_POSITION: 1
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 40
+  CHARACTER_OCTET_LENGTH: 40
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: cp1250
+          COLLATION_NAME: cp1250_croatian_ci
+             COLUMN_TYPE: varchar(40)
+              COLUMN_KEY: 
+                   EXTRA: 
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT: 
+*************************** 2. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: danish_names
+              TABLE_NAME: european_names
+             COLUMN_NAME: greek_names
+        ORDINAL_POSITION: 2
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 40
+  CHARACTER_OCTET_LENGTH: 40
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: greek
+          COLLATION_NAME: greek_general_ci
+             COLUMN_TYPE: varchar(40)
+              COLUMN_KEY: 
+                   EXTRA: 
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT: 
 </pre><h2 class="anchored_heading" id="filenames">Filenames</h2>
 <p>Since <a href="/kb/en/what-is-mariadb-51/">MariaDB 5.1</a>, the <a href="/kb/en/server-system-variables/#character_set_filesystem">character_set_filesystem</a> system variable has controlled interpretation of file names that are given as literal strings. This affects the following statements and functions:</p>
 <ul start="1"><li><a href="/kb/en/select-into-dumpfile/">SELECT INTO DUMPFILE</a>
@@ -670,7 +670,7 @@ are equal to 'ö' according to the German phonebook rules.</p>
 <p>The literals which occur in stored programs and views, by default, use the character set and collation which was specified by the <a href="/kb/en/server-system-variables/#character_set_connection">character_set_connection</a> and <a href="/kb/en/server-system-variables/#collation_connection">collation_connection</a> system variables when the stored program was created. These values can be seen using the SHOW CREATE statements. To change the character sets used for literals in an existing stored program, it is necessary to drop and recreate the stored program.</p>
 <p>For stored routines parameters and return values, a character set and a collation can be specified via the CHARACTER SET and COLLATE clauses. Before 5.5, specifying a collation was not supported.</p>
 <p>The following example shows that the character set and collation are determined at the time of creation:</p>
-<pre class="fixed"><span class="k">SET</span> <span class="o">@@</span><span class="k">local</span><span class="p">.</span><span class="n">character_set_connection</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">SET</span> <span class="o">@@</span><span class="k">local</span><span class="p">.</span><span class="n">character_set_connection</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">;</span>
 
 <span class="k">DELIMITER</span> <span class="o">||</span>
 <span class="k">CREATE</span> <span class="k">PROCEDURE</span> <span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">x</span><span class="o">`</span><span class="p">()</span>
@@ -690,7 +690,7 @@ are equal to 'ö' according to the German phonebook rules.</p>
 <span class="o">|</span> <span class="n">latin1</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">--------------+</span>
 </pre><p>The following example shows how to specify a function parameters character set and collation:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">(</span><span class="o">`</span><span class="n">str</span><span class="o">`</span> <span class="nb">TEXT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8</span> <span class="k">COLLATE</span> <span class="n">utf8_bin</span><span class="p">)</span>
+<pre class="fixed wrap"><span class="k">CREATE</span> <span class="k">FUNCTION</span> <span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">y</span><span class="o">`</span><span class="p">(</span><span class="o">`</span><span class="n">str</span><span class="o">`</span> <span class="nb">TEXT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8</span> <span class="k">COLLATE</span> <span class="n">utf8_bin</span><span class="p">)</span>
 	<span class="k">RETURNS</span> <span class="nb">TEXT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">latin1</span> <span class="k">COLLATE</span> <span class="n">latin1_bin</span>
 <span class="k">BEGIN</span>
 	<span class="k">SET</span> <span class="o">@</span><span class="n">param_coll</span> <span class="o">=</span> <span class="k">COLLATION</span><span class="p">(</span><span class="o">`</span><span class="n">str</span><span class="o">`</span><span class="p">);</span>

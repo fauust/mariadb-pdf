@@ -271,12 +271,12 @@ It is good pr..." />
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2021-10-08 04:55">6 months ago</span></dd>
+<span class="datetime" title="2021-10-08 04:55">8 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-10-18 10:39">5 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-25 22:57">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -428,13 +428,13 @@ mariadb:latest
 </pre><p>Additionally <a href="https://hub.docker.com/_/mariadb">environment variables</a> are also provided.</p>
 <ul start="1"><li>Get the list of running containers (specify the flag <strong>-a</strong> in case you want to see all containers)
 </li></ul>
-<pre class="fixed">$ docker ps
+<pre class="fixed wrap">$ docker ps
 CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS      NAMES
 ad374ec8a272   mariadb:latest   &#34;docker-entrypoint.s…&#34;   3 seconds ago    Up 1 second     3306/tcp   mariadb-server
 </pre><ul start="1"><li>Start the client from the container
 </li></ul>
 <p>To start the <em>mariadb</em> client inside the created container and run specific commands, run the following:</p>
-<pre class="fixed">$ docker exec -it mariadb-server mariadb -psosecret -e &#34;SHOW PLUGINS&#34;
+<pre class="fixed wrap">$ docker exec -it mariadb-server mariadb -psosecret -e &#34;SHOW PLUGINS&#34;
 </pre><ul start="1"><li>Inspect logs from the container
 </li></ul>
 <pre class="fixed">$ docker logs mariadb-server
@@ -447,7 +447,7 @@ ad374ec8a272   mariadb:latest   &#34;docker-entrypoint.s…&#34;   3 seconds ago
 <pre class="fixed">$ docker exec -it mariadb-server bash
 </pre><ul start="1"><li>Use a volume to specify configuration options
 </li></ul>
-<pre class="fixed">$ docker run --detach --env MARIADB_USER=anel \
+<pre class="fixed wrap">$ docker run --detach --env MARIADB_USER=anel \
   --env MARIADB_PASSWORD=anel \
   --env MARIADB_DATABASE=my_db \
   --env MARIADB_RANDOM_ROOT_PASSWORD=1 \
@@ -458,7 +458,7 @@ ad374ec8a272   mariadb:latest   &#34;docker-entrypoint.s…&#34;   3 seconds ago
 </pre><p>One can specify custom <a href="/kb/en/configuring-mariadb-with-option-files/">configuration files</a> through the <strong>/etc/mysql/conf.d</strong> volume during container startup.</p>
 <ul start="1"><li>Use a volume to specify grants during container start
 </li></ul>
-<pre class="fixed">$ docker run --detach --env MARIADB_USER=anel\
+<pre class="fixed wrap">$ docker run --detach --env MARIADB_USER=anel\
   --env MARIADB_PASSWORD=anel \
   --env MARIADB_DATABASE=my_db \
   --env MARIADB_RANDOM_ROOT_PASSWORD=1 \

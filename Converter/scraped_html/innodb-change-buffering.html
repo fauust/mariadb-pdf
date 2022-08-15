@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-04-06 23:25">9 years ago</span></dd>
+<span class="datetime" title="2013-04-06 23:25">9 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-25 22:56">1 month, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-05-11 10:50">1 month ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -416,13 +416,11 @@
 
     
     <div class="answer formatted">
-        <div class="cstm-style greenbox"><p>Benchmarks attached to <a href="https://jira.mariadb.org/browse/MDEV-19514">MDEV-19514</a> show that the change buffer sometimes reduces performance, and in the best case seem to bring a few per cent improvement to throughput. However, such improvement could come with a price: If the buffered changes are never merged (<a href="https://jira.mariadb.org/browse/MDEV-19514">MDEV-19514</a>, motivated by the reduction of random crashes and the removal of an innodb_force_recovery option that can inflict further corruption), then the InnoDB system tablespace can grow out of control (<a href="https://jira.mariadb.org/browse/MDEV-21952">MDEV-21952</a>).</p>
-<p>Because of all this, the change buffer has been disabled by default from <a href="/kb/en/mariadb-10515-release-notes/">MariaDB 10.5.15</a>, <a href="/kb/en/mariadb-1067-release-notes/">MariaDB 10.6.7</a>, <a href="/kb/en/mariadb-1073-release-notes/">MariaDB 10.7.3</a> and <a href="/kb/en/mariadb-1082-release-notes/">MariaDB 10.8.2</a> (<a href="https://jira.mariadb.org/browse/MDEV-27734">MDEV-27734</a>) and the feature is deprecated and ignored from <a href="/kb/en/mariadb-1090-release-notes/">MariaDB 10.9.0</a> (<a href="https://jira.mariadb.org/browse/MDEV-27735">MDEV-27735</a>).</p>
+        <div class="cstm-style greenbox"><p>The change buffer has been disabled by default from <a href="/kb/en/mariadb-10515-release-notes/">MariaDB 10.5.15</a>, <a href="/kb/en/mariadb-1067-release-notes/">MariaDB 10.6.7</a>, <a href="/kb/en/mariadb-1073-release-notes/">MariaDB 10.7.3</a> and <a href="/kb/en/mariadb-1082-release-notes/">MariaDB 10.8.2</a> (<a href="https://jira.mariadb.org/browse/MDEV-27734">MDEV-27734</a>) and the feature is deprecated and ignored from <a href="/kb/en/mariadb-1090-release-notes/">MariaDB 10.9.0</a> (<a href="https://jira.mariadb.org/browse/MDEV-27735">MDEV-27735</a>).</p>
+<p>Benchmarks attached to <a href="https://jira.mariadb.org/browse/MDEV-19514">MDEV-19514</a> show that the change buffer sometimes reduces performance, and in the best case seem to bring a few per cent improvement to throughput. However, such improvement could come with a price: If the buffered changes are never merged (<a href="https://jira.mariadb.org/browse/MDEV-19514">MDEV-19514</a>, motivated by the reduction of random crashes and the removal of an innodb_force_recovery option that can inflict further corruption), then the InnoDB system tablespace can grow out of control (<a href="https://jira.mariadb.org/browse/MDEV-21952">MDEV-21952</a>).</p>
 </div><div class="table_of_contents well well-small">
 <h3>Contents</h3>
  <ol class="toc">
-
-    <li class=""><a href="#change-buffer-related-status-variables" title="Change Buffer Related Status Variables">Change Buffer Related Status Variables</a></li>
 
     <li class=""><a href="#see-also" title="See Also">See Also</a> </ol>
 </li>
@@ -459,11 +457,6 @@ INSERT, UPDATE and DELETE statements can be particularly heavy operations to per
 </li></ul>
 <p>Modifying the value of this variable only affects the buffering of new operations. The merging of already buffered changes is not affected.</p>
 <p>The <a href="/kb/en/innodb-system-variables/#innodb_change_buffer_max_size">innodb_change_buffer_max_size</a> server system variable, determines the maximum size of the change buffer, expressed as a percentage of the buffer pool.</p>
-<h2 class="anchored_heading" id="change-buffer-related-status-variables">Change Buffer Related Status Variables</h2>
-<ul start="1"><li><a href="innodb--status-variables/#innodb_buffer_pool_pages_dirty">Innodb_buffer_pool_pages_dirty</a>: Number of dirty pages in the Change Buffer.
-</li><li><a href="innodb--status-variables/#innodb_buffer_pool_bytes_dirty">innodb_buffer_pool_bytes_dirty</a>: Total size of the dirty pages, in bytes.
-</li><li><a href="/kb/en/innodb-status-variables/#innodb_buffer_pool_wait_free">innodb_buffer_pool_wait_free</a>: How many times InnoDB was forced to flush dirty pages to write new data, because the buffer pool had no more free pages.
-</li></ul>
 <h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/innodb-buffer-pool/">InnoDB Buffer Pool</a></li></ul>
 

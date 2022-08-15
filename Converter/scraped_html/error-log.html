@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-03-31 13:44">9 years ago</span></dd>
+<span class="datetime" title="2013-03-31 13:44">9 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-04-20 09:12">4 days, 10 hours ago</span></dd>
+<span class="datetime" title="2022-04-26 21:28">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -532,7 +532,7 @@ log_warnings=3
 <p>If <a href="/kb/en/server-system-variables/#log_warnings">log_warnings</a> is <code>0</code>, then many optional warnings will not be logged. However, this does not prevent all warnings from being logged, because there are certain core warnings that will always be written to the error log. For example:</p>
 <ul start="1"><li>If <a href="/kb/en/innodb-strict-mode/">InnoDB strict mode</a> is disabled, and if DDL is performed on a table that triggers a <a href="/kb/en/troubleshooting-row-size-too-large-errors-with-innodb/">"Row size too large" error</a>, then InnoDB will log a warning:
 </li></ul>
-<pre class="fixed">[Warning] InnoDB: Cannot add field col25 in table db1.tab because after 
+<pre class="fixed wrap">[Warning] InnoDB: Cannot add field col25 in table db1.tab because after 
   adding it, the row size is 8477 which is greater than maximum allowed 
   size (8126) for a record on index leaf page.
 </pre><p>However, if <a href="/kb/en/innodb-strict-mode/">InnoDB strict mode</a> is enabled, then the same message will be logged as an error.</p>
@@ -540,7 +540,7 @@ log_warnings=3
 <p>If <a href="/kb/en/server-system-variables/#log_warnings">log_warnings</a> is <code>1</code>, then many types of warnings are logged. Some useful warnings are:</p>
 <ul start="1"><li>Replication-related messages:
 </li></ul>
-<pre class="fixed">[Note] Error reading relay log event: slave SQL thread was killed
+<pre class="fixed wrap">[Note] Error reading relay log event: slave SQL thread was killed
 [Note] Slave SQL thread exiting, replication stopped in log 
   'dbserver-2-bin.000033'   at position 181420; 
   GTID position '0-263316466-368886'
@@ -553,10 +553,10 @@ log_warnings=3
   could not be resolved: Name or service not known
 </pre><ul start="1"><li>Messages related to the <a href="/kb/en/event-scheduler/">event scheduler</a>:
 </li></ul>
-<pre class="fixed">[Note] Event Scheduler: Loaded 0 events
+<pre class="fixed wrap">[Note] Event Scheduler: Loaded 0 events
 </pre><ul start="1"><li>Messages related to <a href="/kb/en/unsafe-statements-for-statement-based-replication/">unsafe statements for statement-based replication</a>:
 </li></ul>
-<pre class="fixed">[Warning] Unsafe statement written to the binary log using statement format since 
+<pre class="fixed wrap">[Warning] Unsafe statement written to the binary log using statement format since 
   BINLOG_FORMAT = STATEMENT. The statement is unsafe because 
   it uses a LIMIT clause. This 
   is unsafe because the set of rows included cannot be predicted.
@@ -568,7 +568,7 @@ log_warnings=3
 <pre class="fixed">[Warning] Access denied for user 'root'@'localhost' (using password: YES)
 </pre><ul start="1"><li>Messages related to connections that are aborted due to errors or timeouts:
 </li></ul>
-<pre class="fixed">[Warning] Aborted connection 35 to db: 'unconnected' user: 
+<pre class="fixed wrap">[Warning] Aborted connection 35 to db: 'unconnected' user: 
   'user1@host1' host: '192.168.1.40' (Got an error writing communication packets)
 [Warning] Aborted connection 36 to db: 'unconnected' user: 
   'user1@host2' host: '192.168.1.230' (Got an error writing communication packets)
@@ -608,7 +608,7 @@ log_warnings=3
 [Warning] Use --lc-messages-dir without language specific part instead.
 </pre><ul start="1"><li>Messages related to <a href="https://mariadb.org/monitoring-progress-and-temporal-memory-usage-of-online-ddl-in-innodb/">progress of InnoDB online DDL</a>:
 </li></ul>
-<pre class="fixed">[Note] InnoDB: Online DDL : Start
+<pre class="fixed wrap">[Note] InnoDB: Online DDL : Start
 [Note] InnoDB: Online DDL : Start reading clustered index of the table and 
   create temporary files
 [Note] InnoDB: Online DDL : End of reading clustered index of the table and 

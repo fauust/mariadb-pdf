@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="DuplicateWeedout is an execution strategy for Semi-join subqueries" />
+    <meta property="og:description" content="DuplicateWeedout is an execution strategy for Semi-join subqueries." />
 
-    <meta name="description" content="DuplicateWeedout is an execution strategy for Semi-join subqueries" />
+    <meta name="description" content="DuplicateWeedout is an execution strategy for Semi-join subqueries." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-12-23 00:03">10 years, 3 months ago</span></dd>
+<span class="datetime" title="2011-12-23 00:03">10 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-01-28 10:53">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-26 23:25">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -421,7 +421,7 @@
 
     <li class=""><a href="#factsheet" title="Factsheet">Factsheet</a></li>
 
-    <li class=""><a href="#see-also" title="See also">See also</a> </ol>
+    <li class=""><a href="#see-also" title="See Also">See Also</a> </ol>
 </li>
 </div>
 <h2 class="anchored_heading" id="the-idea">The idea</h2>
@@ -444,56 +444,60 @@ Now, lets put <code>DuplicateWeedout</code> into the picture:</p>
 <p>Here one can see that a temporary table with a primary key was used to avoid producing multiple records with 'Germany'.</p>
 <h2 class="anchored_heading" id="duplicateweedout-in-action">DuplicateWeedout in action</h2>
 <p>The <code class="fixed" style="white-space:pre-wrap">Start temporary</code> and <code class="fixed" style="white-space:pre-wrap">End temporary</code> from the last diagram are shown in the <code>EXPLAIN</code> output:</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">.</span><span class="mi">33</span> <span class="o">*</span> <span class="n">Country</span><span class="p">.</span><span class="n">Population</span> <span class="k">and</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span><span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-           <span class="n">id</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="n">select_type</span><span class="p">:</span> <span class="k">PRIMARY</span>
-        <span class="k">table</span><span class="p">:</span> <span class="n">City</span>
-         <span class="k">type</span><span class="p">:</span> <span class="n">range</span>
-<span class="n">possible_keys</span><span class="p">:</span> <span class="n">Population</span><span class="p">,</span><span class="n">Country</span>
-          <span class="k">key</span><span class="p">:</span> <span class="n">Population</span>
-      <span class="n">key_len</span><span class="p">:</span> <span class="mi">4</span>
-          <span class="k">ref</span><span class="p">:</span> <span class="k">NULL</span>
-         <span class="k">rows</span><span class="p">:</span> <span class="mi">238</span>
-        <span class="n">Extra</span><span class="p">:</span> <span class="k">Using</span> <span class="k">index</span> <span class="n">condition</span><span class="p">;</span> <span class="k">Start</span> <span class="k">temporary</span>
-<span class="o">***************************</span> <span class="mi">2</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-           <span class="n">id</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="n">select_type</span><span class="p">:</span> <span class="k">PRIMARY</span>
-        <span class="k">table</span><span class="p">:</span> <span class="n">Country</span>
-         <span class="k">type</span><span class="p">:</span> <span class="n">eq_ref</span>
-<span class="n">possible_keys</span><span class="p">:</span> <span class="k">PRIMARY</span>
-          <span class="k">key</span><span class="p">:</span> <span class="k">PRIMARY</span>
-      <span class="n">key_len</span><span class="p">:</span> <span class="mi">3</span>
-          <span class="k">ref</span><span class="p">:</span> <span class="n">world</span><span class="p">.</span><span class="n">City</span><span class="p">.</span><span class="n">Country</span>
-         <span class="k">rows</span><span class="p">:</span> <span class="mi">1</span>
-        <span class="n">Extra</span><span class="p">:</span> <span class="k">Using</span> <span class="k">where</span><span class="p">;</span> <span class="k">End</span> <span class="k">temporary</span>
-<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<pre class="fixed">explain select * from Country where Country.code IN 
+  (select City.Country from City where City.Population &gt; 0.33 * Country.Population 
+   and City.Population &gt; 1*1000*1000)\G
+*************************** 1. row ***************************
+           id: 1
+  select_type: PRIMARY
+        table: City
+         type: range
+possible_keys: Population,Country
+          key: Population
+      key_len: 4
+          ref: NULL
+         rows: 238
+        Extra: Using index condition; Start temporary
+*************************** 2. row ***************************
+           id: 1
+  select_type: PRIMARY
+        table: Country
+         type: eq_ref
+possible_keys: PRIMARY
+          key: PRIMARY
+      key_len: 3
+          ref: world.City.Country
+         rows: 1
+        Extra: Using where; End temporary
+2 rows in set (0.00 sec)
 </pre><p>This query will read 238 rows from the <code>City</code> table, and for each of them will make a primary key lookup in the <code>Country</code> table, which gives another 238 rows. This gives a total of 476 rows, and you need to add 238 lookups in the temporary table (which are typically *much* cheaper since the temporary table is in-memory).</p>
 <p>If we run the same EXPLAIN in MySQL, we'll get:</p>
-<pre class="fixed"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">explain</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">Country</span> <span class="k">where</span> <span class="n">Country</span><span class="p">.</span><span class="n">code</span> <span class="k">IN</span> <span class="p">(</span><span class="k">select</span> <span class="n">City</span><span class="p">.</span><span class="n">Country</span> <span class="k">from</span> <span class="n">City</span> <span class="k">where</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">.</span><span class="mi">33</span> <span class="o">*</span> <span class="n">Country</span><span class="p">.</span><span class="n">Population</span> <span class="k">and</span> <span class="n">City</span><span class="p">.</span><span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-           <span class="n">id</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="n">select_type</span><span class="p">:</span> <span class="k">PRIMARY</span>
-        <span class="k">table</span><span class="p">:</span> <span class="n">Country</span>
-         <span class="k">type</span><span class="p">:</span> <span class="k">ALL</span>
-<span class="n">possible_keys</span><span class="p">:</span> <span class="k">NULL</span>
-          <span class="k">key</span><span class="p">:</span> <span class="k">NULL</span>
-      <span class="n">key_len</span><span class="p">:</span> <span class="k">NULL</span>
-          <span class="k">ref</span><span class="p">:</span> <span class="k">NULL</span>
-         <span class="k">rows</span><span class="p">:</span> <span class="mi">239</span>
-        <span class="n">Extra</span><span class="p">:</span> <span class="k">Using</span> <span class="k">where</span>
-<span class="o">***************************</span> <span class="mi">2</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-           <span class="n">id</span><span class="p">:</span> <span class="mi">2</span>
-  <span class="n">select_type</span><span class="p">:</span> <span class="n">DEPENDENT</span> <span class="n">SUBQUERY</span>
-        <span class="k">table</span><span class="p">:</span> <span class="n">City</span>
-         <span class="k">type</span><span class="p">:</span> <span class="n">index_subquery</span>
-<span class="n">possible_keys</span><span class="p">:</span> <span class="n">Population</span><span class="p">,</span><span class="n">Country</span>
-          <span class="k">key</span><span class="p">:</span> <span class="n">Country</span>
-      <span class="n">key_len</span><span class="p">:</span> <span class="mi">3</span>
-          <span class="k">ref</span><span class="p">:</span> <span class="n">func</span>
-         <span class="k">rows</span><span class="p">:</span> <span class="mi">18</span>
-        <span class="n">Extra</span><span class="p">:</span> <span class="k">Using</span> <span class="k">where</span>
-<span class="mi">2</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<pre class="fixed">explain select * from Country where Country.code IN 
+  (select City.Country from City where City.Population &gt; 0.33 * Country.Population 
+    and City.Population &gt; 1*1000*1000)\G
+*************************** 1. row ***************************
+           id: 1
+  select_type: PRIMARY
+        table: Country
+         type: ALL
+possible_keys: NULL
+          key: NULL
+      key_len: NULL
+          ref: NULL
+         rows: 239
+        Extra: Using where
+*************************** 2. row ***************************
+           id: 2
+  select_type: DEPENDENT SUBQUERY
+        table: City
+         type: index_subquery
+possible_keys: Population,Country
+          key: Country
+      key_len: 3
+          ref: func
+         rows: 18
+        Extra: Using where
+2 rows in set (0.00 sec)
 </pre><p>This plan will read <code>(239 + 239*18) = 4541</code> rows, which is much slower.</p>
 <h2 class="anchored_heading" id="factsheet">Factsheet</h2>
 <ul start="1"><li><code>DuplicateWeedout</code> is shown as "Start temporary/End temporary" in <code>EXPLAIN</code>.
@@ -502,10 +506,9 @@ Now, lets put <code>DuplicateWeedout</code> into the picture:</p>
 </li><li><code>DuplicateWeedout</code> allows the optimizer to freely mix a subquery's tables and the parent select's tables.
 </li><li>There is no separate @@optimizer_switch flag for <code>DuplicateWeedout</code>. The strategy can be disabled by switching off all semi-join optimizations with <code class="fixed" style="white-space:pre-wrap">SET @@optimizer_switch='optimizer_semijoin=off'</code> command.
 </li></ul>
-<h2 class="anchored_heading" id="see-also">See also</h2>
+<h2 class="anchored_heading" id="see-also">See Also</h2>
 <ul start="1"><li><a href="/kb/en/what-is-mariadb-53/">What is MariaDB 5.3</a>
-</li><li><a href="/kb/en/subquery-optimizations-map/">Subquery Optimizations Map</a>
-</li></ul>
+</li><li><a href="/kb/en/subquery-optimizations-map/">Subquery Optimizations Map</a></li></ul>
 
     </div>
 

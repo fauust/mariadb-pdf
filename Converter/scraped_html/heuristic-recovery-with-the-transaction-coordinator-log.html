@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-03-06 00:46">3 years, 1 month ago</span></dd>
+<span class="datetime" title="2019-03-06 00:46">3 years, 3 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-03-25 22:35">3 years ago</span></dd>
+<span class="datetime" title="2022-04-26 21:32">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -427,7 +427,7 @@
 [Note] Crash recovery finished.
 </pre><h2 class="anchored_heading" id="manual-heuristic-recovery">Manual Heuristic Recovery</h2>
 <p>Manual heuristic recovery occurs when <code><a href="/kb/en/mysqld-options/#-tc-heuristic-recover">--tc-heuristic-recover</a></code> is set to some value other than <code>OFF</code>. This might be needed if the server finds prepared transactions during crash recovery that are not in the transaction coordinator log. For example, the <a href="/kb/en/error-log/">error log</a> might contain an error like this:</p>
-<pre class="fixed">[ERROR] Found 1 prepared transactions! It means that mysqld was not shut down properly last time and critical recovery information (last binlog or tc.log file) was manually deleted after a crash. You have to start mysqld with --tc-heuristic-recover switch to commit or rollback pending transactions.
+<pre class="fixed wrap">[ERROR] Found 1 prepared transactions! It means that mysqld was not shut down properly last time and critical recovery information (last binlog or tc.log file) was manually deleted after a crash. You have to start mysqld with --tc-heuristic-recover switch to commit or rollback pending transactions.
 </pre><p>When manual heuristic recovery is initiated, MariaDB will ignore information about transactions in the transaction coordinator log during the recovery process. Prepared transactions that are encountered during the recovery process will either be rolled back or committed, depending on the value of <code><a href="/kb/en/mysqld-options/#-tc-heuristic-recover">--tc-heuristic-recover</a></code>.</p>
 <p>When manual heuristic recovery is initiated, the <a href="/kb/en/error-log/">error log</a> will contain a message like this:</p>
 <pre class="fixed">[Note] Heuristic crash recovery mode

@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2015-01-19 09:12">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2015-01-19 09:12">7 years, 4 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-01-28 14:31">1 year, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-27 11:14">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -307,30 +307,6 @@
 
     
     
-
-
-
-    
-    
-
-<div class="well well-small box"><div><h5>Product Versions</h5></div><div>
-
-        <ul id="product_chooser">
-            
-                <li class="mariadb_from_10_1_1">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_1_1"
-                            >MariaDB starting with 10.1.1</label>
-                </li>
-            
-                <li class="mariadb_from_10_1_1">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_1_1"
-                            >MariaDB starting with 10.1.1</label>
-                </li>
-            
-        </ul>
-    
-</div>
-</div>
 
 
 
@@ -408,21 +384,20 @@
 
     
     <div class="answer formatted">
-        <div class="mariadb_from_10_1_1 mariadb from_10_1_1 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1011-release-notes/">10.1.1</a></h5><p><a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a> merged the Facebook/Kakao defragmentation patch for defragmenting InnoDB tablespaces</p>
-</div><div class="table_of_contents well well-small">
+        <div class="table_of_contents well well-small">
 <h3>Contents</h3>
  <ol class="toc">
 
-    <li class="mariadb_from_10_1_1"><a href="#overview" title="Overview">Overview</a></li>
+    <li class=""><a href="#overview" title="Overview">Overview</a></li>
 
-    <li class="mariadb_from_10_1_1"><a href="#innodb-defragmentation-from-1011" title="InnoDB Defragmentation from 10.1.1">InnoDB Defragmentation from 10.1.1</a>    <ol class="toc">
+    <li class=""><a href="#innodb-defragmentation" title="InnoDB Defragmentation">InnoDB Defragmentation</a>    <ol class="toc">
 
-        <li class="mariadb_from_10_1_1"><a href="#system-variables" title="System Variables">System Variables</a></li>
+        <li class=""><a href="#system-variables" title="System Variables">System Variables</a></li>
 
-        <li class="mariadb_from_10_1_1"><a href="#status-variables" title="Status Variables">Status Variables</a>    </ol>
+        <li class=""><a href="#status-variables" title="Status Variables">Status Variables</a>    </ol>
 </li>
 
-    <li class="mariadb_from_10_1_1"><a href="#example" title="Example">Example</a> </ol>
+    <li class=""><a href="#example" title="Example">Example</a> </ol>
 </li>
 </div>
 <h2 class="anchored_heading" id="overview">Overview</h2>
@@ -432,13 +407,13 @@
 <ul start="1"><li>Makes the table’s data and indexes contiguous inside <code>ibdata1</code>.
 </li><li>Increases the size of <code>ibdata1</code> because the contiguous data and index pages are appended to <code>ibdata1</code>.
 </li></ul>
-<h2 class="anchored_heading" id="innodb-defragmentation-from-1011">InnoDB Defragmentation from 10.1.1</h2>
+<h2 class="anchored_heading" id="innodb-defragmentation">InnoDB Defragmentation</h2>
 <p><a href="/kb/en/what-is-mariadb-101/">MariaDB 10.1</a> merged Facebook's defragmentation code prepared for MariaDB by Matt, Seong Uck Lee from Kakao. The only major difference to Facebook's code and Matt’s patch is that MariaDB does not introduce new literals to SQL and makes no changes to the server code. Instead, <a href="/kb/en/optimize-table/">OPTIMIZE TABLE</a> is used and all code changes are inside the InnoDB/XtraDB storage engines. </p>
-<p>The behaviour of <code>OPTIMIZE TABLE</code> is unchanged by default, and to enable this new feature, you need to set the <a href="/kb/en/xtradbinnodb-server-system-variables/#innodb_defragment">innodb_defragment</a> system variable to <code>1</code>. </p>
+<p>The behaviour of <code>OPTIMIZE TABLE</code> is unchanged by default, and to enable this new feature, you need to set the <a href="/kb/en/innodb-system-variables/#innodb_defragment">innodb_defragment</a> system variable to <code>1</code>. </p>
 <pre class="fixed">[mysqld]
 ...
 innodb-defragment=1
-</pre><p>No new tables are created and there is no need to copy data from old tables to new tables. Instead, this feature loads <code>n</code> pages (determined by <a href="/kb/en/xtradbinnodb-server-system-variables/#innodb_defragment_n_pages">innodb-defragment-n-pages</a>) and tries to move records so that pages would be full of records and then frees pages that are fully empty after the operation. </p>
+</pre><p>No new tables are created and there is no need to copy data from old tables to new tables. Instead, this feature loads <code>n</code> pages (determined by <a href="/kb/en/innodb-system-variables/#innodb_defragment_n_pages">innodb-defragment-n-pages</a>) and tries to move records so that pages would be full of records and then frees pages that are fully empty after the operation. </p>
 <p>Note that tablespace files (including ibdata1) will not shrink as the result of defragmentation, but one will get better memory utilization in the InnoDB buffer pool as there are fewer data pages in use.</p>
 <p>A number of new system and status variables for controlling and monitoring the feature are introduced.</p>
 <h3 class="anchored_heading" id="system-variables">System Variables</h3>
@@ -455,7 +430,7 @@ innodb-defragment=1
 </li><li><a href="/kb/en/xtradbinnodb-server-status-variables/#innodb_defragment_count">Innodb_defragment_count</a>: Number of defragment operations.
 </li></ul>
 <h2 class="anchored_heading" id="example">Example</h2>
-<pre class="fixed"><span class="k">set</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">innodb_file_per_table</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">set</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">innodb_file_per_table</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="k">set</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">innodb_defragment_n_pages</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>
 <span class="k">set</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">innodb_defragment_fill_factor</span> <span class="o">=</span> <span class="mi">0</span><span class="p">.</span><span class="mi">95</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">tb_defragment</span> <span class="p">(</span>
@@ -488,7 +463,7 @@ innodb-defragment=1
 <span class="k">commit</span><span class="p">;</span>
 <span class="k">set</span> <span class="n">autocommit</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
 </pre><p>After these CREATE and INSERT operations, the following information can be seen from the INFORMATION SCHEMA:</p>
-<pre class="fixed"><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">Value</span> <span class="k">from</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_buffer_page</span> 
+<pre class="fixed wrap"><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">Value</span> <span class="k">from</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_buffer_page</span> 
   <span class="k">where</span> <span class="k">table_name</span> <span class="k">like</span> <span class="s1">&#39;%tb_defragment%&#39;</span> <span class="k">and</span> <span class="n">index_name</span> <span class="o">=</span> <span class="s1">&#39;PRIMARY&#39;</span><span class="p">;</span>
 <span class="n">Value</span>
 <span class="mi">313</span>
@@ -528,18 +503,18 @@ innodb-defragment=1
 <span class="k">table_name</span> <span class="n">index_name</span> <span class="k">sum</span><span class="p">(</span><span class="n">number_records</span><span class="p">)</span> <span class="k">sum</span><span class="p">(</span><span class="n">data_size</span><span class="p">)</span>
 <span class="o">`</span><span class="n">test</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">tb_defragment</span><span class="o">`</span> <span class="n">ix1</span> <span class="mi">50071</span> <span class="mi">1051775</span>
 </pre><p>Deleting three-quarters of the records, leaving gaps, and then optimizing:</p>
-<pre class="fixed"><span class="k">delete</span> <span class="k">from</span> <span class="n">tb_defragment</span> <span class="k">where</span> <span class="n">pk2</span> <span class="k">between</span> <span class="mi">2</span> <span class="k">and</span> <span class="mi">4</span><span class="p">;</span>
+<pre class="fixed">delete from tb_defragment where pk2 between 2 and 4;
  
-<span class="n">optimize</span> <span class="k">table</span> <span class="n">tb_defragment</span><span class="p">;</span>
-<span class="k">Table</span>	<span class="n">Op</span>	<span class="n">Msg_type</span>	<span class="n">Msg_text</span>
-<span class="n">test</span><span class="p">.</span><span class="n">tb_defragment</span>	<span class="n">optimize</span>	<span class="n">status</span>	<span class="n">OK</span>
-<span class="k">show</span> <span class="n">status</span> <span class="k">like</span> <span class="s1">&#39;%innodb_def%&#39;</span><span class="p">;</span>
-<span class="n">Variable_name</span>	<span class="n">Value</span>
-<span class="n">Innodb_defragment_compression_failures</span>	<span class="mi">0</span>
-<span class="n">Innodb_defragment_failures</span>	<span class="mi">1</span>
-<span class="n">Innodb_defragment_count</span>	<span class="mi">4</span>
+optimize table tb_defragment;
+Table	Op	Msg_type	Msg_text
+test.tb_defragment	optimize	status	OK
+show status like '%innodb_def%';
+Variable_name	Value
+Innodb_defragment_compression_failures	0
+Innodb_defragment_failures	1
+Innodb_defragment_count	4
 </pre><p>Now some pages have been freed, and some merged:</p>
-<pre class="fixed"><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">Value</span> <span class="k">from</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_buffer_page</span> 
+<pre class="fixed wrap"><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">Value</span> <span class="k">from</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_buffer_page</span> 
   <span class="k">where</span> <span class="k">table_name</span> <span class="k">like</span> <span class="s1">&#39;%tb_defragment%&#39;</span> <span class="k">and</span> <span class="n">index_name</span> <span class="o">=</span> <span class="s1">&#39;PRIMARY&#39;</span><span class="p">;</span>
 <span class="n">Value</span>
 <span class="mi">0</span>

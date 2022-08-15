@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-03-17 18:27">9 years ago</span></dd>
+<span class="datetime" title="2013-03-17 18:27">9 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-01 13:07">7 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-05-12 14:39">1 month ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -1456,6 +1456,8 @@
 
         <li class=""><a href="#questions" title="Questions">Questions</a></li>
 
+        <li class=""><a href="#resultset_metadata_skipped" title="Resultset_metadata_skipped">Resultset_metadata_skipped</a></li>
+
         <li class=""><a href="/kb/en/myrocks-status-variables/#rocksdb_block_cache_add" title="Rocksdb_block_cache_add">Rocksdb_block_cache_add</a></li>
 
         <li class=""><a href="/kb/en/myrocks-status-variables/#rocksdb_block_cache_add_failures" title="Rocksdb_block_cache_add_failures">Rocksdb_block_cache_add_failures</a></li>
@@ -2374,28 +2376,24 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of access denied errors.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-52/">MariaDB 5.2</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_column_grants"><code>Acl_column_grants</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of column permissions granted (rows in the <a href="/kb/en/mysqlcolumns_priv-table/">mysql.columns_priv table</a>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong><a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_database_grants"><code>Acl_database_grants</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of database permissions granted (rows in the <a href="/kb/en/mysqldb-table/">mysql.db table</a>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_function_grants"><code>Acl_function_grants</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of function permissions granted (rows in the <a href="/kb/en/mysqlprocs_priv-table/">mysql.procs_priv table</a> with a routine type of <code>FUNCTION</code>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_package_body_grants"><code>Acl_package_body_grants</code></h4>
@@ -2416,42 +2414,36 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of procedure permissions granted (rows in the <a href="/kb/en/mysqlprocs_priv-table/">mysql.procs_priv table</a> with a routine type of <code>PROCEDURE</code>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_proxy_users"><code>Acl_proxy_users</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of proxy permissions granted (rows in the <a href="/kb/en/mysqlproxies_priv-table/">mysql.proxies_priv table</a>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_role_grants"><code>Acl_role_grants</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of role permissions granted (rows in the <a href="/kb/en/mysqlroles_mapping-table/">mysql.roles_mapping table</a>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_roles"><code>Acl_roles</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of roles (rows in the <a href="/kb/en/mysqluser-table/">mysql.user table</a> where <code>is_role='Y'</code>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_table_grants"><code>Acl_table_grants</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of table permissions granted (rows in the <a href="mysql.tables_priv-table">mysql.tables_priv table</a>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="acl_users"><code>Acl_users</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of users (rows in the <a href="/kb/en/mysqluser-table/">mysql.user table</a> where <code>is_role='N'</code>).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1014-release-notes/">MariaDB 10.1.4</a>
 </li></ul>
 <hr>
 
@@ -2477,7 +2469,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Cumulative time in seconds of activity on connections.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="bytes_received"><code>Bytes_received</code></h4>
@@ -2557,9 +2548,10 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_alter_tablespace"><code>Com_alter_tablespace</code></h4>
-<ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/alter-tablespace/">ALTER TABLESPACE</a> commands executed.
+<ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/alter-tablespace/">ALTER TABLESPACE</a> commands executed (unsupported by MariaDB).
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
+</li><li><strong>Removed:</strong> <a href="/kb/en/mariadb-1070-release-notes/">MariaDB 10.7.0</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_alter_user"><code>Com_alter_user</code></h4>
@@ -2603,7 +2595,7 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_begin"><code>Com_begin</code></h4>
-<ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/begin-end/">BEGIN</a> statements executed.
+<ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/begin-end/">BEGIN</a> or <a href="/kb/en/start-transaction/">START TRANSACTION</a> statements executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
 </li></ul>
@@ -2649,7 +2641,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/programmatic-and-compound-statements/">compund</a> sql statements.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_create_db"><code>Com_create_db</code></h4>
@@ -2700,7 +2691,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/create-role/">CREATE ROLE</a> commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_create_sequence"><code>Com_create_sequence</code></h4>
@@ -2726,7 +2716,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/create-table/">CREATE TEMPORARY TABLE</a> commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1016-release-notes/">MariaDB 10.1.6</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_create_trigger"><code>Com_create_trigger</code></h4>
@@ -2825,7 +2814,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/drop-role/">DROP ROLE</a> commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_drop_sequence"><code>Com_drop_sequence</code></h4>
@@ -2851,7 +2839,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/drop-table/">DROP TEMPORARY TABLE</a> commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1016-release-notes/">MariaDB 10.1.6</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_drop_trigger"><code>Com_drop_trigger</code></h4>
@@ -2901,7 +2888,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/get-diagnostics/">GET DIAGNOSTICS</a> commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1004-release-notes/">MariaDB 10.0.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_grant"><code>Com_grant</code></h4>
@@ -2914,7 +2900,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/grant/#roles">GRANT</a> role commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_ha_close"><code>Com_ha_close</code></h4>
@@ -3071,7 +3056,7 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_resignal"><code>Com_resignal</code></h4>
-<ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/resignal-statement/">RESIGNAL</a> commands executed.
+<ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/resignal/">RESIGNAL</a> commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
 </li></ul>
@@ -3099,7 +3084,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/revoke/#roles">REVOKE</a> role commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_rollback"><code>Com_rollback</code></h4>
@@ -3133,7 +3117,7 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_signal"><code>Com_signal</code></h4>
-<ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/signal-statement/">SIGNAL</a> statements executed.
+<ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/signal/">SIGNAL</a> statements executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
 </li></ul>
@@ -3166,7 +3150,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/show-client_statistics/">SHOW CLIENT STATISTICS</a> commands executed. Removed in <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a> when that statement was replaced by the generic <a href="/kb/en/information-schema-plugins-show-and-flush-statements/">SHOW information_schema_table</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-52/">MariaDB 5.2</a>
 </li><li><strong>Removed:</strong> <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>
 </li></ul>
 <hr>
@@ -3286,7 +3269,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/show-explain/">SHOW EXPLAIN</a> commands executed.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1000-release-notes/">MariaDB 10.0.0</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_show_fields"><code>Com_show_fields</code></h4>
@@ -3305,7 +3287,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of generic <a href="/kb/en/show/">SHOW</a> commands executed, such as <a href="/kb/en/show-index_statistics/">SHOW INDEX_STATISTICS</a> and <a href="/kb/en/show-table_statistics/">SHOW TABLE_STATISTICS</a>
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="com_show_grants"><code>Com_show_grants</code></h4>
@@ -3324,7 +3305,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/show-index_statistics/">SHOW INDEX_STATISTICS</a> commands executed. Removed in <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a> when that statement was replaced by the generic <a href="/kb/en/information-schema-plugins-show-and-flush-statements/">SHOW information_schema_table</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-52/">MariaDB 5.2</a>
 </li><li><strong>Removed:</strong> <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>
 </li></ul>
 <hr>
@@ -3410,7 +3390,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/show-table_statistics/">SHOW TABLE STATISTICS</a> commands executed. Removed in <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a> when that statement was replaced by the generic <a href="/kb/en/information-schema-plugins-show-and-flush-statements/">SHOW information_schema_table</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-52/">MariaDB 5.2</a>
 </li><li><strong>Removed:</strong> <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>
 </li></ul>
 <hr>
@@ -3436,7 +3415,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/show-user_statistics/">SHOW USER STATISTICS</a> commands executed. Removed in <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a> when that statement was replaced by the generic <a href="/kb/en/information-schema-plugins-show-and-flush-statements/">SHOW information_schema_table</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-52/">MariaDB 5.2</a>
 </li><li><strong>Removed:</strong> <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>
 </li></ul>
 <hr>
@@ -3582,42 +3560,36 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of errors that occurred during calls to accept() on the listening port. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1004-release-notes/">MariaDB 10.0.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="connection_errors_internal"><code>Connection_errors_internal</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of refused connections due to internal server errors, for example out of memory errors, or failed thread starts. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1004-release-notes/">MariaDB 10.0.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="connection_errors_max_connections"><code>Connection_errors_max_connections</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of refused connections due to the <a href="/kb/en/server-system-variables/#max_connections">max_connections</a> limit being reached. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1004-release-notes/">MariaDB 10.0.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="connection_errors_peer_address"><code>Connection_errors_peer_address</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of errors while searching for the connecting client IP address. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1004-release-notes/">MariaDB 10.0.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="connection_errors_select"><code>Connection_errors_select</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of errors during calls to select() or poll() on the listening port. The client would not necessarily have been rejected in these cases. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1004-release-notes/">MariaDB 10.0.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="connection_errors_tcpwrap"><code>Connection_errors_tcpwrap</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of connections the libwrap library refused. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1004-release-notes/">MariaDB 10.0.4</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="connections"><code>Connections</code></h4>
@@ -3630,7 +3602,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Total CPU time used.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="created_tmp_disk_tables"><code>Created_tmp_disk_tables</code></h4>
@@ -3673,14 +3644,12 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of <a href="/kb/en/delete/">DELETE</a>s that required a full table scan.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-10117-release-notes/">MariaDB 10.1.17</a>, <a href="/kb/en/mariadb-10027-release-notes/">MariaDB 10.0.27</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="empty_queries"><code>Empty_queries</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of queries returning no results. Note this is not the same as <a href="#com_empty_query">Com_empty_query</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-52/">MariaDB 5.2</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="executed_events"><code>Executed_events</code></h4>
@@ -3720,7 +3689,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of tables opened that are using <a href="/kb/en/server-system-variables/#delay_key_write">delay_key_write</a>. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-10013-release-notes/">MariaDB 10.0.13</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="feature_dynamic_columns"><code>Feature_dynamic_columns</code></h4>
@@ -3834,42 +3802,36 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Incremented for each call to the external_lock() function, which generally occurs at the beginning and end of access to a table instance.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1000-release-notes/">MariaDB 10.0.0</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_icp_attempts"><code>Handler_icp_attempts</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of times pushed index condition was checked. The smaller the ratio of Handler_icp_attempts to <a href="#handler_icp_match">Handler_icp_match</a> the better the filtering. See <a href="/kb/en/index-condition-pushdown/">Index Condition Pushdown</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_icp_match"><code>Handler_icp_match</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of times pushed index condition was matched. The smaller the ratio of <a href="#handler_icp_attempts">Handler_icp_attempts</a> to Handler_icp_match the better the filtering. See See <a href="/kb/en/index-condition-pushdown/">Index Condition Pushdown</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_mrr_init"><code>Handler_mrr_init</code></h4>
 <ul start="1"><li><strong>Description:</strong> Counts how many MRR (multi-range read) scans were performed. See <a href="/kb/en/multi-range-read-optimization/">Multi Range Read optimization</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_mrr_key_refills"><code>Handler_mrr_key_refills</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of times key buffer was refilled (not counting the initial fill). A non-zero value indicates there wasn't enough memory to do key sort-and-sweep passes in one go.  See <a href="/kb/en/multi-range-read-optimization/">Multi Range Read optimization</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_mrr_rowid_refills"><code>Handler_mrr_rowid_refills</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of times rowid buffer was refilled (not counting the initial fill). A non-zero value indicates there wasn't enough memory to do rowid sort-and-sweep passes in one go. See <a href="/kb/en/multi-range-read-optimization/">Multi Range Read optimization</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_prepare"><code>Handler_prepare</code></h4>
@@ -3912,7 +3874,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of read retrys triggered by semi_consistent_read (InnoDB feature).
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-10027-release-notes/">MariaDB 10.0.27</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_read_rnd"><code>Handler_read_rnd</code></h4>
@@ -3925,7 +3886,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of requests to delete a row based on its position.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_read_rnd_next"><code>Handler_read_rnd_next</code></h4>
@@ -3963,14 +3923,12 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of requests to update a row to a temporary table.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_tmp_write"><code>Handler_tmp_write</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of requests to write a row to a temporary table.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="handler_update"><code>Handler_update</code></h4>
@@ -4168,7 +4126,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of key cache blocks in the warm list.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-51/">MariaDB 5.1</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="key_read_requests"><code>Key_read_requests</code></h4>
@@ -4211,7 +4168,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <h4 class="anchored_heading" id="max_statement_time_exceeded"><code>Max_statement_time_exceeded</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of queries that exceeded the execution time specified by <a href="/kb/en/server-system-variables/#max_statement_time">max_statement_time</a>. See <a href="/kb/en/aborting-statements-that-take-longer-than-a-certain-time-to-execute/">Aborting statements that take longer than a certain time to execute</a>.
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1011-release-notes/">MariaDB 10.1.1</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="max_used_connections"><code>Max_used_connections</code></h4>
@@ -4275,7 +4231,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of shared libraries that the server has opened to load <a href="/kb/en/plugins/">plugins</a>.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-100/">MariaDB 10.0</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="opened_table_definitions"><code>Opened_table_definitions</code></h4>
@@ -4395,6 +4350,13 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 </li><li><strong>Data Type:</strong> <code>numeric</code>
 </li></ul>
 <hr>
+<h4 class="anchored_heading" id="resultset_metadata_skipped"><code>Resultset_metadata_skipped</code></h4>
+<ul start="1"><li><strong>Description:</strong> Number of times sending the metadata has been skipped. Metadata is not resent if metadata does not change between prepare and execute of prepared statement, or between executes.
+</li><li><strong>Scope:</strong> Global, Session
+</li><li><strong>Data Type:</strong> <code>numeric</code>
+</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-1060-release-notes/">MariaDB 10.6.0</a>
+</li></ul>
+<hr>
 
 
 
@@ -4511,21 +4473,18 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Number of requests to read a row (excluding temporary tables).
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="rows_sent"><code>Rows_sent</code></h4>
 <ul start="1"><li><strong>Description:</strong> 
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="rows_tmp_read"><code>Rows_tmp_read</code></h4>
 <ul start="1"><li><strong>Description:</strong> Number of requests to read a row in a temporary table.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 
@@ -4615,7 +4574,6 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> The number of times that sorting was done through a priority queue. (The total number of times sorting was done is a sum <a href="#sort_range">Sort_range</a> and <a href="#sort_scan">Sort_scan</a>). See <a href="/kb/en/filesort-with-small-limit-optimization/">filesort with small LIMIT optimization</a>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-10013-release-notes/">MariaDB 10.0.13</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="sort_range"><code>Sort_range</code></h4>
@@ -4678,14 +4636,12 @@ information also can be obtained using the <a href="/kb/en/mysqladmin/">mysqladm
 <ul start="1"><li><strong>Description:</strong> Counter for all <a href="/kb/en/subquery-cache/">subquery cache</a> hits. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="subquery_cache_miss"><code>Subquery_cache_miss</code></h4>
 <ul start="1"><li><strong>Description:</strong> Counter for all <a href="/kb/en/subquery-cache/">subquery cache</a> misses. The global value can be flushed by <code><a href="/kb/en/flush/">FLUSH STATUS</a></code>.
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="syncs"><code>Syncs</code></h4>
@@ -4694,7 +4650,6 @@ operations are configured to sync) and some storage engines (<a href="/kb/en/arc
 <a href="/kb/en/csv/">CSV</a>, <a href="/kb/en/aria/">Aria</a>), but not <a href="/kb/en/innodb/">XtraDB/InnoDB</a>).
 </li><li><strong>Scope:</strong> Global, Session
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/what-is-mariadb-51/">MariaDB 5.1</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="table_locks_immediate"><code>Table_locks_immediate</code></h4>
@@ -4966,7 +4921,6 @@ operations are configured to sync) and some storage engines (<a href="/kb/en/arc
 <ul start="1"><li><strong>Description:</strong> Number of updates that required a full table scan.
 </li><li><strong>Scope:</strong> Global
 </li><li><strong>Data Type:</strong> <code>numeric</code>
-</li><li><strong>Introduced:</strong> <a href="/kb/en/mariadb-10117-release-notes/">MariaDB 10.1.17</a>, <a href="/kb/en/mariadb-10027-release-notes/">MariaDB 10.0.27</a>
 </li></ul>
 <hr>
 <h4 class="anchored_heading" id="uptime"><code>Uptime</code></h4>

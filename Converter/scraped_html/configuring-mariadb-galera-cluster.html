@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2018-12-28 00:07">3 years, 3 months ago</span></dd>
+<span class="datetime" title="2018-12-28 00:07">3 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-04-30 16:33">1 year, 11 months ago</span></dd>
+<span class="datetime" title="2022-05-07 16:33">1 month ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -433,6 +433,10 @@
 <p>Galera Cluster needs access to the following ports:</p>
 <ul start="1"><li><strong>Standard MariaDB Port</strong> (default: 3306) - For MySQL client connections and <a href="/kb/en/introduction-to-state-snapshot-transfers-ssts/">State Snapshot Transfers</a> that use the <code>mysqldump</code> method. This can be changed by setting <code><a href="/kb/en/server-system-variables/#port">port</a></code>.
 </li><li><strong>Galera Replication Port</strong> (default: 4567) - For Galera Cluster replication traffic, multicast replication uses both UDP transport and TCP on this port. Can be changed by setting <code><a href="/kb/en/galera-cluster-system-variables/#wsrep_node_address">wsrep_node_address</a></code>.
+</li><li><strong>Galera Replication Listening Interface</strong> (default: <code>0.0.0.0:4567</code>) needs to be set using <a href="/kb/en/wsrep_provider_options/#gmcastlisten_addr">gmcast.listen_addr</a>, either 
+<ul start="1"><li>in <a href="/kb/en/galera-cluster-system-variables/#wsrep_provider_options">wsrep_provider_options</a>: <code>wsrep_provider_options='gmcast.listen_addr=tcp://&lt;IP_ADDR&gt;:&lt;PORT&gt;;'</code>
+</li><li>or in <a href="/kb/en/galera-cluster-system-variables/#wsrep_cluster_address">wsrep_cluster_address</a>
+</li></ul>
 </li><li><strong>IST Port</strong> (default: 4568) - For Incremental State Transfers. Can be changed by setting <code><a href="http://galeracluster.com/library/documentation/galera-parameters.html#ist-recv-addr">ist.recv_addr</a></code> in <code><a href="/kb/en/galera-cluster-system-variables/#wsrep_provider_options">wsrep_provider_options</a></code>.
 </li><li><strong>SST Port</strong> (default: 4444) - For all <a href="/kb/en/introduction-to-state-snapshot-transfers-ssts/">State Snapshot Transfer</a> methods other than <code>mysqldump</code>. Can be changed by setting <code><a href="/kb/en/galera-cluster-system-variables/#wsrep_sst_receive_address">wsrep_sst_receive_address</a></code>.
 </li></ul>

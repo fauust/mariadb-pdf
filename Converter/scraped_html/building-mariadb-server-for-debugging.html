@@ -235,12 +235,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2016-04-02 23:33">6 years ago</span></dd>
+<span class="datetime" title="2016-04-02 23:33">6 years, 2 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-07-24 09:09">3 years, 8 months ago</span></dd>
+<span class="datetime" title="2022-04-27 21:18">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -398,11 +398,12 @@ you to go back to your old binary if needed.</p>
 <p>If you get any errors about a wrong number of error messages, you can
 fix that by copying the corresponding language file from <strong>sql/share</strong>
 over your old ones (this should be reasonably safe to do).</p>
-<pre class="fixed">cp sql/share/english/* mariadb-install-dir/share/mysql/english
+<pre class="fixed wrap">cp sql/share/english/* mariadb-install-dir/share/mysql/english
 </pre><h2 class="anchored_heading" id="what-to-do-when-you-get-a-crash-after-installing-a-debug-binary">What to Do When You Get a Crash After Installing a Debug Binary</h2>
 <p>Now when you get a crash do the following:</p>
 <ul start="1"><li>Create a README file that describes the problem. You can use the mysqlbug script to generate a template for this.
-</li><li>Create a tar file containing the core, the mysqld binary and README. If possible, also add any database files that could help us repeat the problem! <pre class="fixed">sh&gt; tar cvfz /tmp/mariadb-bug-<span class="s1">&#39;short-description&#39;</span>.tgz mariadb-data-dir/core* mariadb-install-dir/libexec/mysqld README
+</li><li>Create a tar file containing the core, the mysqld binary and README. If possible, also add any database files that could help us repeat the problem! 
+<pre class="fixed wrap">sh&gt; tar cvfz /tmp/mariadb-bug-<span class="s1">&#39;short-description&#39;</span>.tgz mariadb-data-dir/core* mariadb-install-dir/libexec/mysqld README
 </pre>
 </li><li>Send it to our secure ftp server: <pre class="fixed">sh&gt; ftp -a ftp.askmonty.org
 ftp&gt; <span class="nb">cd</span> private

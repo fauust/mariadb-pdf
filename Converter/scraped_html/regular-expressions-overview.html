@@ -259,12 +259,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-10-21 08:41">8 years, 5 months ago</span></dd>
+<span class="datetime" title="2013-10-21 08:41">8 years, 7 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-09-24 12:33">3 years, 6 months ago</span></dd>
+<span class="datetime" title="2022-04-25 09:44">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -466,7 +466,7 @@ Regular Expressions allow MariaDB to perform complex pattern matching on a strin
 <p>In other cases you may need more control over the returned matches, and will need to use regular expressions.</p>
 <div class="mariadb_from_10_0_5 mariadb from_10_0_5 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1005-release-notes/">10.0.5</a></h5><p>Until <a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>, MariaDB used the POSIX 1003.2 compliant regular expression library. The new PCRE library is mostly backwards compatible with what is described below - see the <a href="/kb/en/pcre-regular-expressions/">PCRE Regular Expressions</a> article for the enhancements made in 10.0.5.</p>
 </div><p>Regular expression matches are performed with the <a href="/kb/en/regexp/">REGEXP</a> function. <code>RLIKE</code> is a synonym for <code>REGEXP</code>.</p>
-<div class="cstm-style graybox"><p>Comparisons are performed on the byte value, so characters that are treated as equivalent by a collation, but do not have the same byte-value, such as accented characters, could evaluate as unequal. Also note that until <a href="/kb/en/mariadb-1005-release-notes/">MariaDB 10.0.5</a>, regular expressions were not multi-byte safe, and therefore could produce unexpected results in multi-byte character sets. </p>
+<div class="cstm-style graybox"><p>Comparisons are performed on the byte value, so characters that are treated as equivalent by a collation, but do not have the same byte-value, such as accented characters, could evaluate as unequal.</p>
 </div><p>Without any special characters, a regular expression match is true if the characters match. The match is case-insensitive, except in the case of BINARY strings.</p>
 <pre class="fixed">SELECT 'Maria' REGEXP 'Maria';
 +------------------------+

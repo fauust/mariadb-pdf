@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2018-12-28 23:35">3 years, 3 months ago</span></dd>
+<span class="datetime" title="2018-12-28 23:35">3 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-05-27 07:57">2 years, 10 months ago</span></dd>
+<span class="datetime" title="2022-04-26 22:40">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -397,31 +397,31 @@
 
         <li class=""><a href="#start-the-first-cluster" title="Start the First Cluster">Start the First Cluster</a></li>
 
-        <li class=""><a href="#backup-the-database-on-the-first-clusters-master-node-and-prepare-it" title="Backup the Database on the First Cluster&#39;s Master Node and Prepare It">Backup the Database on the First Cluster&#39;s Master Node and Prepare It</a></li>
+        <li class=""><a href="#backup-the-database-on-the-first-clusters-primary-node-and-prepare-it" title="Backup the Database on the First Cluster&#39;s Primary Node and Prepare It">Backup the Database on the First Cluster&#39;s Primary Node and Prepare It</a></li>
 
-        <li class=""><a href="#copy-the-backup-to-the-second-clusters-slave" title="Copy the Backup to the Second Cluster&#39;s Slave">Copy the Backup to the Second Cluster&#39;s Slave</a></li>
+        <li class=""><a href="#copy-the-backup-to-the-second-clusters-replica" title="Copy the Backup to the Second Cluster&#39;s Replica">Copy the Backup to the Second Cluster&#39;s Replica</a></li>
 
-        <li class=""><a href="#restore-the-backup-on-the-second-clusters-slave" title="Restore the Backup on the Second Cluster&#39;s Slave">Restore the Backup on the Second Cluster&#39;s Slave</a></li>
+        <li class=""><a href="#restore-the-backup-on-the-second-clusters-replica" title="Restore the Backup on the Second Cluster&#39;s Replica">Restore the Backup on the Second Cluster&#39;s Replica</a></li>
 
-        <li class=""><a href="#bootstrap-the-second-clusters-slave" title="Bootstrap the Second Cluster&#39;s Slave">Bootstrap the Second Cluster&#39;s Slave</a></li>
+        <li class=""><a href="#bootstrap-the-second-clusters-replica" title="Bootstrap the Second Cluster&#39;s Replica">Bootstrap the Second Cluster&#39;s Replica</a></li>
 
-        <li class=""><a href="#create-a-replication-user-on-the-first-clusters-master" title="Create a Replication User on the First Cluster&#39;s Master">Create a Replication User on the First Cluster&#39;s Master</a></li>
+        <li class=""><a href="#create-a-replication-user-on-the-first-clusters-primary" title="Create a Replication User on the First Cluster&#39;s Primary">Create a Replication User on the First Cluster&#39;s Primary</a></li>
 
-        <li class=""><a href="#start-replication-on-the-second-clusters-slave" title="Start Replication on the Second Cluster&#39;s Slave">Start Replication on the Second Cluster&#39;s Slave</a>        <ol class="toc">
+        <li class=""><a href="#start-replication-on-the-second-clusters-replica" title="Start Replication on the Second Cluster&#39;s Replica">Start Replication on the Second Cluster&#39;s Replica</a>        <ol class="toc">
 
             <li class=""><a href="#gtids" title="GTIDs">GTIDs</a></li>
 
             <li class=""><a href="#file-and-position" title="File and Position">File and Position</a>        </ol>
 </li>
 
-        <li class=""><a href="#check-the-status-of-the-second-clusters-slave" title="Check the Status of the Second Cluster&#39;s Slave">Check the Status of the Second Cluster&#39;s Slave</a></li>
+        <li class=""><a href="#check-the-status-of-the-second-clusters-replica" title="Check the Status of the Second Cluster&#39;s Replica">Check the Status of the Second Cluster&#39;s Replica</a></li>
 
         <li class=""><a href="#start-the-second-cluster" title="Start the Second Cluster">Start the Second Cluster</a>    </ol>
 </li>
 
     <li class=""><a href="#setting-up-circular-replication" title="Setting up Circular Replication">Setting up Circular Replication</a>    <ol class="toc">
 
-        <li class=""><a href="#create-a-replication-user-on-the-second-clusters-master" title="Create a Replication User on the Second Cluster&#39;s Master">Create a Replication User on the Second Cluster&#39;s Master</a></li>
+        <li class=""><a href="#create-a-replication-user-on-the-second-clusters-primary" title="Create a Replication User on the Second Cluster&#39;s Primary">Create a Replication User on the Second Cluster&#39;s Primary</a></li>
 
         <li class=""><a href="#start-circular-replication-on-the-first-cluster" title="Start Circular Replication on the First Cluster">Start Circular Replication on the First Cluster</a>        <ol class="toc">
 
@@ -458,39 +458,39 @@
 <p>Our process to set up replication is going to be similar to the process described at <a href="/kb/en/setting-up-a-replication-slave-with-mariabackup/">Setting up a Replication Slave with Mariabackup</a>, but it will be modified a bit to work in this context.</p>
 <h3 class="anchored_heading" id="start-the-first-cluster">Start the First Cluster</h3>
 <p>The very first step is to start the nodes in the first cluster. The first node will have to be <a href="/kb/en/getting-started-with-mariadb-galera-cluster/#bootstrapping-a-new-cluster">bootstrapped</a>. The other nodes can be <a href="/kb/en/starting-and-stopping-mariadb-starting-and-stopping-mariadb/">started normally</a>.</p>
-<p>Once the nodes are started, you need to pick a specific node that will act as the replication master for the second cluster.</p>
-<h3 class="anchored_heading" id="backup-the-database-on-the-first-clusters-master-node-and-prepare-it">Backup the Database on the First Cluster's Master Node and Prepare It</h3>
-<p>The first step is to simply take and prepare a fresh <a href="/kb/en/full-backup-and-restore-with-mariabackup/">full backup</a> of the node that you have chosen to be the replication master. For example:</p>
+<p>Once the nodes are started, you need to pick a specific node that will act as the replication primary for the second cluster.</p>
+<h3 class="anchored_heading" id="backup-the-database-on-the-first-clusters-primary-node-and-prepare-it">Backup the Database on the First Cluster's Primary Node and Prepare It</h3>
+<p>The first step is to simply take and prepare a fresh <a href="/kb/en/full-backup-and-restore-with-mariabackup/">full backup</a> of the node that you have chosen to be the replication primary. For example:</p>
 <pre class="fixed">$ mariabackup --backup \
    --target-dir=/var/mariadb/backup/ \
    --user=mariabackup --password=mypassword
 </pre><p>And then you would prepare the backup as you normally would. For example:</p>
 <pre class="fixed">$ mariabackup --prepare \
    --target-dir=/var/mariadb/backup/ 
-</pre><h3 class="anchored_heading" id="copy-the-backup-to-the-second-clusters-slave">Copy the Backup to the Second Cluster's Slave</h3>
-<p>Once the backup is done and prepared, you can copy it to the node in the second cluster that will be acting as slave. For example:</p>
+</pre><h3 class="anchored_heading" id="copy-the-backup-to-the-second-clusters-replica">Copy the Backup to the Second Cluster's Replica</h3>
+<p>Once the backup is done and prepared, you can copy it to the node in the second cluster that will be acting as replica. For example:</p>
 <pre class="fixed">$ rsync -avrP /var/mariadb/backup c2dbserver:/var/mariadb/backup
-</pre><h3 class="anchored_heading" id="restore-the-backup-on-the-second-clusters-slave">Restore the Backup on the Second Cluster's Slave</h3>
-<p>At this point, you can restore the backup to the <code><a href="/kb/en/server-system-variables/#datadir">datadir</a></code>, as you normally would. For example:</p>
+</pre><h3 class="anchored_heading" id="restore-the-backup-on-the-second-clusters-replica">Restore the Backup on the Second Cluster's Replica</h3>
+<p>At this point, you can restore the backup to the <a href="/kb/en/server-system-variables/#datadir">datadir</a>, as you normally would. For example:</p>
 <pre class="fixed">$ mariabackup --copy-back \
    --target-dir=/var/mariadb/backup/
 </pre><p>And adjusting file permissions, if necessary:</p>
 <pre class="fixed">$ chown -R mysql:mysql /var/lib/mysql/
-</pre><h3 class="anchored_heading" id="bootstrap-the-second-clusters-slave">Bootstrap the Second Cluster's Slave</h3>
-<p>Now that the backup has been restored to the second cluster's slave, you can start the server by <a href="/kb/en/getting-started-with-mariadb-galera-cluster/#bootstrapping-a-new-cluster">bootstrapping</a> the node.</p>
-<h3 class="anchored_heading" id="create-a-replication-user-on-the-first-clusters-master">Create a Replication User on the First Cluster's Master</h3>
-<p>Before the second cluster's slave can begin replicating from the first cluster's master, you need to <a href="/kb/en/create-user/">create a user account</a> on the master that the slave can use to connect, and you need to <a href="/kb/en/grant/">grant</a> the user account the <code><a href="/kb/en/grant/#global-privileges">REPLICATION SLAVE</a></code> privilege. For example:</p>
+</pre><h3 class="anchored_heading" id="bootstrap-the-second-clusters-replica">Bootstrap the Second Cluster's Replica</h3>
+<p>Now that the backup has been restored to the second cluster's replica, you can start the server by <a href="/kb/en/getting-started-with-mariadb-galera-cluster/#bootstrapping-a-new-cluster">bootstrapping</a> the node.</p>
+<h3 class="anchored_heading" id="create-a-replication-user-on-the-first-clusters-primary">Create a Replication User on the First Cluster's Primary</h3>
+<p>Before the second cluster's replica can begin replicating from the first cluster's primary, you need to <a href="/kb/en/create-user/">create a user account</a> on the primary that the replica can use to connect, and you need to <a href="/kb/en/grant/">grant</a> the user account the <a href="/kb/en/grant/#global-privileges">REPLICATION SLAVE</a> privilege. For example:</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;c2dbserver1&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="n">REPLICATION</span> <span class="n">SLAVE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span>  <span class="k">TO</span> <span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;c2dbserver1&#39;</span><span class="p">;</span>
-</pre><h3 class="anchored_heading" id="start-replication-on-the-second-clusters-slave">Start Replication on the Second Cluster's Slave</h3>
-<p>At this point, you need to get the replication coordinates of the master from the original backup.</p>
-<p>The coordinates will be in the <code><a href="/kb/en/files-created-by-mariabackup/#xtrabackup_binlog_info">xtrabackup_binlog_info</a></code> file.</p>
-<p>Mariabackup dumps replication coordinates in two forms: <a href="/kb/en/gtid/">GTID strings</a> and <a href="/kb/en/binary-log/">binary log</a> file and position coordinates, like the ones you would normally see from <code><a href="/kb/en/show-master-status/">SHOW MASTER STATUS</a></code> output. In this case, it is probably better to use the <a href="/kb/en/gtid/">GTID</a> coordinates.</p>
+</pre><h3 class="anchored_heading" id="start-replication-on-the-second-clusters-replica">Start Replication on the Second Cluster's Replica</h3>
+<p>At this point, you need to get the replication coordinates of the primary from the original backup.</p>
+<p>The coordinates will be in the <a href="/kb/en/files-created-by-mariabackup/#xtrabackup_binlog_info">xtrabackup_binlog_info</a> file.</p>
+<p>Mariabackup dumps replication coordinates in two forms: <a href="/kb/en/gtid/">GTID strings</a> and <a href="/kb/en/binary-log/">binary log</a> file and position coordinates, like the ones you would normally see from <a href="/kb/en/show-master-status/">SHOW MASTER STATUS</a> output. In this case, it is probably better to use the <a href="/kb/en/gtid/">GTID</a> coordinates.</p>
 <p>For example:</p>
 <pre class="fixed">mariadb-bin.000096 568 0-1-2
-</pre><p>Regardless of the coordinates you use, you will have to set up the master connection using <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> and then start the replication threads with <code><a href="/kb/en/start-slave/">START SLAVE</a></code>.</p>
+</pre><p>Regardless of the coordinates you use, you will have to set up the primary connection using <a href="/kb/en/change-master-to/">CHANGE MASTER TO</a> and then start the replication threads with <a href="/kb/en/start-slave/">START SLAVE</a>.</p>
 <h4 class="anchored_heading" id="gtids">GTIDs</h4>
-<p>If you want to use GTIDs, then you will have to first set <code><a href="/kb/en/gtid/#gtid_slave_pos">gtid_slave_pos</a></code>  to the <a href="/kb/en/gtid/">GTID</a> coordinates that we pulled from the <code><a href="/kb/en/files-created-by-mariabackup/#xtrabackup_binlog_info">xtrabackup_binlog_info</a></code> file, and we would set <code>MASTER_USE_GTID=slave_pos</code> in the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> command. For example:</p>
+<p>If you want to use GTIDs, then you will have to first set <a href="/kb/en/gtid/#gtid_slave_pos">gtid_slave_pos</a>  to the <a href="/kb/en/gtid/">GTID</a> coordinates that we pulled from the <a href="/kb/en/files-created-by-mariabackup/#xtrabackup_binlog_info">xtrabackup_binlog_info</a> file, and we would set <code>MASTER_USE_GTID=slave_pos</code> in the <a href="/kb/en/change-master-to/">CHANGE MASTER TO</a> command. For example:</p>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">gtid_slave_pos</span> <span class="o">=</span> <span class="ss">&quot;0-1-2&quot;</span><span class="p">;</span>
 <span class="n">CHANGE</span> <span class="n">MASTER</span> <span class="k">TO</span> 
    <span class="n">MASTER_HOST</span><span class="o">=</span><span class="ss">&quot;c1dbserver1&quot;</span><span class="p">,</span> 
@@ -500,7 +500,7 @@
    <span class="n">MASTER_USE_GTID</span><span class="o">=</span><span class="n">slave_pos</span><span class="p">;</span>
 <span class="k">START</span> <span class="n">SLAVE</span><span class="p">;</span>
 </pre><h4 class="anchored_heading" id="file-and-position">File and Position</h4>
-<p>If you want to use the <a href="/kb/en/binary-log/">binary log</a> file and position coordinates, then you would set <code>MASTER_LOG_FILE</code> and <code>MASTER_LOG_POS</code> in the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> command to the file and position coordinates that we pulled the <code><a href="/kb/en/files-created-by-mariabackup/#xtrabackup_binlog_info">xtrabackup_binlog_info</a></code> file. For example:</p>
+<p>If you want to use the <a href="/kb/en/binary-log/">binary log</a> file and position coordinates, then you would set <code>MASTER_LOG_FILE</code> and <code>MASTER_LOG_POS</code> in the <a href="/kb/en/change-master-to/">CHANGE MASTER TO</a> command to the file and position coordinates that we pulled the <a href="/kb/en/files-created-by-mariabackup/#xtrabackup_binlog_info">xtrabackup_binlog_info</a> file. For example:</p>
 <pre class="fixed"><span class="n">CHANGE</span> <span class="n">MASTER</span> <span class="k">TO</span> 
    <span class="n">MASTER_HOST</span><span class="o">=</span><span class="ss">&quot;c1dbserver1&quot;</span><span class="p">,</span> 
    <span class="n">MASTER_PORT</span><span class="o">=</span><span class="mi">3310</span><span class="p">,</span> 
@@ -509,16 +509,16 @@
    <span class="n">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;mariadb-bin.000096&#39;</span><span class="p">,</span>
    <span class="n">MASTER_LOG_POS</span><span class="o">=</span><span class="mi">568</span><span class="p">,</span>
 <span class="k">START</span> <span class="n">SLAVE</span><span class="p">;</span>
-</pre><h3 class="anchored_heading" id="check-the-status-of-the-second-clusters-slave">Check the Status of the Second Cluster's Slave</h3>
-<p>You should be done setting up the slave now, so you should check its status with <code><a href="/kb/en/show-slave-status/">SHOW SLAVE STATUS</a></code>. For example:</p>
-<pre class="fixed"><span class="k">SHOW</span> <span class="n">SLAVE</span> <span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+</pre><h3 class="anchored_heading" id="check-the-status-of-the-second-clusters-replica">Check the Status of the Second Cluster's Replica</h3>
+<p>You should be done setting up the replica now, so you should check its status with <a href="/kb/en/show-slave-status/">SHOW SLAVE STATUS</a>. For example:</p>
+<pre class="fixed">SHOW SLAVE STATUS\G
 </pre><h3 class="anchored_heading" id="start-the-second-cluster">Start the Second Cluster</h3>
-<p>If the slave is replicating normally, then the next step would be to <a href="/kb/en/starting-and-stopping-mariadb-starting-and-stopping-mariadb/">start the MariaDB Server process</a> on the other nodes in the second cluster.</p>
+<p>If the replica is replicating normally, then the next step would be to <a href="/kb/en/starting-and-stopping-mariadb-starting-and-stopping-mariadb/">start the MariaDB Server process</a> on the other nodes in the second cluster.</p>
 <p>Now that the second cluster is up, ensure that it does not start accepting writes yet if you want to set up <a href="/kb/en/replication-overview/#ring-replication">circular replication</a> between the two clusters.</p>
 <h2 class="anchored_heading" id="setting-up-circular-replication">Setting up Circular Replication</h2>
 <p>You can also set up <a href="/kb/en/replication-overview/#ring-replication">circular replication</a> between the two clusters, which means that the second cluster replicates from the first cluster, and the first cluster also replicates from the second cluster.</p>
-<h3 class="anchored_heading" id="create-a-replication-user-on-the-second-clusters-master">Create a Replication User on the Second Cluster's Master</h3>
-<p>Before circular replication can begin, you also need to <a href="/kb/en/create-user/">create a user account</a> on the second cluster's master that the first cluster's slave can use to connect, and you need to <a href="/kb/en/grant/">grant</a> the user account the <code><a href="/kb/en/grant/#global-privileges">REPLICATION SLAVE</a></code> privilege. For example:</p>
+<h3 class="anchored_heading" id="create-a-replication-user-on-the-second-clusters-primary">Create a Replication User on the Second Cluster's Primary</h3>
+<p>Before circular replication can begin, you also need to <a href="/kb/en/create-user/">create a user account</a> on the second cluster's primary that the first cluster's replica can use to connect, and you need to <a href="/kb/en/grant/">grant</a> the user account the <a href="/kb/en/grant/#global-privileges">REPLICATION SLAVE</a> privilege. For example:</p>
 <pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;c1dbserver1&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="n">REPLICATION</span> <span class="n">SLAVE</span> <span class="k">ON</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span>  <span class="k">TO</span> <span class="s1">&#39;repl&#39;</span><span class="o">@</span><span class="s1">&#39;c1dbserver1&#39;</span><span class="p">;</span>
 </pre><h3 class="anchored_heading" id="start-circular-replication-on-the-first-cluster">Start Circular Replication on the First Cluster</h3>
@@ -527,7 +527,7 @@
 <h4 class="anchored_heading" id="gtids">GTIDs</h4>
 <p>To get the GTID coordinates on the second cluster, you can check <code><a href="/kb/en/gtid/#gtid_current_pos">gtid_current_pos</a></code> by executing:</p>
 <pre class="fixed"><span class="k">SHOW</span> <span class="k">GLOBAL</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s1">&#39;gtid_current_pos&#39;</span><span class="p">;</span>
-</pre><p>Then on the first cluster, you can set up replication by setting <code><a href="/kb/en/gtid/#gtid_slave_pos">gtid_slave_pos</a></code> to the GTID that was returned and then executing <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code>:</p>
+</pre><p>Then on the first cluster, you can set up replication by setting <a href="/kb/en/gtid/#gtid_slave_pos">gtid_slave_pos</a> to the GTID that was returned and then executing <a href="/kb/en/change-master-to/">CHANGE MASTER TO</a>:</p>
 <pre class="fixed"><span class="k">SET</span> <span class="k">GLOBAL</span> <span class="n">gtid_slave_pos</span> <span class="o">=</span> <span class="ss">&quot;0-1-2&quot;</span><span class="p">;</span>
 <span class="n">CHANGE</span> <span class="n">MASTER</span> <span class="k">TO</span> 
    <span class="n">MASTER_HOST</span><span class="o">=</span><span class="ss">&quot;c2dbserver1&quot;</span><span class="p">,</span> 
@@ -537,9 +537,9 @@
    <span class="n">MASTER_USE_GTID</span><span class="o">=</span><span class="n">slave_pos</span><span class="p">;</span>
 <span class="k">START</span> <span class="n">SLAVE</span><span class="p">;</span>
 </pre><h4 class="anchored_heading" id="file-and-position">File and Position</h4>
-<p>To get the <a href="/kb/en/binary-log/">binary log</a> file and position coordinates on the second cluster, you can execute <code><a href="/kb/en/show-master-status/">SHOW MASTER STATUS</a></code>:</p>
+<p>To get the <a href="/kb/en/binary-log/">binary log</a> file and position coordinates on the second cluster, you can execute <a href="/kb/en/show-master-status/">SHOW MASTER STATUS</a>:</p>
 <pre class="fixed"><span class="k">SHOW</span> <span class="n">MASTER</span> <span class="n">STATUS</span>
-</pre><p>Then on the first cluster, you would set <code>master_log_file</code> and <code>master_log_pos</code> in the <code><a href="/kb/en/change-master-to/">CHANGE MASTER TO</a></code> command. For example:</p>
+</pre><p>Then on the first cluster, you would set <code>master_log_file</code> and <code>master_log_pos</code> in the <a href="/kb/en/change-master-to/">CHANGE MASTER TO</a> command. For example:</p>
 <pre class="fixed"><span class="n">CHANGE</span> <span class="n">MASTER</span> <span class="k">TO</span> 
    <span class="n">MASTER_HOST</span><span class="o">=</span><span class="ss">&quot;c2dbserver1&quot;</span><span class="p">,</span> 
    <span class="n">MASTER_PORT</span><span class="o">=</span><span class="mi">3310</span><span class="p">,</span> 
@@ -549,8 +549,8 @@
    <span class="n">MASTER_LOG_POS</span><span class="o">=</span><span class="mi">568</span><span class="p">;</span>
 <span class="k">START</span> <span class="n">SLAVE</span><span class="p">;</span>
 </pre><h3 class="anchored_heading" id="check-the-status-of-the-circular-replication">Check the Status of the Circular Replication</h3>
-<p>You should be done setting up the circular replication on the node in the first cluster now, so you should check its status with <code><a href="/kb/en/show-slave-status/">SHOW SLAVE STATUS</a></code>. For example:</p>
-<pre class="fixed"><span class="k">SHOW</span> <span class="n">SLAVE</span> <span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+<p>You should be done setting up the circular replication on the node in the first cluster now, so you should check its status with <a href="/kb/en/show-slave-status/">SHOW SLAVE STATUS</a>. For example:</p>
+<pre class="fixed">SHOW SLAVE STATUS\G
 </pre>
     </div>
 

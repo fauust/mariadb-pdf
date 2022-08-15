@@ -23,9 +23,9 @@
     <meta property="og:image" content="http://mariadb.comaskmonty-logo.png" />
     <meta property="og:site_name" content="MariaDB KnowledgeBase" />
     <meta property="fb:admins" content="514852603" />
-    <meta property="og:description" content="MariaDB 5.3 introduced the derived table merge optimization" />
+    <meta property="og:description" content="MariaDB 5.3 introduced the derived table merge optimization." />
 
-    <meta name="description" content="MariaDB 5.3 introduced the derived table merge optimization" />
+    <meta name="description" content="MariaDB 5.3 introduced the derived table merge optimization." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"/>
@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2012-01-14 19:12">10 years, 2 months ago</span></dd>
+<span class="datetime" title="2012-01-14 19:12">10 years, 4 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-01-28 11:02">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-26 23:32">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -417,7 +417,7 @@
 
     <li class=""><a href="#factsheet" title="Factsheet">Factsheet</a></li>
 
-    <li class=""><a href="#see-also" title="See also">See also</a> </ol>
+    <li class=""><a href="#see-also" title="See Also">See Also</a> </ol>
 </li>
 </div>
 <h2 class="anchored_heading" id="background">Background</h2>
@@ -432,7 +432,8 @@ could write this SQL:</p>
   <span class="n">big_city</span><span class="p">.</span><span class="n">Country</span><span class="o">=</span><span class="s1">&#39;DEU&#39;</span>
 </pre><p>For MySQL, using such syntax was taboo. If you run <code><a href="/kb/en/explain/">EXPLAIN</a></code> for
 this query, you can see why:</p>
-<pre class="fixed"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">City</span> <span class="k">WHERE</span> <span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="k">AS</span> <span class="n">big_city</span> <span class="k">WHERE</span> <span class="n">big_city</span><span class="p">.</span><span class="n">Country</span><span class="o">=</span><span class="s1">&#39;DEU&#39;</span> <span class="p">;</span>
+<pre class="fixed wrap"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">City</span> <span class="k">WHERE</span> <span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> 
+  <span class="k">AS</span> <span class="n">big_city</span> <span class="k">WHERE</span> <span class="n">big_city</span><span class="p">.</span><span class="n">Country</span><span class="o">=</span><span class="s1">&#39;DEU&#39;</span> <span class="p">;</span>
 <span class="o">+</span><span class="c1">----+-------------+------------+------+---------------+------+---------+------+------+-------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span>      <span class="o">|</span> <span class="k">type</span> <span class="o">|</span> <span class="n">possible_keys</span> <span class="o">|</span> <span class="k">key</span>  <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>  <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+------------+------+---------------+------+---------+------+------+-------------+</span>
@@ -456,7 +457,8 @@ used when scanning the base table <code>City</code>. We read too many records fr
 them back again, before finally filtering them out.</p>
 <h2 class="anchored_heading" id="derived-table-merge-in-action">Derived table merge in action</h2>
 <p>If one runs this query in MariaDB/MySQL 5.6, they get this:</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">City</span> <span class="k">WHERE</span> <span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> <span class="k">AS</span> <span class="n">big_city</span> <span class="k">WHERE</span> <span class="n">big_city</span><span class="p">.</span><span class="n">Country</span><span class="o">=</span><span class="s1">&#39;DEU&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">world</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">City</span> <span class="k">WHERE</span> <span class="n">Population</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span> 
+  <span class="k">AS</span> <span class="n">big_city</span> <span class="k">WHERE</span> <span class="n">big_city</span><span class="p">.</span><span class="n">Country</span><span class="o">=</span><span class="s1">&#39;DEU&#39;</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+------+--------------------+---------+---------+-------+------+------------------------------------+</span>
 <span class="o">|</span> <span class="n">id</span> <span class="o">|</span> <span class="n">select_type</span> <span class="o">|</span> <span class="k">table</span> <span class="o">|</span> <span class="k">type</span> <span class="o">|</span> <span class="n">possible_keys</span>      <span class="o">|</span> <span class="k">key</span>     <span class="o">|</span> <span class="n">key_len</span> <span class="o">|</span> <span class="k">ref</span>   <span class="o">|</span> <span class="k">rows</span> <span class="o">|</span> <span class="n">Extra</span>                              <span class="o">|</span>
 <span class="o">+</span><span class="c1">----+-------------+-------+------+--------------------+---------+---------+-------+------+------------------------------------+</span>
@@ -486,9 +488,8 @@ them back again, before finally filtering them out.</p>
   very long time. Starting from <a href="/kb/en/what-is-mariadb-53/">MariaDB 5.3</a>+ and MySQL 5.6+ <code>EXPLAIN</code>
   commands execute instantly, regardless of the <code>derived_merge</code> setting.
 </li></ul>
-<h2 class="anchored_heading" id="see-also">See also</h2>
-<ul start="1"><li>FAQ entry: <a href="/kb/en/why-is-order-by-in-a-from-subquery-ignored/">Why is ORDER BY in a FROM subquery ignored?</a>
-</li></ul>
+<h2 class="anchored_heading" id="see-also">See Also</h2>
+<ul start="1"><li>FAQ entry: <a href="/kb/en/why-is-order-by-in-a-from-subquery-ignored/">Why is ORDER BY in a FROM subquery ignored?</a></li></ul>
 
     </div>
 

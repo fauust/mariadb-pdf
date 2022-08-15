@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2010-09-05 22:38">11 years, 7 months ago</span></dd>
+<span class="datetime" title="2010-09-05 22:38">11 years, 9 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-02-07 08:21">2 months ago</span></dd>
+<span class="datetime" title="2022-05-12 14:45">1 month ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -539,7 +539,7 @@ mysqlcheck --no-defaults --check-upgrade --all-databases --auto-repair
 <tr><td><code>-f</code>, <code>--force</code></td><td>Force execution of mysqlcheck even if <code>mysql_upgrade</code> has already been executed for the current version of MariaDB. Ignores <code>mysql_upgrade_info</code>.</td><td></td></tr>
 <tr><td><code>-h</code>, <code>--host=name</code></td><td>Connect to MariaDB on the given host.</td><td></td></tr>
 <tr><td><code>-p</code>, <code>--password[=name]</code></td><td>Password to use when connecting to server. If password is not given, it's solicited on the command line (which should be considered insecure). You can use an option file to avoid giving the password on the command line.</td><td></td></tr>
-<tr><td><code>-P</code>, <code>--port=name</code></td><td>Port number to use for connection or 0 for default to, in order of preference, my.cnf, the MYSQL_TCP_PORT <a href="/kb/en/mariadb-environment-variables/">environment variable</a>, /etc/services, built-in default (3306).</td></tr>
+<tr><td><code>-P</code>, <code>--port=name</code></td><td>Port number to use for connection or 0 for default to, in order of preference, my.cnf, the MYSQL_TCP_PORT <a href="/kb/en/mariadb-environment-variables/">environment variable</a>, /etc/services, built-in default (3306).</td><td></td></tr>
 <tr><td><code>--protocol=name</code></td><td>The protocol to use for connection (tcp, socket, pipe, memory).</td><td></td></tr>
 <tr><td><code>--silent</code></td><td>Print less information.</td><td></td></tr>
 <tr><td><code>-S</code>, <code>--socket=name</code></td><td>For connections to localhost, the Unix socket file to use, or, on Windows, the name of the named pipe to use.</td><td></td></tr>
@@ -550,12 +550,12 @@ mysqlcheck --no-defaults --check-upgrade --all-databases --auto-repair
 <tr><td><code>--ssl-cipher=name</code></td><td>List of permitted ciphers or cipher suites to use for <a href="/kb/en/data-in-transit-encryption/">TLS</a>. This option implies the <code>--ssl</code> option.</td><td></td></tr>
 <tr><td><code>--ssl-crl=name</code></td><td>Defines a path to a PEM file that should contain one or more revoked X509 certificates to use for <a href="/kb/en/data-in-transit-encryption/">TLS</a>. This option requires that you use the absolute path, not a relative path. See <a href="/kb/en/secure-connections-overview/#certificate-revocation-lists-crls">Secure Connections Overview: Certificate Revocation Lists (CRLs)</a> for more information. This option is only supported if the client was built with OpenSSL or Schannel. If the client was built with yaSSL or GnuTLS, then this option is not supported. See <a href="/kb/en/tls-and-cryptography-libraries-used-by-mariadb/">TLS and Cryptography Libraries Used by MariaDB</a> for more information about which libraries are used on which platforms.</td><td></td></tr>
 <tr><td><code>--ssl-crlpath=name</code></td><td>Defines a path to a directory that contains one or more PEM files that should each contain one revoked X509 certificate to use for <a href="/kb/en/data-in-transit-encryption/">TLS</a>. This option requires that you use the absolute path, not a relative path. The directory specified by this option needs to be run through the <a href="https://www.openssl.org/docs/man1.1.1/man1/rehash.html">openssl rehash</a> command. See <a href="/kb/en/secure-connections-overview/#certificate-revocation-lists-crls">Secure Connections Overview: Certificate Revocation Lists (CRLs)</a> for more information. This option is only supported if the client was built with OpenSSL. If the client was built with yaSSL, GnuTLS, or Schannel, then this option is not supported. See <a href="/kb/en/tls-and-cryptography-libraries-used-by-mariadb/">TLS and Cryptography Libraries Used by MariaDB</a> for more information about which libraries are used on which platforms.</td><td></td></tr>
-<tr><td><code>--ssl-key=name</code></td><td>Defines a path to a private key file to use for <a href="/kb/en/data-in-transit-encryption/">TLS</a>. This option requires that you use the absolute path, not a relative path. This option implies the <code>--ssl</code> option.</td></tr>
+<tr><td><code>--ssl-key=name</code></td><td>Defines a path to a private key file to use for <a href="/kb/en/data-in-transit-encryption/">TLS</a>. This option requires that you use the absolute path, not a relative path. This option implies the <code>--ssl</code> option.</td><td></td></tr>
 <tr><td><code>--ssl-verify-server-cert</code></td><td>Enables <a href="/kb/en/secure-connections-overview/#server-certificate-verification">server certificate verification</a>. This option is disabled by default.</td><td></td></tr>
 <tr><td><code>-t</code>, <code>--tmpdir=name</code></td><td>Directory for temporary files.</td><td></td></tr>
 <tr><td><code>-s</code>, <code>--upgrade-system-tables</code></td><td>Only upgrade the system tables in the mysql database. Tables in other databases are not checked or touched.</td><td></td></tr>
 <tr><td><code>-u</code>, <code>--user=name</code></td><td>User for login if not current user.</td><td></td></tr>
-<tr><td><code>-v</code>, <code>--verbose</code></td><td>Display more output about the process, using it twice will print connection arguments; using it 3 times will print out all <a href="/kb/en/check-table/">CHECK</a>, <a href="/kb/en/rename-table/">RENAME</a> and <a href="/kb/en/alter-table/">ALTER TABLE</a> commands used during the check phase; using it 4 times (added in <a href="/kb/en/mariadb-10014-release-notes/">MariaDB 10.0.14</a>) will also write out all <a href="/kb/en/mysqlcheck/">mysqlcheck</a> commands used.</td><td></td></tr>
+<tr><td><code>-v</code>, <code>--verbose</code></td><td>Display more output about the process, using it twice will print connection arguments; using it 3 times will print out all <a href="/kb/en/check-table/">CHECK</a>, <a href="/kb/en/rename-table/">RENAME</a> and <a href="/kb/en/alter-table/">ALTER TABLE</a> commands used during the check phase; using it 4 times will also write out all <a href="/kb/en/mysqlcheck/">mysqlcheck</a> commands used.</td><td></td></tr>
 <tr><td><code>-V</code>, <code>--version</code></td><td>Output version information and exit.</td><td></td></tr>
 <tr><td><code>-k</code>, <code>--version-check</code></td><td>Run this program only if its 'server version' matches the version of the server to which it's connecting check. Note: the 'server version' of the program is the version of the MariaDB server with which it was built/distributed.  (Defaults to on; use <code>--skip-version-check</code> to disable.)</td><td></td></tr>
 <tr><td><code>--write-binlog</code></td><td>All commands including those run by <a href="/kb/en/mysqlcheck/">mysqlcheck</a> are written to the <a href="/kb/en/binary-log/">binary log</a>. Disabled by default. Before <a href="/kb/en/mariadb-1006-release-notes/">MariaDB 10.0.6</a> and <a href="/kb/en/mariadb-5534-release-notes/">MariaDB 5.5.34</a>, this was enabled by default, and <code>--skip-write-binlog</code> should be used when commands should not be sent to replication slaves.</td><td></td></tr>

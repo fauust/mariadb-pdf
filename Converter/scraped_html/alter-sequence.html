@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2017-05-07 14:32">4 years, 11 months ago</span></dd>
+<span class="datetime" title="2017-05-07 14:32">5 years, 1 month ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-03-22 11:18">4 years ago</span></dd>
+<span class="datetime" title="2022-04-25 08:31">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -479,7 +479,7 @@ ERROR 4061 (HY000): Sequence 'test.t1' values are conflicting
 ALTER SEQUENCE s1 MINVALUE 10 START 10 RESTART 10;
 </pre><h3 class="anchored_heading" id="insert">INSERT</h3>
 <p>To allow <code>SEQUENCE</code> objects to be backed up by old tools, like <a href="/kb/en/mysqldump/">mysqldump</a>, one can use <code>SELECT</code> to read the current state of a <code>SEQUENCE</code> object and use an <code>INSERT</code> to update the <code>SEQUENCE</code> object.  <code>INSERT</code> is only allowed if all fields are specified:</p>
-<pre class="fixed">CREATE SEQUENCE s1;
+<div class="cstm-style" style="font-size:0.8em;"><pre class="fixed wrap">CREATE SEQUENCE s1;
 INSERT INTO s1 VALUES(1000,10,2000,1005,1,1000,0,0);
 SELECT * FROM s1;
 
@@ -495,7 +495,7 @@ SHOW CREATE SEQUENCE s1;
 +-------+--------------------------------------------------------------------------------------------------------------+
 | s1    | CREATE SEQUENCE `s1` start with 1005 minvalue 10 maxvalue 2000 increment by 1 cache 1000 nocycle ENGINE=Aria |
 +-------+--------------------------------------------------------------------------------------------------------------+
-</pre><h3 class="anchored_heading" id="notes">Notes</h3>
+</pre></div><h3 class="anchored_heading" id="notes">Notes</h3>
 <p><code>ALTER SEQUENCE</code> will instantly affect all future <code>SEQUENCE</code> operations.  This is in contrast to some other databases where the changes requested by <code>ALTER SEQUENCE</code> will not be seen until the sequence cache has run out.</p>
 <p><code>ALTER SEQUENCE</code> will take a full table lock of the sequence object during
 its (brief) operation. This ensures that <code>ALTER SEQUENCE</code> is replicated

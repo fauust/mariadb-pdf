@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2018-12-21 01:03">3 years, 3 months ago</span></dd>
+<span class="datetime" title="2018-12-21 01:03">3 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-04-30 16:35">1 year, 11 months ago</span></dd>
+<span class="datetime" title="2022-04-26 22:44">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -448,7 +448,7 @@
 </div><div class="cstm-style redbox"><p>In <a href="/kb/en/what-is-mariadb-102/">MariaDB 10.2</a> and <a href="/kb/en/what-is-mariadb-101/">MariaDB 10.1</a>, Percona XtraBackup is only <strong>partially supported</strong>. See <a href="/kb/en/percona-xtrabackup-overview/#compatibility-with-mariadb">Percona XtraBackup Overview: Compatibility with MariaDB</a> for more information.</p>
 </div>
 <p>The <code>xtrabackup-v2</code> SST method uses the <a href="/kb/en/backup-restore-and-import-clients-percona-xtrabackup/">Percona XtraBackup</a> utility for performing SSTs. It is one of the methods that does not block the donor node.</p>
-<p>Note that if you use the <code>xtrabackup-v2</code> SST method, then you also need to have <code><a href="#socat-dependency">socat</a></code> installed on the server. This is needed to stream the backup from the donor node to the joiner node.</p>
+<p>Note that if you use the <code>xtrabackup-v2</code> SST method, then you also need to have <a href="#socat-dependency">socat</a> installed on the server. This is needed to stream the backup from the donor node to the joiner node.</p>
 <p>Since <a href="/kb/en/backup-restore-and-import-clients-percona-xtrabackup/">Percona XtraBackup</a> is a third party product, it may require additional installation and additional configuration. Please refer to <a href="http://www.percona.com/doc/percona-xtradb-cluster/5.5/manual/xtrabackup_sst.html">Percona's xtrabackup SST documentation</a> for information from the vendor.</p>
 <h2 class="anchored_heading" id="choosing-percona-xtrabackup-for-ssts">Choosing Percona XtraBackup for SSTs</h2>
 <p>To use the <code>xtrabackup-v2</code> SST method, you must set the <code><a href="/kb/en/galera-cluster-system-variables/#wsrep_sst_method">wsrep_sst_method=xtrabackup-v2</a></code> on both the donor and joiner node. It can be changed dynamically with <code><a href="/kb/en/set/#global-session">SET GLOBAL</a></code> on the node that you intend to be a SST donor. For example:</p>
@@ -509,7 +509,7 @@ wsrep_sst_donor=node3,node4,node5,
 </pre><p>The trailing comma tells the server to allow any other node as donor when the preferred donors are not available. Therefore, if <code>node1</code> is the only node left in the cluster, the trailing comma allows it to be used as the donor node.</p>
 <h2 class="anchored_heading" id="socat-dependency">Socat Dependency</h2>
 <p>During the SST process, the donor node uses <a href="http://www.dest-unreach.org/socat/doc/socat.html">socat</a> to stream the backup to the joiner node.  Then the joiner node prepares the backup before restoring it. The socat utility must be installed on both the donor node and the joiner node in order for this to work. Otherwise, the MariaDB error log will contain an error like:</p>
-<pre class="fixed">WSREP_SST: [ERROR] socat not found in path: /usr/sbin:/sbin:/usr//bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin (20180122 14:55:32.993)
+<pre class="fixed wrap">WSREP_SST: [ERROR] socat not found in path: /usr/sbin:/sbin:/usr//bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin (20180122 14:55:32.993)
 </pre><h3 class="anchored_heading" id="installing-socat-on-rhelcentos">Installing Socat on RHEL/CentOS</h3>
 <p>On RHEL/CentOS, <code>socat</code> can be installed from the <a href="https://fedoraproject.org/wiki/EPEL">Extra Packages for Enterprise Linux (EPEL)</a> repository.</p>
 <h2 class="anchored_heading" id="tls">TLS</h2>

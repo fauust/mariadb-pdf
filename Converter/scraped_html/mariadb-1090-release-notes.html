@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2022-02-28 21:43">1 month, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-02-28 21:43">3 months, 1 week ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2022-03-28 20:53">3 weeks, 1 day ago</span></dd>
+<span class="datetime" title="2022-06-08 22:15">2 days, 19 hours ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -380,11 +380,11 @@
 
     
     <div class="answer formatted">
-        <div class="cstm-style hidden"><div class="cstm-style bluebox text-center centered"><p>The most recent release of <a href="/kb/en/what-is-mariadb-109/">MariaDB 10.9</a> is:<br>
-<span class="cstm-style lead"><strong><a href="/kb/en/mariadb-1090-release-notes/">MariaDB 10.9.0</a></strong> <a class="btn btn-success btn-mini" href="https://mariadb.com/downloads/">Download<span>&nbsp;</span>Now</a></span><br>
-<sub><em><a href="https://mariadb.org/download/?tab=mariadb&amp;release=10.9.0&amp;product=mariadb">Alternate download from mariadb.org</a></em></sub></p>
-</div></div><p>
-<a class="btn btn-primary" href="http://downloads.mariadb.org/mariadb/10.9.0">Download</a>
+        <div class="cstm-style bluebox text-center centered"><p>The most recent release of <a href="/kb/en/what-is-mariadb-109/">MariaDB 10.9</a> is:<br>
+<span class="cstm-style lead"><strong><a href="/kb/en/mariadb-1091-release-notes/">MariaDB 10.9.1</a></strong> <a class="btn btn-success btn-mini" href="https://mariadb.com/downloads/">Download<span>&nbsp;</span>Now</a></span><br>
+<sub><em><a href="https://mariadb.org/download/?tab=mariadb&amp;release=10.9.1&amp;product=mariadb">Alternate download from mariadb.org</a></em></sub></p>
+</div><p>
+<a class="btn btn-primary" href="https://mariadb.org/download/?tab=mariadb&amp;release=10.9.0&amp;product=mariadb">Download 10.9.0</a>
 <a class="btn btn-info disabled" href="/kb/en/mariadb-1090-release-notes/">Release Notes</a>
 <a class="btn btn-info disabled" href="mariadb-1080-changelog">Changelog</a>
 <a class="btn btn-info" href="/kb/en/what-is-mariadb-109/">Overview of 10.9</a></p>
@@ -400,7 +400,7 @@ Read more about feature preview releases <a href="https://mariadb.org/preview-re
 <h3>List of packages</h3>
     <ol class="toc">
 
-        <li class=""><a href="#json-range-notation" title="JSON Range Notation">JSON Range Notation</a></li>
+        <li class=""><a href="#json" title="JSON">JSON</a></li>
 
         <li class=""><a href="#show-analyze-formatjson" title="SHOW ANALYZE FORMAT=JSON">SHOW ANALYZE FORMAT=JSON</a></li>
 
@@ -411,7 +411,7 @@ Read more about feature preview releases <a href="https://mariadb.org/preview-re
 </li>
 </div>
 <div class="cstm-style greenbox"><p>Remember, these features are in separate <em>preview packages</em>. The subsection header text corresponds to the preview package name.</p>
-</div><h3 class="anchored_heading" id="json-range-notation">JSON Range Notation</h3>
+</div><h3 class="anchored_heading" id="json">JSON</h3>
 <ul start="1"><li><a href="/kb/en/json_overlaps/">JSON_OVERLAPS</a> function (<a href="https://jira.mariadb.org/browse/MDEV-27677">MDEV-27677</a>)
 </li><li>Implement range notation for <a href="JSONPath_Expressions">JSONPath</a> (<a href="https://jira.mariadb.org/browse/MDEV-27911">MDEV-27911</a>)
 </li><li>Support <a href="JSONPath_Expressions">JSONPath</a> negative index (<a href="https://jira.mariadb.org/browse/MDEV-22224">MDEV-22224</a>)
@@ -421,13 +421,13 @@ Read more about feature preview releases <a href="https://mariadb.org/preview-re
 </li><li>Add EXPLAIN FOR CONNECTION syntax support to <a href="/kb/en/show-explain/">SHOW EXPLAIN</a> (<a href="https://jira.mariadb.org/browse/MDEV-10000">MDEV-10000</a>)
 </li></ul>
 <h3 class="anchored_heading" id="async-redo-log-write">Async redo log write</h3>
-<ul start="1"><li>Asynchronous <a href="/kb/en/innodb-redo-log/">redo log</a> write (<a href="https://jira.mariadb.org/browse/MDEV-26603">MDEV-26603</a>)
+<ul start="1"><li>Asynchronous <a href="/kb/en/innodb-redo-log/">redo log</a> write (<a href="https://jira.mariadb.org/browse/MDEV-26603">MDEV-26603</a>) (not included in <a href="/kb/en/mariadb-1091-release-notes/">MariaDB 10.9.1</a>)
 </li></ul>
 <h3 class="anchored_heading" id="miscellaneous">Miscellaneous</h3>
 <ul start="1"><li>Implement the --do-domain-ids, --ignore-domain-ids, and --ignore-server-ids options for <a href="/kb/en/mysqlbinlog/">mariadb-binlog/mysqlbinlog</a> (<a href="https://jira.mariadb.org/browse/MDEV-20119">MDEV-20119</a>)
-</li><li><a href="/kb/en/information-schema-tables-table/">information_schema.tables.table_type</a> now shows TEMPORARY for local temporary tables (<a href="https://jira.mariadb.org/browse/MDEV-12459">MDEV-12459</a>)
+</li><li><a href="/kb/en/information-schema-tables-table/">information_schema.tables.table_type</a> now shows TEMPORARY for local temporary tables (<a href="https://jira.mariadb.org/browse/MDEV-12459">MDEV-12459</a>) (not included in <a href="/kb/en/mariadb-1091-release-notes/">MariaDB 10.9.1</a>)
 </li><li>Merge <a href="/kb/en/server-system-variables/#old">old</a> to <a href="/kb/en/server-system-variables/#old_mode">old_mode</a> sql variable (<a href="https://jira.mariadb.org/browse/MDEV-24920">MDEV-24920</a>)
-</li><li>Vault Key Management Plugin (<a href="https://jira.mariadb.org/browse/MDEV-19281">MDEV-19281</a>)
+</li><li><a href="/kb/en/hashicorp-key-management-plugin/">Hashicorp Key Management Plugin</a> for implementing <a href="/kb/en/encryption/">encryption</a> using keys stored in the Hashicorp Vault KMS (<a href="https://jira.mariadb.org/browse/MDEV-19281">MDEV-19281</a>)
 </li><li>JSON file interface to wsrep node state / SST progress logging (<a href="https://jira.mariadb.org/browse/MDEV-26971">MDEV-26971</a>)
 </li><li>Allow <a href="/kb/en/innodb-system-variables/#innodb_log_file_size">innodb_log_file_size</a>  to change without server restart (<a href="https://jira.mariadb.org/browse/MDEV-27812">MDEV-27812</a>)
 </li></ul>
@@ -455,6 +455,11 @@ page.</p>
     
         <div class="simple_section_nav">
             <ul class="nav nav-pills">
+                
+                    <li><a href="/kb/en/mariadb-1091-release-notes/">
+                        ← MariaDB 10.9.1 Release Notes
+                    </a>
+                    </li>
                 
                 
                     <li><a href="/kb/en/release-notes-mariadb-109-series/">
@@ -503,6 +508,24 @@ page.</p>
                 </a>
                 </li>
             
+            
+                
+                    <li>
+                        <a href="/kb/en/mdb-1092-rn/">
+                            
+                            MariaDB 10.9.2 Release Notes
+                        </a>
+                    </li>
+                
+            
+                
+                    <li>
+                        <a href="/kb/en/mariadb-1091-release-notes/">
+                            
+                            MariaDB 10.9.1 Release Notes
+                        </a>
+                    </li>
+                
             
                 
                     <li class="active">

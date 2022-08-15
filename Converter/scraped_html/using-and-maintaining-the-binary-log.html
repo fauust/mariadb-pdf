@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2013-04-22 01:24">8 years, 11 months ago</span></dd>
+<span class="datetime" title="2013-04-22 01:24">9 years, 1 month ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-03-31 11:14">1 year ago</span></dd>
+<span class="datetime" title="2022-04-26 21:51">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -448,10 +448,10 @@ UPDATE employees.details SET bonus=bonus*1.2;
 </pre><p>This is again because statement-based logging examines the default database, in this case, <code>customers</code>. Since <code>customers</code> is not specified in the do list, the statement will not be logged. If row-based logging is used, the example will be logged as updates are written to the tables in the <code>employees</code> database.</p>
 <h2 class="anchored_heading" id="effects-of-full-disk-errors-on-binary-logging">Effects of Full Disk Errors on Binary Logging</h2>
 <p>If MariaDB encounters a full disk error while trying to write to a binary log file, then it will keep retrying the write every 60 seconds. Log messages will get written to the error log every 600 seconds. For example:</p>
-<pre class="fixed">2018-11-27  2:46:46 140278181563136 [Warning] mysqld: Disk is full writing '/var/lib/mariadb-bin.00001' (Errcode: 28 &#34;No space left on device&#34;). Waiting for someone to free space... (Expect up to 60 secs delay for server to continue after freeing disk space)
+<pre class="fixed wrap">2018-11-27  2:46:46 140278181563136 [Warning] mysqld: Disk is full writing '/var/lib/mariadb-bin.00001' (Errcode: 28 &#34;No space left on device&#34;). Waiting for someone to free space... (Expect up to 60 secs delay for server to continue after freeing disk space)
 2018-11-27  2:46:46 140278181563136 [Warning] mysqld: Retry in 60 secs. Message reprinted in 600 secs
 </pre><p>However, if MariaDB encounters a full disk error while trying to open a new binary log file, then it will disable binary logging entirely. A log message like the following will be written to the error log:</p>
-<pre class="fixed">2018-11-27  3:30:49 140278181563136 [ERROR] Could not open '/var/lib/mariadb-bin.00002 for logging (error 28). Turning logging off for the whole duration of the MySQL server process. To turn it on again: fix the cause, shutdown the MySQL server and restart it.
+<pre class="fixed wrap">2018-11-27  3:30:49 140278181563136 [ERROR] Could not open '/var/lib/mariadb-bin.00002 for logging (error 28). Turning logging off for the whole duration of the MySQL server process. To turn it on again: fix the cause, shutdown the MySQL server and restart it.
 2018-11-27  3:30:49 140278181563136 [ERROR] mysqld: Error writing file '(null)' (errno: 9 &#34;Bad file descriptor&#34;)
 2018-11-27  3:30:49 140278181563136 [ERROR] mysqld: Error writing file '(null)' (errno: 28 &#34;No space left on device&#34;)
 </pre><h2 class="anchored_heading" id="see-also">See Also</h2>

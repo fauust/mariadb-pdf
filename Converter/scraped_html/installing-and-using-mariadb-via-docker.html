@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2015-08-13 13:57">6 years, 8 months ago</span></dd>
+<span class="datetime" title="2015-08-13 13:57">6 years, 10 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-04-23 02:49">11 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-04-25 22:55">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -449,9 +449,11 @@ Sometimes we want to install a specific version of MariaDB, <a href="https://mar
 <p>On some systems you may have to start the <code>dockerd daemon</code> yourself:</p>
 <pre class="fixed">sudo systemctl start docker
 sudo gpasswd -a &#34;${USER}&#34; docker
-</pre><p>If you don't have <code>dockerd</code> running, you will get the following error for most <code>docker</code> commands:</p>
-<pre class="fixed">Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
-</pre><h2 class="anchored_heading" id="using-mariadb-images">Using MariaDB Images</h2>
+</pre><p>If you don't have <code>dockerd</code> running, you will get the following error for most <code>docker</code> commands:
+installing-and-using-mariadb-via-docker
+Cannot connect to the Docker daemon at unix:<em>/var/run/docker.sock. Is the docker daemon running?
+&lt;&lt;/code&gt;&gt;</em></p>
+<h2 class="anchored_heading" id="using-mariadb-images">Using MariaDB Images</h2>
 <p>The easiest way to use MariaDB on Docker is choosing a MariaDB image and creating a container.</p>
 <h3 class="anchored_heading" id="downloading-an-image">Downloading an Image</h3>
 <p>You can download a MariaDB image for Docker from the <a href="https://hub.docker.com/_/mariadb/">Offical Docker MariaDB</a>, or choose another image that better suits your needs. You can search Docker Hub (the official set of repositories) for an image with this command:</p>
@@ -465,17 +467,17 @@ sudo gpasswd -a &#34;${USER}&#34; docker
 <pre class="fixed">docker images
 </pre><h3 class="anchored_heading" id="creating-a-container">Creating a Container</h3>
 <p>An image is not a running process; it is just the software needed to be launched. To run it, we must create a container first. The command needed to create a container can usually be found in the image documentation. For example, to create a container for the official MariaDB image:</p>
-<pre class="fixed">docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306 -d docker.io/library/mariadb:10.3
+<pre class="fixed wrap">docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306 -d docker.io/library/mariadb:10.3
 </pre><p><code>mariadbtest</code> is the name we want to assign the container. If we don't specify a name, an id will be automatically generated.</p>
 <p>10.2 and 10.5 are also valid target versions:</p>
-<pre class="fixed">docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306 -d docker.io/library/mariadb:10.2
-</pre><pre class="fixed">docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306  -d docker.io/library/mariadb:10.5
+<pre class="fixed wrap">docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306 -d docker.io/library/mariadb:10.2
+</pre><pre class="fixed wrap">docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306  -d docker.io/library/mariadb:10.5
 </pre><p>Optionally, after the image name, we can specify some <a href="/kb/en/mysqld-options/">options for mysqld</a>. For example:</p>
-<pre class="fixed">docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306 -d mariadb:10.3 --log-bin --binlog-format=MIXED
+<pre class="fixed wrap">docker run --name mariadbtest -e MYSQL_ROOT_PASSWORD=mypass -p 3306:3306 -d mariadb:10.3 --log-bin --binlog-format=MIXED
 </pre><p>Docker will respond with the container's id. But, just to be sure that the container has been created and is running, we can get a list of running containers in this way:</p>
 <pre class="fixed">docker ps
 </pre><p>We should get an output similar to this one:</p>
-<pre class="fixed">CONTAINER ID        IMAGE                      COMMAND                CREATED             STATUS              PORTS               NAMES
+<pre class="fixed wrap">CONTAINER ID        IMAGE                      COMMAND                CREATED             STATUS              PORTS               NAMES
 819b786a8b48        mariadb                    &#34;/docker-entrypoint.   4 minutes ago       Up 4 minutes        3306/tcp            mariadbtest        
 </pre><h3 class="anchored_heading" id="running-and-stopping-the-container">Running and Stopping the Container</h3>
 <p>Docker allows us to restart a container with a single command:</p>
@@ -553,7 +555,7 @@ apt-get install vim
 <h3 class="anchored_heading" id="daemonizing-the-operating-system">Daemonizing the Operating System</h3>
 <p>First, we need the system image to run as a daemon. If we skip this step, MariaDB and all databases will be lost when the container stops.</p>
 <p>To demonize an image, we need to give it a command that never ends. In the following example, we will create a Debian Jessie daemon that constantly pings the 8.8.8.8 special address:</p>
-<pre class="fixed">docker run --name debian -p 3306:3306 -d debian /bin/sh -c &#34;while true; do ping 8.8.8.8; done&#34;
+<pre class="fixed wrap">docker run --name debian -p 3306:3306 -d debian /bin/sh -c &#34;while true; do ping 8.8.8.8; done&#34;
 </pre><h3 class="anchored_heading" id="installing-mariadb">Installing MariaDB</h3>
 <p>At this point, we can enter the shell and issue commands. First we will need to update the repositories, or no packages will be available. We can also update the packages, in case some of them are newer than the image. Then, we will need to install a text editor; we will need it to edit configuration files. For example:</p>
 <pre class="fixed"># start an interactive Bash session in the container

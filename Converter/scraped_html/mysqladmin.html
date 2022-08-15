@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-06-22 15:09">10 years, 9 months ago</span></dd>
+<span class="datetime" title="2011-06-22 15:09">10 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-04-24 23:38">11 months, 3 weeks ago</span></dd>
+<span class="datetime" title="2022-05-12 14:26">1 month ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -609,7 +609,7 @@
 <tr><td><code>flush-privileges</code></td><td>Reload grant tables (same as reload).</td><td></td></tr>
 <tr><td><code>flush-relay-log</code></td><td>Flush <a href="/kb/en/relay-log/">relay log</a>.</td><td><a href="/kb/en/mariadb-10125-release-notes/">MariaDB 10.1.25</a>,<br> <a href="/kb/en/mariadb-1025-release-notes/">MariaDB 10.2.5</a></td></tr>
 <tr><td><code>flush-slow-log</code></td><td>Flush slow query log.</td><td></td></tr>
-<tr><td><code>flush-ssl</code></td><td>Flush SSL certificates.</td><td>(unreleased)</td></tr>
+<tr><td><code>flush-ssl</code></td><td>Flush SSL certificates.</td><td><a href="/kb/en/mariadb-1060-release-notes/">MariaDB 10.6.0</a></td></tr>
 <tr><td><code>flush-status</code></td><td>Clear <a href="/kb/en/server-status-variables/">status variables</a>.</td><td></td></tr>
 <tr><td><code>flush-table-statistics</code></td><td>Clear table statistics.</td><td></td></tr>
 <tr><td><code>flush-tables</code></td><td>Flush all tables.</td><td></td></tr>
@@ -623,7 +623,7 @@
 <tr><td><code>processlist</code></td><td>Show list of active threads in server, equivalent to <a href="/kb/en/show-processlist/">SHOW PROCESSLIST</a>. With <code>--verbose</code>, equivalent to <a href="/kb/en/show-processlist/">SHOW FULL PROCESSLIST</a>.</td><td></td></tr>
 <tr><td><code>reload</code></td><td>Reload grant tables.</td><td></td></tr>
 <tr><td><code>refresh</code></td><td>Flush all tables and close and open log files.</td><td></td></tr>
-<tr><td><code>shutdown</code></td><td>Take server down by executing the <a href="/kb/en/shutdown/">SHUTDOWN</a> command on the server. If connected to a local server using a Unix socket file, mysqladmin waits until the server's process ID file has been removed to ensure that the server has stopped properly. See also the <code>--wait-for-all-slaves</code> option.</td></tr>
+<tr><td><code>shutdown</code></td><td>Take server down by executing the <a href="/kb/en/shutdown/">SHUTDOWN</a> command on the server. If connected to a local server using a Unix socket file, mysqladmin waits until the server's process ID file has been removed to ensure that the server has stopped properly. See also the <code>--wait-for-all-slaves</code> option.</td><td></td></tr>
 <tr><td><code>status</code></td><td>Gives a short status message from the server.</td><td></td></tr>
 <tr><td><code>start-all-slaves</code></td><td>Start all replicas.</td><td></td></tr>
 <tr><td><code>start-slave</code></td><td>Start replication on a replica server.</td><td></td></tr>
@@ -641,7 +641,7 @@
 <p>See <a href="/kb/en/replication-threads/#binary-log-dump-threads-and-the-shutdown-process">Replication Threads: Binary Log Dump Threads and the Shutdown Process</a> for more information.</p>
 <h2 class="anchored_heading" id="examples">Examples</h2>
 <p>Quick check of what the server is doing:</p>
-<pre class="fixed">shell&gt; mysqladmin status
+<pre class="fixed wrap">shell&gt; mysqladmin status
 Uptime: 8023 Threads: 1 Questions: 14 Slow queries: 0 Opens: 15 Flush tables: 1 Open tables: 8 Queries per second avg: 0.1
 shell&gt; mysqladmin processlist
 +----+-------+-----------+----+---------+------+-------+------------------+
@@ -656,7 +656,7 @@ shell&gt; mysqladmin processlist
 <pre class="fixed">shell&gt; mysqladmin variables | grep datadir
 | datadir | /my/data/ |
 </pre><p>Using a shortened prefix for the <code>version</code> command:</p>
-<pre class="fixed">shell&gt; mysqladmin ver
+<pre class="fixed wrap">shell&gt; mysqladmin ver
 mysqladmin Ver 9.1 Distrib 10.1.6-MariaDB, for debian-linux-gnu on x86_64
 Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
 
@@ -669,7 +669,7 @@ Uptime:			1 hour 33 min 33 sec
 Threads: 1 Questions: 281 Slow queries: 0 Opens: 64 Flush tables: 1 Open tables: 76 Queries per second avg: 0.050
 </pre><h3 class="anchored_heading" id="other-ways-to-stop-mysqld-unix">Other Ways To Stop mysqld (Unix)</h3>
 <p>If you get the error:</p>
-<pre class="fixed">mysqladmin: shutdown failed; error: 'Access denied; you need (at least one of) the SHUTDOWN privilege(s) for this operation'
+<pre class="fixed wrap">mysqladmin: shutdown failed; error: 'Access denied; you need (at least one of) the SHUTDOWN privilege(s) for this operation'
 </pre><p>It means that you didn't use <code class="fixed" style="white-space:pre-wrap">mysqladmin</code> with a user that has the SUPER or SHUTDOWN privilege.</p>
 <p>If you don't know the user password, you can still take the mysqld process down with a system <code class="highlight fixed" style="white-space:pre-wrap">kill</code> command:</p>
 <pre class="fixed">kill -SIGTERM pid-of-mysqld-process

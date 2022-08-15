@@ -253,12 +253,12 @@ When using EXPLAIN, if ..." />
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2011-07-07 17:17">10 years, 9 months ago</span></dd>
+<span class="datetime" title="2011-07-07 17:17">10 years, 11 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2015-01-27 16:00">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2022-04-27 11:22">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -409,7 +409,7 @@ single table using several index scans. The results of the scans are then
 merged.</p>
 <p>When using <a href="/kb/en/explain/">EXPLAIN</a>, if <code>index_merge</code> is the plan chosen by the
 optimizer, it will show up in the "type" column. For example:</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">ontime</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">ontime</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">ontime</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">ontime</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--------+</span>
 <span class="o">|</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--------+</span>
@@ -432,7 +432,7 @@ additional <code>AND</code> predicates in <code>WHERE</code> clauses could cause
 plan to be rejected in favor of a less efficient plan. The slowdown could be
 anywhere from 10x to over 100x. Here are two examples (based on the previous
 query) using MySQL:</p>
-<pre class="fixed"><span class="n">MySQL</span> <span class="p">[</span><span class="n">ontime</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ontime</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">Origin</span><span class="o">=</span><span class="s1">&#39;SEA&#39;</span> <span class="k">OR</span> <span class="n">Dest</span><span class="o">=</span><span class="s1">&#39;SEA&#39;</span><span class="p">)</span> <span class="k">AND</span> <span class="n">securitydelay</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="n">MySQL</span> <span class="p">[</span><span class="n">ontime</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ontime</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">Origin</span><span class="o">=</span><span class="s1">&#39;SEA&#39;</span> <span class="k">OR</span> <span class="n">Dest</span><span class="o">=</span><span class="s1">&#39;SEA&#39;</span><span class="p">)</span> <span class="k">AND</span> <span class="n">securitydelay</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 <span class="o">+</span><span class="c1">--+-----------+------+----+-------------------------+-------------+-------+-----+------+-----------+</span>
 <span class="o">|</span><span class="n">id</span><span class="o">|</span><span class="n">select_type</span><span class="o">|</span><span class="k">table</span> <span class="o">|</span><span class="k">type</span><span class="o">|</span><span class="n">possible_keys</span>            <span class="o">|</span><span class="k">key</span>          <span class="o">|</span><span class="n">key_len</span><span class="o">|</span><span class="k">ref</span>  <span class="o">|</span><span class="k">rows</span>  <span class="o">|</span><span class="n">Extra</span>      <span class="o">|</span>
 <span class="o">+</span><span class="c1">--+-----------+------+----+-------------------------+-------------+-------+-----+------+-----------+</span>
@@ -452,7 +452,7 @@ efficient and the second is over 15x less efficient than <code>index_merge</code
 for more information.</p>
 <p>By not discarding potential <code>index_merge</code> plans until absolutely necessary,
 the two queries stay just as efficient as the original:</p>
-<pre class="fixed"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">ontime</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ontime</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">Origin</span><span class="o">=</span><span class="s1">&#39;SEA&#39;</span> <span class="k">or</span> <span class="n">Dest</span><span class="o">=</span><span class="s1">&#39;SEA&#39;</span><span class="p">);</span>
+<pre class="fixed wrap"><span class="n">MariaDB</span> <span class="p">[</span><span class="n">ontime</span><span class="p">]</span><span class="o">&gt;</span> <span class="k">EXPLAIN</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ontime</span> <span class="k">WHERE</span> <span class="p">(</span><span class="n">Origin</span><span class="o">=</span><span class="s1">&#39;SEA&#39;</span> <span class="k">or</span> <span class="n">Dest</span><span class="o">=</span><span class="s1">&#39;SEA&#39;</span><span class="p">);</span>
 <span class="o">+</span><span class="c1">--+-----------+------+-----------+-------------+-----------+-------+----+-----+-------------------------------------+</span>
 <span class="o">|</span><span class="n">id</span><span class="o">|</span><span class="n">select_type</span><span class="o">|</span><span class="k">table</span> <span class="o">|</span><span class="k">type</span>       <span class="o">|</span><span class="n">possible_keys</span><span class="o">|</span><span class="k">key</span>        <span class="o">|</span><span class="n">key_len</span><span class="o">|</span><span class="k">ref</span> <span class="o">|</span><span class="k">rows</span> <span class="o">|</span><span class="n">Extra</span>                                <span class="o">|</span>
 <span class="o">+</span><span class="c1">--+-----------+------+-----------+-------------+-----------+-------+----+-----+-------------------------------------+</span>
@@ -473,9 +473,8 @@ the two queries stay just as efficient as the original:</p>
 <span class="o">|</span> <span class="mi">1</span><span class="o">|</span><span class="k">SIMPLE</span>     <span class="o">|</span><span class="n">ontime</span><span class="o">|</span><span class="n">index_merge</span><span class="o">|</span><span class="n">Origin</span><span class="p">,</span><span class="n">DepDelay</span><span class="p">,</span><span class="n">Dest</span><span class="o">|</span><span class="n">Origin</span><span class="p">,</span><span class="n">Dest</span><span class="o">|</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span>    <span class="o">|</span><span class="k">NULL</span><span class="o">|</span><span class="mi">92800</span><span class="o">|</span><span class="k">Using</span> <span class="k">union</span><span class="p">(</span><span class="n">Origin</span><span class="p">,</span><span class="n">Dest</span><span class="p">);</span> <span class="k">Using</span> <span class="k">where</span><span class="o">|</span>
 <span class="o">+</span><span class="c1">--+-----------+------+-----------+--------------------+-----------+-------+----+-----+-------------------------------------+</span>
 </pre><p>This new behavior is always on and there is no need to enable it. There are no known issues or gotchas with this new optimization.</p>
-<h2 class="anchored_heading" id="see-also">See Also:</h2>
-<ul start="1"><li><a href="/kb/en/what-is-mariadb-53/">What is MariaDB 5.3</a>
-</li></ul>
+<h2 class="anchored_heading" id="see-also">See Also</h2>
+<ul start="1"><li><a href="/kb/en/what-is-mariadb-53/">What is MariaDB 5.3</a></li></ul>
 
     </div>
 

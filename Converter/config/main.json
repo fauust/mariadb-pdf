@@ -1,9 +1,9 @@
 {
     "redownload_all_files": false,
-    "redownload_files": true,
+    "redownload_files": false,
     "new_html": true,
-    "new_pdf": true,
-    "toc_pagenumbers": true,
+    "new_pdf": false,
+    "toc_pagenumbers": false,
     "check_slugs": true,
     "debug_csv": true,
     "notify": false,

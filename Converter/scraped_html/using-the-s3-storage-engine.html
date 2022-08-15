@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2019-05-10 15:03">2 years, 11 months ago</span></dd>
+<span class="datetime" title="2019-05-10 15:03">3 years, 1 month ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-01 16:12">7 months, 1 week ago</span></dd>
+<span class="datetime" title="2022-05-30 12:05">1 week, 5 days ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -483,7 +483,7 @@ ERROR 1126 (HY000): Can't open shared library '/var/lib/mysql/lib64/mysql/plugin
 <pre class="fixed"><span class="n">shell</span><span class="o">&gt;</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">MariaDB</span><span class="o">-</span><span class="n">s3</span><span class="o">-</span><span class="n">engine</span>
 </pre><h2 class="anchored_heading" id="moving-data-to-s3">Moving Data to S3</h2>
 <p>To move data from an existing table to S3, one can run:</p>
-<pre class="fixed">ALTER TABLE old_table ENGINE=S3
+<pre class="fixed">ALTER TABLE old_table ENGINE=S3 COMPRESSION_ALGORITHM=zlib
 </pre><p>To get data back to a 'normal' table one can do:</p>
 <pre class="fixed">ALTER TABLE s3_table ENGINE=INNODB
 </pre><h2 class="anchored_heading" id="new-options-for-alter-tablealter-table">New Options for <a href="/kb/en/alter-table/">ALTER TABLE</a></h2>

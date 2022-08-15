@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2020-01-06 20:43">2 years, 3 months ago</span></dd>
+<span class="datetime" title="2020-01-06 20:43">2 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-05-28 00:10">1 year, 10 months ago</span></dd>
+<span class="datetime" title="2022-04-26 20:35">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -336,11 +336,6 @@
                             >MariaDB starting with 10.4</label>
                 </li>
             
-                <li class="mariadb_from_10_0_5">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_0_5"
-                            >MariaDB starting with 10.0.5</label>
-                </li>
-            
                 <li class="mariadb_from_10_4_3">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_4_3"
                             >MariaDB starting with 10.4.3</label>
@@ -354,11 +349,6 @@
                 <li class="mariadb_from_10_4">
                     <label><input type="checkbox" data-product-class="mariadb_from_10_4"
                             >MariaDB starting with 10.4</label>
-                </li>
-            
-                <li class="mariadb_from_10_0_5">
-                    <label><input type="checkbox" data-product-class="mariadb_from_10_0_5"
-                            >MariaDB starting with 10.0.5</label>
                 </li>
             
         </ul>
@@ -518,10 +508,10 @@
 <p>For more information about secure connections, see <a href="/kb/en/secure-connections-overview/">Secure Connections Overview</a>.</p>
 <h2 class="anchored_heading" id="permissions">Permissions</h2>
 <p>Permissions can be granted to accounts. As mentioned before, the specified accounts can actually be patterns, and multiple accounts may match a pattern. For example, in this example we are creating three accounts, and we are assigning permissions to all of them:</p>
-<pre class="fixed"><span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;example.com&#39;</span><span class="p">;</span>
-<span class="k">CREATE</span> <span class="k">USER</span> <span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;123.123.123.123;</span>
-<span class="s1">CREATE USER &#39;</span><span class="n">tom</span><span class="s1">&#39;@&#39;</span><span class="n">tomlaptop</span><span class="s1">&#39;;</span>
-<span class="s1">GRANT USAGE ON *.* TO tom@&#39;</span><span class="o">%</span><span class="err">&#39;</span><span class="p">;</span>
+<pre class="fixed">CREATE USER 'tom'@'example.com';
+CREATE USER 'tom'@'123.123.123.123;
+CREATE USER 'tom'@'tomlaptop';
+GRANT USAGE ON *.* TO tom@'%';
 </pre><p>The following permission levels exist in MariaDB:</p>
 <ul start="1"><li><a href="/kb/en/grant/#global-privileges">Global privileges</a>;
 </li><li><a href="/kb/en/grant/#database-privileges">Database privileges</a>;
@@ -545,9 +535,7 @@
 </li><li>In MariaDB it is not needed (or possible) to specify a class type.
 </li></ul>
 <h2 class="anchored_heading" id="roles">Roles</h2>
-<div class="mariadb_from_10_0_5 mariadb from_10_0_5 product"><h5 class="product_title">MariaDB starting with <a href="/kb/en/mariadb-1005-release-notes/">10.0.5</a></h5><p>MariaDB supports roles starting with version 10.0.5.</p>
-</div><p>In older versions, the lack of roles support can be mitigated by using a third party stored procedures library called <a href="/kb/en/securich/">SecuRich</a>.</p>
-<p>Permissions can be assigned to roles, and roles can be assigned to accounts.</p>
+<p>MariaDB supports <a href="/kb/en/roles/">roles</a>. Permissions can be assigned to roles, and roles can be assigned to accounts.</p>
 <p>An account may have zero or one default roles. A default role is a role that is automatically active for a user when they connect. To assign an account or remove a default role, these SQL statements can be used:</p>
 <pre class="fixed"><span class="k">SET</span> <span class="k">DEFAULT</span> <span class="k">ROLE</span> <span class="n">some_role</span> <span class="k">FOR</span> <span class="n">username</span><span class="o">@</span><span class="n">hostname</span><span class="p">;</span>
 <span class="k">SET</span> <span class="k">DEFAULT</span> <span class="k">ROLE</span> <span class="k">NONE</span> <span class="k">FOR</span> <span class="n">username</span><span class="o">@</span><span class="n">hostname</span><span class="p">;</span>

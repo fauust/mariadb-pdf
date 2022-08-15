@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2017-12-24 11:27">4 years, 3 months ago</span></dd>
+<span class="datetime" title="2017-12-24 11:27">4 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2020-06-17 23:27">1 year, 9 months ago</span></dd>
+<span class="datetime" title="2022-05-26 23:15">2 weeks, 1 day ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -487,6 +487,34 @@
 <span class="o">|</span> <span class="n">y</span>     <span class="o">|</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">|</span> <span class="n">YES</span>  <span class="o">|</span>     <span class="o">|</span> <span class="k">NULL</span>    <span class="o">|</span>       <span class="o">|</span>
 <span class="o">|</span> <span class="n">z</span>     <span class="o">|</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">|</span> <span class="k">NO</span>   <span class="o">|</span>     <span class="o">|</span> <span class="mi">4</span>       <span class="o">|</span>       <span class="o">|</span>
 <span class="o">+</span><span class="c1">-------+---------+------+-----+---------+-------+</span>
+</pre><p>Adding a Surrogate Primary Key:</p>
+<pre class="fixed"><span class="k">create</span> <span class="k">table</span> <span class="n">t1</span> <span class="p">(</span><span class="n">x</span> <span class="nb">bigint</span> <span class="n">unsigned</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span> <span class="n">y</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">z</span> <span class="nb">text</span><span class="p">);</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">t1</span> <span class="k">values</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;qq11&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">);</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">t1</span> <span class="k">values</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;qq22&#39;</span><span class="p">,</span> <span class="s1">&#39;lorem&#39;</span><span class="p">);</span>
+
+<span class="k">alter</span> <span class="k">table</span> <span class="n">t1</span> <span class="k">add</span> <span class="n">pkid</span> <span class="nb">serial</span> <span class="k">primary</span> <span class="k">key</span> <span class="n">invisible</span> <span class="k">first</span><span class="p">;</span>
+
+<span class="k">insert</span> <span class="k">into</span> <span class="n">t1</span> <span class="k">values</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="s1">&#39;qq33&#39;</span><span class="p">,</span> <span class="s1">&#39;amet&#39;</span><span class="p">);</span>
+
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">t1</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">-----+------+-------+</span>
+<span class="o">|</span> <span class="n">x</span>   <span class="o">|</span> <span class="n">y</span>    <span class="o">|</span> <span class="n">z</span>     <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----+------+-------+</span>
+<span class="o">|</span> <span class="mi">123</span> <span class="o">|</span> <span class="n">qq11</span> <span class="o">|</span> <span class="n">ipsum</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">123</span> <span class="o">|</span> <span class="n">qq22</span> <span class="o">|</span> <span class="n">lorem</span> <span class="o">|</span>
+<span class="o">|</span> <span class="mi">123</span> <span class="o">|</span> <span class="n">qq33</span> <span class="o">|</span> <span class="n">amet</span>  <span class="o">|</span>
+<span class="o">+</span><span class="c1">-----+------+-------+</span>
+
+<span class="k">select</span> <span class="n">pkid</span><span class="p">,</span> <span class="n">z</span> <span class="k">from</span> <span class="n">t1</span><span class="p">;</span>
+<span class="o">+</span><span class="c1">------+-------+</span>
+<span class="o">|</span> <span class="n">pkid</span> <span class="o">|</span> <span class="n">z</span>     <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+</span>
+<span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span> <span class="n">ipsum</span> <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span> <span class="n">lorem</span> <span class="o">|</span>
+<span class="o">|</span>    <span class="mi">3</span> <span class="o">|</span> <span class="n">amet</span>  <span class="o">|</span>
+<span class="o">+</span><span class="c1">------+-------+</span>
 </pre>
     </div>
 

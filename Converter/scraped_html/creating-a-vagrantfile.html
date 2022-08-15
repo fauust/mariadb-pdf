@@ -255,12 +255,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2020-12-13 23:06">1 year, 3 months ago</span></dd>
+<span class="datetime" title="2020-12-13 23:06">1 year, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-06-11 17:41">10 months ago</span></dd>
+<span class="datetime" title="2022-05-05 00:44">1 month, 1 week ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -443,7 +443,7 @@ end
 <pre class="fixed">vagrant up
 </pre><p>To compile the Vagrantfile into a box:</p>
 <pre class="fixed">vagrant package
-</pre><p>These operations can take time. To check if the Vagrantfile contains syntax errors or certain types of bugs:</p>
+</pre><p>These operations can take time. To preventively check if the Vagrantfile contains syntax errors or certain types of bugs:</p>
 <pre class="fixed">vagrant validate
 </pre><h2 class="anchored_heading" id="providers">Providers</h2>
 <p>A provider allows Vagrant to create a Vagrant machine using a certain technology. Different providers may enable a virtual machine manager (<a href="https://www.vagrantup.com/docs/providers/virtualbox">VirtualBox</a>, <a href="https://www.vagrantup.com/docs/providers/vmware">VMWare</a>, <a href="https://www.vagrantup.com/docs/providers/hyperv">Hyper-V</a>...), a container manager (<a href="https://www.vagrantup.com/docs/providers/docker">Docker</a>), or remote cloud hosts (<a href="https://github.com/mitchellh/vagrant-aws">AWS</a>, <a href="https://github.com/mitchellh/vagrant-google">Google Compute Engine</a>...).</p>
@@ -487,8 +487,9 @@ apt-get install -y
     ansible.playbook = &#34;vagrant.yml&#34;
   end
 end
-</pre><p>With the <a href="https://www.vagrantup.com/docs/provisioning/ansible">Ansible provisioner</a>, Ansible runs in the host system. In this example, it runs a playbook called <code>vagrant.yml</code>. The <a href="https://www.vagrantup.com/docs/provisioning/ansible_local">Ansible Local provisioner</a> runs the playbook in the vagrant machine.</p>
-<p>For an introduction to Ansible for MariaDB users, see <a href="/kb/en/ansible-and-mariadb/">Ansible and MariaDB</a>.</p>
+</pre><p>With the <a href="https://www.vagrantup.com/docs/provisioning/ansible">Ansible provisioner</a>, Ansible runs in the host system and applies a playbook in the guest system. In this example, it runs a playbook called <code>vagrant.yml</code>. The <a href="https://www.vagrantup.com/docs/provisioning/ansible_local">Ansible Local provisioner</a> runs the playbook in the vagrant machine.</p>
+<p>A limitation of using Ansible as a provider for Vagrant is that it can only apply a playbook, not a role. The only way to work around this limitation is to use Ansible natively, not as a Vagrant provider. It will connect to the virtual machine using a regular ssh connection. To do so, it has to connect to the local host using a particular port. To find out which port should be used, run <code>vagrant ssh-config</code>.</p>
+<p>For more information, see <a href="https://docs.ansible.com/ansible/2.3/guide_vagrant.html">Using Vagrant and Ansible</a> in the Ansible documentation. For an introduction to Ansible for MariaDB users, see <a href="/kb/en/ansible-and-mariadb/">Ansible and MariaDB</a>.</p>
 <h3 class="anchored_heading" id="provisioning-vagrant-with-puppet">Provisioning Vagrant with Puppet</h3>
 <p>To provision a Vagrant machine or box by running Puppet:</p>
 <pre class="fixed">Vagrant.configure(&#34;2&#34;) do |config|

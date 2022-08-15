@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2018-12-31 09:06">3 years, 3 months ago</span></dd>
+<span class="datetime" title="2018-12-31 09:06">3 years, 5 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2018-12-31 22:42">3 years, 3 months ago</span></dd>
+<span class="datetime" title="2022-04-26 14:14">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -385,28 +385,28 @@
     
     <div class="answer formatted">
         <p>In MacOS, create a file called /Library/LaunchDaemons/com.mariadb.server.plist with the following contents (edit to suit):</p>
-<pre class="fixed">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+<pre class="fixed wrap">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
 &lt;!DOCTYPE plist PUBLIC &#34;-//Apple Computer//DTD PLIST 1.0//EN&#34; &#34;http://www.apple.com/DTDs/PropertyList-1.0.dtd&#34;&gt;
 &lt;plist version=&#34;1.0&#34;&gt;
 &lt;dict&gt;
-        &lt;key&gt;Label&lt;/key&gt; &lt;string&gt;com.mariadb.server&lt;/string&gt;
-        &lt;key&gt;KeepAlive&lt;/key&gt;&lt;true/&gt;
-	&lt;key&gt;RunAtLoad&lt;/key&gt;&lt;true/&gt;
-	&lt;key&gt;LaunchOnlyOnce&lt;/key&gt;&lt;false/&gt;
-	&lt;key&gt;ExitTimeOut&lt;/key&gt;&lt;integer&gt;600&lt;/integer&gt;
-        &lt;key&gt;WorkingDirectory&lt;/key&gt;&lt;string&gt;/usr/local/var&lt;/string&gt;
-        &lt;key&gt;Program&lt;/key&gt;&lt;string&gt;/usr/local/bin/mysqld&lt;/string&gt;
-        &lt;key&gt;ProgramArguments&lt;/key&gt;
-        &lt;array&gt;
-	    &lt;string&gt;/usr/local/bin/mysqld&lt;/string&gt;
-	    &lt;string&gt;--user=_mysql&lt;/string&gt;
-	    &lt;string&gt;--basedir=/usr/local/opt/mariadb&lt;/string&gt;
-	    &lt;string&gt;--plugin-dir=/usr/local/opt/mariadb/lib/plugin&lt;/string&gt;
-	    &lt;string&gt;--datadir=/usr/local/var/mysql&lt;/string&gt;
-	    &lt;string&gt;--log-error=/usr/local/var/mysql/Data-Server.local.err&lt;/string&gt;
-	    &lt;string&gt;--pid-file=/usr/local/var/mysql/Data-Server.local.pid&lt;/string&gt;
-	    &lt;string&gt;--sql-mode=ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&lt;/string&gt;
-        &lt;/array&gt;
+  &lt;key&gt;Label&lt;/key&gt; &lt;string&gt;com.mariadb.server&lt;/string&gt;
+  &lt;key&gt;KeepAlive&lt;/key&gt;&lt;true/&gt;
+  &lt;key&gt;RunAtLoad&lt;/key&gt;&lt;true/&gt;
+  &lt;key&gt;LaunchOnlyOnce&lt;/key&gt;&lt;false/&gt;
+  &lt;key&gt;ExitTimeOut&lt;/key&gt;&lt;integer&gt;600&lt;/integer&gt;
+  &lt;key&gt;WorkingDirectory&lt;/key&gt;&lt;string&gt;/usr/local/var&lt;/string&gt;
+  &lt;key&gt;Program&lt;/key&gt;&lt;string&gt;/usr/local/bin/mysqld&lt;/string&gt;
+  &lt;key&gt;ProgramArguments&lt;/key&gt;
+  &lt;array&gt;
+    &lt;string&gt;/usr/local/bin/mysqld&lt;/string&gt;
+    &lt;string&gt;--user=_mysql&lt;/string&gt;
+    &lt;string&gt;--basedir=/usr/local/opt/mariadb&lt;/string&gt;
+    &lt;string&gt;--plugin-dir=/usr/local/opt/mariadb/lib/plugin&lt;/string&gt;
+    &lt;string&gt;--datadir=/usr/local/var/mysql&lt;/string&gt;
+    &lt;string&gt;--log-error=/usr/local/var/mysql/Data-Server.local.err&lt;/string&gt;
+    &lt;string&gt;--pid-file=/usr/local/var/mysql/Data-Server.local.pid&lt;/string&gt;
+    &lt;string&gt;--sql-mode=ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&lt;/string&gt;
+  &lt;/array&gt;
 &lt;/dict&gt;
 &lt;/plist&gt;
 </pre><p>Then from a shell, run <code class="fixed" style="white-space:pre-wrap">launchctl load /Library/LaunchDaemons/com.mariadb.server.plist</code> and MariaDB will run immediately, and also upon reboot.</p>
@@ -492,7 +492,7 @@
                     <li>
                         <a href="/kb/en/starting-and-stopping-mariadb-automatically/">
                             
-                            Starting and Stopping MariaDB
+                            Starting and Stopping MariaDB Server
                         </a>
                     </li>
                 

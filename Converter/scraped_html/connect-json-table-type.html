@@ -251,12 +251,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2015-01-26 12:48">7 years, 2 months ago</span></dd>
+<span class="datetime" title="2015-01-26 12:48">7 years, 4 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-07-16 10:03">9 months ago</span></dd>
+<span class="datetime" title="2022-05-02 12:33">1 month, 1 week ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -1136,7 +1136,7 @@ option_list='Pretty=0,Depth=1' lrecl=128;
 <h2 class="anchored_heading" id="json-file-formats">JSON File Formats</h2>
 <p>The examples we have seen so far are files that, even they can be formatted in different ways (blanks, tabs, carriage return and line feed are ignored when parsing them), respect the JSON syntax and are made of only one item (Object or Array). Like for XML files, they are entirely parsed and a memory representation is made used to process them. This implies that they are of reasonable size to avoid an out of memory condition. Tables based on such files are recognized by the option Pretty=2 that we did not specify above because this is the default.</p>
 <p>An alternate format, which is the format of exported MongoDB files, is a file where each row is physically stored in one file record. For instance:</p>
-<pre class="fixed">{ &#34;_id&#34; : &#34;01001&#34;, &#34;city&#34; : &#34;AGAWAM&#34;, &#34;loc&#34; : [ -72.622739, 42.070206 ], &#34;pop&#34; : 15338, &#34;state&#34; : &#34;MA&#34; }
+<pre class="fixed wrap">{ &#34;_id&#34; : &#34;01001&#34;, &#34;city&#34; : &#34;AGAWAM&#34;, &#34;loc&#34; : [ -72.622739, 42.070206 ], &#34;pop&#34; : 15338, &#34;state&#34; : &#34;MA&#34; }
 { &#34;_id&#34; : &#34;01002&#34;, &#34;city&#34; : &#34;CUSHMAN&#34;, &#34;loc&#34; : [ -72.51564999999999, 42.377017 ], &#34;pop&#34; : 36963, &#34;state&#34; : &#34;MA&#34; }
 { &#34;_id&#34; : &#34;01005&#34;, &#34;city&#34; : &#34;BARRE&#34;, &#34;loc&#34; : [ -72.1083540000001, 42.409698 ], &#34;pop&#34; : 4546, &#34;state&#34; : &#34;MA&#34; }
 { &#34;_id&#34; : &#34;01007&#34;, &#34;city&#34; : &#34;BELCHERTOWN&#34;, &#34;loc&#34; : [ -72.4109530000001, 42.275103 ], &#34;pop&#34; : 10579, &#34;state&#34; : &#34;MA&#34; }
@@ -1337,9 +1337,9 @@ engine=CONNECT table_type=JSON file_name='biblio3.json';
 <tr><td>jfile_convert</td><td>Function</td><td>STRING</td><td>Convert a Json file to another pretty=0 file.</td><td><a href="/kb/en/mariadb-1059-release-notes/">MariaDB 10.5.9</a>, <a href="/kb/en/mariadb-10418-release-notes/">MariaDB 10.4.18</a>, <a href="/kb/en/mariadb-10328-release-notes/">MariaDB 10.3.28</a>, <a href="/kb/en/mariadb-10236-release-notes/">MariaDB 10.2.36</a></td></tr>
 <tr><td>jfile_make</td><td>Function</td><td>STRING</td><td>Make a json file from its json item first argument.</td><td><a href="/kb/en/mariadb-1019-release-notes/">MariaDB 10.1.9</a></td></tr>
 <tr><td>json_array</td><td>Function</td><td>STRING</td><td>Make a JSON array containing its arguments.</td><td><a href="/kb/en/mariadb-10017-release-notes/">MariaDB 10.0.17</a> until Connect 1.5</td></tr>
-<tr><td>json_array_add</td><td>Function</td><td>STRING</td><td>Adds to its first array argument its second arguments (before <a href="/kb/en/mariadb-1019-release-notes/">MariaDB 10.1.9</a>, all following arguments).</td></tr>
+<tr><td>json_array_add</td><td>Function</td><td>STRING</td><td>Adds to its first array argument its second arguments (before <a href="/kb/en/mariadb-1019-release-notes/">MariaDB 10.1.9</a>, all following arguments).</td><td></td></tr>
 <tr><td>json_array_add_values</td><td>Function</td><td>STRING</td><td>Adds to its first array argument all following arguments.</td><td><a href="/kb/en/mariadb-1019-release-notes/">MariaDB 10.1.9</a></td></tr>
-<tr><td>json_array_delete</td><td>Function</td><td>STRING</td><td>Deletes the nth element of its first array argument.</td></tr>
+<tr><td>json_array_delete</td><td>Function</td><td>STRING</td><td>Deletes the nth element of its first array argument.</td><td></td></tr>
 <tr><td>json_array_grp</td><td>Aggregate</td><td>STRING</td><td>Makes JSON arrays from coming argument.</td><td></td></tr>
 <tr><td>json_file</td><td>Function</td><td>STRING</td><td>Returns the contains of (json) file.</td><td><a href="/kb/en/mariadb-1019-release-notes/">MariaDB 10.1.9</a></td></tr>
 <tr><td>json_get_item</td><td>Function</td><td>STRING</td><td>Access and returns a json item by a JPATH key.</td><td><a href="/kb/en/mariadb-1019-release-notes/">MariaDB 10.1.9</a></td></tr>
@@ -2217,7 +2217,7 @@ Some, such as Bson_Item_Delete, are new and some fix bugs found in their Json co
 <h2 class="anchored_heading" id="converting-tables-to-json">Converting Tables to JSON</h2>
 <p>The JSON UDF’s and the direct Jpath “*” facility are powerful tools to convert table and files to the JSON format. For instance, the file <code>biblio3.json</code> we used previously can be obtained by converting the <code>xsample.xml file</code>. This can be done like this:</p>
 <p>From Connect 1.07.0002</p>
-<pre class="fixed"><span class="k">create</span> <span class="k">table</span> <span class="n">xj1</span> <span class="p">(</span><span class="k">row</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span> <span class="n">jpath</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span> <span class="n">engine</span><span class="o">=</span><span class="k">connect</span> <span class="n">table_type</span><span class="o">=</span><span class="n">JSON</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;biblio3.json&#39;</span> <span class="n">option_list</span><span class="o">=</span><span class="s1">&#39;jmode=2&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">create</span> <span class="k">table</span> <span class="n">xj1</span> <span class="p">(</span><span class="k">row</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span> <span class="n">jpath</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span> <span class="n">engine</span><span class="o">=</span><span class="k">connect</span> <span class="n">table_type</span><span class="o">=</span><span class="n">JSON</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;biblio3.json&#39;</span> <span class="n">option_list</span><span class="o">=</span><span class="s1">&#39;jmode=2&#39;</span><span class="p">;</span>
 </pre><p>Before Connect 1.07.0002</p>
 <pre class="fixed"><span class="k">create</span> <span class="k">table</span> <span class="n">xj1</span> <span class="p">(</span><span class="k">row</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span> <span class="n">field_format</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">)</span> 
  <span class="n">engine</span><span class="o">=</span><span class="k">connect</span> <span class="n">table_type</span><span class="o">=</span><span class="n">JSON</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;biblio3.json&#39;</span> <span class="n">option_list</span><span class="o">=</span><span class="s1">&#39;jmode=2&#39;</span><span class="p">;</span>
@@ -2264,7 +2264,7 @@ Some, such as Bson_Item_Delete, are new and some fix bugs found in their Json co
 <pre class="fixed"><span class="k">insert</span> <span class="k">into</span> <span class="n">jsampall3</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">xsampall</span><span class="p">;</span>
 </pre><p>This is a simpler method. However, the issue is that this method cannot handle the multiple column values. This is why we inserted from <code>xsampall</code> not from <code>xsampall2</code>. How can we add the missing multiple authors in this table? Here again we must create a utility table able to handle JSON strings.
 From Connect 1.07.0002</p>
-<pre class="fixed"><span class="k">create</span> <span class="k">table</span> <span class="n">xj2</span> <span class="p">(</span><span class="n">ISBN</span> <span class="nb">char</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span> <span class="n">author</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span> <span class="n">jpath</span><span class="o">=</span><span class="s1">&#39;AUTHOR:*&#39;</span><span class="p">)</span> <span class="n">engine</span><span class="o">=</span><span class="k">connect</span> <span class="n">table_type</span><span class="o">=</span><span class="n">JSON</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;biblio3.json&#39;</span> <span class="n">option_list</span><span class="o">=</span><span class="s1">&#39;jmode=1&#39;</span><span class="p">;</span>
+<pre class="fixed wrap"><span class="k">create</span> <span class="k">table</span> <span class="n">xj2</span> <span class="p">(</span><span class="n">ISBN</span> <span class="nb">char</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span> <span class="n">author</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span> <span class="n">jpath</span><span class="o">=</span><span class="s1">&#39;AUTHOR:*&#39;</span><span class="p">)</span> <span class="n">engine</span><span class="o">=</span><span class="k">connect</span> <span class="n">table_type</span><span class="o">=</span><span class="n">JSON</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;biblio3.json&#39;</span> <span class="n">option_list</span><span class="o">=</span><span class="s1">&#39;jmode=1&#39;</span><span class="p">;</span>
 </pre><p>Before Connect 1.07.0002</p>
 <pre class="fixed"><span class="k">create</span> <span class="k">table</span> <span class="n">xj2</span> <span class="p">(</span><span class="n">ISBN</span> <span class="nb">char</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span> <span class="n">author</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span> <span class="n">field_format</span><span class="o">=</span><span class="s1">&#39;AUTHOR:*&#39;</span><span class="p">)</span> 
   <span class="n">engine</span><span class="o">=</span><span class="k">connect</span> <span class="n">table_type</span><span class="o">=</span><span class="n">JSON</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;biblio3.json&#39;</span> <span class="n">option_list</span><span class="o">=</span><span class="s1">&#39;jmode=1&#39;</span><span class="p">;</span>
@@ -2365,7 +2365,7 @@ From Connect 1.07.0002</p>
     <a href="#_ref-0">&uarr;</a> The value n can be 0 based or 1 based depending on the base table option. The default is 0 to match what is the current usage in the Json world but it can be set to 1 for tables created in old versions.</li>
 
 <li id="_note-1">
-    <a href="#_ref-1">&uarr;</a> See for instance: <a href="https://mariadb.com/kb/en/mariadb/json-functions/">https://mariadb.com/kb/en/mariadb/json-functions/</a>, <a href="https://github.com/mysqludf/lib_mysqludf_json#readme">https://github.com/mysqludf/lib_mysqludf_json#readme</a> and <a href="https://blogs.oracle.com/svetasmirnova/entry/json_udf_functions_version_04">https://blogs.oracle.com/svetasmirnova/entry/json_udf_functions_version_04</a></li>
+    <a href="#_ref-1">&uarr;</a> See for instance: <a href="/kb/en/json-functions/">json-functions</a>, <a href="https://github.com/mysqludf/lib_mysqludf_json#readme">https://github.com/mysqludf/lib_mysqludf_json#readme</a> and <a href="https://blogs.oracle.com/svetasmirnova/entry/json_udf_functions_version_04">https://blogs.oracle.com/svetasmirnova/entry/json_udf_functions_version_04</a></li>
 
 <li id="_note-2">
     <a href="#_ref-2">&uarr;</a> This will not work when CONNECT is compiled embedded</li>

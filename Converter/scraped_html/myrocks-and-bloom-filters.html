@@ -247,12 +247,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2018-04-28 23:24">3 years, 11 months ago</span></dd>
+<span class="datetime" title="2018-04-28 23:24">4 years, 1 month ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2019-10-02 18:34">2 years, 6 months ago</span></dd>
+<span class="datetime" title="2022-04-27 19:25">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -410,10 +410,10 @@ Bloom filters are used to reduce read amplification. Bloom filters can be set on
 </li></ul>
 <h2 class="anchored_heading" id="configuring-bloom-filter">Configuring Bloom Filter</h2>
 <p>To enable 10-bit bloom filter for 8-byte prefix length for column family "cf1",  put this into my.cnf:</p>
-<pre class="fixed">rocksdb_override_cf_options='cf1={block_based_table_factory={filter_policy=bloomfilter:10:false;whole_key_filtering=0;};prefix_extractor=capped:8};'
+<pre class="fixed wrap">rocksdb_override_cf_options='cf1={block_based_table_factory={filter_policy=bloomfilter:10:false;whole_key_filtering=0;};prefix_extractor=capped:8};'
 </pre><p>and restart the server.</p>
 <p>Check if the column family actually uses the bloom filter:</p>
-<pre class="fixed"><span class="k">select</span> <span class="o">*</span> 
+<pre class="fixed wrap"><span class="k">select</span> <span class="o">*</span> 
 <span class="k">from</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">rocksdb_cf_options</span> 
 <span class="k">where</span> 
   <span class="n">cf_name</span><span class="o">=</span><span class="s1">&#39;cf1&#39;</span> <span class="k">and</span>

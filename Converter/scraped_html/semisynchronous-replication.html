@@ -243,12 +243,12 @@
         <dt>Created</dt>
         <dd>
 
-<span class="datetime" title="2014-11-21 14:30">7 years, 4 months ago</span></dd>
+<span class="datetime" title="2014-11-21 14:30">7 years, 6 months ago</span></dd>
 
         <dt>Modified</dt>
         <dd>
 
-<span class="datetime" title="2021-09-28 07:46">6 months, 2 weeks ago</span></dd>
+<span class="datetime" title="2022-04-26 21:54">1 month, 2 weeks ago</span></dd>
 
         <dt>Type</dt>
         <dd>article</dd>
@@ -553,11 +553,11 @@ START SLAVE IO_THREAD;
 </pre><p>If this is not done, and the replica thread is already running, then it will continue to use asynchronous replication.</p>
 <h2 class="anchored_heading" id="configuring-the-primary-timeout">Configuring the Primary Timeout</h2>
 <p>In semisynchronous replication, only after the events have been written to the relay log and flushed does the replica acknowledge receipt of a transaction's events. If the replica does not acknowledge the transaction before a certain amount of time has passed, then a timeout occurs and the primary switches to asynchronous replication. This will be reflected in the primary's <a href="/kb/en/error-log/">error log</a> with messages like the following: </p>
-<pre class="fixed">[Warning] Timeout waiting for reply of binlog (file: mariadb-1-bin.000002, pos: 538), semi-sync up to file , position 0.
+<pre class="fixed wrap">[Warning] Timeout waiting for reply of binlog (file: mariadb-1-bin.000002, pos: 538), semi-sync up to file , position 0.
 [Note] Semi-sync replication switched OFF.
 </pre><p>When this occurs, the <a href="/kb/en/semisynchronous-replication-plugin-status-variables/#rpl_semi_sync_master_status">Rpl_semi_sync_master_status</a> status variable will be switched to <code>OFF</code>.</p>
 <p>When at least one semisynchronous replica catches up, semisynchronous replication is resumed. This will be reflected in the primary's <a href="/kb/en/error-log/">error log</a> with messages like the following: </p>
-<pre class="fixed">[Note] Semi-sync replication switched ON with replica (server_id: 184137206) at (mariadb-1-bin.000002, 215076)
+<pre class="fixed wrap">[Note] Semi-sync replication switched ON with replica (server_id: 184137206) at (mariadb-1-bin.000002, 215076)
 </pre><p>When this occurs, the <a href="/kb/en/semisynchronous-replication-plugin-status-variables/#rpl_semi_sync_master_status">Rpl_semi_sync_master_status</a> status variable will be switched to <code>ON</code>.</p>
 <p>The number of times that semisynchronous replication has been switched off can be checked by looking at the value of the <a href="/kb/en/semisynchronous-replication-plugin-status-variables/#rpl_semi_sync_master_no_times">Rpl_semi_sync_master_no_times</a> status variable.</p>
 <p>If you see a lot of timeouts like this in your environment, then you may want to change the timeout period. The timeout period can be changed by setting the <a href="#rpl_semi_sync_master_timeout">rpl_semi_sync_master_timeout</a> system variable. It can be set dynamically with <a href="/kb/en/set/#global-session">SET GLOBAL</a>. For example:</p>
