@@ -27,7 +27,7 @@
     <ul>
     <li>MariaDB Server is a general-purpose, open source, relational database management system, optimised for performance and easy usabiility; it has its roots in MySQL Server, and is an alternative to Postgres, Oracle Database and other relational and NoSQL databases</li>
     <li>This book is the full documentation on MariaDB Server, a “Reference Manual Plus” which includes aspects of a User’s Guide; it is based on the contents of the MariaDB Knowledge base (<a href="https://mariadb.com/kb/">https://mariadb.com/kb/</a>), an open, community-edited site contributed to since the inception of MariaDB in 2009</li>
-    <li>This edition is not specific to any version of MariaDB Server, but includes functionality up to MariaDB 10.9</li>
+    <li>This edition is not specific to any version of MariaDB Server, but includes functionality up to the latest version of MariaDB at the time of generation</li>
     </ul>
     </p>
     <p>
@@ -44,16 +44,16 @@
     With now some 3000 pages in this book, most of the initial holes in the documentation have been filled. There should now be no reason to do as in the very early days of MariaDB Server – namely look up MariaDB features in the MySQL documentation. On the contrary, the functionality of the two databases have diverged considerably, so you would be ill advised not to use this MariaDB Server specific documentation.
     </p>
      
-    <h3>About This First Edition</h3>
+    <h3>The First Edition</h3>
     <p>
-    This is the first edition of the MariaDB Server Documentation as a PDF file. Prior to this, the contents were accessible as individual Knowledge Base (KB) articles. But already in 2014 – over seven years ago – the user base requested a PDF version, as seen by MariaDB’s Jira entry <a href="https://jira.mariadb.org/browse/MDEV-6881">https://jira.mariadb.org/browse/MDEV-6881</a> MariaDB Documentation improvements. There, user Stoykov points out that MariaDB documentation already has search capabilities and a way to mirror the KB in an offline version – but lacks downloadable PDF and EPUB versions,
+    The first edition of the MariaDB Server Documentation as a PDF file was released in April 2022. Prior to this, the contents were accessible as individual Knowledge Base (KB) articles. But already in 2014 – over seven years before – the user base requested a PDF version, as seen by MariaDB’s Jira entry <a href="https://jira.mariadb.org/browse/MDEV-6881">https://jira.mariadb.org/browse/MDEV-6881</a> MariaDB Documentation improvements. There, user Stoykov pointed out that MariaDB documentation already had search capabilities and a way to mirror the KB in an offline version – but lacked downloadable PDF and EPUB versions,
     </p>
     <p>
     Fast forward some seven years and a number of upvotes and watchers, we decided to devote resources to it. Creating a PDF from an HTML file is something Python is good at, and Dorje Gilfillan did all the tweaking necessary to merge the individual KB pages into one huge HTML file for PDF conversion.
     </p>
     <h3>This Book’s Structure</h3>
     
-    <p>With this being the first PDF edition, we had to impose a chapter structure on the book which is only indirectly visible from a collection of KB articles on the web. This means that the work in compiling the PDF wasn’t just about merging many KB pages in an order that could be derived from the hierarchical pointers between the articles. It also involved cleaning up that structure.</p>
+    <p>We had to impose a chapter structure on the book which is only indirectly visible from a collection of KB articles on the web. This means that the work in compiling the PDF isn’t just about merging many KB pages in an order that could be derived from the hierarchical pointers between the articles. It also involves cleaning up that structure.</p>
     
     <p>As a result, you will see two tables of contents. One is a one-pager overview with just the two top levels of hierarchy. The other is over 30 pages long. True to the Open Source mantra of “release early, release often”, we believe that the structure can still be improved upon – but it is a good starting point. We have seven overall chapters, and the structures below them all make sense at some level.</p>
     
@@ -77,13 +77,13 @@
     
     <h3>What we should work on</h3>
     
-    <p>This being the First Edition of the MariaDB Server Documentation in PDF format, we have lots of room for improvement. That said, our foremost goal now is to get the book out, to get it used. Only when we start getting user feedback will we know the right priority for our already existing ideas for improvements. We will likely get other requests beyond what we currently have in mind.</p>
+    <p>We have lots of room for improvement. That said, our foremost goal now is to get the book out, to get it used. User feedback will help us determine the right priority for our already existing ideas for improvements. We will likely get other requests beyond what we currently have in mind.</p>
     
     <p>In the area of basic usability, an index has been spoken about. Looking up commands through searches or through browsing the table of contents is ok, but an index also has use cases. Our plan here starts from automatic indexing based on keywords of the headers of individual articles.</p>
     
     <p>In the area of layout, we are looking at finding icons that make the PDF look more like a book, and less like a web page. We already solved the first issue, which was to find a clearer visual distinction between links within the PDF and links to the web.</p>
     
-    <p>In the area of structure, the length of individual chapters varies a lot. It may make sense to move around chapters in the TOC tree, to be more balanced. It may be that the reader expects another ordering based on experiences from other databases. It may even be that we lack entire topics, even if they are available in the KB. For instance, we eliminated the Release Notes for now.</p>
+    <p>In the area of structure, the length of individual chapters varies a lot. It may make sense to move around chapters in the TOC tree, to be more balanced. It may be that the reader expects another ordering based on experiences from other databases. It may even be that we lack entire topics. For instance, we eliminated the Release Notes for unsupported versions of MariaDB, even though these are still accessible on the KB.</p>
     
     <p>In the area of accessibility, there may be places we should publish the PDF to make it easier to find, download, and use.</p>
     
@@ -127,6 +127,6 @@
     
     <p>All in all, thank you to everyone who has contributed to this book! We hope compiling it into one volume is of use for you, and we would love to hear what you think about the end result.</p>
     
-    <p>Munich, Germany, April 2022</p>
+    <p>Munich, Germany, October 2022</p>
     
     <p>Kaj Arnö, CEO, MariaDB Foundation</p>
