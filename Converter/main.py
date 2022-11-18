@@ -2,20 +2,20 @@ from scripts.generate_html import generate_html
 from scripts.generate_pdf import generate_pdf
 from scripts.debug_csv import debug_csv, empty_log
 from scripts.ReadPDF.getpdfdata import get_pdf_data
-from scripts.notifications import notify
-
 from scripts.depth_to_numbers import modify_csv
-from scripts.funcs import get_main_config, get_time, format_time, create_temp, delete_redownloads
+from scripts.funcs import get_main_config, get_time, format_time, delete_redownloads
+
+from pathlib import Path
 
 def main():
     #config and start time 
+    Path("temp").mkdir(exist_ok=True)
     start_time = get_time()
     config = get_main_config()
     filepath = modify_csv(config["input_csv"])
 
     #reset files
     empty_log()
-    create_temp()
     delete_redownloads(config)
 
     #full runthrough
@@ -39,7 +39,6 @@ def main():
     #print time
     formatted_time = format_time(startstring = "Total Time Taken: ", time = get_time() - start_time)    
     print(f"Total Time Taken: {formatted_time}")
-    if config["notify"]: notify(formatted_time)
 
 if __name__ == "__main__":
     print()

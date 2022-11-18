@@ -39,10 +39,6 @@ def read_csv(config):
         contents = contents[:config["number_of_rows"]]
     return [row for row in contents if row["URL"] != ""]
 
-def create_temp():
-    if "temp" not in os.listdir():
-        os.mkdir("temp")
-
 def get_date(tformat = "%Y-%m"):
     today = date.today()
     string = today.strftime(tformat)

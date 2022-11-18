@@ -13,7 +13,7 @@ from scripts.debug_csv import debug
 
 from scripts.waiter import Waiter
 
-WAITER = Waiter(10)
+WAITER = Waiter(3)
 
 def generate_html(filename, config, mark_headers = False, header_data = None, log_ext=False):
     if not config["new_html"]:

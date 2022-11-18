@@ -1,9 +1,6 @@
 import csv
 from os.path import join as path_join
 
-#this script needs a better name please
-
-
 def modify_csv(filepath):
     """modifies a csv file replacing each depth with a (idk)"""
     #read csv
@@ -17,6 +14,7 @@ def modify_csv(filepath):
     last_depth = 0
     pool = [] # a list of resulting strings for each depth
     capture = []
+    rows = [row for row in rows if row["Include"] not in ["", '0']]
     for index, row in enumerate(rows):
         depth = row["Depth"]
         if depth == "":
@@ -24,7 +22,6 @@ def modify_csv(filepath):
             pool.append("")
             continue
         depth = int(depth)
-
         if depth == last_depth:
             depths[depth] += 1
         elif depth > last_depth:
